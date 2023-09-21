@@ -29,7 +29,7 @@ release_status: "alpha"
 # 
 # > In this challenge, you'll build a toy Redis clone that's capable of handling basic commands like PING, GET
 # > and SET. Along the way, we'll learn about event loops, the Redis Protocol and more.
-description_md: |
+description_md: |-
   Add a description for your course here.
 
 # This is shown on the catalog. Plaintext only, recommended length ~10 words.
@@ -43,7 +43,7 @@ description_md: |
 # > Learn about TCP servers, the Redis protocol and more
 # 
 # **TODO**: Remove _md suffix since markdown isn't supported
-short_description_md: |
+short_description_md: |-
   Add a short description for your course here.
 
 # The percentage of users who complete your course. We'll calculate this automatically in the future, safe to ignore for now.
@@ -87,7 +87,7 @@ marketing:
       author_description: "Senior Software Developer, CenturyLink"
       author_avatar: "https://codecrafters.io/images/external/testimonials/patrick-burris.jpeg"
       link: "https://github.com/Jumballaya"
-      text: |
+      text: |-
         I think the instant feedback right there in the git push is really cool.
         Didn't even know that was possible!
 
@@ -110,7 +110,7 @@ stages:
     difficulty: very_easy
 
     # The instructions for your stage. Markdown supported. Shown on the course page.
-    description_md: |
+    description_md: |-
       In this stage, we'll do XYZ
 
       **Example:** ABC
@@ -124,5 +124,5 @@ stages:
       You program must ABCD.
 
     # A description of this stage that is used on the course overview page and other marketing material. Markdown supported.
-    marketing_md: |
+    marketing_md: |-
       In this stage, we'll do XYZ.
