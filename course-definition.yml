@@ -153,6 +153,7 @@ stages:
       VAR var null
       IDENTIFIER language null
       STRING "lox" lox
+      SEMICOLON ; null
       EOF  null
       ```
 
