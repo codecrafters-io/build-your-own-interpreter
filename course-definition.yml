@@ -100,7 +100,7 @@ stages:
   - slug: "dg6" # A identifier for this stage, needs to be unique within a course.
 
     # The name of the stage. This is shown in the course catalog, and on other course pages.
-    name: "The tokenize command"
+    name: "Scanning: Empty file"
 
     # The difficulty of this stage.
     #
