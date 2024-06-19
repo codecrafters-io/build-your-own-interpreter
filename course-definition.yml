@@ -129,7 +129,7 @@ stages:
 
       In this stage, you'll implement basic support for the `tokenize` command which we'll use in all stages that are part of the [Scanning](https://craftinginterpreters.com/scanning.html) chapter.
 
-      ### The `tokenize` command
+      ### Commands
 
       In this challenge, you'll implement multiple commands:
 
@@ -138,22 +138,60 @@ stages:
       - `evaluate`: Evaluate an expression (Later chapters)
       - `run`: Run a program (Later chapters)
 
-      All stages that are part of the [Scanning](https://craftinginterpreters.com/scanning.html) chapter will focus on the `tokenize` command.
+      All stages that are part of the [Scanning](https://craftinginterpreters.com/scanning.html) chapter will be tested using the `tokenize` command.
 
+      ### The `tokenize` command
+
+      The `tokenize` command tokenizes a Lox program and prints the tokens to stdout.
+
+      If there's a file named `test.lox` with the following contents:
+
+      ```bash
+      var breakfast = "bagels";
+      ```
+
+      The `tokenize` command will return the following:
+
+      ```bash
+      $ ./your_program.sh tokenize test.lox
+      VAR var null
+      IDENTIFIER breakfast null
+      STRING "bagels" bagels
+      EOF null null
+      ```
+
+      (Note: This output format matches the tests in the [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning))
+
+      Each line of output is a token, with the following format:
+
+      ```
+      <token_type> <lexeme> <literal>
+      ```
+
+      - `<token_type>`: The type of the token. Examples: `VAR`, `IDENTIFIER`, `STRING`, `EOF` etc.
+      - `<lexeme>`: The actual sequence of characters that formed the token. Examples: `var`, `breakfast`, `"bagels"` etc.
+      - `<literal>`: The literal value of the token. For most tokens this is `null`, it only holds a value for `STRING` / `NUMBER` tokens.
+
+      The `EOF` token is a special token that represents the end of the file. All calls to `tokenize` will include an `EOF` token at the end.
 
       ### Tests
 
-      Your program will be executed like this:
+      The tester will write an empty file to `test.lox`. It'll then run your program like this:
 
       ```bash
-      $ echo "apple" | ./your_executable.sh -E "a"
+      $ ./your_program.sh tokenize test.lox
+      EOF null null
       ```
 
-      You program must ABCD.
+      The tester will verify that `EOF null null` is printed to stdout. Since the file is empty, only the `EOF` (end of file) token is expected.
+
+      ### Notes
+
+      - This output format (`EOF null null`) matches the tests in the [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning))
 
     # A description of this stage that is used on the course overview page and other marketing material. Markdown supported.
     marketing_md: |-
-      In this stage, we'll do XYZ.
+      In this stage, you'll implement basic support for the `tokenize` command which we'll use in all stages that are part of the [Scanning](https://craftinginterpreters.com/scanning.html) chapter.
 
   - slug: "qr4" # A identifier for this stage, needs to be unique within a course.
 
