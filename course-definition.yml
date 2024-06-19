@@ -118,9 +118,9 @@ stages:
     description_md: |-
       Before starting on this, make sure you've read the "Welcome" section of the book that contains these chapters:
 
-      - [Introduction (chapter 1)](https://craftinginterpreters.com/introduction.html)
-      - [A Map of the Territory (chapter 2)](https://craftinginterpreters.com/a-map-of-the-territory.html)
-      - [The Lox Language (chapter 3)](https://craftinginterpreters.com/the-lox-language.html)
+      - [Introduction](https://craftinginterpreters.com/introduction.html) (chapter 1)
+      - [A Map of the Territory](https://craftinginterpreters.com/a-map-of-the-territory.html) (chapter 2)
+      - [The Lox Language](https://craftinginterpreters.com/the-lox-language.html) (chapter 3)
 
       These chapters don't involve writing code, so they won't be covered in this challenge. This challenge will start
       from chapter 4, [Scanning](https://craftinginterpreters.com/scanning.html).
