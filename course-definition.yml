@@ -157,9 +157,13 @@ stages:
       <token_type> <lexeme> <literal>
       ```
 
-      - `<token_type>`: The type of the token. Examples: `VAR`, `IDENTIFIER`, `STRING`, `EOF` etc.
-      - `<lexeme>`: The actual sequence of characters that formed the token. Examples: `var`, `breakfast`, `"bagels"` etc.
-      - `<literal>`: The literal value of the token. For most tokens this is `null`, it only holds a value for `STRING` / `NUMBER` tokens.
+      - `<token_type>`: The type of the token.
+        - Examples: `VAR`, `IDENTIFIER`, `STRING`, `EOF` etc.
+      - `<lexeme>`: The actual sequence of characters that formed the token.
+        - Examples: `var`, `breakfast`, `"bagels"` etc.
+        - This is an empty string for the `EOF` token.
+      - `<literal>`: The literal value of the token.
+        - For most tokens this is `null`, it only holds a value for `STRING` / `NUMBER` tokens.
 
       The `EOF` token is a special token that represents the end of the file. All calls to `tokenize` will include an `EOF` token at the end.
 
