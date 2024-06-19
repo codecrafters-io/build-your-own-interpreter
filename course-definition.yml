@@ -137,16 +137,22 @@ stages:
       If there's a file named `test.lox` with the following contents:
 
       ```bash
-      var breakfast = "bagels";
+      var language = "lox";
       ```
+
+      These are the tokens in `test.lox`:
+
+      ![img](https://craftinginterpreters.com/image/scanning/lexemes.png)
+
+      (Image from [Section 4.2: Lexemes & Tokens](https://craftinginterpreters.com/scanning.html#lexemes-and-tokens))
 
       The `tokenize` command will return the following:
 
       ```bash
       $ ./your_program.sh tokenize test.lox
       VAR var null
-      IDENTIFIER breakfast null
-      STRING "bagels" bagels
+      IDENTIFIER language null
+      STRING "lox" lox
       EOF  null
       ```
 
