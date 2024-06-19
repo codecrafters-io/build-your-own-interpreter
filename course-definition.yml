@@ -172,7 +172,7 @@ stages:
       EOF null null
       ```
 
-      The tester will verify that `EOF null null` is printed to stdout. Since the file is empty, only the `EOF` (end of file) token is expected.
+      Since the file is empty, only one token is expected in the output: `EOF`. The tester will verify that `EOF null null` is printed to stdout.
 
       ### Notes
 
