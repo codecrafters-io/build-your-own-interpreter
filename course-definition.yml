@@ -146,7 +146,7 @@ stages:
       VAR var null
       IDENTIFIER breakfast null
       STRING "bagels" bagels
-      EOF null null
+      EOF  null
       ```
 
       (Note: This output format matches the tests in the [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning))
@@ -169,14 +169,15 @@ stages:
 
       ```bash
       $ ./your_program.sh tokenize test.lox
-      EOF null null
+      EOF  null
       ```
 
-      Since the file is empty, only one token is expected in the output: `EOF`. The tester will verify that `EOF null null` is printed to stdout.
+      Since the file is empty, only one token is expected in the output: `EOF`. The tester will verify that `EOF  null` is printed to stdout.
 
       ### Notes
 
-      - This output format (`EOF null null`) matches the tests in the [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning))
+      - This output format (`EOF  null`) matches the tests in the [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning))
+      - There are two spaces between `EOF` and `null`. This is because the `<lexeme>` part is an empty string for the `EOF` token.
 
     # A description of this stage that is used on the course overview page and other marketing material. Markdown supported.
     marketing_md: |-
