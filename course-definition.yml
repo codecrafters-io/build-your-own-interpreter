@@ -188,7 +188,7 @@ stages:
 
       ### Notes
 
-      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning))
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning)
       - There are two spaces between `EOF` and `null`. This is because the `<lexeme>` part is an empty string for the `EOF` token.
 
     # A description of this stage that is used on the course overview page and other marketing material. Markdown supported.
