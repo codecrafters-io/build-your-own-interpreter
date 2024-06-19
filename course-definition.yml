@@ -155,6 +155,7 @@ stages:
       $ ./your_program.sh tokenize test.lox
       VAR var null
       IDENTIFIER language null
+      EQUAL = null
       STRING "lox" lox
       SEMICOLON ; null
       EOF  null
