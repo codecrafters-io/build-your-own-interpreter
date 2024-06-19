@@ -125,7 +125,7 @@ stages:
 
     # The instructions for your stage. Markdown supported. Shown on the course page.
     description_md: |-
-      Before starting on this, make sure you've read the "Welcome" section of the book that contains these chapters:
+      Before starting this stage, make sure you've read the "Welcome" section of the book that contains these chapters:
 
       - [Introduction](https://craftinginterpreters.com/introduction.html) (chapter 1)
       - [A Map of the Territory](https://craftinginterpreters.com/a-map-of-the-territory.html) (chapter 2)
@@ -149,12 +149,6 @@ stages:
       var language = "lox";
       ```
 
-      These are the tokens in `test.lox`:
-
-      ![img](https://craftinginterpreters.com/image/scanning/lexemes.png)
-
-      (Image from [Section 4.2: Lexemes & Tokens](https://craftinginterpreters.com/scanning.html#lexemes-and-tokens))
-
       The `tokenize` command will return the following:
 
       ```bash
@@ -166,9 +160,15 @@ stages:
       EOF  null
       ```
 
-      (Note: This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning))
+      This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning).
 
-      Each line of output represents a token, with the following format:
+      Each line corresponds to a token in the file:
+
+      ![img](https://craftinginterpreters.com/image/scanning/lexemes.png)
+
+      (Image from [Section 4.2: Lexemes & Tokens](https://craftinginterpreters.com/scanning.html#lexemes-and-tokens))
+
+      This is the format for each line:
 
       ```
       <token_type> <lexeme> <literal>
