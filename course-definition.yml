@@ -163,11 +163,9 @@ stages:
 
       This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning).
 
-      Each line corresponds to a token in the file:
+      Each line corresponds to a token in the file (Image from [Section 4.2: Lexemes & Tokens](https://craftinginterpreters.com/scanning.html#lexemes-and-tokens)):
 
       ![img](https://craftinginterpreters.com/image/scanning/lexemes.png)
-
-      (Image from [Section 4.2: Lexemes & Tokens](https://craftinginterpreters.com/scanning.html#lexemes-and-tokens))
 
       This is the format for each line:
 
