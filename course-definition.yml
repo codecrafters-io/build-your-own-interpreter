@@ -127,11 +127,12 @@ stages:
 
       ---
 
-      In this stage, you'll implement basic support for the `tokenize` command which we'll use in all stages that are part of the [Scanning](https://craftinginterpreters.com/scanning.html) chapter.
+      In this stage, you'll implement basic support for the `tokenize` command.
 
       ### The `tokenize` command
 
-      The `tokenize` command tokenizes a Lox program and prints the tokens to stdout.
+      The `tokenize` command tokenizes a Lox program and prints the tokens to stdout. We'll use this for testing
+      all stages in the [Scanning](https://craftinginterpreters.com/scanning.html) chapter.
 
       If there's a file named `test.lox` with the following contents:
 
