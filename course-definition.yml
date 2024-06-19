@@ -30,7 +30,7 @@ release_status: "alpha"
 # > In this challenge, you'll build a toy Redis clone that's capable of handling basic commands like PING, GET
 # > and SET. Along the way, we'll learn about event loops, the Redis Protocol and more.
 description_md: |-
-  This challenge follows ths book [Crafting Interpreters](https://craftinginterpreters.com/) by Robert Nystrom.
+  This challenge follows the book [Crafting Interpreters](https://craftinginterpreters.com/) by Robert Nystrom.
 
   In this challenge you'll build an interpreter for [Lox](https://craftinginterpreters.com/the-lox-language.html), a simple scripting
   language. Along the way, you'll learn about tokenization, ASTs, tree-walk interpreters and more.
@@ -116,9 +116,32 @@ stages:
 
     # The instructions for your stage. Markdown supported. Shown on the course page.
     description_md: |-
-      In this stage, we'll do XYZ
+      Before starting on this, make sure you've read the "Welcome" section of the book that contains these chapters:
 
-      **Example:** ABC
+      - [Introduction (chapter 1)](https://craftinginterpreters.com/introduction.html)
+      - [A Map of the Territory (chapter 2)](https://craftinginterpreters.com/a-map-of-the-territory.html)
+      - [The Lox Language (chapter 3)](https://craftinginterpreters.com/the-lox-language.html)
+
+      These chapters don't involve writing code, so they won't be covered in this challenge. This challenge will start
+      from chapter 4, [Scanning](https://craftinginterpreters.com/scanning.html).
+
+      ---
+
+      In this stage, you'll implement basic support for the `tokenize` command which we'll use in all stages that are part of the [Scanning](https://craftinginterpreters.com/scanning.html) chapter.
+
+      ### The `tokenize` command
+
+      In this challenge, you'll implement multiple commands:
+
+      - `tokenize`: Tokenize the input & print tokens (**This stage**, used in the [Scanning](https://craftinginterpreters.com/scanning.html) chapter)
+      - `parse`: Parse tokens into an AST (Later chapters)
+      - `evaluate`: Evaluate an expression (Later chapters)
+      - `run`: Run a program (Later chapters)
+
+      All stages that are part of the [Scanning](https://craftinginterpreters.com/scanning.html) chapter will focus on the `tokenize` command.
+
+
+      ### Tests
 
       Your program will be executed like this:
 
