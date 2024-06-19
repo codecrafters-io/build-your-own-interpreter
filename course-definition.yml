@@ -1,50 +1,51 @@
 # Used in your course's URL: https://app.codecrafters.io/courses/<slug>
 # Example: "redis"
-slug: "your_course_slug"
+slug: "interpreter"
 
 # The name of your course. This will be displayed in the course catalog, and on other course pages.
 # Example: "Build your own Redis"
-name: "Build your own something"
+name: "Build your own Interpreter"
 
-# A short name for your course, this'll be used in copy like emails. 
+# A short name for your course, this'll be used in copy like emails.
 # Example: "Redis"
-short_name: "dummy"
+short_name: "Interpreter"
 
-# The release status for your course. 
+# The release status for your course.
 #
-# - alpha: Only visible to yourself and CodeCrafters staff. 
+# - alpha: Only visible to yourself and CodeCrafters staff.
 # - beta: Visible to all CodeCrafters users, but with a "beta" label.
 # - live: Visible to all CodeCrafters users, no label.
-# 
+#
 # Allowed values: "alpha", "beta", "live"
 release_status: "alpha"
 
 # This is shown on the course overview page. Markdown supported, recommended length ~30 words.
-# 
-# Recommended format: 
-# 
+#
+# Recommended format:
+#
 # > In this challenge, you'll build ABC that's capable of D, E, F and G. Along the way, we'll learn about X, Y, Z and more.
-# 
+#
 # Example:
-# 
+#
 # > In this challenge, you'll build a toy Redis clone that's capable of handling basic commands like PING, GET
 # > and SET. Along the way, we'll learn about event loops, the Redis Protocol and more.
 description_md: |-
-  Add a description for your course here.
+  In this challenge, you'll build an interpreter for a simple scripting language. This challenge is based on
+  [Crafting Interpreters](https://craftinginterpreters.com/) by Robert Nystrom.
 
 # This is shown on the catalog. Plaintext only, recommended length ~10 words.
-# 
-# Recommended format: 
-# 
+#
+# Recommended format:
+#
 # > Learn about X, Y, Z and more
-# 
-# Example: 
+#
+# Example:
 #
 # > Learn about TCP servers, the Redis protocol and more
-# 
+#
 # **TODO**: Remove _md suffix since markdown isn't supported
 short_description_md: |-
-  Add a short description for your course here.
+  Learn about tokenization, ASTs, tree-walk interpreters and more.
 
 # The percentage of users who complete your course. We'll calculate this automatically in the future, safe to ignore for now.
 completion_percentage: 15
@@ -56,24 +57,26 @@ languages:
   - slug: "rust"
 
 marketing:
-  # Shown in the catalog. 
-  # 
+  # Shown in the catalog.
+  #
   # Recommended guidelines:
-  # 
+  #
   # - "easy": < 2h of work for an experienced developer
   # - "medium": > 6h of work for an experienced developer
   # - "hard": > 6h of work for an experienced developer
   #
   # Allowed values: "easy", "medium", "hard"
-  difficulty: medium
+  #
+  # TODO: Is this still used? Stage difficulties should be a replacement for this
+  difficulty: hard
 
   # This is shown as an example when users suggest extensions to your course.
   # Example: "Persistence" (from the Redis challenge)
-  sample_extension_idea_title: "My course extension idea"
+  sample_extension_idea_title: "Control flow"
 
   # This is shown as an example when users suggest extensions to your course.
   # Example: "A Redis server that can read and write .rdb files" (from the Redis challenge)
-  sample_extension_idea_description: "A description for my course extension idea"
+  sample_extension_idea_description: "An interpreter that can handle control flow statements like if/else"
 
   # These are some default testimonials that you can use. Feel free to switch these out with your own.
   testimonials:
@@ -92,20 +95,20 @@ marketing:
         Didn't even know that was possible!
 
 stages:
-  - slug: "init" # A identifier for this stage, needs to be unique within a course.
+  - slug: "dg6" # A identifier for this stage, needs to be unique within a course.
 
     # The name of the stage. This is shown in the course catalog, and on other course pages.
-    name: "The first stage"
+    name: "The tokenize command"
 
-    # The difficulty of this stage. 
-    # 
+    # The difficulty of this stage.
+    #
     # Recommended guidelines, based on how long the stage will take an experienced developer to complete:
-    # 
-    # - Very Easy (< 5 minutes) 
-    # - Easy (5-10 minutes) 
-    # - Medium (30m-1h) 
+    #
+    # - Very Easy (< 5 minutes)
+    # - Easy (5-10 minutes)
+    # - Medium (30m-1h)
     # - Hard (> 1h)
-    # 
+    #
     # Allowed values: "very_easy", "easy", "medium", "hard"
     difficulty: very_easy
 
@@ -115,7 +118,42 @@ stages:
 
       **Example:** ABC
 
-      Your program will be executed like this: 
+      Your program will be executed like this:
+
+      ```bash
+      $ echo "apple" | ./your_executable.sh -E "a"
+      ```
+
+      You program must ABCD.
+
+    # A description of this stage that is used on the course overview page and other marketing material. Markdown supported.
+    marketing_md: |-
+      In this stage, we'll do XYZ.
+
+  - slug: "qr4" # A identifier for this stage, needs to be unique within a course.
+
+    # The name of the stage. This is shown in the course catalog, and on other course pages.
+    name: "Scanning: Parentheses"
+
+    # The difficulty of this stage.
+    #
+    # Recommended guidelines, based on how long the stage will take an experienced developer to complete:
+    #
+    # - Very Easy (< 5 minutes)
+    # - Easy (5-10 minutes)
+    # - Medium (30m-1h)
+    # - Hard (> 1h)
+    #
+    # Allowed values: "very_easy", "easy", "medium", "hard"
+    difficulty: medium
+
+    # The instructions for your stage. Markdown supported. Shown on the course page.
+    description_md: |-
+      In this stage, we'll do XYZ
+
+      **Example:** ABC
+
+      Your program will be executed like this:
 
       ```bash
       $ echo "apple" | ./your_executable.sh -E "a"
