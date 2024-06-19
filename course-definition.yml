@@ -35,6 +35,15 @@ description_md: |-
   In this challenge you'll build an interpreter for [Lox](https://craftinginterpreters.com/the-lox-language.html), a simple scripting
   language. Along the way, you'll learn about tokenization, ASTs, tree-walk interpreters and more.
 
+  Before starting this challenge, make sure you've read the "Welcome" part of the book that contains these chapters:
+
+  - [Introduction](https://craftinginterpreters.com/introduction.html) (chapter 1)
+  - [A Map of the Territory](https://craftinginterpreters.com/a-map-of-the-territory.html) (chapter 2)
+  - [The Lox Language](https://craftinginterpreters.com/the-lox-language.html) (chapter 3)
+
+  These chapters don't involve writing code, so they won't be covered in this challenge. This challenge will start
+  from chapter 4, [Scanning](https://craftinginterpreters.com/scanning.html).
+
 # This is shown on the catalog. Plaintext only, recommended length ~10 words.
 #
 # Recommended format:
