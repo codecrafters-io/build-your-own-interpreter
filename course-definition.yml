@@ -225,10 +225,9 @@ stages:
     description_md: |-
       In this stage, you'll add support for scanning parentheses (`(` and `)`).
 
-      ### Book references
+      ### Book reference
 
-      - This stage is part of the [Scanning](https://craftinginterpreters.com/scanning.html) chapter.
-      - The code for this stage is implemented in [Section 4.2: Recognizing Lexemes](https://craftinginterpreters.com/scanning.html#recognizing-lexemes).
+      The code for this stage is implemented in [Section 4.2: Recognizing Lexemes](https://craftinginterpreters.com/scanning.html#recognizing-lexemes).
 
       ### Tests
 
