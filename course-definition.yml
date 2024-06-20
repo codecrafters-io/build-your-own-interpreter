@@ -223,7 +223,7 @@ stages:
 
     # The instructions for your stage. Markdown supported. Shown on the course page.
     description_md: |-
-      In this stage, you'll add support for scanning parentheses (`(` and `)`).
+      In this stage, you'll add support for scanning parentheses.
 
       ### Book reference
 
@@ -249,7 +249,7 @@ stages:
       EOF  null
       ```
 
-      The tester will assert that the stdout output matches the format above.
+      The tester will assert that the stdout of your program matches the format above.
 
       ### Notes
 
