@@ -1,7 +1,7 @@
-![progress-banner](https://codecrafters.io/landing/images/default_progress_banners/<fill_in_course_slug>.png)
+![progress-banner](https://codecrafters.io/landing/images/default_progress_banners/interpreter.png)
 
 This is a starting point for Rust solutions to the
-["Build Your Own <fill_in_course_name>" Challenge](https://app.codecrafters.io/courses/<fill_in_course_slug>/overview).
+["Build Your Own Build your own Interpreter" Challenge](https://app.codecrafters.io/courses/interpreter/overview).
 
 _Add a description of your course here_
 
