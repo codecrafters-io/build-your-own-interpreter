@@ -1,34 +1,28 @@
 use std::env;
-use std::io;
-use std::process;
+use std::fs;
+use std::io::{self, Write};
 
-fn match_pattern(input_line: &str, pattern: &str) -> bool {
-    if pattern.chars().count() == 1 {
-        return input_line.contains(pattern);
-    } else {
-        panic!("Unhandled pattern: {}", pattern)
-    }
-}
-
-// Usage: echo <input_text> | your_grep.sh -E <pattern>
 fn main() {
-    // You can use print statements as follows for debugging, they'll be visible when running tests.
-    println!("Logs from your program will appear here!");
-
-    if env::args().nth(1).unwrap() != "-E" {
-        println!("Expected first argument to be '-E'");
-        process::exit(1);
+    let args: Vec<String> = env::args().collect();
+    if args.len() < 2 {
+        writeln!(io::stderr(), "Usage: {} <filename>", args[0]).unwrap();
+        return;
     }
 
-    let pattern = env::args().nth(2).unwrap();
-    let mut input_line = String::new();
+    // You can use print statements as follows for debugging, they'll be visible when running tests.
+    // But make sure to write the output to stderr.
+    writeln!(io::stderr(), "Logs from your program will appear here!").unwrap();
 
-    io::stdin().read_line(&mut input_line).unwrap();
+    let file_path = &args[1];
+    let file_contents = fs::read_to_string(file_path).unwrap_or_else(|_| {
+        writeln!(io::stderr(), "Failed to read file {}", file_path).unwrap();
+        String::new()
+    });
 
     // Uncomment this block to pass the first stage
-    // if match_pattern(&input_line, &pattern) {
-    //     process::exit(0)
+    // if !file_contents.is_empty() {
+    //     panic!("Scanner not implemented");
     // } else {
-    //     process::exit(1)
+    //     println!("EOF  NULL"); // Placeholder, remove this line when implementing the scanner
     // }
 }

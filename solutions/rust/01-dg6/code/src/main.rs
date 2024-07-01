@@ -9,8 +9,6 @@ fn main() {
         return;
     }
 
-    // You can use print statements as follows for debugging, they'll be visible when running tests.
-    // But make sure to write the output to stderr.
     writeln!(io::stderr(), "Logs from your program will appear here!").unwrap();
 
     let file_path = &args[1];
@@ -19,10 +17,9 @@ fn main() {
         String::new()
     });
 
-    // Uncomment this block to pass the first stage
-    // if !file_contents.is_empty() {
-    //     panic!("Scanner not implemented");
-    // } else {
-    //     println!("EOF  NULL"); // Placeholder, remove this line when implementing the scanner
-    // }
+    if !file_contents.is_empty() {
+        panic!("Scanner not implemented");
+    } else {
+        println!("EOF  NULL"); // Placeholder, remove this line when implementing the scanner
+    }
 }
