@@ -1,32 +1,19 @@
 import sys
 
-# import pyparsing - available if you need it!
-# import lark - available if you need it!
-
-
-def match_pattern(input_line, pattern):
-    if len(pattern) == 1:
-        return pattern in input_line
-    else:
-        raise RuntimeError(f"Unhandled pattern: {pattern}")
-
 
 def main():
-    pattern = sys.argv[2]
-    input_line = sys.stdin.read()
-
-    if sys.argv[1] != "-E":
-        print("Expected first argument to be '-E'")
-        exit(1)
+    with open(sys.argv[1]) as file:
+        file_contents = file.read()
 
     # You can use print statements as follows for debugging, they'll be visible when running tests.
-    print("Logs from your program will appear here!")
+    # But make sure to write the output to stderr.
+    print("Logs from your program will appear here!", file=sys.stderr)
 
     # Uncomment this block to pass the first stage
-    # if match_pattern(input_line, pattern):
-    #     exit(0)
+    # if file_contents:
+    #     raise NotImplementedError("Scanner not implemented")
     # else:
-    #     exit(1)
+    #     print("EOF  NULL") # Placeholder, remove this line when implementing the scanner
 
 
 if __name__ == "__main__":
