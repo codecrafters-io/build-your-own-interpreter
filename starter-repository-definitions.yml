@@ -39,7 +39,7 @@
     - source: starter_templates/.gitattributes
       target: .gitattributes
   template_attributes:
-    required_executable: "cargo (1.70)"
+    required_executable: "cargo (1.77)"
     user_editable_file: "src/main.rs"
 
 - language: go
@@ -54,10 +54,10 @@
       target: go.mod
     - source: starter_templates/go/go.sum
       target: go.sum
-    - source: starter_templates/go/cmd/myprogram/main.go
-      target: cmd/myprogram/main.go
+    - source: starter_templates/go/cmd/myinterpreter/main.go
+      target: cmd/myinterpreter/main.go
     - source: starter_templates/.gitattributes
       target: .gitattributes
   template_attributes:
-    required_executable: "go (1.19)"
-    user_editable_file: "cmd/myprogram/main.go"
+    required_executable: "go (1.22)"
+    user_editable_file: "cmd/myinterpreter/main.go"
