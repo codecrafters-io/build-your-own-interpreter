@@ -15,7 +15,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	file, err := os.Open(os.Args[1])
+	file, err := os.Open(os.Args[2])
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error opening file: %v\n", err)
 		os.Exit(1)
