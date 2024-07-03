@@ -289,6 +289,7 @@ stages:
 
       The lexical errors, should be printed to the stderr stream, with the `[line N]` prefix at the beginning. 
       The tester will assert that the stdout stream of your program matches the valid tokens, and the stderr stream contains the lexical errors. 
+      The tester will also assert that the exit code is non-zero, or more specifically 65 in case of lexical errors.
 
       ### Notes
 
@@ -296,6 +297,5 @@ stages:
       - When scanning for tokens, it's valid to have "unbalanced" parentheses or braces. When we get to parsing expressions in later stages, these cases will be highlighted as errors.
       - You can use the stderr stream to print debug logs for your own use too, to register a line as an error, it has to contain the `[line N]` prefix. Else we will ignore it as an user log. 
       - As the stdout and stderr are completely different streams, the order of errors and valid tokens don't matter. 
-      - Also keep in mind the exit code, needs to be 65 if you encounter lexical errors. 
     marketing_md: |-
       In this stage, you'll implement support for scanning lexical errors.
