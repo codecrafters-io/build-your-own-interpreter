@@ -12,12 +12,12 @@
       target: Pipfile.lock
     - source: starter_templates/python/.gitignore
       target: .gitignore
-    - source: starter_templates/python/your_grep.sh
-      target: your_grep.sh
+    - source: starter_templates/python/your_program.sh
+      target: your_program.sh
     - source: starter_templates/.gitattributes
       target: .gitattributes
   template_attributes:
-    required_executable: "python (3.11)"
+    required_executable: "python (3.12)"
     user_editable_file: "app/main.py"
 
 - language: rust
@@ -34,12 +34,12 @@
       target: Cargo.toml
     - source: starter_templates/rust/Cargo.lock
       target: Cargo.lock
-    - source: starter_templates/rust/your_grep.sh
-      target: your_grep.sh
+    - source: starter_templates/rust/your_program.sh
+      target: your_program.sh
     - source: starter_templates/.gitattributes
       target: .gitattributes
   template_attributes:
-    required_executable: "cargo (1.70)"
+    required_executable: "cargo (1.77)"
     user_editable_file: "src/main.rs"
 
 - language: go
@@ -48,16 +48,16 @@
       target: README.md
     - source: starter_templates/codecrafters.yml
       target: codecrafters.yml
-    - source: starter_templates/go/your_grep.sh
-      target: your_grep.sh
+    - source: starter_templates/go/your_program.sh
+      target: your_program.sh
     - source: starter_templates/go/go.mod
       target: go.mod
     - source: starter_templates/go/go.sum
       target: go.sum
-    - source: starter_templates/go/cmd/mygrep/main.go
-      target: cmd/mygrep/main.go
+    - source: starter_templates/go/cmd/myinterpreter/main.go
+      target: cmd/myinterpreter/main.go
     - source: starter_templates/.gitattributes
       target: .gitattributes
   template_attributes:
-    required_executable: "go (1.19)"
-    user_editable_file: "cmd/mygrep/main.go"
+    required_executable: "go (1.22)"
+    user_editable_file: "cmd/myinterpreter/main.go"

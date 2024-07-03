@@ -6,6 +6,6 @@
 //
 // DON'T EDIT THIS!
 
-module github.com/codecrafters-io/grep-starter-go
+module github.com/codecrafters-io/interpreter-starter-go
 
-go 1.16
+go 1.22

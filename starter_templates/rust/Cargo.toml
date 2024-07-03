@@ -6,7 +6,7 @@
 #
 # DON'T EDIT THIS!
 [package]
-name = "grep-starter-rust"
+name = "interpreter-starter-rust"
 version = "0.1.0"
 authors = ["Codecrafters <hello@codecrafters.io>"]
 edition = "2021"
