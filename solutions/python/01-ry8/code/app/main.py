@@ -11,7 +11,7 @@ def main():
         raise NotImplementedError("Scanner not implemented")
     else:
         print(
-            "EOF  NULL"
+            "EOF  null"
         )  # Placeholder, remove this line when implementing the scanner
 
 

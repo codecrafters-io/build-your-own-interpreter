@@ -23,6 +23,6 @@ fn main() {
     // if !file_contents.is_empty() {
     //     panic!("Scanner not implemented");
     // } else {
-    //     println!("EOF  NULL"); // Placeholder, remove this line when implementing the scanner
+    //     println!("EOF  null"); // Placeholder, remove this line when implementing the scanner
     // }
 }
