@@ -32,4 +32,3 @@
 +        println!("EOF  NULL"); // Placeholder, remove this line when implementing the scanner
 +    }
  }
-\ No newline at end of file
