@@ -1,34 +1,8 @@
-# Used in your course's URL: https://app.codecrafters.io/courses/<slug>
-# Example: "redis"
 slug: "interpreter"
-
-# The name of your course. This will be displayed in the course catalog, and on other course pages.
-# Example: "Build your own Redis"
 name: "Build your own Interpreter"
-
-# A short name for your course, this'll be used in copy like emails.
-# Example: "Redis"
 short_name: "Interpreter"
-
-# The release status for your course.
-#
-# - alpha: Only visible to yourself and CodeCrafters staff.
-# - beta: Visible to all CodeCrafters users, but with a "beta" label.
-# - live: Visible to all CodeCrafters users, no label.
-#
-# Allowed values: "alpha", "beta", "live"
 release_status: "alpha"
 
-# This is shown on the course overview page. Markdown supported, recommended length ~30 words.
-#
-# Recommended format:
-#
-# > In this challenge, you'll build ABC that's capable of D, E, F and G. Along the way, we'll learn about X, Y, Z and more.
-#
-# Example:
-#
-# > In this challenge, you'll build a toy Redis clone that's capable of handling basic commands like PING, GET
-# > and SET. Along the way, we'll learn about event loops, the Redis Protocol and more.
 description_md: |-
   This challenge follows the book [Crafting Interpreters](https://craftinginterpreters.com/) by Robert Nystrom.
 
@@ -44,52 +18,20 @@ description_md: |-
   These chapters don't involve writing code, so they won't be covered in this challenge. This challenge will start
   from chapter 4, [Scanning](https://craftinginterpreters.com/scanning.html).
 
-# This is shown on the catalog. Plaintext only, recommended length ~10 words.
-#
-# Recommended format:
-#
-# > Learn about X, Y, Z and more
-#
-# Example:
-#
-# > Learn about TCP servers, the Redis protocol and more
-#
-# **TODO**: Remove _md suffix since markdown isn't supported
 short_description_md: |-
   Learn about tokenization, ASTs, tree-walk interpreters and more.
 
-# The percentage of users who complete your course. We'll calculate this automatically in the future, safe to ignore for now.
 completion_percentage: 15
 
-# The languages that your course supports.
 languages:
   - slug: "go"
   - slug: "python"
   - slug: "rust"
 
 marketing:
-  # Shown in the catalog.
-  #
-  # Recommended guidelines:
-  #
-  # - "easy": < 2h of work for an experienced developer
-  # - "medium": > 6h of work for an experienced developer
-  # - "hard": > 6h of work for an experienced developer
-  #
-  # Allowed values: "easy", "medium", "hard"
-  #
-  # TODO: Is this still used? Stage difficulties should be a replacement for this
   difficulty: hard
-
-  # This is shown as an example when users suggest extensions to your course.
-  # Example: "Persistence" (from the Redis challenge)
   sample_extension_idea_title: "Control flow"
-
-  # This is shown as an example when users suggest extensions to your course.
-  # Example: "A Redis server that can read and write .rdb files" (from the Redis challenge)
   sample_extension_idea_description: "An interpreter that can handle control flow statements like if/else"
-
-  # These are some default testimonials that you can use. Feel free to switch these out with your own.
   testimonials:
     - author_name: "Ananthalakshmi Sankar"
       author_description: "Automation Engineer at Apple"
@@ -106,24 +48,9 @@ marketing:
         Didn't even know that was possible!
 
 stages:
-  - slug: "dg6" # A identifier for this stage, needs to be unique within a course.
-
-    # The name of the stage. This is shown in the course catalog, and on other course pages.
+  - slug: "ry8"
     name: "Scanning: Empty file"
-
-    # The difficulty of this stage.
-    #
-    # Recommended guidelines, based on how long the stage will take an experienced developer to complete:
-    #
-    # - Very Easy (< 5 minutes)
-    # - Easy (5-10 minutes)
-    # - Medium (30m-1h)
-    # - Hard (> 1h)
-    #
-    # Allowed values: "very_easy", "easy", "medium", "hard"
     difficulty: very_easy
-
-    # The instructions for your stage. Markdown supported. Shown on the course page.
     description_md: |-
       Before starting this stage, make sure you've read the "Welcome" section of the book that contains these chapters:
 
@@ -199,29 +126,12 @@ stages:
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning)
       - There are two spaces between `EOF` and `null`. This is because the `<lexeme>` part is an empty string for the `EOF` token.
-
-    # A description of this stage that is used on the course overview page and other marketing material. Markdown supported.
     marketing_md: |-
       In this stage, you'll implement basic support for the `tokenize` command which we'll use in all stages that are part of the [Scanning](https://craftinginterpreters.com/scanning.html) chapter.
 
-  - slug: "qr4" # A identifier for this stage, needs to be unique within a course.
-
-    # The name of the stage. This is shown in the course catalog, and on other course pages.
+  - slug: "ol4"
     name: "Scanning: Parentheses"
-
-    # The difficulty of this stage.
-    #
-    # Recommended guidelines, based on how long the stage will take an experienced developer to complete:
-    #
-    # - Very Easy (< 5 minutes)
-    # - Easy (5-10 minutes)
-    # - Medium (30m-1h)
-    # - Hard (> 1h)
-    #
-    # Allowed values: "very_easy", "easy", "medium", "hard"
     difficulty: medium
-
-    # The instructions for your stage. Markdown supported. Shown on the course page.
     description_md: |-
       In this stage, you'll add support for scanning parentheses.
 
@@ -255,7 +165,5 @@ stages:
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning)
       - When scanning for tokens, it's valid to have "unbalanced" parentheses. When we get to parsing expressions in later stages, these cases will be highlighted as errors.
-
-    # A description of this stage that is used on the course overview page and other marketing material. Markdown supported.
     marketing_md: |-
       In this stage, you'll implement support for scanning parentheses.
