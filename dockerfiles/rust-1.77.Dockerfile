@@ -8,15 +8,15 @@ COPY --exclude=.git --exclude=README.md . /app
 
 RUN cargo build --release --target-dir=/tmp/codecrafters-interpreter-target
 
-RUN rm /tmp/codecrafters-interpreter-target/release/redis-starter-rust
-RUN rm /tmp/codecrafters-interpreter-target/release/redis-starter-rust.d
+RUN rm /tmp/codecrafters-interpreter-target/release/interpreter-starter-rust
+RUN rm /tmp/codecrafters-interpreter-target/release/interpreter-starter-rust.d
 
 # Build caching schenanigans, see if this can be simplified
 RUN find /tmp/codecrafters-interpreter-target/release -type f -maxdepth 1 -delete
-RUN rm -f /tmp/codecrafters-interpreter-target/release/deps/*redis_starter_rust*
-RUN rm -f /tmp/codecrafters-interpreter-target/release/deps/redis_starter_rust*
-RUN rm -f /tmp/codecrafters-interpreter-target/release/.fingerprint/*redis_starter_rust*
-RUN rm -f /tmp/codecrafters-interpreter-target/release/.fingerprint/redis_starter_rust*
+RUN rm -f /tmp/codecrafters-interpreter-target/release/deps/*interpreter_starter_rust*
+RUN rm -f /tmp/codecrafters-interpreter-target/release/deps/interpreter_starter_rust*
+RUN rm -f /tmp/codecrafters-interpreter-target/release/.fingerprint/*interpreter_starter_rust*
+RUN rm -f /tmp/codecrafters-interpreter-target/release/.fingerprint/interpreter_starter_rust*
 
 RUN rm -rf /app/src
 
