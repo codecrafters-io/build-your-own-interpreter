@@ -267,7 +267,7 @@ stages:
 
       ### Tests
 
-      The tester will run a series of tests with `test.lox` files that contain unknown tokens mixed with all previously introduced token types.
+      The tester will run a series of tests with `test.lox` files that contain unknown tokens mixed with other previously introduced token types.
 
       For example, if `test.lox` contains the following:
 
@@ -421,7 +421,7 @@ stages:
       In this stage, you'll implement support for scanning relational operators.
 
   - slug: "ml2"
-    name: "Scanning: Parentheses"
+    name: "Scanning: Division operator & comments"
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for scanning the division operator & comments.
@@ -469,7 +469,7 @@ stages:
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning)
       - When scanning for tokens, it's valid to have "unbalanced" parentheses or braces. When we get to parsing expressions in later stages, these cases will be highlighted as errors.
     marketing_md: |-
-      In this stage, you'll implement support for scanning parentheses.
+      In this stage, you'll implement support for scanning the division operator & comments.
 
   - slug: "er2"
     name: "Scanning: Whitespace"
@@ -483,7 +483,7 @@ stages:
 
       ### Tests
 
-      The tester will run a series of tests with `test.lox` files that contain parentheses.
+      The tester will run a series of tests with `test.lox` files that contain whitespaces mixed with previously introduced tokens.
 
       For example, if `test.lox` contains the following:
 
@@ -510,3 +510,193 @@ stages:
       - When scanning for tokens, it's valid to have "unbalanced" parentheses or braces. When we get to parsing expressions in later stages, these cases will be highlighted as errors.
     marketing_md: |-
       In this stage, you'll implement support for scanning whitespaces.
+
+  - slug: "tz7"
+    name: "Scanning: Multi-line errors"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for scanning lexical errors, which span multiple lines.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 4.5.1: Lexical Errors](https://craftinginterpreters.com/scanning.html#lexical-errors).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain lexical errors spanning multiple lines.
+
+      For example, if `test.lox` contains the following:
+
+      ```bash
+      ()<|SPACE|><|TAB|>@
+      ```
+
+      The tester will run your program like this:
+
+      ```bash
+      $ ./your_program.sh tokenize test.lox
+      [line 2] Error: Unexpected character: @
+      LEFT_PAREN ( null
+      RIGHT_PAREN ) null
+      EOF  null
+      ```
+
+      The tester will assert that the stdout & stderr of your program matches the format above. 
+      Pay special attention to the line number in your error strings. 
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning)
+      - When scanning for tokens, it's valid to have "unbalanced" parentheses or braces. When we get to parsing expressions in later stages, these cases will be highlighted as errors.
+    marketing_md: |-
+      In this stage, you'll implement support for scanning multi-line errors.
+
+  - slug: "ue7"
+    name: "Scanning: String literals"
+    difficulty: hard
+    description_md: |-
+      In this stage, you'll add support for scanning string literals.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 4.6.1: String literals](https://craftinginterpreters.com/scanning.html#string-literals).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain string literals inside double quotes, mixed with previously introduced tokens.
+
+      For example, if `test.lox` contains the following:
+
+      ```bash
+      "foo baz"
+      ```
+
+      The tester will run your program like this:
+
+      ```bash
+      $ ./your_program.sh tokenize test.lox
+      STRING "foo baz" foo baz
+      EOF  null
+      ```
+
+      The tester will assert that the stdout of your program matches the format above.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning)
+      - When scanning for tokens, it's valid to have "unbalanced" parentheses or braces. When we get to parsing expressions in later stages, these cases will be highlighted as errors.
+    marketing_md: |-
+      In this stage, you'll implement support for scanning string literals.
+
+  - slug: "kj0"
+    name: "Scanning: Number literals"
+    difficulty: hard
+    description_md: |-
+      In this stage, you'll add support for scanning number literals.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 4.6.2: Number literals](https://craftinginterpreters.com/scanning.html#number-literals).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain number literals mixed with previously introduced tokens.
+
+      For example, if `test.lox` contains the following:
+
+      ```bash
+      1234.1234
+      ```
+
+      The tester will run your program like this:
+
+      ```bash
+      $ ./your_program.sh tokenize test.lox
+      NUMBER 1234.1234 1234.1234
+      EOF  null
+      ```
+
+      The tester will assert that the stdout of your program matches the format above.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning)
+      - When scanning for tokens, it's valid to have "unbalanced" parentheses or braces. When we get to parsing expressions in later stages, these cases will be highlighted as errors.
+    marketing_md: |-
+      In this stage, you'll implement support for scanning number literals.
+
+  - slug: "ey7"
+    name: "Scanning: Identifiers"
+    difficulty: hard
+    description_md: |-
+      In this stage, you'll add support for scanning identifiers.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 4.7: Reserved Words and Identifiers](https://craftinginterpreters.com/scanning.html#reserved-words-and-identifiers).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain identifiers mixed with previously introduced tokens.
+
+      For example, if `test.lox` contains the following:
+
+      ```bash
+      foo bar _hello
+      ```
+
+      The tester will run your program like this:
+
+      ```bash
+      $ ./your_program.sh tokenize test.lox
+      IDENTIFIER foo null
+      IDENTIFIER bar null
+      IDENTIFIER _hello null
+      EOF  null
+      ```
+
+      The tester will assert that the stdout of your program matches the format above.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning)
+      - When scanning for tokens, it's valid to have "unbalanced" parentheses or braces. When we get to parsing expressions in later stages, these cases will be highlighted as errors.
+    marketing_md: |-
+      In this stage, you'll implement support for scanning identifers.
+
+  - slug: "pq5"
+    name: "Scanning: Reserved words"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for scanning reserved words.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 4.7: Reserved Words and Identifiers](https://craftinginterpreters.com/scanning.html#reserved-words-and-identifiers).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain reserved words mixed with other previously introduced token types.
+
+      For example, if `test.lox` contains the following:
+
+      ```bash
+      and
+      ```
+
+      The tester will run your program like this:
+
+      ```bash
+      $ ./your_program.sh tokenize test.lox
+      AND and null
+      EOF  null
+      ```
+
+      The tester will assert that the stdout of your program matches the format above.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning)
+      - When scanning for tokens, it's valid to have "unbalanced" parentheses or braces. When we get to parsing expressions in later stages, these cases will be highlighted as errors.
+    marketing_md: |-
+      In this stage, you'll implement support for scanning reserved words.
