@@ -137,7 +137,7 @@ stages:
 
       ### Book reference
 
-      The code for this stage is implemented in [Section 4.2: Recognizing Lexemes](https://craftinginterpreters.com/scanning.html#recognizing-lexemes).
+      The code for this stage is implemented in [Section 4.5: Recognizing Lexemes](https://craftinginterpreters.com/scanning.html#recognizing-lexemes).
 
       ### Tests
 
@@ -176,7 +176,7 @@ stages:
 
       ### Book reference
 
-      The code for this stage is implemented in [Section 4.2: Recognizing Lexemes](https://craftinginterpreters.com/scanning.html#recognizing-lexemes).
+      The code for this stage is implemented in [Section 4.5: Recognizing Lexemes](https://craftinginterpreters.com/scanning.html#recognizing-lexemes).
 
       ### Tests
 
@@ -217,8 +217,7 @@ stages:
 
       ### Book reference
 
-      # TODO Section is wrong. 4.2 ?
-      The code for this stage is implemented in [Section 4.2: Recognizing Lexemes](https://craftinginterpreters.com/scanning.html#recognizing-lexemes).
+      The code for this stage is implemented in [Section 4.5: Recognizing Lexemes](https://craftinginterpreters.com/scanning.html#recognizing-lexemes).
 
       ### Tests
 
