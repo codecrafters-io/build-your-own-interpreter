@@ -299,3 +299,214 @@ stages:
       - As the stdout and stderr are completely different streams, the order of errors and valid tokens don't matter. 
     marketing_md: |-
       In this stage, you'll implement support for scanning lexical errors.
+
+  - slug: "mp7"
+    name: "Scanning: Assignment & equality Operators"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for scanning assignment & equality operators.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 4.5.2: Operators](https://craftinginterpreters.com/scanning.html#operators).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain equality & assignment operators mixed with previously introduced tokens.
+
+      For example, if `test.lox` contains the following:
+
+      ```bash
+      ={===}
+      ```
+
+      The tester will run your program like this:
+
+      ```bash
+      $ ./your_program.sh tokenize test.lox
+      EQUAL = null
+      LEFT_BRACE { null
+      EQUAL_EQUAL == null
+      EQUAL = null
+      RIGHT_BRACE } null
+      EOF  null
+      ```
+
+      The tester will assert that the stdout of your program matches the format above.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning)
+      - When scanning for tokens, it's valid to have "unbalanced" parentheses or braces. When we get to parsing expressions in later stages, these cases will be highlighted as errors.
+    marketing_md: |-
+      In this stage, you'll implement support for scanning the assignment & equality operators.
+
+  - slug: "bu3"
+    name: "Scanning: Negation & inequality operators"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for scanning negation & inequality operators.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 4.5.2: Operators](https://craftinginterpreters.com/scanning.html#operators).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain inequality & negation operators mixed with previously introduced tokens.
+
+      For example, if `test.lox` contains the following:
+
+      ```bash
+      !!===
+      ```
+
+      The tester will run your program like this:
+
+      ```bash
+      $ ./your_program.sh tokenize test.lox
+      BANG ! null
+      BANG_EQUAL != null
+      EQUAL_EQUAL == null
+      EOF  null
+      ```
+
+      The tester will assert that the stdout of your program matches the format above.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning)
+      - When scanning for tokens, it's valid to have "unbalanced" parentheses or braces. When we get to parsing expressions in later stages, these cases will be highlighted as errors.
+    marketing_md: |-
+      In this stage, you'll implement support for scanning negation & inequality operators.
+
+  - slug: "et2"
+    name: "Scanning: Relational operators"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for scanning relational operators, which are: "<", ">", "<=", ">=".
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 4.5.2: Operators](https://craftinginterpreters.com/scanning.html#operators).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain relational operators mixed with previously introduced tokens.
+
+      For example, if `test.lox` contains the following:
+
+      ```bash
+      <<=>>=
+      ```
+
+      The tester will run your program like this:
+
+      ```bash
+      $ ./your_program.sh tokenize test.lox
+      LESS < null
+      LESS_EQUAL <= null
+      GREATER > null
+      GREATER_EQUAL >= null
+      EOF  null
+      ```
+
+      The tester will assert that the stdout of your program matches the format above.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning)
+      - When scanning for tokens, it's valid to have "unbalanced" parentheses or braces. When we get to parsing expressions in later stages, these cases will be highlighted as errors.
+    marketing_md: |-
+      In this stage, you'll implement support for scanning relational operators.
+
+  - slug: "ml2"
+    name: "Scanning: Parentheses"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for scanning the division operator & comments.
+      Comments start with "//", and the division operator is "/".
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 4.6: Longer Lexemes](https://craftinginterpreters.com/scanning.html#longer-lexemes).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain "/" & "//" mixed with previously introduced tokens.
+
+      For example, if `test.lox` contains the following:
+
+      ```bash
+      // Comment
+      ```
+
+      The tester will run your program like this:
+
+      ```bash
+      $ ./your_program.sh tokenize test.lox
+      EOF  null
+      ```
+
+      Similarly, if `test.lox` contains the following:
+
+      ```bash
+      /
+      ```
+
+      The tester will run your program like this:
+
+      ```bash
+      $ ./your_program.sh tokenize test.lox
+      SLASH / null
+      EOF  null
+      ```
+
+      The tester will assert that the stdout of your program matches the format above.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning)
+      - When scanning for tokens, it's valid to have "unbalanced" parentheses or braces. When we get to parsing expressions in later stages, these cases will be highlighted as errors.
+    marketing_md: |-
+      In this stage, you'll implement support for scanning parentheses.
+
+  - slug: "er2"
+    name: "Scanning: Whitespace"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for scanning whitespaces.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 4.6: Longer Lexemes](https://craftinginterpreters.com/scanning.html#longer-lexemes).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain parentheses.
+
+      For example, if `test.lox` contains the following:
+
+      ```bash
+      (<|TAB|>
+      <|SPACE|>)
+      ```
+
+      The tester will run your program like this:
+
+      ```bash
+      $ ./your_program.sh tokenize test.lox
+      LEFT_PAREN ( null
+      RIGHT_PAREN ) null
+      EOF  null
+      ```
+
+      The `test.lox` file will contain the space character, and tab character, but to take it more readable in logs, we will replace them with `|SPACE|` and `|TAB|` respectively. This will be done ONLY in the logs, the file will contain the actual characters.
+      The tester will assert that the stdout of your program matches the format above.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning)
+      - When scanning for tokens, it's valid to have "unbalanced" parentheses or braces. When we get to parsing expressions in later stages, these cases will be highlighted as errors.
+    marketing_md: |-
+      In this stage, you'll implement support for scanning whitespaces.
