@@ -72,13 +72,13 @@ stages:
 
       If there's a file named `test.lox` with the following contents:
 
-      ```bash
+      ```
       var language = "lox";
       ```
 
       The `tokenize` command will return the following:
 
-      ```bash
+      ```
       $ ./your_program.sh tokenize test.lox
       VAR var null
       IDENTIFIER language null
@@ -115,7 +115,7 @@ stages:
 
       The tester will write an empty file to `test.lox`. It'll then run your program like this:
 
-      ```bash
+      ```
       $ ./your_program.sh tokenize test.lox
       EOF  null
       ```
@@ -131,7 +131,7 @@ stages:
 
   - slug: "ol4"
     name: "Scanning: Parentheses"
-    difficulty: medium
+    difficulty: hard
     description_md: |-
       In this stage, you'll add support for scanning parentheses.
 
@@ -145,13 +145,13 @@ stages:
 
       For example, if `test.lox` contains the following:
 
-      ```bash
+      ```
       (()
       ```
 
       The tester will run your program like this:
 
-      ```bash
+      ```
       $ ./your_program.sh tokenize test.lox
       LEFT_PAREN ( null
       LEFT_PAREN ( null
@@ -184,13 +184,13 @@ stages:
 
       For example, if `test.lox` contains the following:
 
-      ```bash
+      ```
       {{}}
       ```
 
       The tester will run your program like this:
 
-      ```bash
+      ```
       $ ./your_program.sh tokenize test.lox
       LEFT_BRACE { null
       LEFT_BRACE { null
@@ -225,13 +225,13 @@ stages:
 
       For example, if `test.lox` contains the following:
 
-      ```bash
+      ```
       ({*.,+*})
       ```
 
       The tester will run your program like this:
 
-      ```bash
+      ```
       $ ./your_program.sh tokenize test.lox
       LEFT_PAREN ( null
       LEFT_BRACE { null
@@ -270,13 +270,13 @@ stages:
 
       For example, if `test.lox` contains the following:
 
-      ```bash
+      ```
       ,.$(#
       ```
 
       The tester will run your program like this:
 
-      ```bash
+      ```
       $ ./your_program.sh tokenize test.lox
       [line 1] Error: Unexpected character: $
       [line 1] Error: Unexpected character: #
@@ -315,13 +315,13 @@ stages:
 
       For example, if `test.lox` contains the following:
 
-      ```bash
+      ```
       ={===}
       ```
 
       The tester will run your program like this:
 
-      ```bash
+      ```
       $ ./your_program.sh tokenize test.lox
       EQUAL = null
       LEFT_BRACE { null
@@ -356,13 +356,13 @@ stages:
 
       For example, if `test.lox` contains the following:
 
-      ```bash
+      ```
       !!===
       ```
 
       The tester will run your program like this:
 
-      ```bash
+      ```
       $ ./your_program.sh tokenize test.lox
       BANG ! null
       BANG_EQUAL != null
@@ -395,13 +395,13 @@ stages:
 
       For example, if `test.lox` contains the following:
 
-      ```bash
+      ```
       <<=>>=
       ```
 
       The tester will run your program like this:
 
-      ```bash
+      ```
       $ ./your_program.sh tokenize test.lox
       LESS < null
       LESS_EQUAL <= null
@@ -436,26 +436,26 @@ stages:
 
       For example, if `test.lox` contains the following:
 
-      ```bash
+      ```
       // Comment
       ```
 
       The tester will run your program like this:
 
-      ```bash
+      ```
       $ ./your_program.sh tokenize test.lox
       EOF  null
       ```
 
       Similarly, if `test.lox` contains the following:
 
-      ```bash
+      ```
       /
       ```
 
       The tester will run your program like this:
 
-      ```bash
+      ```
       $ ./your_program.sh tokenize test.lox
       SLASH / null
       EOF  null
@@ -486,14 +486,14 @@ stages:
 
       For example, if `test.lox` contains the following:
 
-      ```bash
+      ```
       (<|TAB|>
       <|SPACE|>)
       ```
 
       The tester will run your program like this:
 
-      ```bash
+      ```
       $ ./your_program.sh tokenize test.lox
       LEFT_PAREN ( null
       RIGHT_PAREN ) null
@@ -526,13 +526,13 @@ stages:
 
       For example, if `test.lox` contains the following:
 
-      ```bash
+      ```
       ()<|SPACE|><|TAB|>@
       ```
 
       The tester will run your program like this:
 
-      ```bash
+      ```
       $ ./your_program.sh tokenize test.lox
       [line 2] Error: Unexpected character: @
       LEFT_PAREN ( null
@@ -566,13 +566,13 @@ stages:
 
       For example, if `test.lox` contains the following:
 
-      ```bash
+      ```
       "foo baz"
       ```
 
       The tester will run your program like this:
 
-      ```bash
+      ```
       $ ./your_program.sh tokenize test.lox
       STRING "foo baz" foo baz
       EOF  null
@@ -603,13 +603,13 @@ stages:
 
       For example, if `test.lox` contains the following:
 
-      ```bash
+      ```
       1234.1234
       ```
 
       The tester will run your program like this:
 
-      ```bash
+      ```
       $ ./your_program.sh tokenize test.lox
       NUMBER 1234.1234 1234.1234
       EOF  null
@@ -640,13 +640,13 @@ stages:
 
       For example, if `test.lox` contains the following:
 
-      ```bash
+      ```
       foo bar _hello
       ```
 
       The tester will run your program like this:
 
-      ```bash
+      ```
       $ ./your_program.sh tokenize test.lox
       IDENTIFIER foo null
       IDENTIFIER bar null
@@ -679,13 +679,13 @@ stages:
 
       For example, if `test.lox` contains the following:
 
-      ```bash
+      ```
       and
       ```
 
       The tester will run your program like this:
 
-      ```bash
+      ```
       $ ./your_program.sh tokenize test.lox
       AND and null
       EOF  null
