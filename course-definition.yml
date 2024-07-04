@@ -72,13 +72,13 @@ stages:
 
       If there's a file named `test.lox` with the following contents:
 
-      ```bash
+      ```
       var language = "lox";
       ```
 
       The `tokenize` command will return the following:
 
-      ```bash
+      ```
       $ ./your_program.sh tokenize test.lox
       VAR var null
       IDENTIFIER language null
@@ -115,7 +115,7 @@ stages:
 
       The tester will write an empty file to `test.lox`. It'll then run your program like this:
 
-      ```bash
+      ```
       $ ./your_program.sh tokenize test.lox
       EOF  null
       ```
@@ -145,13 +145,13 @@ stages:
 
       For example, if `test.lox` contains the following:
 
-      ```bash
+      ```
       (()
       ```
 
       The tester will run your program like this:
 
-      ```bash
+      ```
       $ ./your_program.sh tokenize test.lox
       LEFT_PAREN ( null
       LEFT_PAREN ( null
@@ -184,13 +184,13 @@ stages:
 
       For example, if `test.lox` contains the following:
 
-      ```bash
+      ```
       {{}}
       ```
 
       The tester will run your program like this:
 
-      ```bash
+      ```
       $ ./your_program.sh tokenize test.lox
       LEFT_BRACE { null
       LEFT_BRACE { null
@@ -212,8 +212,8 @@ stages:
     name: "Scanning: Other single-character tokens"
     difficulty: medium
     description_md: |-
-      In this stage, you'll add support for scanning other single-character tokens, like ",", ".", "-", "+", ";", "*".
-      "/" is not covered here, it's coved in later stages. 
+      In this stage, you'll add support for scanning other single-character tokens, like `,`, `.`, `-`, `+`, `;`, `*`.
+      `/` is not covered here, it's covered in later stages. 
 
       ### Book reference
 
@@ -225,13 +225,13 @@ stages:
 
       For example, if `test.lox` contains the following:
 
-      ```bash
+      ```
       ({*.,+*})
       ```
 
       The tester will run your program like this:
 
-      ```bash
+      ```
       $ ./your_program.sh tokenize test.lox
       LEFT_PAREN ( null
       LEFT_BRACE { null
@@ -270,13 +270,13 @@ stages:
 
       For example, if `test.lox` contains the following:
 
-      ```bash
+      ```
       ,.$(#
       ```
 
       The tester will run your program like this:
 
-      ```bash
+      ```
       $ ./your_program.sh tokenize test.lox
       [line 1] Error: Unexpected character: $
       [line 1] Error: Unexpected character: #
@@ -315,13 +315,13 @@ stages:
 
       For example, if `test.lox` contains the following:
 
-      ```bash
+      ```
       ={===}
       ```
 
       The tester will run your program like this:
 
-      ```bash
+      ```
       $ ./your_program.sh tokenize test.lox
       EQUAL = null
       LEFT_BRACE { null
@@ -356,13 +356,13 @@ stages:
 
       For example, if `test.lox` contains the following:
 
-      ```bash
+      ```
       !!===
       ```
 
       The tester will run your program like this:
 
-      ```bash
+      ```
       $ ./your_program.sh tokenize test.lox
       BANG ! null
       BANG_EQUAL != null
@@ -383,7 +383,7 @@ stages:
     name: "Scanning: Relational operators"
     difficulty: medium
     description_md: |-
-      In this stage, you'll add support for scanning relational operators, which are: "<", ">", "<=", ">=".
+      In this stage, you'll add support for scanning relational operators, which are: `<`, `>`, `<=`, `>=`.
 
       ### Book reference
 
@@ -395,13 +395,13 @@ stages:
 
       For example, if `test.lox` contains the following:
 
-      ```bash
+      ```
       <<=>>=
       ```
 
       The tester will run your program like this:
 
-      ```bash
+      ```
       $ ./your_program.sh tokenize test.lox
       LESS < null
       LESS_EQUAL <= null
@@ -424,7 +424,7 @@ stages:
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for scanning the division operator & comments.
-      Comments start with "//", and the division operator is "/".
+      Comments start with `//`, and the division operator is `/`.
 
       ### Book reference
 
@@ -432,30 +432,30 @@ stages:
 
       ### Tests
 
-      The tester will run a series of tests with `test.lox` files that contain "/" & "//" mixed with previously introduced tokens.
+      The tester will run a series of tests with `test.lox` files that contain `/` & `//` mixed with previously introduced tokens.
 
       For example, if `test.lox` contains the following:
 
-      ```bash
+      ```
       // Comment
       ```
 
       The tester will run your program like this:
 
-      ```bash
+      ```
       $ ./your_program.sh tokenize test.lox
       EOF  null
       ```
 
       Similarly, if `test.lox` contains the following:
 
-      ```bash
+      ```
       /
       ```
 
       The tester will run your program like this:
 
-      ```bash
+      ```
       $ ./your_program.sh tokenize test.lox
       SLASH / null
       EOF  null
@@ -486,14 +486,14 @@ stages:
 
       For example, if `test.lox` contains the following:
 
-      ```bash
+      ```
       (<|TAB|>
       <|SPACE|>)
       ```
 
       The tester will run your program like this:
 
-      ```bash
+      ```
       $ ./your_program.sh tokenize test.lox
       LEFT_PAREN ( null
       RIGHT_PAREN ) null
@@ -526,14 +526,16 @@ stages:
 
       For example, if `test.lox` contains the following:
 
-      ```bash
-      ()<|SPACE|><|TAB|>@
+      ```
+      #<|SPACE|>
+      <|TAB|>@
       ```
 
       The tester will run your program like this:
 
-      ```bash
+      ```
       $ ./your_program.sh tokenize test.lox
+      [line 1] Error: Unexpected character: #
       [line 2] Error: Unexpected character: @
       LEFT_PAREN ( null
       RIGHT_PAREN ) null
@@ -566,13 +568,13 @@ stages:
 
       For example, if `test.lox` contains the following:
 
-      ```bash
+      ```
       "foo baz"
       ```
 
       The tester will run your program like this:
 
-      ```bash
+      ```
       $ ./your_program.sh tokenize test.lox
       STRING "foo baz" foo baz
       EOF  null
@@ -603,13 +605,13 @@ stages:
 
       For example, if `test.lox` contains the following:
 
-      ```bash
+      ```
       1234.1234
       ```
 
       The tester will run your program like this:
 
-      ```bash
+      ```
       $ ./your_program.sh tokenize test.lox
       NUMBER 1234.1234 1234.1234
       EOF  null
@@ -640,13 +642,13 @@ stages:
 
       For example, if `test.lox` contains the following:
 
-      ```bash
+      ```
       foo bar _hello
       ```
 
       The tester will run your program like this:
 
-      ```bash
+      ```
       $ ./your_program.sh tokenize test.lox
       IDENTIFIER foo null
       IDENTIFIER bar null
@@ -667,7 +669,7 @@ stages:
     name: "Scanning: Reserved words"
     difficulty: medium
     description_md: |-
-      In this stage, you'll add support for scanning reserved words.
+      In this stage, you'll add support for scanning reserved words, which are: `and`, `class`, `else`, `false`, `for`, `fun`, `if`, `nil`, `or`, `print`, `return`, `super`, `this`, `true`, `var`, `while`.
 
       ### Book reference
 
@@ -679,13 +681,13 @@ stages:
 
       For example, if `test.lox` contains the following:
 
-      ```bash
+      ```
       and
       ```
 
       The tester will run your program like this:
 
-      ```bash
+      ```
       $ ./your_program.sh tokenize test.lox
       AND and null
       EOF  null
