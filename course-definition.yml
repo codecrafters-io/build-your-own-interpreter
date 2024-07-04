@@ -145,9 +145,9 @@ stages:
 
       For example, if `test.lox` contains the following:
 
-      ```
+      ```{{{
       (()
-      ```
+      }}}```
 
       The tester will run your program like this:
 
@@ -184,9 +184,9 @@ stages:
 
       For example, if `test.lox` contains the following:
 
-      ```
+      ```{{{
       {{}}
-      ```
+      }}}```
 
       The tester will run your program like this:
 
