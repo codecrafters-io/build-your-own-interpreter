@@ -527,8 +527,8 @@ stages:
       For example, if `test.lox` contains the following:
 
       ```
-      #<|SPACE|>
-      <|TAB|>@
+      #<|SPACE|>(
+      )<|TAB|>@
       ```
 
       The tester will run your program like this:
