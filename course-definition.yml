@@ -581,6 +581,23 @@ stages:
       ```
 
       The tester will assert that the stdout of your program matches the format above.
+      
+      If string is unterminated, you should raise a lexical error.
+      For example, if `test.lox` contains the following:
+
+      ```
+      "bar
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh tokenize test.lox
+      [line 1] Error: Unterminated string.
+      EOF  null
+      ```
+
+      The tester will assert that an error is raised, and that the error string matches the format above.
 
       ### Notes
 
