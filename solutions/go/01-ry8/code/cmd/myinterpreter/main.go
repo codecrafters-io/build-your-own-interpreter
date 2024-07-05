@@ -6,8 +6,6 @@ import (
 )
 
 func main() {
-	fmt.Fprintln(os.Stderr, "Logs from your program will appear here!")
-
 	if len(os.Args) < 2 {
 		fmt.Fprintln(os.Stderr, "Error: Missing file argument")
 		os.Exit(1)

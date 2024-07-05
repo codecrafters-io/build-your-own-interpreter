@@ -4,12 +4,12 @@ use std::io::{self, Write};
 
 fn main() {
     let args: Vec<String> = env::args().collect();
-    if args.len() < 2 {
-        writeln!(io::stderr(), "Usage: {} <filename>", args[0]).unwrap();
+    if args.len() < 3 {
+        writeln!(io::stderr(), "Usage: {} tokenize <filename>", args[0]).unwrap();
         return;
     }
 
-    writeln!(io::stderr(), "Logs from your program will appear here!").unwrap();
+    let command
 
     let file_path = &args[1];
     let file_contents = fs::read_to_string(file_path).unwrap_or_else(|_| {

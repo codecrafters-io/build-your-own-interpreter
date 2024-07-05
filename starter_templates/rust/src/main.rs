@@ -4,13 +4,14 @@ use std::io::{self, Write};
 
 fn main() {
     let args: Vec<String> = env::args().collect();
-    if args.len() < 2 {
-        writeln!(io::stderr(), "Usage: {} <filename>", args[0]).unwrap();
+    if args.len() < 3 {
+        writeln!(io::stderr(), "Usage: {} tokenize <filename>", args[0]).unwrap();
         return;
     }
 
+    let command
+
     // You can use print statements as follows for debugging, they'll be visible when running tests.
-    // But make sure to write the output to stderr.
     writeln!(io::stderr(), "Logs from your program will appear here!").unwrap();
 
     let file_path = &args[1];
