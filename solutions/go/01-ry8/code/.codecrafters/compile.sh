@@ -6,4 +6,7 @@
 #
 # Learn more: https://codecrafters.io/program-interface
 
+# Exit early if any commands fail
+set -e
+
 go build -o /tmp/interpreter-target ./cmd/myinterpreter
