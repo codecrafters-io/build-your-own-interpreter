@@ -6,26 +6,20 @@ import (
 )
 
 func main() {
-	if len(os.Args) < 2 {
-		fmt.Fprintln(os.Stderr, "Error: Missing file argument")
+	if len(os.Args) < 3 {
+		fmt.Fprintln(os.Stderr, "Usage: ./your_program.sh tokenize <filename>")
 		os.Exit(1)
 	}
 
-	file, err := os.Open(os.Args[2])
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error opening file: %v\n", err)
-		os.Exit(1)
-	}
-	defer file.Close()
+	command := os.Args[1]
 
-	fileInfo, err := file.Stat()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error getting file info: %v\n", err)
+	if command != "tokenize" {
+		fmt.Fprintf(os.Stderr, "Unknown command: %s\n", command)
 		os.Exit(1)
 	}
 
-	fileContents := make([]byte, fileInfo.Size())
-	_, err = file.Read(fileContents)
+	filename := os.Args[2]
+	fileContents, err := os.ReadFile(filename)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error reading file: %v\n", err)
 		os.Exit(1)
