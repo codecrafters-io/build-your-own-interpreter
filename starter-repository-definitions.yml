@@ -48,10 +48,6 @@
       target: README.md
     - source: starter_templates/codecrafters.yml
       target: codecrafters.yml
-    - source: starter_templates/go/.codecrafters/compile.sh
-      target: .codecrafters/compile.sh
-    - source: starter_templates/go/.codecrafters/run.sh
-      target: .codecrafters/run.sh
     - source: starter_templates/go/your_program.sh
       target: your_program.sh
     - source: starter_templates/go/go.mod
