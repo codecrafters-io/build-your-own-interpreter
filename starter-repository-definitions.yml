@@ -4,6 +4,10 @@
       target: README.md
     - source: starter_templates/codecrafters.yml
       target: codecrafters.yml
+    - source: starter_templates/python/.codecrafters/compile.sh
+      target: .codecrafters/compile.sh
+    - source: starter_templates/python/.codecrafters/run.sh
+      target: .codecrafters/run.sh
     - source: starter_templates/python/app/main.py
       target: app/main.py
     - source: starter_templates/python/Pipfile
@@ -26,6 +30,10 @@
       target: README.md
     - source: starter_templates/codecrafters.yml
       target: codecrafters.yml
+    - source: starter_templates/rust/.codecrafters/compile.sh
+      target: .codecrafters/compile.sh
+    - source: starter_templates/rust/.codecrafters/run.sh
+      target: .codecrafters/run.sh
     - source: starter_templates/rust/src/main.rs
       target: src/main.rs
     - source: starter_templates/rust/.gitignore
