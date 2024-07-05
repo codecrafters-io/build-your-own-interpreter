@@ -1,8 +1,16 @@
 #!/bin/sh
 #
-# DON'T EDIT THIS!
+# Use this script to run your program LOCALLY.
 #
-# CodeCrafters uses this file to test your code. Don't make any changes here!
+# Note: Changing this script WILL NOT affect how CodeCrafters runs your program.
 #
-# DON'T EDIT THIS!
+# Learn more: https://codecrafters.io/program-interface
+
+# Exit early if any commands fail
+set -e
+
+# Copied from .codecrafters/run.sh
+#
+# - Edit this to change how your program runs locally
+# - Edit .codecrafters/run.sh to change how your program runs remotely
 exec pipenv run python3 -m app.main "$@"
