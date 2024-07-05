@@ -2,7 +2,18 @@ import sys
 
 
 def main():
-    with open(sys.argv[2]) as file:
+    if len(sys.argv) < 3:
+        print("Usage: ./your_program.sh tokenize <filename>", file=sys.stderr)
+        exit(1)
+
+    command = sys.argv[1]
+    filename = sys.argv[2]
+
+    if command != "tokenize":
+        print(f"Unknown command: {command}", file=sys.stderr)
+        exit(1)
+
+    with open(filename) as file:
         file_contents = file.read()
 
     if file_contents:
