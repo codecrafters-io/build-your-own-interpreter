@@ -5,14 +5,16 @@ This is a starting point for {{language_name}} solutions to the
 
 _Add a description of your course here_
 
-**Note**: If you're viewing this repo on GitHub, head over to [codecrafters.io](https://codecrafters.io) to try the challenge.
+**Note**: If you're viewing this repo on GitHub, head over to
+[codecrafters.io](https://codecrafters.io) to try the challenge.
 
 # Passing the first stage
 
-The entry point for your `<fill_in_executable_name>` implementation is in `{{ user_editable_file }}`. Study and uncomment the relevant code, and
-push your changes to pass the first stage:
+The entry point for your `<fill_in_executable_name>` implementation is in
+`{{ user_editable_file }}`. Study and uncomment the relevant code, and push your
+changes to pass the first stage:
 
-``` sh
+```sh
 git add .
 git commit -m "pass 1st stage" # any msg
 git push origin master
