@@ -1,14 +1,13 @@
 The entry point for your Interpreter implementation is in `app/main.py`.
 
-Study and uncomment the relevant code:
+Study and uncomment the relevant code: 
 
 ```python
 # Uncomment this block to pass the first stage
 if file_contents:
     raise NotImplementedError("Scanner not implemented")
 else:
-    # Placeholder, remove this line when implementing the scanner
-    print("EOF  null")
+    print("EOF  null") # Placeholder, remove this line when implementing the scanner
 ```
 
 Push your changes to pass the first stage:

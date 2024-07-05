@@ -1,7 +1,6 @@
-The entry point for your Interpreter implementation is in
-`cmd/myinterpreter/main.go`.
+The entry point for your Interpreter implementation is in `cmd/myinterpreter/main.go`.
 
-Study and uncomment the relevant code:
+Study and uncomment the relevant code: 
 
 ```go
 // Uncomment this block to pass the first stage
