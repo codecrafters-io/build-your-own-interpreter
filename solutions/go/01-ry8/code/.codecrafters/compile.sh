@@ -6,4 +6,4 @@
 #
 # Learn more: https://codecrafters.io/program-interface
 
-# (This file is empty since Go programs don't use a compile step)
+go build -o /tmp/interpreter-target ./cmd/myinterpreter
