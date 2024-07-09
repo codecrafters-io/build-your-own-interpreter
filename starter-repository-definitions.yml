@@ -4,20 +4,6 @@
       target: README.md
     - source: starter_templates/codecrafters.yml
       target: codecrafters.yml
-    - source: starter_templates/python/.codecrafters/compile.sh
-      target: .codecrafters/compile.sh
-    - source: starter_templates/python/.codecrafters/run.sh
-      target: .codecrafters/run.sh
-    - source: starter_templates/python/app/main.py
-      target: app/main.py
-    - source: starter_templates/python/Pipfile
-      target: Pipfile
-    - source: starter_templates/python/Pipfile.lock
-      target: Pipfile.lock
-    - source: starter_templates/python/.gitignore
-      target: .gitignore
-    - source: starter_templates/python/your_program.sh
-      target: your_program.sh
     - source: starter_templates/.gitattributes
       target: .gitattributes
   template_attributes:
@@ -30,20 +16,6 @@
       target: README.md
     - source: starter_templates/codecrafters.yml
       target: codecrafters.yml
-    - source: starter_templates/rust/.codecrafters/compile.sh
-      target: .codecrafters/compile.sh
-    - source: starter_templates/rust/.codecrafters/run.sh
-      target: .codecrafters/run.sh
-    - source: starter_templates/rust/src/main.rs
-      target: src/main.rs
-    - source: starter_templates/rust/.gitignore
-      target: .gitignore
-    - source: starter_templates/rust/Cargo.toml
-      target: Cargo.toml
-    - source: starter_templates/rust/Cargo.lock
-      target: Cargo.lock
-    - source: starter_templates/rust/your_program.sh
-      target: your_program.sh
     - source: starter_templates/.gitattributes
       target: .gitattributes
   template_attributes:
@@ -56,18 +28,6 @@
       target: README.md
     - source: starter_templates/codecrafters.yml
       target: codecrafters.yml
-    - source: starter_templates/go/.codecrafters/compile.sh
-      target: .codecrafters/compile.sh
-    - source: starter_templates/go/.codecrafters/run.sh
-      target: .codecrafters/run.sh
-    - source: starter_templates/go/your_program.sh
-      target: your_program.sh
-    - source: starter_templates/go/go.mod
-      target: go.mod
-    - source: starter_templates/go/go.sum
-      target: go.sum
-    - source: starter_templates/go/cmd/myinterpreter/main.go
-      target: cmd/myinterpreter/main.go
     - source: starter_templates/.gitattributes
       target: .gitattributes
   template_attributes:

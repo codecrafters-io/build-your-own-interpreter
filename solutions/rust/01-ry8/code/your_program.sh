@@ -6,8 +6,7 @@
 #
 # Learn more: https://codecrafters.io/program-interface
 
-# Exit early if any commands fail
-set -e
+set -e # Exit early if any commands fail
 
 # Copied from .codecrafters/compile.sh
 #
