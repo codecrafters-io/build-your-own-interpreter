@@ -1,35 +1,12 @@
 - language: python
-  file_mappings:
-    - source: starter_templates/README.md
-      target: README.md
-    - source: starter_templates/codecrafters.yml
-      target: codecrafters.yml
-    - source: starter_templates/.gitattributes
-      target: .gitattributes
   template_attributes:
     required_executable: "python (3.12)"
     user_editable_file: "app/main.py"
-
 - language: rust
-  file_mappings:
-    - source: starter_templates/README.md
-      target: README.md
-    - source: starter_templates/codecrafters.yml
-      target: codecrafters.yml
-    - source: starter_templates/.gitattributes
-      target: .gitattributes
   template_attributes:
     required_executable: "cargo (1.77)"
     user_editable_file: "src/main.rs"
-
 - language: go
-  file_mappings:
-    - source: starter_templates/README.md
-      target: README.md
-    - source: starter_templates/codecrafters.yml
-      target: codecrafters.yml
-    - source: starter_templates/.gitattributes
-      target: .gitattributes
   template_attributes:
     required_executable: "go (1.22)"
     user_editable_file: "cmd/myinterpreter/main.go"
