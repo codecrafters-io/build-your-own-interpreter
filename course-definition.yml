@@ -27,6 +27,8 @@ languages:
   - slug: "go"
   - slug: "python"
   - slug: "rust"
+  - slug: "kotlin"
+    release_status: "alpha"
 
 marketing:
   difficulty: hard
