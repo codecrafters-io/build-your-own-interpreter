@@ -1070,7 +1070,7 @@ stages:
     name: "Parsing: Equality operators"
     difficulty: medium
     description_md: |-
-      In this stage, you'll add support for parsing equality operators. You need to support the two comparison operators `==` & `!=`.
+      In this stage, you'll add support for parsing equality operators: `==` & `!=`.
 
       ### Book reference
 
@@ -1106,7 +1106,7 @@ stages:
     name: "Parsing: Syntactic errors"
     difficulty: medium
     description_md: |-
-      In this stage, you'll add support for handling syntax errors in the expression passed to you. We won't check the exact error message on stderr just the proper exitCode will suffice.
+      In this stage, you'll add support for handling syntax errors in expressions.
 
       ### Book reference
 
@@ -1129,11 +1129,11 @@ stages:
       [line 1] Error at ')': Expect expression.
       ```
 
-      The tester will assert that the exitCode is 65, if there was a syntax error in the expression.
+      The tester will assert that the exit code is 65.
 
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/parse.lox)
-      - We won't check the exact error message on stderr just the proper exitCode will suffice.
+      - The tester won't check the exact error message in this stage, it will only check that the program exits with code 65.
     marketing_md: |-
-      In this stage, you'll implement support for parsing syntax errors.
+      In this stage, you'll implement support for handling syntax errors in expressions.
