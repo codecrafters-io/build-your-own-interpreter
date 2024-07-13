@@ -728,7 +728,7 @@ stages:
       In this stage, you'll implement support for scanning reserved words.
 
   - slug: "sc2"
-    primary_extension_slug: "parser"
+    primary_extension_slug: "parsing-expressions"
     name: "Parsing: Booleans & Nil"
     difficulty: hard
     description_md: |-
@@ -802,7 +802,7 @@ stages:
 
 
   - slug: "ra8"
-    primary_extension_slug: "parser"
+    primary_extension_slug: "parsing-expressions"
     name: "Parsing: Number literals"
     difficulty: medium
     description_md: |-
@@ -838,7 +838,7 @@ stages:
       In this stage, you'll implement support for parsing number literals.
 
   - slug: "th5"
-    primary_extension_slug: "parser"
+    primary_extension_slug: "parsing-expressions"
     name: "Parsing: String literals"
     difficulty: medium
     description_md: |-
@@ -874,7 +874,7 @@ stages:
       In this stage, you'll implement support for parsing string literals.
 
   - slug: "xe6"
-    primary_extension_slug: "parser"
+    primary_extension_slug: "parsing-expressions"
     name: "Parsing: Parentheses"
     difficulty: medium
     description_md: |-
@@ -913,7 +913,7 @@ stages:
       In this stage, you'll implement support for parsing parentheses.
 
   - slug: "mq1"
-    primary_extension_slug: "parser"
+    primary_extension_slug: "parsing-expressions"
     name: "Parsing: Unary Operators"
     difficulty: medium
     description_md: |-
@@ -949,7 +949,7 @@ stages:
       In this stage, you'll implement support for parsing unary operators `!` and `-`.
 
   - slug: "wa9"
-    primary_extension_slug: "parser"
+    primary_extension_slug: "parsing-expressions"
     name: "Parsing: Multiplicative algebraic operators"
     difficulty: medium
     description_md: |-
@@ -985,7 +985,7 @@ stages:
       In this stage, you'll implement support for parsing multiplicative algebraic operators `*` and `/`.
 
   - slug: "yf2"
-    primary_extension_slug: "parser"
+    primary_extension_slug: "parsing-expressions"
     name: "Parsing: Additive algebraic operators"
     difficulty: medium
     description_md: |-
@@ -1021,7 +1021,7 @@ stages:
       In this stage, you'll implement support for parsing additive algebraic operators `+` and `-`.
 
   - slug: "uh4"
-    primary_extension_slug: "parser"
+    primary_extension_slug: "parsing-expressions"
     name: "Parsing: Comparison operators"
     difficulty: medium
     description_md: |-
@@ -1057,7 +1057,7 @@ stages:
       In this stage, you'll implement support for parsing comparison operators `>`, `<`, `>=` & `<=`.
 
   - slug: "ht8"
-    primary_extension_slug: "parser"
+    primary_extension_slug: "parsing-expressions"
     name: "Parsing: Equality operators"
     difficulty: medium
     description_md: |-
@@ -1093,7 +1093,7 @@ stages:
       In this stage, you'll implement support for parsing equality operators `==` & `!=`.
 
   - slug: "wz8"
-    primary_extension_slug: "parser"
+    primary_extension_slug: "parsing-expressions"
     name: "Parsing: Syntactic errors"
     difficulty: medium
     description_md: |-
