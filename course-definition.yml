@@ -27,6 +27,7 @@ languages:
   - slug: "go"
   - slug: "python"
   - slug: "rust"
+  - slug: "kotlin"
 
 marketing:
   difficulty: hard
@@ -739,17 +740,17 @@ stages:
       from chapter 6, [Parsing Expressions](https://craftinginterpreters.com/parsing-expressions.html).
 
       ---
-      In this stage you'll implement basic support for the `parse` command, and use the `parse` command to parse a list of scanned tokens from your scanner. 
+      In this stage you'll implement basic support for the `parse` command, and use the `parse` command to parse a list of scanned tokens from your scanner.
       In this stage, you will implement parsing of boolean values and the `nil` literal.
 
       ### The `parse` command
 
-      // TODO first stage shouldn't be hard      
+      // TODO first stage shouldn't be hard
       // TODO `parse` command and `parsing` together ? Break it into 2 stages ?
       // TODO introduce the concept of AST here ? How to tell them to implement the AST printer ?
       // TODO tell them that this part is introduced at the end of the book.
       // TODO Can't deep link to sections, what is the point then ? Everything will have the same link.
-      // TODO link to 6.2 or 6.2.1 ? 6.2 makes more sense to me. 
+      // TODO link to 6.2 or 6.2.1 ? 6.2 makes more sense to me.
 
       The `parse` command parses a given list of tokens from the Scanner, and prints out the ast representation to stdout. We'll use this for testing
       all stages in the [Parsing Expressions](https://craftinginterpreters.com/parsing-expressions.html) extension.
@@ -902,7 +903,7 @@ stages:
 
       The tester will assert that the stdout of your program matches the format above.
 
-      Remember, in this stage, unmatched parentheses are invalid. So, if you encounter something like `("foo"` it is a `ParseError`. 
+      Remember, in this stage, unmatched parentheses are invalid. So, if you encounter something like `("foo"` it is a `ParseError`.
       In this extension we won't check the exact error message you print to stderr. We will just assert that the exit code is 65. So, you can print any error message you want, and also use the stderr stream for your own debug logs.
 
       ### Notes
