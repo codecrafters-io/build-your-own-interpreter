@@ -50,7 +50,7 @@ marketing:
 
 
 extensions:
-  - slug: "parser"
+  - slug: "parsing-expressions"
     name: "Parsing Expressions"
     description_markdown: |
       In this challenge extension you'll add the ability to parse expressions to your interpreter implementation.
