@@ -52,7 +52,9 @@ extensions:
   - slug: "parsing-expressions"
     name: "Parsing Expressions"
     description_markdown: |
-      In this challenge extension you'll add the ability to parse expressions to your interpreter implementation.
+      This extension covers chapters 5 & 6 of the book ([Representing Code](https://craftinginterpreters.com/representing-code.html) & [Parsing Expressions](https://craftinginterpreters.com/parsing-expressions.html)).
+
+      In this extension, you'll add the ability to parse expressions.
 
 stages:
   - slug: "ry8"
