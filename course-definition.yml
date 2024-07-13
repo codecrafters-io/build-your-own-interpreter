@@ -728,7 +728,7 @@ stages:
 
   - slug: "sc2"
     primary_extension_slug: "parsing-expressions"
-    name: "Parsing: Booleans & Nil"
+    name: "Booleans & Nil"
     difficulty: hard
     description_md: |-
       In this stage you'll implement support for the `parse` command and handle parsing `true`, `false`, and `nil` literals.
@@ -800,7 +800,7 @@ stages:
 
   - slug: "ra8"
     primary_extension_slug: "parsing-expressions"
-    name: "Parsing: Number literals"
+    name: "Number literals"
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for parsing number literals.
@@ -836,7 +836,7 @@ stages:
 
   - slug: "th5"
     primary_extension_slug: "parsing-expressions"
-    name: "Parsing: String literals"
+    name: "String literals"
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for parsing string literals.
@@ -872,7 +872,7 @@ stages:
 
   - slug: "xe6"
     primary_extension_slug: "parsing-expressions"
-    name: "Parsing: Parentheses"
+    name: "Parentheses"
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for parsing parentheses.
@@ -923,7 +923,7 @@ stages:
 
   - slug: "mq1"
     primary_extension_slug: "parsing-expressions"
-    name: "Parsing: Unary Operators"
+    name: "Unary Operators"
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for parsing the negation operator (`-`) & the logical not operator (`!`).
@@ -959,7 +959,7 @@ stages:
 
   - slug: "wa9"
     primary_extension_slug: "parsing-expressions"
-    name: "Parsing: Arithmetic operators (1/2)"
+    name: "Arithmetic operators (1/2)"
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for parsing the multiplication operator (`*`) & the division operator (`/`).
@@ -995,7 +995,7 @@ stages:
 
   - slug: "yf2"
     primary_extension_slug: "parsing-expressions"
-    name: "Parsing: Arithmetic operators (2/2)"
+    name: "Arithmetic operators (2/2)"
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for parsing the addition operator (`+`) & the subtraction operator (`-`).
@@ -1031,7 +1031,7 @@ stages:
 
   - slug: "uh4"
     primary_extension_slug: "parsing-expressions"
-    name: "Parsing: Comparison operators"
+    name: "Comparison operators"
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for parsing comparison operators: `>`, `<`, `>=` & `<=`.
@@ -1067,7 +1067,7 @@ stages:
 
   - slug: "ht8"
     primary_extension_slug: "parsing-expressions"
-    name: "Parsing: Equality operators"
+    name: "Equality operators"
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for parsing equality operators: `==` & `!=`.
@@ -1103,7 +1103,7 @@ stages:
 
   - slug: "wz8"
     primary_extension_slug: "parsing-expressions"
-    name: "Parsing: Syntactic errors"
+    name: "Syntactic errors"
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for handling syntax errors in expressions.
