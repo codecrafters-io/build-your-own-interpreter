@@ -48,7 +48,6 @@ marketing:
         I think the instant feedback right there in the git push is really cool.
         Didn't even know that was possible!
 
-
 extensions:
   - slug: "parsing-expressions"
     name: "Parsing Expressions"
@@ -732,47 +731,46 @@ stages:
     name: "Parsing: Booleans & Nil"
     difficulty: hard
     description_md: |-
-      Before starting this stage, make sure you've read the following chapter from the "A Tree-Walk Interpreter" section of the book:
+      In this stage you'll implement support for the `parse` command and handle parsing `true`, `false`, and `nil` literals.
 
-      - [Representing Code](https://craftinginterpreters.com/representing-code.html) (chapter 5)
+      ### Book reference
 
-      These chapter won't be directly tested in this extension, but the code covered in this chapter from the book will be required. This extension will start
-      from chapter 6, [Parsing Expressions](https://craftinginterpreters.com/parsing-expressions.html).
+      Before starting this stage, make sure you've read the [Representing Code](https://craftinginterpreters.com/representing-code.html) chapter (chapter 5). The
+      code covered in that chapter (`AstPrinter`) will be required to generate the output tested in this stage.
 
-      ---
-      In this stage you'll implement basic support for the `parse` command, and use the `parse` command to parse a list of scanned tokens from your scanner.
-      In this stage, you will implement parsing of boolean values and the `nil` literal.
+      The code for this stage is implemented in [Section 6.2: Recursive Descent Parsing](https://craftinginterpreters.com/parsing-expressions.html#recursive-descent-parsing).
 
       ### The `parse` command
 
-      // TODO first stage shouldn't be hard
-      // TODO `parse` command and `parsing` together ? Break it into 2 stages ?
-      // TODO introduce the concept of AST here ? How to tell them to implement the AST printer ?
-      // TODO tell them that this part is introduced at the end of the book.
-      // TODO Can't deep link to sections, what is the point then ? Everything will have the same link.
-      // TODO link to 6.2 or 6.2.1 ? 6.2 makes more sense to me.
+      In the previous stages, the tester used the `tokenize` command to test your scanner implementation. In this extension, the tester will need to test
+      your parser implementation, so it'll use a different command instead: `parse`.
 
-      The `parse` command parses a given list of tokens from the Scanner, and prints out the ast representation to stdout. We'll use this for testing
-      all stages in the [Parsing Expressions](https://craftinginterpreters.com/parsing-expressions.html) extension.
+      The `parse` command accepts a path to a file (`test.lox` for example) and prints out the AST representation of the file to stdout.
 
-      If there's a file named `test.lox` with the following contents:
+      For example, if `test.lox` contains the following:
 
       ```
-      (2 + 3);
+      2 + 3
       ```
 
       The `parse` command will return the following:
 
       ```
       $ ./your_program.sh parse test.lox
-      (group (+ 2.0 3.0))
+      (+ 2.0 3.0)
       ```
 
       This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/parse.lox).
 
-      ### Book reference
+      For the same file, here's what the output from `tokenize` would've been:
 
-      The code for this stage is implemented in [Section 6.2: Recursive Descent Parsing](https://craftinginterpreters.com/parsing-expressions.html#recursive-descent-parsing).
+      ```
+      $ ./your_program.sh tokenize test.lox
+      NUMBER 2.0 2.0
+      PLUS +
+      NUMBER 3.0 3.0
+      EOF  null
+      ```
 
       ### Tests
 
@@ -787,7 +785,7 @@ stages:
       The tester will run your program like this:
 
       ```
-      $ ./your_program.sh tokenize test.lox
+      $ ./your_program.sh parse test.lox
       true
       ```
 
@@ -796,10 +794,9 @@ stages:
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/parse.lox)
-
+      <!-- TODO: Clarify how `nil` must be printed: `nil`/`null`? -->
     marketing_md: |-
       In this stage, you'll implement support for parsing binary values and the nil literal.
-
 
   - slug: "ra8"
     primary_extension_slug: "parsing-expressions"
@@ -855,14 +852,14 @@ stages:
       For example, if `test.lox` contains the following:
 
       ```
-      "foo hello"
+      "hello"
       ```
 
       The tester will run your program like this:
 
       ```
       $ ./your_program.sh parse test.lox
-      foo hello
+      hello
       ```
 
       The tester will assert that the stdout of your program matches the format above.
@@ -903,8 +900,20 @@ stages:
 
       The tester will assert that the stdout of your program matches the format above.
 
-      Remember, in this stage, unmatched parentheses are invalid. So, if you encounter something like `("foo"` it is a `ParseError`.
-      In this extension we won't check the exact error message you print to stderr. We will just assert that the exit code is 65. So, you can print any error message you want, and also use the stderr stream for your own debug logs.
+      The tester will also check whether your program exits with code 65 if there are unmatched parentheses. For example, if `test.lox` contains the following:
+
+      ```
+      ("foo
+      ```
+
+      The tester will run your program like this and assert that the exit code is 65:
+
+      ```
+      $ ./your_program.sh parse test.lox
+      Error: Unmatched parentheses.
+      ```
+
+      The exact error message will not be checked, the tester will only check that the program exits with code 65.
 
       ### Notes
 
@@ -917,7 +926,7 @@ stages:
     name: "Parsing: Unary Operators"
     difficulty: medium
     description_md: |-
-      In this stage, you'll add support for parsing unary operators. You need to just support the negation operator `-` & the logical not operator `!`.
+      In this stage, you'll add support for parsing the negation operator (`-`) & the logical not operator (`!`).
 
       ### Book reference
 
@@ -950,10 +959,10 @@ stages:
 
   - slug: "wa9"
     primary_extension_slug: "parsing-expressions"
-    name: "Parsing: Multiplicative algebraic operators"
+    name: "Parsing: Arithmetic operators (1/2)"
     difficulty: medium
     description_md: |-
-      In this stage, you'll add support for parsing additive algebraic operators. You need to just support the multiplication operator `*` & the division operator `/`.
+      In this stage, you'll add support for parsing the multiplication operator (`*`) & the division operator (`/`).
 
       ### Book reference
 
@@ -976,7 +985,7 @@ stages:
       (/ (* 16.0 38.0) 58.0)
       ```
 
-      The tester will assert that the stdout of your program matches the format above. Make sure to respect the operator precedence.
+      The tester will assert that the stdout of your program matches the format above. Make sure to handle operator precedence correctly (`*` has higher precedence than `/`).
 
       ### Notes
 
@@ -986,10 +995,10 @@ stages:
 
   - slug: "yf2"
     primary_extension_slug: "parsing-expressions"
-    name: "Parsing: Additive algebraic operators"
+    name: "Parsing: Arithmetic operators (2/2)"
     difficulty: medium
     description_md: |-
-      In this stage, you'll add support for parsing additive algebraic operators. You need to just support the addition operator `+` & the subtraction operator `-`.
+      In this stage, you'll add support for parsing the addition operator (`+`) & the subtraction operator (`-`).
 
       ### Book reference
 
@@ -1012,7 +1021,7 @@ stages:
       (- (+ 52.0 80.0) 94.0)
       ```
 
-      The tester will assert that the stdout of your program matches the format above. Make sure to respect the operator precedence.
+      The tester will assert that the stdout of your program matches the format above. Make sure to handle operator precedence correctly (`+` has higher precedence than `-`).
 
       ### Notes
 
@@ -1025,7 +1034,7 @@ stages:
     name: "Parsing: Comparison operators"
     difficulty: medium
     description_md: |-
-      In this stage, you'll add support for parsing comparison operators. You need to support the four comparison operators `>`, `<`, `>=` & `<=`.
+      In this stage, you'll add support for parsing comparison operators: `>`, `<`, `>=` & `<=`.
 
       ### Book reference
 
@@ -1128,4 +1137,3 @@ stages:
       - We won't check the exact error message on stderr just the proper exitCode will suffice.
     marketing_md: |-
       In this stage, you'll implement support for parsing syntax errors.
-
