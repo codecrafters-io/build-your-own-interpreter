@@ -27,7 +27,6 @@ languages:
   - slug: "go"
   - slug: "python"
   - slug: "rust"
-  - slug: "kotlin"
 
 marketing:
   difficulty: hard
@@ -47,6 +46,13 @@ marketing:
       text: |-
         I think the instant feedback right there in the git push is really cool.
         Didn't even know that was possible!
+
+
+extensions:
+  - slug: "parser"
+    name: "Parsing Expressions"
+    description_markdown: |
+      In this challenge extension you'll add the ability to parse expressions to your interpreter implementation.
 
 stages:
   - slug: "ry8"
@@ -719,3 +725,224 @@ stages:
       - When scanning for tokens, it's valid to have "unbalanced" parentheses or braces. When we get to parsing expressions in later stages, these cases will be highlighted as errors.
     marketing_md: |-
       In this stage, you'll implement support for scanning reserved words.
+
+  - slug: "sc2"
+    primary_extension_slug: "parser"
+    name: "Parsing: Booleans & Nil"
+    difficulty: hard
+    description_md: |-
+      Before starting this stage, make sure you've read the following chapter from the "A Tree-Walk Interpreter" section of the book:
+
+      - [Representing Code](https://craftinginterpreters.com/representing-code.html) (chapter 5)
+
+      These chapter won't be directly tested in this extension, but the code covered in this chapter from the book will be required. This extension will start
+      from chapter 6, [Parsing Expressions](https://craftinginterpreters.com/parsing-expressions.html).
+
+      ---
+      In this stage you'll implement basic support for the `parse` command, and use the `parse` command to parse a list of scanned tokens from your scanner. 
+      In this stage, you will implement parsing of boolean values and the `nil` literal.
+
+      ### The `parse` command
+
+      // TODO first stage shouldn't be hard      
+      // TODO `parse` command and `parsing` together ? Break it into 2 stages ?
+      // TODO introduce the concept of AST here ? How to tell them to implement the AST printer ?
+      // TODO tell them that this part is introduced at the end of the book.
+      // TODO Can't deep link to sections, what is the point then ? Everything will have the same link.
+      // TODO link to 6.2 or 6.2.1 ? 6.2 makes more sense to me. 
+
+      The `parse` command parses a given list of tokens from the Scanner, and prints out the ast representation to stdout. We'll use this for testing
+      all stages in the [Parsing Expressions](https://craftinginterpreters.com/parsing-expressions.html) extension.
+
+      If there's a file named `test.lox` with the following contents:
+
+      ```
+      (2 + 3);
+      ```
+
+      The `parse` command will return the following:
+
+      ```
+      $ ./your_program.sh parse test.lox
+      (group (+ 2.0 3.0))
+      ```
+
+      This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/parse.lox).
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 6.2: Recursive Descent Parsing](https://craftinginterpreters.com/parsing-expressions.html#recursive-descent-parsing).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain the boolean values `true` & `false`, and the `nil` literal.
+
+      For example, if `test.lox` contains the following:
+
+      ```
+      true
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh tokenize test.lox
+      true
+      ```
+
+      The tester will assert that the stdout of your program matches the format above.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/parse.lox)
+
+    marketing_md: |-
+      In this stage, you'll implement support for parsing binary values and the nil literal.
+
+
+  - slug: "ra8"
+    primary_extension_slug: "parser"
+    name: "Parsing: Number literals"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for parsing number literals.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 6.2: Recursive Descent Parsing](https://craftinginterpreters.com/parsing-expressions.html#recursive-descent-parsing).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain number literals, we include both ints and floats.
+
+      For example, if `test.lox` contains the following:
+
+      ```
+      42.47
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh parse test.lox
+      42.47
+      ```
+
+      The tester will assert that the stdout of your program matches the format above.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/parse.lox)
+    marketing_md: |-
+      In this stage, you'll implement support for parsing number literals.
+
+  - slug: "th5"
+    primary_extension_slug: "parser"
+    name: "Parsing: String literals"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for parsing string literals.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 6.2: Recursive Descent Parsing](https://craftinginterpreters.com/parsing-expressions.html#recursive-descent-parsing).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain string literals, it can contain whitespaces, and numbers too, but everything is inside double quotes.
+
+      For example, if `test.lox` contains the following:
+
+      ```
+      "foo hello"
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh parse test.lox
+      foo hello
+      ```
+
+      The tester will assert that the stdout of your program matches the format above.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/parse.lox)
+    marketing_md: |-
+      In this stage, you'll implement support for parsing string literals.
+
+  - slug: "xe6"
+    primary_extension_slug: "parser"
+    name: "Parsing: Parentheses"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for parsing parentheses.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 6.2: Recursive Descent Parsing](https://craftinginterpreters.com/parsing-expressions.html#recursive-descent-parsing).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain parentheses, combined with number literals, string literals and booleans.
+
+      For example, if `test.lox` contains the following:
+
+      ```
+      ("foo")
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh parse test.lox
+      (group foo)
+      ```
+
+      The tester will assert that the stdout of your program matches the format above.
+
+      Remember, in this stage, unmatched parentheses are invalid. So, if you encounter something like `("foo"` it is a `ParseError`. 
+      In this extension we won't check the exact error message you print to stderr. We will just assert that the exit code is 65. So, you can print any error message you want, and also use the stderr stream for your own debug logs.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/parse.lox)
+    marketing_md: |-
+      In this stage, you'll implement support for parsing parentheses.
+
+  - slug: "mq1"
+    primary_extension_slug: "parser"
+    name: "Parsing: Unary Operators"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for parsing unary operators. You need to just support the negation operator `-` & the logical not operator `!`.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 6.2: Recursive Descent Parsing](https://craftinginterpreters.com/parsing-expressions.html#recursive-descent-parsing).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain unary operators, combined with previously introduced tokens.
+
+      For example, if `test.lox` contains the following:
+
+      ```
+      !true
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh parse test.lox
+      (! true)
+      ```
+
+      The tester will assert that the stdout of your program matches the format above.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/parse.lox)
+    marketing_md: |-
+      In this stage, you'll implement support for parsing unary operators `!` and `-`.
