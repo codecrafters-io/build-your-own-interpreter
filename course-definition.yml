@@ -267,7 +267,7 @@ stages:
     name: "Scanning: Lexical errors"
     difficulty: medium
     description_md: |-
-      In this stage, you'll add support for scanning tokens, that lead to a lexical error.
+      In this stage, you'll add support for reporting errors when scanning invalid tokens like `$`, `#`, etc.
 
       ### Book reference
 
