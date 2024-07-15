@@ -987,7 +987,7 @@ stages:
       (/ (* 16.0 38.0) 58.0)
       ```
 
-      The tester will assert that the stdout of your program matches the format above. Make sure to handle operator precedence correctly (`*` has higher precedence than `/`).
+      The tester will assert that the stdout of your program matches the format above.
 
       ### Notes
 
