@@ -905,7 +905,7 @@ stages:
       The tester will also check whether your program exits with code 65 if there are unmatched parentheses. For example, if `test.lox` contains the following:
 
       ```
-      ("foo
+      ("foo"
       ```
 
       The tester will run your program like this and assert that the exit code is 65:
