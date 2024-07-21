@@ -28,6 +28,7 @@ languages:
   - slug: "python"
   - slug: "rust"
   - slug: "kotlin"
+  - slug: "javascript"
 
 marketing:
   difficulty: hard

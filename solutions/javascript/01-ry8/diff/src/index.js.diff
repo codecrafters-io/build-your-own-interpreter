@@ -1,0 +1,14 @@
+@@ -20,8 +20,8 @@
+
+ const fileContent = fs.readFileSync(filename, "utf8");
+
+-// if (fileContent && fileContent.length !== 0) {
+-//     throw new Error("Scanner not implemented");
+-// } else {
+-//     console.log("EOF  null");
+-// }
++if (fileContent && fileContent.length !== 0) {
++    throw new Error("Scanner not implemented");
++} else {
++    console.log("EOF  null");
++}
