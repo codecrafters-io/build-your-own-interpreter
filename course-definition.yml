@@ -1147,8 +1147,7 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for handling syntax errors in expressions.
 
-  - slug: "1"
-    primary_extension_slug: "evaluating-expressions"
+  - slug: "iz6"    primary_extension_slug: "evaluating-expressions"
     name: "Literals: Booleans & Nil"
     difficulty: hard
     description_md: |-
@@ -1214,8 +1213,7 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for evaluating binary values and the nil literal.
 
-  - slug: "2"
-    primary_extension_slug: "evaluating-expressions"
+  - slug: "lv1"    primary_extension_slug: "evaluating-expressions"
     name: "Literals: Strings & Numbers"
     difficulty: medium
     description_md: |-
@@ -1252,8 +1250,7 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for evaluating number and string literals.
 
-  - slug: "3"
-    primary_extension_slug: "evaluating-expressions"
+  - slug: "oq9"    primary_extension_slug: "evaluating-expressions"
     name: "Parentheses"
     difficulty: medium
     description_md: |-
@@ -1289,8 +1286,7 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for evaluating expressions inside parentheses.
 
-  - slug: "4"
-    primary_extension_slug: "evaluating-expressions"
+  - slug: "dc1"    primary_extension_slug: "evaluating-expressions"
     name: "Unary Operators: Negation & Not"
     difficulty: medium
     description_md: |-
@@ -1326,8 +1322,7 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for evaluating unary operators `-` and `!`.
 
-  - slug: "5"
-    primary_extension_slug: "evaluating-expressions"
+  - slug: "bp3"    primary_extension_slug: "evaluating-expressions"
     name: "Arithmetic Operators (1/2)"
     difficulty: medium
     description_md: |-
@@ -1363,8 +1358,7 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for evaluating binary operators `*` and `/`.
 
-  - slug: "6"
-    primary_extension_slug: "evaluating-expressions"
+  - slug: "jy2"    primary_extension_slug: "evaluating-expressions"
     name: "Arithmetic Operators (2/2)"
     difficulty: medium
     description_md: |-
@@ -1400,8 +1394,7 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for evaluating binary operators `+` and `-`.
 
-  - slug: "7"
-    primary_extension_slug: "evaluating-expressions"
+  - slug: "jx8"    primary_extension_slug: "evaluating-expressions"
     name: "String Concatenation"
     difficulty: medium
     description_md: |-
@@ -1437,8 +1430,7 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for overloading the `+` operator. When the `+` operator is applied to two strings, it should concatenate them.
 
-  - slug: "8"
-    primary_extension_slug: "evaluating-expressions"
+  - slug: "et4"    primary_extension_slug: "evaluating-expressions"
     name: "Relational Operators"
     difficulty: medium
     description_md: |-
@@ -1474,8 +1466,7 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for evaluating relational operators `>`, `<`, `>=` & `<=`.
 
-  - slug: "9"
-    primary_extension_slug: "evaluating-expressions"
+  - slug: "hw7"    primary_extension_slug: "evaluating-expressions"
     name: "Equality Operators"
     difficulty: medium
     description_md: |-
@@ -1511,7 +1502,7 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for evaluating equality operators `==` and `!=`.
 
-  - slug: "10"
+  - slug: "gj9"
     primary_extension_slug: "evaluating-expressions"
     name: "Runtime Errors: Unary Operators"
     difficulty: medium
@@ -1550,7 +1541,7 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for handling runtime errors while evaluating the unary operator `-`.
 
-  - slug: "11"
+  - slug: "yu6"
     primary_extension_slug: "evaluating-expressions"
     name: "Runtime Errors: Binary Operators (1/2)"
     difficulty: medium
@@ -1589,7 +1580,7 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for handling runtime errors while evaluating the binary operators `*` & `/`.
   
-  - slug: "12"
+  - slug: "cq1"
     primary_extension_slug: "evaluating-expressions"
     name: "Runtime Errors: Binary Operators (2/2)"
     difficulty: medium
@@ -1628,7 +1619,7 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for handling runtime errors while evaluating the binary operators `+` & `-`.
 
-  - slug: "13"
+  - slug: "ib5"
     primary_extension_slug: "evaluating-expressions"
     name: "Runtime Errors: Relational Operators"
     difficulty: medium
