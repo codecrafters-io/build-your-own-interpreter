@@ -1359,5 +1359,43 @@ stages:
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/evaluate.lox)
+      - We will introduce runtime errors in later stages. For now, we will only pass 2 numbers to the arithmetic operators.
     marketing_md: |-
       In this stage, you'll implement support for evaluating binary operators `*` and `/`.
+
+  - slug: "6"
+    primary_extension_slug: "evaluating-expressions"
+    name: "Arithmetic Operators (2/2)"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for evaluating binary operators `+` and `-`.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 7.2.5: Evaluating binary operators](https://craftinginterpreters.com/evaluating-expressions.html#evaluating-binary-operators).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain expressions with the arithmetic operators `+` and `-`.
+
+      For example, if `test.lox` contains the following:
+
+      ```
+      20 + 74 - (-(14 - 33))
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh evaluate test.lox
+      75
+      ```
+
+      The tester will assert that the stdout of your program matches the format above.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/evaluate.lox)
+      - We will introduce runtime errors in later stages. For now, we will only pass 2 numbers to the arithmetic operators.
+    marketing_md: |-
+      In this stage, you'll implement support for evaluating binary operators `+` and `-`.
