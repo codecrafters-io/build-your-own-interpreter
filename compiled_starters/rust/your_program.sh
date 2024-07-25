@@ -12,14 +12,11 @@ set -e # Exit early if any commands fail
 #
 # - Edit this to change how your program compiles locally
 # - Edit .codecrafters/compile.sh to change how your program compiles remotely
-(
-  cd "$(dirname "$0")" # Ensure compile steps are run within the repository directory
-  cargo build \
-      --quiet \
-      --release \
-      --target-dir=/tmp/codecrafters-interpreter-target \
-      --manifest-path Cargo.toml
-)
+cargo build \
+    --quiet \
+    --release \
+    --target-dir=/tmp/codecrafters-interpreter-target \
+    --manifest-path Cargo.toml
 
 # Copied from .codecrafters/run.sh
 #
