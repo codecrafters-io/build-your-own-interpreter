@@ -1212,3 +1212,41 @@ stages:
       - For the `nil` literal, the tester will check that the program prints `nil`.
     marketing_md: |-
       In this stage, you'll implement support for evaluating binary values and the nil literal.
+
+  - slug: "2"
+    primary_extension_slug: "evaluating-expressions"
+    name: "Literals: Strings & Numbers"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for evaluating number and string literals.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 7.2.1: Evaluating Literals](https://craftinginterpreters.com/evaluating-expressions.html#evaluating-literals).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain number literals and string literals.
+
+      For example, if `test.lox` contains the following:
+
+      ```
+      10.40
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh evaluate test.lox
+      10.4
+      ```
+
+      The tester will assert that the stdout of your program matches the format above.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/evaluate.lox)
+      - For the string literals, the tester will check that the program prints the string without quotes.
+      - For the number literals, the tester will check that the program prints the number with the minimum number of decimal places without losing precision. (For example, you can skip 0's at the end after the decimal point, but you can't skip 0's at the beginning of the number).
+    marketing_md: |-
+      In this stage, you'll implement support for evaluating number and string literals.
