@@ -1210,7 +1210,6 @@ stages:
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/evaluate.lox)
       - For the `nil` literal, the tester will check that the program prints `nil`.
-      - For truthyness & falsyness, we will follow the convention introduced in the book, where `false` and `nil` are falsy, and everything else is truthy.
     marketing_md: |-
       In this stage, you'll implement support for evaluating binary values and the nil literal.
 
@@ -1232,14 +1231,14 @@ stages:
       For example, if `test.lox` contains the following:
 
       ```
-      10.40
+      "hello world!"
       ```
 
       The tester will run your program like this:
 
       ```
       $ ./your_program.sh evaluate test.lox
-      10.4
+      hello world!
       ```
 
       The tester will assert that the stdout of your program matches the format above.
@@ -1248,7 +1247,7 @@ stages:
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/evaluate.lox)
       - For the string literals, the tester will check that the program prints the string without quotes.
-      - For the number literals, the tester will check that the program prints the number with the minimum number of decimal places without losing precision. (For example, you can skip 0's at the end after the decimal point, but you can't skip 0's at the beginning of the number).
+      - For the number literals, the tester will check that the program prints the number with the minimum number of decimal places without losing precision. (For example, 10.40 should be printed as 10.4).
     marketing_md: |-
       In this stage, you'll implement support for evaluating number and string literals.
 
@@ -1368,7 +1367,7 @@ stages:
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/evaluate.lox)
-      - We will introduce runtime errors in later stages. For now, we will only pass 2 numbers to the arithmetic operators.
+      - In this stage, you can assume we will not test for error cases. Runtime errors will be introduced in later stages. For now, all arithmetic operations will involve only two numbers.
     marketing_md: |-
       In this stage, you'll implement support for evaluating binary operators `*` and `/`.
 
@@ -1405,7 +1404,7 @@ stages:
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/evaluate.lox)
-      - We will introduce runtime errors in later stages. For now, we will only pass 2 numbers to the arithmetic operators.
+      - In this stage, you can assume we will not test for error cases. Runtime errors will be introduced in later stages. For now, all arithmetic operations will involve only two numbers.
     marketing_md: |-
       In this stage, you'll implement support for evaluating binary operators `+` and `-`.
 
@@ -1442,7 +1441,7 @@ stages:
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/evaluate.lox)
-      - We will introduce runtime errors in later stages. For now, we will only pass 2 strings to the `+` operator in this stage.
+      - In this stage, you can assume we will not test for error cases. Runtime errors will be introduced in later stages. For now, we will only pass 2 strings to the `+` operator in this stage.
     marketing_md: |-
       In this stage, you'll implement support for overloading the `+` operator. When the `+` operator is applied to two strings, it should concatenate them.
 
@@ -1479,7 +1478,7 @@ stages:
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/evaluate.lox)
-      - We will introduce runtime errors in later stages. For now, we will only pass 2 numbers to the relational operators in this stage.
+      - In this stage, you can assume we will not test for error cases. Runtime errors will be introduced in later stages. For now, all relational operations will involve only two numbers.
     marketing_md: |-
       In this stage, you'll implement support for evaluating relational operators `>`, `<`, `>=` & `<=`.
 
@@ -1516,7 +1515,7 @@ stages:
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/evaluate.lox)
-      - We will introduce runtime errors in later stages. For now, we will only pass numbers / strings to the equality operators in this stage.
+      - In this stage, you can assume we will not test for error cases. Runtime errors will be introduced in later stages. For now, all equality operations will involve only two numbers or two strings.
     marketing_md: |-
       In this stage, you'll implement support for evaluating equality operators `==` and `!=`.
 
@@ -1591,8 +1590,7 @@ stages:
       [line 1]
       ```
 
-      The tester will ONLY assert that the exit code of your program is 70 in case of a runtime error.
-      Or if the exit code is 0, the tester will assert that the stdout of your program matches the format above.
+      The tester will assert that the exit code is 70, signifying a runtime error. Note that this is different from the expected exit code for a syntax error, which is 65.
 
       ### Notes
 
@@ -1630,8 +1628,7 @@ stages:
       [line 1]
       ```
 
-      The tester will ONLY assert that the exit code of your program is 70 in case of a runtime error.
-      Or if the exit code is 0, the tester will assert that the stdout of your program matches the format above.
+      The tester will assert that the exit code is 70, signifying a runtime error. Note that this is different from the expected exit code for a syntax error, which is 65.
 
       ### Notes
 
@@ -1669,8 +1666,7 @@ stages:
       [line 1]
       ```
 
-      The tester will ONLY assert that the exit code of your program is 70 in case of a runtime error.
-      Or if the exit code is 0, the tester will assert that the stdout of your program matches the format above.
+      The tester will assert that the exit code is 70, signifying a runtime error. Note that this is different from the expected exit code for a syntax error, which is 65.
 
       ### Notes
 
