@@ -1265,7 +1265,7 @@ stages:
 
       ### Tests
 
-      The tester will run a series of tests with `test.lox` files that contain expressions inside parentheses.
+      The tester will test your program using a `test.lox` file that contains an expression with parentheses.
 
       For example, if `test.lox` contains the following:
 
@@ -1533,7 +1533,8 @@ stages:
 
       ### Tests
 
-      The tester will run a series of tests with `test.lox` files that contain expressions with the unary operator `-`, There is a high probability that the expression will throw a runtime error.
+      The tester will test your program using a `test.lox` file that contains an expression with the unary operator `-`. This expression
+      will contain a usage of the `-` operator that should throw a runtime error.
 
       For example, if `test.lox` contains the following:
 
@@ -1549,13 +1550,15 @@ stages:
       [line 1]
       ```
 
-      The tester will ONLY assert that the exit code of your program is 70 in case of a runtime error.
-      Or if the exit code is 0, the tester will assert that the stdout of your program matches the format above.
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      <!-- TODO: Add table -->
+
+      The tester will assert that the exit code is 70, signifying a runtime error. Note that this is different from the expected exit code for a syntax error, which is 65.
 
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/evaluate.lox)
-      - The unary operator `-` will throw a runtime error if the operand is not a number.
     marketing_md: |-
       In this stage, you'll implement support for handling runtime errors while evaluating the unary operator `-`.
 
