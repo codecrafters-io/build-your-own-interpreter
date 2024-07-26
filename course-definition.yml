@@ -1204,6 +1204,14 @@ stages:
       true
       ```
 
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      | Input | Expected output |
+      | :---: | :-------------: |
+      | `true` | `true` |
+      | `false` | `false` |
+      | `nil` | `nil` |
+
       The tester will assert that the stdout of your program matches the format above.
 
       ### Notes
@@ -1240,6 +1248,14 @@ stages:
       $ ./your_program.sh evaluate test.lox
       hello world!
       ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      | Input | Expected output |
+      | :---: | :-------------: |
+      | `"hello world!"` | `hello world!` |
+      | `10.40` | `10.4` |
+      | `10` | `10` |
 
       The tester will assert that the stdout of your program matches the format above.
 
@@ -1282,7 +1298,7 @@ stages:
       The tester will run multiple such tests with randomized expressions, for example:
 
       | Input | Expected output |
-      | ---- | --------------- |
+      | :---: | :-------------: |
       | `("hello world!")` | `hello world!` |
       | `(true)` | `true` |
       | `(10.40)` | `10.4` |
@@ -1324,6 +1340,15 @@ stages:
       $ ./your_program.sh evaluate test.lox
       -73
       ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      | Input | Expected output |
+      | :---: | :-------------: |
+      | `("hello world!")` | `hello world!` |
+      | `(true)` | `true` |
+      | `(10.40)` | `10.4` |
+      | `((false))` | `false` |
 
       The tester will assert that the stdout of your program matches the format above.
 
