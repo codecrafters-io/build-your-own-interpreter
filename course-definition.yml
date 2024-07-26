@@ -1331,7 +1331,7 @@ stages:
       For example, if `test.lox` contains the following:
 
       ```
-      -73
+      -(73)
       ```
 
       The tester will run your program like this:
@@ -1345,10 +1345,10 @@ stages:
 
       | Input | Expected output |
       | :---: | :-------------: |
-      | `("hello world!")` | `hello world!` |
-      | `(true)` | `true` |
-      | `(10.40)` | `10.4` |
-      | `((false))` | `false` |
+      | `-73` | `-73` |
+      | `!true` | `false` |
+      | `!10.40` | `false` |
+      | `!((false))` | `true` |
 
       The tester will assert that the stdout of your program matches the format above.
 
@@ -1387,6 +1387,14 @@ stages:
       3
       ```
 
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      | Input | Expected output |
+      | :---: | :-------------: |
+      | `42 / 5` | `8.4` |
+      | `18 * 3 / (3 * 6)` | `3` |
+      | `(10.40 * 2) / 2` | `10.4` |
+
       The tester will assert that the stdout of your program matches the format above.
 
       ### Notes
@@ -1423,6 +1431,15 @@ stages:
       $ ./your_program.sh evaluate test.lox
       75
       ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      | Input | Expected output |
+      | :---: | :-------------: |
+      | `70 - 65` | `5` |
+      | `69 - 93` | `-24` |
+      | `10.40 - 2` | `8.4` |
+      | `23 + 28 - (-(61 - 99))` | `13` |
 
       The tester will assert that the stdout of your program matches the format above.
 
@@ -1461,6 +1478,14 @@ stages:
       hello world!
       ```
 
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      | Input | Expected output |
+      | :---: | :-------------: |
+      | `"hello" + " world!"` | `hello world!` |
+      | `"42" + "24"` | `4224` |
+      | `"foo" + "bar"` | `foobar` |
+
       The tester will assert that the stdout of your program matches the format above.
 
       ### Notes
@@ -1498,6 +1523,14 @@ stages:
       true
       ```
 
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      | Input | Expected output |
+      | :---: | :-------------: |
+      | `57 > -65` | `true` |
+      | `11 >= 11` | `true` |
+      | `(54 - 67) >= -(114 / 57 + 11)` | `true` |
+
       The tester will assert that the stdout of your program matches the format above.
 
       ### Notes
@@ -1534,6 +1567,15 @@ stages:
       $ ./your_program.sh evaluate test.lox
       true
       ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      | Input | Expected output |
+      | :---: | :-------------: |
+      | `"hello" == "world"` | `false` |
+      | `"foo" != "bar"` | `true` |
+      | `"foo" == "foo"` | `true` |
+      | `61 == "61"` | `false` |
 
       The tester will assert that the stdout of your program matches the format above.
 
@@ -1576,7 +1618,12 @@ stages:
 
       The tester will run multiple such tests with randomized expressions, for example:
 
-      <!-- TODO: Add table -->
+      | Input | Expected output |
+      | :---: | :-------------: |
+      | `-"foo"` | `Operand must be a number.` |
+      | `-true` | `Operand must be a number.` |
+      | `-("foo" + "bar")` | `Operand must be a number.` |
+      | `-false` | `Operand must be a number. `|
 
       The tester will assert that the exit code is 70, signifying a runtime error. Note that this is different from the expected exit code for a syntax error, which is 65.
 
@@ -1614,6 +1661,15 @@ stages:
       Operands must be numbers.
       [line 1]
       ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      | Input | Expected output |
+      | :---: | :-------------: |
+      | `"foo" * 42` | `Operands must be numbers.` |
+      | `true / 2` | `Operands must be numbers.` |
+      | `("foo" * "bar")` | `Operands must be numbers.` |
+      | `false / true` | `Operands must be numbers. `|
 
       The tester will assert that the exit code is 70, signifying a runtime error. Note that this is different from the expected exit code for a syntax error, which is 65.
 
@@ -1653,6 +1709,15 @@ stages:
       [line 1]
       ```
 
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      | Input | Expected output |
+      | :---: | :-------------: |
+      | `"foo" + true` | `Operands must be numbers.` |
+      | `42 - true` | `Operands must be numbers.` |
+      | `true + false` | `Operands must be numbers.` |
+      | `"foo" - "bar"` | `Operands must be numbers. `|
+
       The tester will assert that the exit code is 70, signifying a runtime error. Note that this is different from the expected exit code for a syntax error, which is 65.
 
       ### Notes
@@ -1690,6 +1755,15 @@ stages:
       Operands must be numbers.
       [line 1]
       ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      | Input | Expected output |
+      | :---: | :-------------: |
+      | `"foo" < false` | `Operands must be numbers.` |
+      | `true < 2` | `Operands must be numbers.` |
+      | `("foo" + "bar") < 42` | `Operands must be numbers.` |
+      | `false > true` | `Operands must be numbers. `|
 
       The tester will assert that the exit code is 70, signifying a runtime error. Note that this is different from the expected exit code for a syntax error, which is 65.
 
