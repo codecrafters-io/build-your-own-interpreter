@@ -1355,7 +1355,7 @@ stages:
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/evaluate.lox)
-      - For truthyness and falsyness, we will follow the convention introduced in the previous stages.
+      - For truthyness and falsyness, we will follow the convention introduced in the book, where `false` and `nil` are falsy, and everything else is truthy.
     marketing_md: |-
       In this stage, you'll implement support for evaluating unary operators `-` and `!`.
 
@@ -1602,6 +1602,8 @@ stages:
       The tester will test your program using a `test.lox` file that contains an expression with the unary operator `-`. This expression
       will contain a usage of the `-` operator that should throw a runtime error.
 
+      The unary operator `-` will throw a runtime error if the operand is not a number.
+      
       For example, if `test.lox` contains the following:
 
       ```
@@ -1646,7 +1648,10 @@ stages:
 
       ### Tests
 
-      The tester will run a series of tests with `test.lox` files that contain expressions with the binary operators `*` & `/`, There is a high probability that the expression will throw a runtime error.
+      The tester will test your program using a `test.lox` file that contains an expression with the binary operators `*` or `/`. This expression
+      will contain a usage of the `*` or `/` operator that should throw a runtime error.
+
+      The binary operators `*` & `/` will throw a runtime error if the operands are not both numbers.
 
       For example, if `test.lox` contains the following:
 
@@ -1676,7 +1681,6 @@ stages:
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/evaluate.lox)
-      - The binary operators `*` & `/` will throw a runtime error if both the operands are not numbers.
     marketing_md: |-
       In this stage, you'll implement support for handling runtime errors while evaluating the binary operators `*` & `/`.
 
@@ -1693,7 +1697,10 @@ stages:
 
       ### Tests
 
-      The tester will run a series of tests with `test.lox` files that contain expressions with the binary operators `+` & `-`, There is a high probability that the expression will throw a runtime error.
+      The tester will test your program using a `test.lox` file that contains an expression with the binary operators `+` or `-`. This expression
+      will contain usages of the `+` or `-` operator that should throw a runtime error.
+
+      The binary operators `+` & `-` will throw a runtime error if the operands are not both numbers or both strings.
 
       For example, if `test.lox` contains the following:
 
@@ -1723,7 +1730,6 @@ stages:
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/evaluate.lox)
-      - The binary operators `+` & `-` will throw a runtime error if both the operands are not both numbers or both strings.
     marketing_md: |-
       In this stage, you'll implement support for handling runtime errors while evaluating the binary operators `+` & `-`.
 
@@ -1741,6 +1747,11 @@ stages:
       ### Tests
 
       The tester will run a series of tests with `test.lox` files that contain expressions with the relational operators `>`, `<`, `>=` & `<=`, There is a high probability that the expression will throw a runtime error.
+
+      The tester will test your program using a `test.lox` file that contains an expression with the relational operator `>`, `<`, `>=` or `<=`. This expression
+      will contain a usage of the relational operator that should throw a runtime error.
+
+      The relational operators `>`, `<`, `>=` & `<=` will throw a runtime error if the operands are not numbers.
 
       For example, if `test.lox` contains the following:
 
@@ -1770,6 +1781,5 @@ stages:
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/evaluate.lox)
-      - The relational operators `>`, `<`, `>=` & `<=` will throw a runtime error if the operands are not numbers.
     marketing_md: |-
       In this stage, you'll implement support for handling runtime errors while evaluating the relational operators `>`, `<`, `>=` & `<=`.
