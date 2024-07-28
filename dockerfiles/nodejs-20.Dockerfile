@@ -2,7 +2,7 @@
 FROM node:20-alpine
 
 # Ensures the container is re-built if package.json changes
-ENV CODECRAFTERS_DEPENDENCY_FILE_PATHS="package.json"
+ENV CODECRAFTERS_DEPENDENCY_FILE_PATHS="package.json,package-lock.json"
 
 WORKDIR /app
 

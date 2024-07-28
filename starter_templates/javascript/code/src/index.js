@@ -17,9 +17,10 @@ if (command !== "tokenize") {
     console.error(`Usage: Unknown command: ${command}`);
     process.exit(1);
 }
-
-const fileContent = fs.readFileSync(filename, "utf8");
-
+// Uncomment this block to pass the first stage
+//
+// const fileContent = fs.readFileSync(filename, "utf8");
+// 
 // if (fileContent && fileContent.length !== 0) {
 //     throw new Error("Scanner not implemented");
 // } else {

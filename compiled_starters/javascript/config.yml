@@ -1,3 +1,0 @@
-attributes:
-  required_executable: "node (>=20.0)"
-  user_editable_file: src/index.js

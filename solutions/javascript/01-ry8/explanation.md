@@ -4,6 +4,9 @@ Study and uncomment the relevant code:
 
 ```javascript
 // Uncomment this block to pass the first stage
+
+const fileContent = fs.readFileSync(filename, "utf8");
+
 if (fileContent && fileContent.length !== 0) {
     throw new Error("Scanner not implemented");
 } else {

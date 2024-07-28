@@ -4,8 +4,8 @@
 # unless you really need them.
 debug: false
 
-# Use this to change the Python version used to run your code
+# Use this to change the JavaScript version used to run your code
 # on Codecrafters.
 #
-# Available versions: node-20
-language_pack: node-20
+# Available versions: nodejs-20
+language_pack: nodejs-20
