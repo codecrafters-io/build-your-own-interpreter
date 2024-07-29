@@ -8,9 +8,9 @@ Study and uncomment the relevant code:
 const fileContent = fs.readFileSync(filename, "utf8");
 
 if (fileContent && fileContent.length !== 0) {
-    throw new Error("Scanner not implemented");
+  throw new Error("Scanner not implemented");
 } else {
-    console.log("EOF  null");
+  console.log("EOF  null");
 }
 ```
 

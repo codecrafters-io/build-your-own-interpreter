@@ -8,4 +8,4 @@
 
 set -e # Exit on failure
 
-exec npm start -- "$@"
+exec node src/index.js "$@"
