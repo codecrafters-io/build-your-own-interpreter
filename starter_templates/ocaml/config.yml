@@ -1,0 +1,3 @@
+attributes:
+  required_executable: ocaml (5.1.0)
+  user_editable_file: src/main.ml
