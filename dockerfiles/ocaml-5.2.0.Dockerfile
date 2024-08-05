@@ -20,7 +20,5 @@ RUN opam install . --yes
 RUN dune build
 
 # Once the heavy steps are done, we can copy all files back
-COPY . /app
-
 # Image runs as "opam" user by default, chown so that we can access them
-RUN sudo chown -R opam:opam /app
+COPY --chown=opam:opam . /app
