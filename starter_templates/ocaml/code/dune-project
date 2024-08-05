@@ -6,5 +6,6 @@
 
 (package
  (name codecrafters_interpreter)
+ (allow_empty true)
  (version 0.1)
  (depends lwt))

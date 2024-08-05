@@ -1,9 +1,11 @@
 (lang dune 3.16)
 
-(name interpreter_starter_ocaml)
+(name codecrafters_interpreter)
 
-(authors "CodeCrafters <hello@codecrafters.io>")
+(generate_opam_files true)
 
-(maintainers "CodeCrafters <hello@codecrafters.io>")
-
-(license MIT)
+(package
+ (name codecrafters_interpreter)
+ (allow_empty true)
+ (version 0.1)
+ (depends lwt))

@@ -17,6 +17,7 @@ WORKDIR /app
 COPY --exclude=.git --exclude=README.md . /app
 
 # Cache dependencies
+RUN opam install . --yes
 RUN dune build
 
 # Once the heavy steps are done, we can copy all files back
