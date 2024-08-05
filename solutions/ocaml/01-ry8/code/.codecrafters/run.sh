@@ -6,4 +6,4 @@
 #
 # Learn more: https://codecrafters.io/program-interface
 
-exec /tmp/codecrafters-build-interpreter-ocaml/default/src/main.exe "$@"
+exec /tmp/codecrafters-build-interpreter-ocaml/default/main.exe "$@"
