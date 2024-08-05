@@ -22,3 +22,5 @@ RUN dune build
 
 # Once the heavy steps are done, we can copy all files back
 COPY . /app
+
+RUN echo "test" > /app/test.txt
