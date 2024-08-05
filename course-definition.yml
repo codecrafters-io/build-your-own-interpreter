@@ -28,6 +28,7 @@ languages:
   - slug: "python"
   - slug: "rust"
   - slug: "kotlin"
+  - slug: "zig"
 
 marketing:
   difficulty: hard
@@ -1603,7 +1604,7 @@ stages:
       will contain a usage of the `-` operator that should throw a runtime error.
 
       The unary operator `-` will throw a runtime error if the operand is not a number.
-      
+
       For example, if `test.lox` contains the following:
 
       ```
