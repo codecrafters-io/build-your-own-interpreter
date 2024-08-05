@@ -12,13 +12,9 @@ let () =
 
   let file_contents = In_channel.with_open_text filename In_channel.input_all in
 
-  (* You can use print statements as follows for debugging, they'll be visible when running tests. *)
-  Printf.eprintf "Logs from your program will appear here!\n";
-
   if String.length file_contents > 0 then
     (* Implement & use your scanner here *)
     failwith "Scanner not implemented"
   else
-    (* Uncomment this block to pass the first stage *)
-    (* print_endline "EOF  null"; (* Placeholder, remove this line when implementing the scanner *) *)
+    print_endline "EOF  null"; (* Placeholder, remove this line when implementing the scanner *)
     ()
