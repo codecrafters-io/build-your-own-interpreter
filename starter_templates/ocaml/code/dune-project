@@ -1,5 +1,10 @@
 (lang dune 3.16)
 
-(name interpreter_starter_ocaml)
+(name codecrafters_interpreter)
 
 (generate_opam_files true)
+
+(package
+ (name codecrafters_interpreter)
+ (version 0.1)
+ (depends lwt))
