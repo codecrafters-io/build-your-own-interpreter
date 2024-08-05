@@ -2,8 +2,4 @@
 
 (name interpreter_starter_ocaml)
 
-(authors "CodeCrafters <hello@codecrafters.io>")
-
-(maintainers "CodeCrafters <hello@codecrafters.io>")
-
-(license MIT)
+(generate_opam_files true)
