@@ -2,9 +2,11 @@
 FROM ocaml/opam:alpine-3.20-ocaml-5.2
 
 # Grant root access to opam user
-USER root
-RUN apk add --no-cache shadow=4.15.1-r0 && usermod -aG root opam
-USER opam
+RUN apk add --no-cache shadow=4.15.1-r0 && \
+    usermod -aG root opam && \
+    mkdir -p /app && \
+    chown opam:opam /app && \
+    chmod 775 /app
 
 # Install dune
 RUN opam update && opam install dune.3.16.0 --yes
