@@ -1,10 +1,9 @@
 # syntax=docker/dockerfile:1.7-labs
 FROM ocaml/opam:alpine-3.20-ocaml-5.2
 
-# Change opam user's ID to 0 (root)
+# Grant root access to opam user
 USER root
-RUN apk add --no-cache shadow
-RUN usermod -aG root opam
+RUN apk add --no-cache shadow=4.15.1-r0 && usermod -aG root opam
 USER opam
 
 # Install dune
