@@ -1,0 +1,18 @@
+name: Test
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: docker build -t ocaml-failure -f dockerfiles/ocaml-5.2.0.Dockerfile compiled_starters/ocaml
+      - run: docker run ocaml-failure "echo 'abcd' > /app/tmp.txt"
+      - run: docker run ocaml-failure "echo 'defg' > /app/your_program.sh"
