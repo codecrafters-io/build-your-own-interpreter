@@ -1,7 +1,7 @@
 ![progress-banner](https://codecrafters.io/landing/images/default_progress_banners/interpreter.png)
 
 This is a starting point for OCaml solutions to the
-["Build Your Own Build your own Interpreter" Challenge](https://app.codecrafters.io/courses/interpreter/overview).
+["Build your own Interpreter" Challenge](https://app.codecrafters.io/courses/interpreter/overview).
 
 This challenge follows the book
 [Crafting Interpreters](https://craftinginterpreters.com/) by Robert Nystrom.
