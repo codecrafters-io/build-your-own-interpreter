@@ -1,7 +1,8 @@
 # syntax=docker/dockerfile:1.7-labs
 FROM ocaml/opam:alpine-3.20-ocaml-5.2
 
-# Change to root user
+# Change to root user. All other images seem to use root, so let's do the same here
+# hadolint ignore=DL3002
 USER root
 RUN opam init --disable-sandboxing -y
 
