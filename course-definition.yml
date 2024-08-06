@@ -25,9 +25,11 @@ completion_percentage: 15
 
 languages:
   - slug: "go"
+  - slug: "kotlin"
+  - slug: "ocaml"
+    release_status: "alpha"
   - slug: "python"
   - slug: "rust"
-  - slug: "kotlin"
 
 marketing:
   difficulty: hard
@@ -1603,7 +1605,7 @@ stages:
       will contain a usage of the `-` operator that should throw a runtime error.
 
       The unary operator `-` will throw a runtime error if the operand is not a number.
-      
+
       For example, if `test.lox` contains the following:
 
       ```
