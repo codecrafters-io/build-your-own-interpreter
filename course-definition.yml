@@ -27,7 +27,6 @@ languages:
   - slug: "go"
   - slug: "kotlin"
   - slug: "ocaml"
-    release_status: "alpha"
   - slug: "python"
   - slug: "rust"
 
