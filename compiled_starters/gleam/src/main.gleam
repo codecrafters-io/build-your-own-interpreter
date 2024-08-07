@@ -26,10 +26,6 @@ pub fn main() {
         }
       }
     }
-    [command, _] -> {
-      io.println_error("Unknown command: " <> command)
-      exit(1)
-    }
     _ -> {
       io.println_error("Usage: ./your_program.sh tokenize <filename>")
       exit(1)

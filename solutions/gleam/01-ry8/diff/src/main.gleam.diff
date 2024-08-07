@@ -1,4 +1,4 @@
-@@ -1,41 +1,37 @@
+@@ -1,37 +1,33 @@
  import gleam/io
  import gleam/string
 
@@ -27,10 +27,6 @@
            exit(1)
          }
        }
-     }
-     [command, _] -> {
-       io.println_error("Unknown command: " <> command)
-       exit(1)
      }
      _ -> {
        io.println_error("Usage: ./your_program.sh tokenize <filename>")
