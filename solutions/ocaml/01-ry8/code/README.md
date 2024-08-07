@@ -44,7 +44,7 @@ Time to move on to the next stage!
 
 Note: This section is for stages 2 and beyond.
 
-1. Ensure you have `ocaml (5.1.0)` installed locally
+1. Ensure you have `dune` installed locally
 2. Run `./your_program.sh` to run your program, which is implemented in
    `src/main.ml`.
 3. Commit your changes and run `git push origin master` to submit your solution

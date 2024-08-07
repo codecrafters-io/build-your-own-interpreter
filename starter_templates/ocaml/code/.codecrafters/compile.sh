@@ -6,7 +6,7 @@
 #
 # Learn more: https://codecrafters.io/program-interface
 
-# Exit early if any commands fail
-set -e
+set -e # Exit on failure
 
 dune build --build-dir /tmp/codecrafters-build-interpreter-ocaml
+
