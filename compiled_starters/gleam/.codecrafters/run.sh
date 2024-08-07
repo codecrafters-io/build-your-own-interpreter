@@ -8,4 +8,4 @@
 
 set -e # Exit on failure
 
-exec gleam run --module main -- "$@"
+exec gleam run --module main -- "$@" | grep -v "Compiled in" | grep -v "Running main.main"
