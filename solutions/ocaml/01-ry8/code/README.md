@@ -1,6 +1,6 @@
 ![progress-banner](https://codecrafters.io/landing/images/default_progress_banners/interpreter.png)
 
-This is a starting point for Kotlin solutions to the
+This is a starting point for OCaml solutions to the
 ["Build your own Interpreter" Challenge](https://app.codecrafters.io/courses/interpreter/overview).
 
 This challenge follows the book
@@ -29,8 +29,8 @@ challenge. This challenge will start from chapter 4,
 
 # Passing the first stage
 
-The entry point for your program is in `src/main/kotlin/Main.kt`. Study and
-uncomment the relevant code, and push your changes to pass the first stage:
+The entry point for your program is in `src/main.ml`. Study and uncomment the
+relevant code, and push your changes to pass the first stage:
 
 ```sh
 git add .
@@ -44,8 +44,8 @@ Time to move on to the next stage!
 
 Note: This section is for stages 2 and beyond.
 
-1. Ensure you have `kotlin (>=2.0)` installed locally
+1. Ensure you have `dune` installed locally
 2. Run `./your_program.sh` to run your program, which is implemented in
-   `src/main/kotlin/Main.kt`.
+   `src/main.ml`.
 3. Commit your changes and run `git push origin master` to submit your solution
    to CodeCrafters. Test output will be streamed to your terminal.

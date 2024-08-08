@@ -24,7 +24,10 @@ short_description_md: |-
 completion_percentage: 15
 
 languages:
+  - slug: "gleam"
   - slug: "go"
+  - slug: "kotlin"
+  - slug: "ocaml"
   - slug: "python"
   - slug: "rust"
   - slug: "kotlin"
