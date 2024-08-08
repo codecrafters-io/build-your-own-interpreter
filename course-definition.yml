@@ -30,7 +30,6 @@ languages:
   - slug: "ocaml"
   - slug: "python"
   - slug: "rust"
-  - slug: "kotlin"
   - slug: "zig"
 
 marketing:
