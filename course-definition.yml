@@ -30,6 +30,7 @@ languages:
   - slug: "ocaml"
   - slug: "python"
   - slug: "rust"
+  - slug: "zig"
 
 marketing:
   difficulty: hard
