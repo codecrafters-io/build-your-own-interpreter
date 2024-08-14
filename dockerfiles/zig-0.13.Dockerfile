@@ -25,6 +25,3 @@ RUN .codecrafters/compile.sh
 # Cache build directory
 RUN mkdir -p /app-cached
 RUN mv /app/.zig-cache /app-cached/.zig-cache || true
-
-# Once the heavy steps are done, we can copy all files back
-COPY . /app
