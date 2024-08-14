@@ -13,6 +13,3 @@ COPY --exclude=.git --exclude=README.md . /app
 RUN GODEBUG="installgoroot=all" go install std
 
 RUN ash -c "set -exo pipefail; go mod graph | awk '{if (\$1 !~ \"@\") {print \$2}}' | xargs -r go get"
-
-# Once the heavy steps are done, we can copy all files back
-COPY . /app

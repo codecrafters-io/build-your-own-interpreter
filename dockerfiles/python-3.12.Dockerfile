@@ -17,6 +17,3 @@ RUN pipenv install
 
 # Force environment creation
 RUN pipenv run python3 -c "1+1"
-
-# Once the heavy steps are done, we can copy all files back
-COPY . /app
