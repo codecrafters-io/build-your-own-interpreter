@@ -2050,3 +2050,91 @@ stages:
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/string/literals.lox)
     marketing_md: |-
       In this stage, you'll add support for initializing variables.
+
+  - slug: "7"
+    primary_extension_slug: "statements-and-state"
+    name: "Variables: Redeclare variables"
+    difficulty: easy
+    description_md: |-
+      In this stage, you'll add support for redeclaring variables using the `var` statement.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 8.2: Global Variables](https://craftinginterpreters.com/statements-and-state.html#global-variables).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain the `var` statement.
+
+      For example, if `test.lox` contains the following
+
+      ```
+      var a = 1;
+      var a = 2;
+      print a;
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      2
+      ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      # TODO
+
+      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+
+      ### Notes
+
+      # TODO Check if we have var test cases
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/string/literals.lox)
+    marketing_md: |-
+      In this stage, you'll add support for redeclaring variables.
+
+  - slug: "8"
+    primary_extension_slug: "statements-and-state"
+    name: "Assignment operation"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for assigning values to variables using the `=` operator. You need to only support variables that have already been declared on the left side of the assignment.
+      Note that assignment is right associative, so `a = b = 1` is equivalent to `a = (b = 1)`.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 8.2: Global Variables](https://craftinginterpreters.com/statements-and-state.html#global-variables).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain the assignment operation.
+
+      For example, if `test.lox` contains the following
+
+      ```
+      var a;
+      var b = 2;
+      var a = b = 1;
+      print a;
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      1
+      ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      # TODO
+
+      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/string/literals.lox)
+    marketing_md: |-
+      In this stage, you'll add support for the assignment operation (=).
+
