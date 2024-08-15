@@ -1871,14 +1871,10 @@ stages:
 
       | Input | Expected output |
       | :---: | :-------------: |
-      | >
-        print "Hello, World!";
-        print 42;
-      | >
-        Hello, World!
-        42
-      | `print true;` | `true` |
-      | `print 12 + 24;` | `36` |
+      | `print false;` | false |
+      | `print (61 + 61) * (61 + 61);` | 14884 |
+      | `print "foo" + "foo";` | foofoo |
+      | `print 61 * 61 * 61;` | 226981 |
 
       The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
 
@@ -1887,3 +1883,87 @@ stages:
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/string/literals.lox)
     marketing_md: |-
       In this stage, you'll add support for handling multiple statements in a single `program`.
+
+  - slug: "3"
+    primary_extension_slug: "statements-and-state"
+    name: "Expression statements"
+    difficulty: easy
+    description_md: |-
+      In this stage, you'll add support for handling expression statements. An expression statement lets you place an expression where a statement is expected. They exist to evaluate expressions that have side effects.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 8.1: Statements](https://craftinginterpreters.com/statements-and-state.html#statements).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain expressions that have side effects, combined with the `print` statement.
+
+      For example, if `test.lox` contains the following
+
+      ```
+      "foo" + "bar";
+      print "baz";
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      baz
+      ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      # TODO
+
+      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/string/literals.lox)
+    marketing_md: |-
+      In this stage, you'll add support for handling expression statements.
+
+  - slug: "4"
+    primary_extension_slug: "statements-and-state"
+    name: "Variables: Declare variables"
+    difficulty: easy
+    description_md: |-
+      In this stage, you'll add support for declaring variables using the `var` statement. For this, you'll need to add support for the `var` declaration in your AST generator, parser & interpreter.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 8.2: Global Variables](https://craftinginterpreters.com/statements-and-state.html#global-variables).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain the `var` statement.
+
+      For example, if `test.lox` contains the following
+
+      ```
+      var a = "foo";
+      print a;
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      foo
+      ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      # TODO
+
+      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+
+      ### Notes
+
+      # TODO Check if we have var test cases
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/string/literals.lox)
+    marketing_md: |-
+      In this stage, you'll add support for declaring variables using the `var` statement.
+
