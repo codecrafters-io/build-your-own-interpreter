@@ -2104,7 +2104,7 @@ stages:
 
       ### Book reference
 
-      The code for this stage is implemented in [Section 8.2: Global Variables](https://craftinginterpreters.com/statements-and-state.html#global-variables).
+      The code for this stage is implemented in [Section 8.4: Assignment](https://craftinginterpreters.com/statements-and-state.html#assignment).
 
       ### Tests
 
@@ -2137,4 +2137,101 @@ stages:
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/string/literals.lox)
     marketing_md: |-
       In this stage, you'll add support for the assignment operation (=).
+
+  - slug: "9"
+    primary_extension_slug: "statements-and-state"
+    name: "Block syntax"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for block syntax in your interpreter. Blocks are enclosed in curly braces `{}` and are used to group statements together. They are also used to create local scopes. We will test scopes in the next stage, in this stage you just need to handle the block syntax. 
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 8.5.2: Block syntax and semantics](https://craftinginterpreters.com/statements-and-state.html#block-syntax-and-semantics).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain the assignment operation.
+
+      For example, if `test.lox` contains the following
+
+      ```
+      {
+          var foo = "before";
+          print foo;
+      }
+      {
+          var foo = "after";
+          print foo;
+      }
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      before
+      after
+      ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      # TODO
+
+      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0. If there is any blocks that are opened but not closed, it should throw a syntax error, the exit code in that case should be 65. 
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/string/literals.lox)
+    marketing_md: |-
+      In this stage, you'll add support for block syntax using curly braces `{}`.
+
+  - slug: "10"
+    primary_extension_slug: "statements-and-state"
+    name: "Scopes"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for scopes in your interpreter. Scopes are created by blocks, and they are used to group variables together. We will test variables in local scopes, nested scopes, shadowing of variables, and accessing variables outside of the scope where they are defined.  
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 8.5: Scope](https://craftinginterpreters.com/statements-and-state.html#scope).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain the assignment operation.
+
+      For example, if `test.lox` contains the following
+
+      ```
+      {
+          var world = "before";
+          {
+              var world = "after";
+              print world;
+          }
+          print world;
+      }
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      after
+      before
+      ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      # TODO
+
+      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0. Accessing a variable outside of its scope should throw a runtime error, the exit code in that case should be 70. 
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/string/literals.lox)
+    marketing_md: |-
+      In this stage, you'll add support for scopes in your interpreter.
+
 
