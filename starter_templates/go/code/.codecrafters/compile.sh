@@ -9,4 +9,4 @@
 # Exit early if any commands fail
 set -e
 
-go build -buildvcs=false -o /tmp/interpreter-target ./cmd/myinterpreter
+go build -o /tmp/interpreter-target ./cmd/myinterpreter
