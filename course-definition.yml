@@ -1837,7 +1837,7 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for generating output using the `print` statement.
 
-  - slug: "2"
+  - slug: "oe4"
     primary_extension_slug: "statements-and-state"
     name: "Print: Multiple statements"
     difficulty: medium
@@ -1884,7 +1884,7 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for handling multiple statements in a single `program`.
 
-  - slug: "3"
+  - slug: "fi3"
     primary_extension_slug: "statements-and-state"
     name: "Expression statements"
     difficulty: easy
@@ -1925,7 +1925,7 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for handling expression statements.
 
-  - slug: "4"
+  - slug: "yg2"
     primary_extension_slug: "statements-and-state"
     name: "Variables: Declare variables"
     difficulty: easy
@@ -1967,7 +1967,7 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for declaring variables using the `var` statement.
 
-  - slug: "5"
+  - slug: "sv7"
     primary_extension_slug: "statements-and-state"
     name: "Variables: Runtime Errors"
     difficulty: easy
@@ -2009,7 +2009,7 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for declaring variables using the `var` statement.
 
-  - slug: "6"
+  - slug: "bc1"
     primary_extension_slug: "statements-and-state"
     name: "Variables: Initialize variables"
     difficulty: easy
@@ -2051,7 +2051,7 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for initializing variables.
 
-  - slug: "7"
+  - slug: "dw9"
     primary_extension_slug: "statements-and-state"
     name: "Variables: Redeclare variables"
     difficulty: easy
@@ -2094,7 +2094,7 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for redeclaring variables.
 
-  - slug: "8"
+  - slug: "pl3"
     primary_extension_slug: "statements-and-state"
     name: "Assignment operation"
     difficulty: medium
@@ -2138,7 +2138,7 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for the assignment operation (=).
 
-  - slug: "9"
+  - slug: "vr5"
     primary_extension_slug: "statements-and-state"
     name: "Block syntax"
     difficulty: medium
@@ -2186,7 +2186,7 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for block syntax using curly braces `{}`.
 
-  - slug: "10"
+  - slug: "fb4"
     primary_extension_slug: "statements-and-state"
     name: "Scopes"
     difficulty: medium
