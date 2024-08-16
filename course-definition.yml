@@ -1869,12 +1869,84 @@ stages:
 
       The tester will run multiple such tests with randomized expressions, for example:
 
-      | Input | Expected output |
-      | :---: | :-------------: |
-      | `print false;` | false |
-      | `print (61 + 61) * (61 + 61);` | 14884 |
-      | `print "foo" + "foo";` | foofoo |
-      | `print 61 * 61 * 61;` | 226981 |
+      Test Case 1:
+
+      Input:
+
+      ```
+      print "world" + "baz" + "bar";
+      print 27 - 26;
+      print "bar" == "quz";
+      ```
+
+      Expected Output:
+
+      ```
+      worldbazbar
+      1
+      false
+      ```
+
+      Test Case 2:
+
+      Input:
+
+      ```
+      print "hello"; print true;
+      print false;
+      print "bar"; print 43;
+      ```
+
+      Expected Output:
+
+      ```
+      hello
+      true
+      false
+      bar
+      43
+      ```
+      
+      Test Case 3:
+
+      Input:
+
+      ```
+      print 81;
+          print 81 + 46;
+              print 81 + 46 + 19;
+      ```
+
+      Expected Output:
+
+      ```
+      81
+      127
+      146
+      ```
+      
+      Test Case 4:
+
+      Input:
+
+      ```
+      print true != true;
+
+      print "36
+      10
+      78
+      ";
+      ```
+
+      Expected Output:
+
+      ```
+      false
+      36
+      10
+      78
+
+      ```
 
       The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
 
@@ -1914,9 +1986,77 @@ stages:
       ```
 
       The tester will run multiple such tests with randomized expressions, for example:
+      
+      Test Case 1:
 
-      # TODO
+      Input:
 
+      ```
+      (37 + 42 - 21) > (76 - 37) * 2;
+      print !false;
+      "baz" + "hello" + "quz" + "bar" == "bazhelloquzbar";
+      print !false;
+      ```
+
+      Expected Output:
+
+      ```
+      true
+      true
+      ```
+
+      Test Case 2:
+
+      Input:
+
+      ```
+      27 - 60 >= -99 * 2 / 99 + 76;
+      true == true;
+      ("world" == "bar") == ("baz" != "hello");
+      print true;
+      ```
+
+      Expected Output:
+
+      ```
+      true
+      ```
+      
+      Test Case 3:
+
+      Input:
+
+      ```
+      print "the expression below is invalid";
+      49 + "baz";
+      print "this should not be printed";
+      ```
+
+      Expected Output:
+
+      ```
+      the expression below is invalid
+      Operands must be two numbers or two strings.
+      [line 2]
+      ```
+      
+      Test Case 4:
+
+      Input:
+
+      ```
+      print "79" + "baz";
+      print false * (18 + 84);
+      ```
+
+      Expected Output:
+
+      ```
+      79baz
+      Operands must be numbers.
+      [line 2]
+      ```
+      
       The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
 
       ### Notes
@@ -1956,7 +2096,70 @@ stages:
 
       The tester will run multiple such tests with randomized expressions, for example:
 
-      # TODO
+      Test Case 1:
+
+      Input:
+
+      ```
+      var world = 10;
+      print world;
+      ```
+
+      Expected Output:
+
+      ```
+      10
+      ```
+
+      Test Case 2:
+
+      Input:
+
+      ```
+      var bar = 99;
+      var foo = 99;
+      print bar + foo;
+      var quz = 99;
+      print bar + foo + quz;
+      ```
+
+      Expected Output:
+
+      ```
+      198
+      297
+      ```
+      
+      Test Case 3:
+
+      Input:
+
+      ```
+      var foo = (8 * (62 + 62)) / 4 + 62;
+      print foo;
+      ```
+
+      Expected Output:
+
+      ```
+      310
+      ```
+      
+      Test Case 4:
+
+      Input:
+
+      ```
+      var quz = 76;
+      var baz = quz;
+      print baz + quz;
+      ```
+
+      Expected Output:
+
+      ```
+      152
+      ```
 
       The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
 
@@ -1998,7 +2201,73 @@ stages:
 
       The tester will run multiple such tests with randomized expressions, for example:
 
-      # TODO
+      Test Case 1:
+
+      Input:
+
+      ```
+      print 22;
+      print x;
+      22
+      ```
+
+      Expected Output:
+
+      ```
+      Undefined variable 'x'.
+      [line 2]
+      ```
+
+      Test Case 2:
+
+      Input:
+
+      ```
+      var baz = 96;
+      print hello;
+      ```
+
+      Expected Output:
+
+      ```
+      Undefined variable 'hello'.
+      [line 2]
+      ```
+      
+      Test Case 3:
+
+      Input:
+
+      ```
+      var hello = 85;
+      var result = (hello + bar) / world;
+      print result;
+      ```
+
+      Expected Output:
+
+      ```
+      Undefined variable 'bar'.
+      [line 2]
+      ```
+      
+      Test Case 4:
+
+      Input:
+
+      ```
+      var quz = 20;
+      var world = 51;
+      var hello = 56;
+      print quz + world + he
+      ```
+
+      Expected Output:
+
+      ```
+      Undefined variable 'bar'.
+      [line 4]
+      ```
 
       The tester will assert that the exit code is 70, signifying a runtime error. Note that this is different from the expected exit code for a syntax error, which is 65.
 
