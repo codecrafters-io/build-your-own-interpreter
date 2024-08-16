@@ -2165,8 +2165,7 @@ stages:
 
       ### Notes
 
-      # TODO Check if we have var test cases
-      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/string/literals.lox)
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/variable/in_nested_block.lox)
     marketing_md: |-
       In this stage, you'll add support for declaring variables using the `var` statement.
 
@@ -2273,8 +2272,7 @@ stages:
 
       ### Notes
 
-      # TODO Check if we have var test cases
-      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/string/literals.lox)
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/variable/in_nested_block.lox)
     marketing_md: |-
       In this stage, you'll add support for declaring variables using the `var` statement.
 
@@ -2382,8 +2380,7 @@ stages:
 
       ### Notes
 
-      # TODO Check if we have var test cases
-      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/string/literals.lox)
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/variable/in_nested_block.lox)
     marketing_md: |-
       In this stage, you'll add support for initializing variables.
 
@@ -2496,8 +2493,7 @@ stages:
 
       ### Notes
 
-      # TODO Check if we have var test cases
-      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/string/literals.lox)
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/variable/in_nested_block.lox)
     marketing_md: |-
       In this stage, you'll add support for redeclaring variables.
 
