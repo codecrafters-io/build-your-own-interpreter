@@ -15,6 +15,12 @@ ls -la
 echo "git --version"
 git --version
 
+echo "git config --list"
+git config --list
+
+echo "git status"
+git status
+
 echo "ls -la .git"
 ls -la .git
 
