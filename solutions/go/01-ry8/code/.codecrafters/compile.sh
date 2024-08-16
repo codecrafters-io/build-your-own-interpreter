@@ -9,4 +9,13 @@
 # Exit early if any commands fail
 set -e
 
-go build -buildvcs=false -o /tmp/interpreter-target ./cmd/myinterpreter
+echo "ls -la"
+ls -la
+
+echo "git --version"
+git --version
+
+echo "ls -la .git"
+ls -la .git
+
+go build -o /tmp/interpreter-target ./cmd/myinterpreter
