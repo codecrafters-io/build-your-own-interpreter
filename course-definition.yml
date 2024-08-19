@@ -24,11 +24,14 @@ short_description_md: |-
 completion_percentage: 15
 
 languages:
+  - slug: "gleam"
   - slug: "go"
+  - slug: "kotlin"
+  - slug: "ocaml"
   - slug: "python"
   - slug: "rust"
-  - slug: "kotlin"
   - slug: "javascript"
+  - slug: "zig"
 
 marketing:
   difficulty: hard
@@ -63,6 +66,13 @@ extensions:
       This extension covers chapters 7 of the book ([Evaluating Expressions](https://craftinginterpreters.com/evaluating-expressions.html)).
 
       In this extension, you'll add the ability to evaluate expressions.
+
+  - slug: "statements-and-state"
+    name: "Statements & State"
+    description_markdown: |
+      This extension covers chapters 8 of the book ([Statements & State](https://craftinginterpreters.com/statements-and-state.html)).
+
+      In this extension, you'll add the ability to add internal state to your interpreter & produce output.
 
 stages:
   - slug: "ry8"
@@ -1604,7 +1614,7 @@ stages:
       will contain a usage of the `-` operator that should throw a runtime error.
 
       The unary operator `-` will throw a runtime error if the operand is not a number.
-      
+
       For example, if `test.lox` contains the following:
 
       ```
@@ -1747,8 +1757,6 @@ stages:
 
       ### Tests
 
-      The tester will run a series of tests with `test.lox` files that contain expressions with the relational operators `>`, `<`, `>=` & `<=`, There is a high probability that the expression will throw a runtime error.
-
       The tester will test your program using a `test.lox` file that contains an expression with the relational operator `>`, `<`, `>=` or `<=`. This expression
       will contain a usage of the relational operator that should throw a runtime error.
 
@@ -1784,3 +1792,1112 @@ stages:
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/evaluate.lox)
     marketing_md: |-
       In this stage, you'll implement support for handling runtime errors while evaluating the relational operators `>`, `<`, `>=` & `<=`.
+
+  - slug: "xy1"
+    primary_extension_slug: "statements-and-state"
+    name: "Print: Generate output"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for generating output using the `print` statement. For this, you'll need to add support for the `print` statement in your AST generator, parser & interpreter.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 8.1: Statements](https://craftinginterpreters.com/statements-and-state.html#statements).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain the `print` statement.
+
+      For example, if `test.lox` contains the following
+
+      ```
+      print "Hello, World!";
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      Hello, World!
+      ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      | Input | Expected output |
+      | :---: | :-------------: |
+      | `print "Hello, World!";` | `Hello, World!` |
+      | `print 42;` | `42` |
+      | `print true;` | `true` |
+      | `print 12 + 24;` | `36` |
+
+      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/string/literals.lox)
+    marketing_md: |-
+      In this stage, you'll add support for generating output using the `print` statement.
+
+  - slug: "oe4"
+    primary_extension_slug: "statements-and-state"
+    name: "Print: Multiple statements"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for handling multiple statements in a single `program`. From here on, we will create test programs that span across multiple statements.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 8.1: Statements](https://craftinginterpreters.com/statements-and-state.html#statements).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain multiple statements.
+
+      For example, if `test.lox` contains the following
+
+      ```
+      print "Hello, World!";
+      print 42;
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      Hello, World!
+      42
+      ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      Test Case 1:
+
+      Input:
+
+      ```
+      print "world" + "baz" + "bar";
+      print 27 - 26;
+      print "bar" == "quz";
+      ```
+
+      Expected Output:
+
+      ```
+      worldbazbar
+      1
+      false
+      ```
+
+      Test Case 2:
+
+      Input:
+
+      ```
+      print "hello"; print true;
+      print false;
+      print "bar"; print 43;
+      ```
+
+      Expected Output:
+
+      ```
+      hello
+      true
+      false
+      bar
+      43
+      ```
+      
+      Test Case 3:
+
+      Input:
+
+      ```
+      print 81;
+          print 81 + 46;
+              print 81 + 46 + 19;
+      ```
+
+      Expected Output:
+
+      ```
+      81
+      127
+      146
+      ```
+      
+      Test Case 4:
+
+      Input:
+
+      ```
+      print true != true;
+
+      print "36
+      10
+      78
+      ";
+      ```
+
+      Expected Output:
+
+      ```
+      false
+      36
+      10
+      78
+
+      ```
+
+      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/string/literals.lox)
+    marketing_md: |-
+      In this stage, you'll add support for handling multiple statements in a single `program`.
+
+  - slug: "fi3"
+    primary_extension_slug: "statements-and-state"
+    name: "Expression statements"
+    difficulty: easy
+    description_md: |-
+      In this stage, you'll add support for handling expression statements. An expression statement lets you place an expression where a statement is expected. They exist to evaluate expressions that have side effects.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 8.1: Statements](https://craftinginterpreters.com/statements-and-state.html#statements).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain expressions that have side effects, combined with the `print` statement.
+
+      For example, if `test.lox` contains the following
+
+      ```
+      "foo" + "bar";
+      print "baz";
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      baz
+      ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+      
+      Test Case 1:
+
+      Input:
+
+      ```
+      (37 + 42 - 21) > (76 - 37) * 2;
+      print !false;
+      "baz" + "hello" + "quz" + "bar" == "bazhelloquzbar";
+      print !false;
+      ```
+
+      Expected Output:
+
+      ```
+      true
+      true
+      ```
+
+      Test Case 2:
+
+      Input:
+
+      ```
+      27 - 60 >= -99 * 2 / 99 + 76;
+      true == true;
+      ("world" == "bar") == ("baz" != "hello");
+      print true;
+      ```
+
+      Expected Output:
+
+      ```
+      true
+      ```
+      
+      Test Case 3:
+
+      Input:
+
+      ```
+      print "the expression below is invalid";
+      49 + "baz";
+      print "this should not be printed";
+      ```
+
+      Expected Output:
+
+      ```
+      the expression below is invalid
+      Operands must be two numbers or two strings.
+      [line 2]
+      ```
+      
+      Test Case 4:
+
+      Input:
+
+      ```
+      print "79" + "baz";
+      print false * (18 + 84);
+      ```
+
+      Expected Output:
+
+      ```
+      79baz
+      Operands must be numbers.
+      [line 2]
+      ```
+      
+      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/string/literals.lox)
+    marketing_md: |-
+      In this stage, you'll add support for handling expression statements.
+
+  - slug: "yg2"
+    primary_extension_slug: "statements-and-state"
+    name: "Variables: Declare variables"
+    difficulty: easy
+    description_md: |-
+      In this stage, you'll add support for declaring variables using the `var` statement. For this, you'll need to add support for the `var` declaration in your AST generator, parser & interpreter.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 8.2: Global Variables](https://craftinginterpreters.com/statements-and-state.html#global-variables).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain the `var` statement.
+
+      For example, if `test.lox` contains the following
+
+      ```
+      var a = "foo";
+      print a;
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      foo
+      ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      Test Case 1:
+
+      Input:
+
+      ```
+      var world = 10;
+      print world;
+      ```
+
+      Expected Output:
+
+      ```
+      10
+      ```
+
+      Test Case 2:
+
+      Input:
+
+      ```
+      var bar = 99;
+      var foo = 99;
+      print bar + foo;
+      var quz = 99;
+      print bar + foo + quz;
+      ```
+
+      Expected Output:
+
+      ```
+      198
+      297
+      ```
+      
+      Test Case 3:
+
+      Input:
+
+      ```
+      var foo = (8 * (62 + 62)) / 4 + 62;
+      print foo;
+      ```
+
+      Expected Output:
+
+      ```
+      310
+      ```
+      
+      Test Case 4:
+
+      Input:
+
+      ```
+      var quz = 76;
+      var baz = quz;
+      print baz + quz;
+      ```
+
+      Expected Output:
+
+      ```
+      152
+      ```
+
+      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/variable/in_nested_block.lox)
+    marketing_md: |-
+      In this stage, you'll add support for declaring variables using the `var` statement.
+
+  - slug: "sv7"
+    primary_extension_slug: "statements-and-state"
+    name: "Variables: Runtime Errors"
+    difficulty: easy
+    description_md: |-
+      In this stage, you'll add support for handling runtime errors while accessing variables that haven't been declared yet.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 8.2: Global Variables](https://craftinginterpreters.com/statements-and-state.html#global-variables).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that access variables that haven't been declared yet.
+
+      For example, if `test.lox` contains the following
+
+      ```
+      print a;
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      Undefined variable 'a'.
+      [line 1]
+      ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      Test Case 1:
+
+      Input:
+
+      ```
+      print 22;
+      print x;
+      ```
+
+      Expected Output:
+
+      ```
+      22
+      Undefined variable 'x'.
+      [line 2]
+      ```
+
+      Test Case 2:
+
+      Input:
+
+      ```
+      var baz = 96;
+      print hello;
+      ```
+
+      Expected Output:
+
+      ```
+      Undefined variable 'hello'.
+      [line 2]
+      ```
+      
+      Test Case 3:
+
+      Input:
+
+      ```
+      var hello = 85;
+      var result = (hello + bar) / world;
+      print result;
+      ```
+
+      Expected Output:
+
+      ```
+      Undefined variable 'bar'.
+      [line 2]
+      ```
+      
+      Test Case 4:
+
+      Input:
+
+      ```
+      var quz = 20;
+      var world = 51;
+      var hello = 56;
+      print quz + world + he
+      ```
+
+      Expected Output:
+
+      ```
+      Undefined variable 'bar'.
+      [line 4]
+      ```
+
+      The tester will assert that the exit code is 70, signifying a runtime error. Note that this is different from the expected exit code for a syntax error, which is 65.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/variable/in_nested_block.lox)
+    marketing_md: |-
+      In this stage, you'll add support for declaring variables using the `var` statement.
+
+  - slug: "bc1"
+    primary_extension_slug: "statements-and-state"
+    name: "Variables: Initialize variables"
+    difficulty: easy
+    description_md: |-
+      In this stage, you'll add support for initializing variables with the value passed to the `var` statement, or initializing them with `nil` if no value is passed.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 8.2: Global Variables](https://craftinginterpreters.com/statements-and-state.html#global-variables).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain the `var` statement.
+
+      For example, if `test.lox` contains the following
+
+      ```
+      var a;
+      print a;
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      nil
+      ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      Test Case 1:
+
+      Input:
+
+      ```
+      var foo;
+      print foo;
+      ```
+
+      Expected Output:
+
+      ```
+      nil
+      ```
+
+      Test Case 2:
+
+      Input:
+
+      ```
+      var baz = "foo";
+      var bar;
+      print bar;
+      ```
+
+      Expected Output:
+
+      ```
+      nil
+      ```
+      
+      Test Case 3:
+
+      Input:
+
+      ```
+      var baz = 69;
+      var world;
+      var quz;
+      print world;
+      ```
+
+      Expected Output:
+
+      ```
+      nil
+      ```
+      
+      Test Case 4:
+
+      Input:
+
+      ```
+      var quz = 73 + 26 * 20;
+      print quz;
+      var hello = 26 * 20;
+      print quz + hello;
+      var foo;
+      print foo;
+      ```
+
+      Expected Output:
+
+      ```
+      593
+      1113
+      nil
+      ```
+
+      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/variable/in_nested_block.lox)
+    marketing_md: |-
+      In this stage, you'll add support for initializing variables.
+
+  - slug: "dw9"
+    primary_extension_slug: "statements-and-state"
+    name: "Variables: Redeclare variables"
+    difficulty: easy
+    description_md: |-
+      In this stage, you'll add support for redeclaring variables using the `var` statement.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 8.2: Global Variables](https://craftinginterpreters.com/statements-and-state.html#global-variables).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain the `var` statement.
+
+      For example, if `test.lox` contains the following
+
+      ```
+      var a = 1;
+      var a = 2;
+      print a;
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      2
+      ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      Test Case 1:
+
+      Input:
+
+      ```
+      var baz = "before";
+      print baz;
+      var baz = "after";
+      print baz;
+      ```
+
+      Expected Output:
+
+      ```
+      before
+      after
+      ```
+
+      Test Case 2:
+
+      Input:
+
+      ```
+      var hello = "after";
+      var hello = "before";
+      var hello = hello;
+      print hello;
+      ```
+
+      Expected Output:
+
+      ```
+      before
+      ```
+      
+      Test Case 3:
+
+      Input:
+
+      ```
+      var world = 2;
+      print world;
+      world = 3;
+      print world;
+      var hello = 5;
+      print hello;
+      world = hello;
+      print world;
+      ```
+
+      Expected Output:
+
+      ```
+      2
+      3
+      5
+      5
+      ```
+      
+      Test Case 4:
+
+      Input:
+
+      ```
+      baz + quz = bar;
+      ```
+
+      Expected Output:
+
+      ```
+      [line 1] Error at '=': Invalid assignment target.
+      ```
+
+      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/variable/in_nested_block.lox)
+    marketing_md: |-
+      In this stage, you'll add support for redeclaring variables.
+
+  - slug: "pl3"
+    primary_extension_slug: "statements-and-state"
+    name: "Assignment operation"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for assigning values to variables using the `=` operator. You need to only support variables that have already been declared on the left side of the assignment.
+      Note that assignment is right associative, so `a = b = 1` is equivalent to `a = (b = 1)`.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 8.4: Assignment](https://craftinginterpreters.com/statements-and-state.html#assignment).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain the assignment operation.
+
+      For example, if `test.lox` contains the following
+
+      ```
+      var a;
+      var b = 2;
+      var a = b = 1;
+      print a;
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      1
+      ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      Test Case 1:
+
+      Input:
+
+      ```
+      var quz;
+      quz = 1;
+      print quz;
+      print quz = 2;
+      print quz;
+      ```
+
+      Expected Output:
+
+      ```
+      1
+      2
+      2
+      ```
+
+      Test Case 2:
+
+      Input:
+
+      ```
+      var hello = 93;
+      var bar = 93;
+      bar = hello;
+      hello = bar;
+      print hello + bar;
+      ```
+
+      Expected Output:
+
+      ```
+      186
+      ```
+      
+      Test Case 3:
+
+      Input:
+
+      ```
+      var quz;
+      var hello;
+      
+      quz = hello = 16 + 34 * 92;
+      print quz;
+      print hello;
+      ```
+
+      Expected Output:
+
+      ```
+      3144
+      3144
+      ```
+      
+      Test Case 4:
+
+      Input:
+
+      ```
+      var hello = 65;
+      var baz;
+      var quz;
+      
+      hello = baz = quz = hello * 2;
+      print hello;
+      print baz;
+      print baz;
+      ```
+
+      Expected Output:
+
+      ```
+      130
+      130
+      130
+      ```
+
+      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/string/literals.lox)
+    marketing_md: |-
+      In this stage, you'll add support for the assignment operation (=).
+
+  - slug: "vr5"
+    primary_extension_slug: "statements-and-state"
+    name: "Block syntax"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for block syntax in your interpreter. Blocks are enclosed in curly braces `{}` and are used to group statements together. They are also used to create local scopes. We will test scopes in the next stage, in this stage you just need to handle the block syntax. 
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 8.5.2: Block syntax and semantics](https://craftinginterpreters.com/statements-and-state.html#block-syntax-and-semantics).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain the assignment operation.
+
+      For example, if `test.lox` contains the following
+
+      ```
+      {
+          var foo = "before";
+          print foo;
+      }
+      {
+          var foo = "after";
+          print foo;
+      }
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      before
+      after
+      ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      Test Case 1:
+
+      Input:
+
+      ```
+      {
+          var hello = "baz";
+          print hello;
+      }
+      ```
+
+      Expected Output:
+
+      ```
+      baz
+      ```
+
+      Test Case 2:
+
+      Input:
+
+      ```
+      {
+          var world = "before";
+          print world;
+      }
+      {
+          var world = "after";
+          print world;
+      }
+      ```
+
+      Expected Output:
+
+      ```
+      before
+      after
+      ```
+      
+      Test Case 3:
+
+      Input:
+
+      ```
+      {
+          var hello = 88;
+          {
+              var foo = 88;
+              print foo;
+          }
+          print hello;
+      }
+      ```
+
+      Expected Output:
+
+      ```
+      88
+      88
+      ```
+      
+      Test Case 4:
+
+      Input:
+
+      ```
+      {
+          var bar = 11;
+          var world = 11;
+          {
+              print bar + world;
+      }
+      ```
+
+      Expected Output:
+
+      ```
+      [line 6] Error at end: Expect '}' .
+      ```
+
+      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0. If there is any blocks that are opened but not closed, it should throw a syntax error, the exit code in that case should be 65. 
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/string/literals.lox)
+    marketing_md: |-
+      In this stage, you'll add support for block syntax using curly braces `{}`.
+
+  - slug: "fb4"
+    primary_extension_slug: "statements-and-state"
+    name: "Scopes"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for scopes in your interpreter. Scopes are created by blocks, and they are used to group variables together. We will test variables in local scopes, nested scopes, shadowing of variables, and accessing variables outside of the scope where they are defined.  
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 8.5: Scope](https://craftinginterpreters.com/statements-and-state.html#scope).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain the assignment operation.
+
+      For example, if `test.lox` contains the following
+
+      ```
+      {
+          var world = "before";
+          {
+              var world = "after";
+              print world;
+          }
+          print world;
+      }
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      after
+      before
+      ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      Test Case 1:
+
+      Input:
+
+      ```
+      var baz = (91 * 16) - 61;
+      {
+          var world = "quz" + "89";
+          print world;
+      }
+      print baz;
+      ```
+
+      Expected Output:
+
+      ```
+      quz89
+      1395
+      ```
+
+      Test Case 2:
+
+      Input:
+
+      ```
+      {
+          var quz = "before";
+          {
+              var quz = "after";
+              print quz;
+          }
+          print quz;
+      }
+      ```
+
+      Expected Output:
+
+      ```
+      after
+      before
+      ```
+      
+      Test Case 3:
+
+      Input:
+
+      ```
+      var bar = "global bar";
+      var world = "global world";
+      var hello = "global hello";
+      {
+        var bar = "outer bar";
+        var world = "outer world";
+        {
+          var bar = "inner bar";
+          print bar;
+          print world;
+          print hello;
+        }
+        print bar;
+        print world;
+        print hello;
+      }
+      print bar;
+      print world;
+      print hello;
+      ```
+
+      Expected Output:
+
+      ```
+      inner bar
+      outer world
+      global hello
+      outer bar
+      outer world
+      global hello
+      global bar
+      global world
+      global hello
+      ```
+      
+      Test Case 4:
+
+      Input:
+
+      ```
+      {
+        var hello = "outer hello";
+        {
+          var hello = "inner hello";
+          print hello;
+        }
+        print hello;
+      }
+      print hello;
+      ```
+
+      Expected Output:
+
+      ```
+      inner hello
+      outer hello
+      Undefined variable 'hello'.
+      [line 9]
+      ```
+
+      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0. Accessing a variable outside of its scope should throw a runtime error, the exit code in that case should be 70. 
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/string/literals.lox)
+    marketing_md: |-
+      In this stage, you'll add support for scopes in your interpreter.
+
+

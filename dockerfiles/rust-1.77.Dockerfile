@@ -9,6 +9,3 @@ WORKDIR /app
 COPY --exclude=.git --exclude=README.md . /app
 
 RUN cargo build --release --target-dir=/tmp/codecrafters-interpreter-target
-
-# Once the heavy steps are done, we can copy all files back
-COPY . /app
