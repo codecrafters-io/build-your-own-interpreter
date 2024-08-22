@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1.7-labs
-FROM rust:1.80-buster
+FROM rust:1.80-bookworm
 
 # Rebuild the container if these files change
 ENV CODECRAFTERS_DEPENDENCY_FILE_PATHS="Cargo.toml,Cargo.lock"
