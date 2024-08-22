@@ -6,11 +6,6 @@
 #
 # Learn more: https://codecrafters.io/program-interface
 
-# Exit early if any commands fail
-set -e
+set -e # Exit on failure
 
-cargo build \
-    --quiet \
-    --release \
-    --target-dir=/tmp/codecrafters-interpreter-target \
-    --manifest-path Cargo.toml
+cargo build --release --target-dir=/tmp/codecrafters-build-interpreter-rust --manifest-path Cargo.toml
