@@ -472,20 +472,22 @@ stages:
       For example, if `test.lox` contains the following:
 
       ```
-      // Comment
+      () // Comment
       ```
 
       The tester will run your program like this:
 
       ```
       $ ./your_program.sh tokenize test.lox
+      LEFT_PAREN ( null
+      RIGHT_PAREN ) null
       EOF  null
       ```
 
       Similarly, if `test.lox` contains the following:
 
       ```
-      /
+      /()
       ```
 
       The tester will run your program like this:
@@ -493,6 +495,8 @@ stages:
       ```
       $ ./your_program.sh tokenize test.lox
       SLASH / null
+      LEFT_PAREN ( null
+      RIGHT_PAREN ) null
       EOF  null
       ```
 
