@@ -695,7 +695,8 @@ stages:
       EOF  null
       ```
 
-      Note that the "literal value" for an integer is represented as "42.0" (with a decimal point). This matches the [book's format](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning/numbers.lox).
+      Just like strings, number literals have a "literal value" attached. Note that the literal value for an integer is represented as "42.0" (with a decimal point). This
+      matches the [book's format](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning/numbers.lox).
 
       You'll also need to handle numbers with a decimal point, for example if `test.lox` contains the following:
 
@@ -712,8 +713,6 @@ stages:
       ```
 
       The tester will assert that the stdout of your program matches the format above.
-
-      Just like strings, number literals have a "lexical value" attached. Lox only has one number The "lexical value" for an integer is represented as "42.0" (with a decimal point).
 
       ### Notes
 
