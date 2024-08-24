@@ -238,7 +238,7 @@ stages:
     name: "Scanning: Other single-character tokens"
     difficulty: medium
     description_md: |-
-      In this stage, you'll add support for scanning other single-character tokens, like `,`, `.`, `-`, `+`, `;`, `*`.
+      In this stage, you'll add support for scanning other single-character tokens, namely `,`, `.`, `-`, `+`, `;` and `*`.
       `/` is not covered here, it's covered in later stages.
 
       ### Book reference
@@ -1906,7 +1906,7 @@ stages:
       bar
       43
       ```
-      
+
       Test Case 3:
 
       Input:
@@ -1924,7 +1924,7 @@ stages:
       127
       146
       ```
-      
+
       Test Case 4:
 
       Input:
@@ -1986,7 +1986,7 @@ stages:
       ```
 
       The tester will run multiple such tests with randomized expressions, for example:
-      
+
       Test Case 1:
 
       Input:
@@ -2021,7 +2021,7 @@ stages:
       ```
       true
       ```
-      
+
       Test Case 3:
 
       Input:
@@ -2039,7 +2039,7 @@ stages:
       Operands must be two numbers or two strings.
       [line 2]
       ```
-      
+
       Test Case 4:
 
       Input:
@@ -2056,7 +2056,7 @@ stages:
       Operands must be numbers.
       [line 2]
       ```
-      
+
       The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
 
       ### Notes
@@ -2129,7 +2129,7 @@ stages:
       198
       297
       ```
-      
+
       Test Case 3:
 
       Input:
@@ -2144,7 +2144,7 @@ stages:
       ```
       310
       ```
-      
+
       Test Case 4:
 
       Input:
@@ -2232,7 +2232,7 @@ stages:
       Undefined variable 'hello'.
       [line 2]
       ```
-      
+
       Test Case 3:
 
       Input:
@@ -2249,7 +2249,7 @@ stages:
       Undefined variable 'bar'.
       [line 2]
       ```
-      
+
       Test Case 4:
 
       Input:
@@ -2337,7 +2337,7 @@ stages:
       ```
       nil
       ```
-      
+
       Test Case 3:
 
       Input:
@@ -2354,7 +2354,7 @@ stages:
       ```
       nil
       ```
-      
+
       Test Case 4:
 
       Input:
@@ -2450,7 +2450,7 @@ stages:
       ```
       before
       ```
-      
+
       Test Case 3:
 
       Input:
@@ -2474,7 +2474,7 @@ stages:
       5
       5
       ```
-      
+
       Test Case 4:
 
       Input:
@@ -2568,7 +2568,7 @@ stages:
       ```
       186
       ```
-      
+
       Test Case 3:
 
       Input:
@@ -2576,7 +2576,7 @@ stages:
       ```
       var quz;
       var hello;
-      
+
       quz = hello = 16 + 34 * 92;
       print quz;
       print hello;
@@ -2588,7 +2588,7 @@ stages:
       3144
       3144
       ```
-      
+
       Test Case 4:
 
       Input:
@@ -2597,7 +2597,7 @@ stages:
       var hello = 65;
       var baz;
       var quz;
-      
+
       hello = baz = quz = hello * 2;
       print hello;
       print baz;
@@ -2625,7 +2625,7 @@ stages:
     name: "Block syntax"
     difficulty: medium
     description_md: |-
-      In this stage, you'll add support for block syntax in your interpreter. Blocks are enclosed in curly braces `{}` and are used to group statements together. They are also used to create local scopes. We will test scopes in the next stage, in this stage you just need to handle the block syntax. 
+      In this stage, you'll add support for block syntax in your interpreter. Blocks are enclosed in curly braces `{}` and are used to group statements together. They are also used to create local scopes. We will test scopes in the next stage, in this stage you just need to handle the block syntax.
 
       ### Book reference
 
@@ -2696,7 +2696,7 @@ stages:
       before
       after
       ```
-      
+
       Test Case 3:
 
       Input:
@@ -2718,7 +2718,7 @@ stages:
       88
       88
       ```
-      
+
       Test Case 4:
 
       Input:
@@ -2738,7 +2738,7 @@ stages:
       [line 6] Error at end: Expect '}' .
       ```
 
-      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0. If there is any blocks that are opened but not closed, it should throw a syntax error, the exit code in that case should be 65. 
+      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0. If there is any blocks that are opened but not closed, it should throw a syntax error, the exit code in that case should be 65.
 
       ### Notes
 
@@ -2751,7 +2751,7 @@ stages:
     name: "Scopes"
     difficulty: medium
     description_md: |-
-      In this stage, you'll add support for scopes in your interpreter. Scopes are created by blocks, and they are used to group variables together. We will test variables in local scopes, nested scopes, shadowing of variables, and accessing variables outside of the scope where they are defined.  
+      In this stage, you'll add support for scopes in your interpreter. Scopes are created by blocks, and they are used to group variables together. We will test variables in local scopes, nested scopes, shadowing of variables, and accessing variables outside of the scope where they are defined.
 
       ### Book reference
 
@@ -2825,7 +2825,7 @@ stages:
       after
       before
       ```
-      
+
       Test Case 3:
 
       Input:
@@ -2865,7 +2865,7 @@ stages:
       global world
       global hello
       ```
-      
+
       Test Case 4:
 
       Input:
@@ -2891,12 +2891,10 @@ stages:
       [line 9]
       ```
 
-      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0. Accessing a variable outside of its scope should throw a runtime error, the exit code in that case should be 70. 
+      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0. Accessing a variable outside of its scope should throw a runtime error, the exit code in that case should be 70.
 
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/string/literals.lox)
     marketing_md: |-
       In this stage, you'll add support for scopes in your interpreter.
-
-
