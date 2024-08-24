@@ -312,16 +312,23 @@ stages:
       EOF  null
       ```
 
-      The lexical errors, should be printed to the stderr stream, with the `[line N]` prefix at the beginning.
-      The tester will assert that the stdout stream of your program matches the valid tokens, and the stderr stream contains the lexical errors.
-      The tester will also assert that the exit code is non-zero, or more specifically 65 in case of lexical errors.
+      Errors should be printed to the stderr stream, starting with the `[line N]` prefix. If lexical errors were present,
+      your program must exit with exit code 65.
+
+      The tester will assert that:
+
+      - The stderr stream contains one line for each lexical error (if present)
+      - The stdout stream contains one line for each valid tokens (even if other lexical errors are present)
+      - Your program exits with exit code 65 if lexical errors are present, and exit code 0 if not
+
 
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning)
+      - Since stdout and stderr are separate streams, the relative order of errors vs. valid tokens doesn't matter. You're free to print
+        errors first, errors last, or errors interleaved with valid tokens.
+      - Only lines that start with `[line N]` are considered errors, so you can still print other lines to stderr for debugging purposes.
       - When scanning for tokens, it's valid to have "unbalanced" parentheses or braces. When we get to parsing expressions in later stages, these cases will be highlighted as errors.
-      - You can use the stderr stream to print debug logs for your own use too, to register a line as an error, it has to contain the `[line N]` prefix. Else we will ignore it as an user log.
-      - As the stdout and stderr are completely different streams, the order of errors and valid tokens don't matter.
     marketing_md: |-
       In this stage, you'll implement support for scanning lexical errors.
 
