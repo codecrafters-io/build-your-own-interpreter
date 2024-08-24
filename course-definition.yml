@@ -318,9 +318,11 @@ stages:
       The tester will assert that:
 
       - The stderr stream contains one line for each lexical error (if present)
+        - Each line must match the format `[line N] Error: Unexpected character: <character>`
       - The stdout stream contains one line for each valid tokens (even if other lexical errors are present)
       - Your program exits with exit code 65 if lexical errors are present, and exit code 0 if not
 
+      Since we haven't introduced the newline character yet, all errors will start with `[line 1]`. We'll get to multi-line errors in later stages.
 
       ### Notes
 
