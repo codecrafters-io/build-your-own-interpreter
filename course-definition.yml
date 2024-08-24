@@ -973,24 +973,10 @@ stages:
 
       The tester will assert that the stdout of your program matches the format above.
 
-      The tester will also check whether your program exits with code 65 if there are unmatched parentheses. For example, if `test.lox` contains the following:
-
-      ```
-      ("foo"
-      ```
-
-      The tester will run your program like this and assert that the exit code is 65:
-
-      ```
-      $ ./your_program.sh parse test.lox
-      Error: Unmatched parentheses.
-      ```
-
-      The exact error message will not be checked, the tester will only check that the program exits with code 65.
-
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/parse.lox)
+      - Errors for unclosed parenthese are not checked in this stage, they'll be checked in later stages.
     marketing_md: |-
       In this stage, you'll implement support for parsing parentheses.
 
