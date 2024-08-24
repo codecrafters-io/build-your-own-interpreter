@@ -239,7 +239,7 @@ stages:
     name: "Scanning: Other single-character tokens"
     difficulty: medium
     description_md: |-
-      In this stage, you'll add support for scanning other single-character tokens, like `,`, `.`, `-`, `+`, `;`, `*`.
+      In this stage, you'll add support for scanning other single-character tokens, namely `,`, `.`, `-`, `+`, `;` and `*`.
       `/` is not covered here, it's covered in later stages.
 
       ### Book reference
@@ -313,16 +313,25 @@ stages:
       EOF  null
       ```
 
-      The lexical errors, should be printed to the stderr stream, with the `[line N]` prefix at the beginning.
-      The tester will assert that the stdout stream of your program matches the valid tokens, and the stderr stream contains the lexical errors.
-      The tester will also assert that the exit code is non-zero, or more specifically 65 in case of lexical errors.
+      Errors should be printed to the stderr stream, starting with the `[line N]` prefix. If lexical errors were present,
+      your program must exit with exit code 65.
+
+      The tester will assert that:
+
+      - The stderr stream contains one line for each lexical error (if present)
+        - Each line must match the format `[line N] Error: Unexpected character: <character>`
+      - The stdout stream contains one line for each valid token (even if other lexical errors are present)
+      - Your program exits with exit code 65 if lexical errors are present, and exit code 0 if not
+
+      Since we haven't introduced the newline character yet, all errors will start with `[line 1]`. We'll get to multi-line errors in later stages.
 
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning)
+      - Since stdout and stderr are separate streams, the relative order of errors vs. valid tokens doesn't matter. You're free to print
+        errors first, errors last, or errors interleaved with valid tokens.
+      - Only lines that start with `[line N]` are considered errors, so you can still print other lines to stderr for debugging purposes.
       - When scanning for tokens, it's valid to have "unbalanced" parentheses or braces. When we get to parsing expressions in later stages, these cases will be highlighted as errors.
-      - You can use the stderr stream to print debug logs for your own use too, to register a line as an error, it has to contain the `[line N]` prefix. Else we will ignore it as an user log.
-      - As the stdout and stderr are completely different streams, the order of errors and valid tokens don't matter.
     marketing_md: |-
       In this stage, you'll implement support for scanning lexical errors.
 
@@ -464,20 +473,22 @@ stages:
       For example, if `test.lox` contains the following:
 
       ```
-      // Comment
+      () // Comment
       ```
 
       The tester will run your program like this:
 
       ```
       $ ./your_program.sh tokenize test.lox
+      LEFT_PAREN ( null
+      RIGHT_PAREN ) null
       EOF  null
       ```
 
       Similarly, if `test.lox` contains the following:
 
       ```
-      /
+      /()
       ```
 
       The tester will run your program like this:
@@ -485,6 +496,8 @@ stages:
       ```
       $ ./your_program.sh tokenize test.lox
       SLASH / null
+      LEFT_PAREN ( null
+      RIGHT_PAREN ) null
       EOF  null
       ```
 
@@ -493,6 +506,7 @@ stages:
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning)
+      - There's no token type for comments, your scanner just needs to ignore any characters after `//`.
       - When scanning for tokens, it's valid to have "unbalanced" parentheses or braces. When we get to parsing expressions in later stages, these cases will be highlighted as errors.
     marketing_md: |-
       In this stage, you'll implement support for scanning the division operator & comments.
@@ -501,7 +515,7 @@ stages:
     name: "Scanning: Whitespace"
     difficulty: medium
     description_md: |-
-      In this stage, you'll add support for scanning whitespaces.
+      In this stage, you'll add support for scanning whitespace characters (tabs, spaces and newlines).
 
       ### Book reference
 
@@ -527,15 +541,17 @@ stages:
       EOF  null
       ```
 
-      The `test.lox` file will contain the space character, and tab character, but to take it more readable in logs, we will replace them with `|SPACE|` and `|TAB|` respectively. This will be done ONLY in the logs, the file will contain the actual characters.
       The tester will assert that the stdout of your program matches the format above.
+
+      Note that the tab, space and newline characters are ignored, so they don't appear as tokens in the output.
 
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning)
+      - In the logs, the spaces will be replaced with `<|SPACE|>` and tabs will be replaced with `<|TAB|>` for readability. The `test.lox` file will contain actual space/tab characters.
       - When scanning for tokens, it's valid to have "unbalanced" parentheses or braces. When we get to parsing expressions in later stages, these cases will be highlighted as errors.
     marketing_md: |-
-      In this stage, you'll implement support for scanning whitespaces.
+      In this stage, you'll implement support for scanning whitespace characters.
 
   - slug: "tz7"
     name: "Scanning: Multi-line errors"
@@ -569,12 +585,24 @@ stages:
       EOF  null
       ```
 
-      The tester will assert that the stdout & stderr of your program matches the format above.
-      Pay special attention to the line number in your error strings.
+      Errors should be printed to the stderr stream, starting with the `[line N]` prefix. If lexical errors were present,
+      your program must exit with exit code 65.
+
+      The tester will assert that:
+
+      - The stderr stream contains one line for each lexical error (if present)
+        - Each line must match the format `[line N] Error: Unexpected character: <character>`
+      - The stdout stream contains one line for each valid token (even if other lexical errors are present)
+      - Your program exits with exit code 65 if lexical errors are present, and exit code 0 if not
+
+      Line numbers should start at 1.
 
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning)
+      - Since stdout and stderr are separate streams, the relative order of errors vs. valid tokens doesn't matter. You're free to print
+        errors first, errors last, or errors interleaved with valid tokens.
+      - Only lines that start with `[line N]` are considered errors, so you can still print other lines to stderr for debugging purposes.
       - When scanning for tokens, it's valid to have "unbalanced" parentheses or braces. When we get to parsing expressions in later stages, these cases will be highlighted as errors.
     marketing_md: |-
       In this stage, you'll implement support for scanning multi-line errors.
@@ -609,7 +637,11 @@ stages:
 
       The tester will assert that the stdout of your program matches the format above.
 
-      If string is unterminated, you should raise a lexical error.
+      As mentioned in the book, the [format for printing out tokens](https://craftinginterpreters.com/scanning.html#location-information) is `<TOKEN_TYPE> <LEXEME> <LITERAL>`. Up until now,
+      the `<LITERAL>` field was always `null`. For strings, the `<LITERAL>` field will contain the string's contents.
+
+      If a string is unterminated, a lexical error should be raised.
+
       For example, if `test.lox` contains the following:
 
       ```
@@ -629,6 +661,9 @@ stages:
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning)
+      - The `<LEXEME>` field will contain the string's contents including quotes, since it represents the actual characters that matched the token. The `<LITERAL>` field will
+        contain the string's contents without quotes, since it represents the string's value.
+      - Lox doesn't support escape sequences within strings, so you can't include a `"` inside a string.
       - When scanning for tokens, it's valid to have "unbalanced" parentheses or braces. When we get to parsing expressions in later stages, these cases will be highlighted as errors.
     marketing_md: |-
       In this stage, you'll implement support for scanning string literals.
@@ -650,6 +685,23 @@ stages:
       For example, if `test.lox` contains the following:
 
       ```
+      42
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh tokenize test.lox
+      NUMBER 42 42.0
+      EOF  null
+      ```
+
+      Just like strings, number literals have a "literal value" attached. Note that the literal value for an integer is represented as "42.0" (with a decimal point). This
+      matches the [book's format](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning/numbers.lox).
+
+      You'll also need to handle numbers with a decimal point, for example if `test.lox` contains the following:
+
+      ```
       1234.1234
       ```
 
@@ -665,7 +717,9 @@ stages:
 
       ### Notes
 
-      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning)
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning/numbers.lox)
+      - Although the `<LITERAL>` field for an integer is represented as "42.0" (with a decimal point), the `<LEXEME>` field will contain the integer's value without the decimal point since
+        it represents the actual characters that matched the token.
       - When scanning for tokens, it's valid to have "unbalanced" parentheses or braces. When we get to parsing expressions in later stages, these cases will be highlighted as errors.
     marketing_md: |-
       In this stage, you'll implement support for scanning number literals.
@@ -1907,7 +1961,7 @@ stages:
       bar
       43
       ```
-      
+
       Test Case 3:
 
       Input:
@@ -1925,7 +1979,7 @@ stages:
       127
       146
       ```
-      
+
       Test Case 4:
 
       Input:
@@ -1987,7 +2041,7 @@ stages:
       ```
 
       The tester will run multiple such tests with randomized expressions, for example:
-      
+
       Test Case 1:
 
       Input:
@@ -2022,7 +2076,7 @@ stages:
       ```
       true
       ```
-      
+
       Test Case 3:
 
       Input:
@@ -2040,7 +2094,7 @@ stages:
       Operands must be two numbers or two strings.
       [line 2]
       ```
-      
+
       Test Case 4:
 
       Input:
@@ -2057,7 +2111,7 @@ stages:
       Operands must be numbers.
       [line 2]
       ```
-      
+
       The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
 
       ### Notes
@@ -2130,7 +2184,7 @@ stages:
       198
       297
       ```
-      
+
       Test Case 3:
 
       Input:
@@ -2145,7 +2199,7 @@ stages:
       ```
       310
       ```
-      
+
       Test Case 4:
 
       Input:
@@ -2233,7 +2287,7 @@ stages:
       Undefined variable 'hello'.
       [line 2]
       ```
-      
+
       Test Case 3:
 
       Input:
@@ -2250,7 +2304,7 @@ stages:
       Undefined variable 'bar'.
       [line 2]
       ```
-      
+
       Test Case 4:
 
       Input:
@@ -2338,7 +2392,7 @@ stages:
       ```
       nil
       ```
-      
+
       Test Case 3:
 
       Input:
@@ -2355,7 +2409,7 @@ stages:
       ```
       nil
       ```
-      
+
       Test Case 4:
 
       Input:
@@ -2451,7 +2505,7 @@ stages:
       ```
       before
       ```
-      
+
       Test Case 3:
 
       Input:
@@ -2475,7 +2529,7 @@ stages:
       5
       5
       ```
-      
+
       Test Case 4:
 
       Input:
@@ -2569,7 +2623,7 @@ stages:
       ```
       186
       ```
-      
+
       Test Case 3:
 
       Input:
@@ -2577,7 +2631,7 @@ stages:
       ```
       var quz;
       var hello;
-      
+
       quz = hello = 16 + 34 * 92;
       print quz;
       print hello;
@@ -2589,7 +2643,7 @@ stages:
       3144
       3144
       ```
-      
+
       Test Case 4:
 
       Input:
@@ -2598,7 +2652,7 @@ stages:
       var hello = 65;
       var baz;
       var quz;
-      
+
       hello = baz = quz = hello * 2;
       print hello;
       print baz;
@@ -2626,7 +2680,7 @@ stages:
     name: "Block syntax"
     difficulty: medium
     description_md: |-
-      In this stage, you'll add support for block syntax in your interpreter. Blocks are enclosed in curly braces `{}` and are used to group statements together. They are also used to create local scopes. We will test scopes in the next stage, in this stage you just need to handle the block syntax. 
+      In this stage, you'll add support for block syntax in your interpreter. Blocks are enclosed in curly braces `{}` and are used to group statements together. They are also used to create local scopes. We will test scopes in the next stage, in this stage you just need to handle the block syntax.
 
       ### Book reference
 
@@ -2697,7 +2751,7 @@ stages:
       before
       after
       ```
-      
+
       Test Case 3:
 
       Input:
@@ -2719,7 +2773,7 @@ stages:
       88
       88
       ```
-      
+
       Test Case 4:
 
       Input:
@@ -2739,7 +2793,7 @@ stages:
       [line 6] Error at end: Expect '}' .
       ```
 
-      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0. If there is any blocks that are opened but not closed, it should throw a syntax error, the exit code in that case should be 65. 
+      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0. If there is any blocks that are opened but not closed, it should throw a syntax error, the exit code in that case should be 65.
 
       ### Notes
 
@@ -2752,7 +2806,7 @@ stages:
     name: "Scopes"
     difficulty: medium
     description_md: |-
-      In this stage, you'll add support for scopes in your interpreter. Scopes are created by blocks, and they are used to group variables together. We will test variables in local scopes, nested scopes, shadowing of variables, and accessing variables outside of the scope where they are defined.  
+      In this stage, you'll add support for scopes in your interpreter. Scopes are created by blocks, and they are used to group variables together. We will test variables in local scopes, nested scopes, shadowing of variables, and accessing variables outside of the scope where they are defined.
 
       ### Book reference
 
@@ -2826,7 +2880,7 @@ stages:
       after
       before
       ```
-      
+
       Test Case 3:
 
       Input:
@@ -2866,7 +2920,7 @@ stages:
       global world
       global hello
       ```
-      
+
       Test Case 4:
 
       Input:
@@ -2892,12 +2946,10 @@ stages:
       [line 9]
       ```
 
-      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0. Accessing a variable outside of its scope should throw a runtime error, the exit code in that case should be 70. 
+      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0. Accessing a variable outside of its scope should throw a runtime error, the exit code in that case should be 70.
 
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/string/literals.lox)
     marketing_md: |-
       In this stage, you'll add support for scopes in your interpreter.
-
-
