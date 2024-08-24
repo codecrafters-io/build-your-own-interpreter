@@ -662,6 +662,7 @@ stages:
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning)
       - The `<LEXEME>` field will contain the string's contents including quotes, since it represents the actual characters that matched the token. The `<LITERAL>` field will
         contain the string's contents without quotes, since it represents the string's value.
+      - Lox doesn't support escape sequences within strings, so you can't include a `"` inside a string.
       - When scanning for tokens, it's valid to have "unbalanced" parentheses or braces. When we get to parsing expressions in later stages, these cases will be highlighted as errors.
     marketing_md: |-
       In this stage, you'll implement support for scanning string literals.
