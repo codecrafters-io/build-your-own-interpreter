@@ -1976,6 +1976,8 @@ stages:
       10
       78
       ";
+
+      print "There should be an empty line above this.";
       ```
 
       Expected Output:
@@ -1985,7 +1987,8 @@ stages:
       36
       10
       78
-
+      
+      There should be an empty line above this.
       ```
 
       The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
