@@ -2501,11 +2501,11 @@ stages:
       ```
       var world = 2;
       print world;
-      world = 3;
+      var world = 3;
       print world;
       var hello = 5;
       print hello;
-      world = hello;
+      var world = hello;
       print world;
       ```
 
@@ -2523,13 +2523,14 @@ stages:
       Input:
 
       ```
-      baz + quz = bar;
+      var baz = bar;
       ```
 
       Expected Output:
 
       ```
-      [line 1] Error at '=': Invalid assignment target.
+      Undefined variable 'bar'.
+      [line 1]
       ```
 
       The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
