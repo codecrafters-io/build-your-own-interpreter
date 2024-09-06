@@ -840,9 +840,9 @@ stages:
 
       ```
       $ ./your_program.sh tokenize test.lox
-      NUMBER 2.0 2.0
-      PLUS +
-      NUMBER 3.0 3.0
+      NUMBER 2 2.0
+      PLUS + null
+      NUMBER 3 3.0
       EOF  null
       ```
 

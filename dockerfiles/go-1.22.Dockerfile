@@ -12,4 +12,4 @@ COPY --exclude=.git --exclude=README.md . /app
 # setting the GODEBUG environment to "installgoroot=all" restores the old behavior
 RUN GODEBUG="installgoroot=all" go install std
 
-RUN ash -c "set -exo pipefail; go mod graph | awk '{if (\$1 !~ \"@\") {print \$2}}' | xargs -r go get"
+RUN go mod download
