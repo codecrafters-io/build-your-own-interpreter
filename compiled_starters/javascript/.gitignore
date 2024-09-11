@@ -1,5 +1,2 @@
+# Dependency directories
 node_modules/
-.idea/
-.vscode/
-.fleet/
-*.iml

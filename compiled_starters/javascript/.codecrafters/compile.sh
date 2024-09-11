@@ -6,4 +6,6 @@
 #
 # Learn more: https://codecrafters.io/program-interface
 
-# (This file is empty since Javascript programs don't use a compile step)
+set -e # Exit on failure
+
+# (This file is empty since JavaScript programs don't use a compile step)

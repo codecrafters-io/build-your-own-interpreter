@@ -29,7 +29,7 @@ challenge. This challenge will start from chapter 4,
 
 # Passing the first stage
 
-The entry point for your program is in `src/index.js`. Study and uncomment the
+The entry point for your program is in `app/main.js`. Study and uncomment the
 relevant code, and push your changes to pass the first stage:
 
 ```sh
@@ -43,8 +43,8 @@ Time to move on to the next stage!
 
 Note: This section is for stages 2 and beyond.
 
-1. Ensure you have `node (>=20.0)` installed locally
+1. Ensure you have `node (21)` installed locally
 2. Run `./your_program.sh` to run your program, which is implemented in
-   `src/index.js`.
+   `app/main.js`.
 3. Commit your changes and run `git push origin master` to submit your solution
    to CodeCrafters. Test output will be streamed to your terminal.

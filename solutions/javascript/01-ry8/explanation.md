@@ -14,6 +14,18 @@ if (fileContent && fileContent.length !== 0) {
 }
 ```
 
+```javascript
+// Uncomment this block to pass the first stage
+
+const fileContent = fs.readFileSync(filename, "utf8");
+
+if (fileContent.length !== 0) {
+  throw new Error("Scanner not implemented");
+} else {
+  console.log("EOF  null");
+}
+```
+
 Push your changes to pass the first stage:
 
 ```
