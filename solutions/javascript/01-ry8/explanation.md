@@ -1,18 +1,6 @@
-The entry point for your Interpreter implementation is in `src/index.js`.
+The entry point for your Interpreter implementation is in `app/main.js`.
 
 Study and uncomment the relevant code: 
-
-```javascript
-// Uncomment this block to pass the first stage
-
-const fileContent = fs.readFileSync(filename, "utf8");
-
-if (fileContent && fileContent.length !== 0) {
-  throw new Error("Scanner not implemented");
-} else {
-  console.log("EOF  null");
-}
-```
 
 ```javascript
 // Uncomment this block to pass the first stage
