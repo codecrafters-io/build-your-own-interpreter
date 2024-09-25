@@ -473,7 +473,7 @@ stages:
       For example, if `test.lox` contains the following:
 
       ```
-      () // Comment
+      ()// Comment
       ```
 
       The tester will run your program like this:
