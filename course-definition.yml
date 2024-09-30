@@ -31,6 +31,9 @@ languages:
   - slug: "python"
   - slug: "rust"
   - slug: "javascript"
+  - slug: "swift"
+    release_status: "alpha"
+    alpha_tester_usernames: ["JWShroyer"]
   - slug: "zig"
 
 marketing:
@@ -1988,7 +1991,7 @@ stages:
       36
       10
       78
-      
+
       There should be an empty line above this.
       ```
 
