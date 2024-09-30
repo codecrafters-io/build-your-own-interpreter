@@ -8,4 +8,4 @@
 
 set -e # Exit on failure
 
-swift build -c release
+swift build -c release --build-path /tmp/codecrafters-build-interpreter-swift
