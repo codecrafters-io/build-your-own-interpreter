@@ -526,7 +526,7 @@ stages:
 
       ### Tests
 
-      The tester will run a series of tests with `test.lox` files that contain whitespaces mixed with previously introduced tokens.
+      The tester will run a series of tests with `test.lox` files that contain whitespaces (tabs, spaces and newlines) mixed with previously introduced tokens.
 
       For example, if `test.lox` contains the following:
 
