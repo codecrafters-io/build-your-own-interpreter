@@ -1,7 +1,7 @@
-slug: "interpreter"
-name: "Build your own Interpreter"
-short_name: "Interpreter"
-release_status: "beta"
+slug: 'interpreter'
+name: 'Build your own Interpreter'
+short_name: 'Interpreter'
+release_status: 'beta'
 
 description_md: |-
   This challenge follows the book [Crafting Interpreters](https://craftinginterpreters.com/) by Robert Nystrom.
@@ -24,62 +24,64 @@ short_description_md: |-
 completion_percentage: 15
 
 languages:
-  - slug: "gleam"
-  - slug: "go"
-  - slug: "kotlin"
-  - slug: "ocaml"
-  - slug: "python"
-  - slug: "rust"
-  - slug: "javascript"
-  - slug: "swift"
-    release_status: "alpha"
-    alpha_tester_usernames: ["JWShroyer"]
-  - slug: "zig"
+  - slug: 'c'
+    release_status: 'alpha'
+  - slug: 'gleam'
+  - slug: 'go'
+  - slug: 'kotlin'
+  - slug: 'ocaml'
+  - slug: 'python'
+  - slug: 'rust'
+  - slug: 'javascript'
+  - slug: 'swift'
+    release_status: 'alpha'
+    alpha_tester_usernames: ['JWShroyer']
+  - slug: 'zig'
 
 marketing:
   difficulty: hard
-  sample_extension_idea_title: "Control flow"
-  sample_extension_idea_description: "An interpreter that can handle control flow statements like if/else"
+  sample_extension_idea_title: 'Control flow'
+  sample_extension_idea_description: 'An interpreter that can handle control flow statements like if/else'
   testimonials:
-    - author_name: "Ananthalakshmi Sankar"
-      author_description: "Automation Engineer at Apple"
-      author_avatar: "https://codecrafters.io/images/external/testimonials/oxta.jpeg"
-      link: "https://github.com/anu294"
+    - author_name: 'Ananthalakshmi Sankar'
+      author_description: 'Automation Engineer at Apple'
+      author_avatar: 'https://codecrafters.io/images/external/testimonials/oxta.jpeg'
+      link: 'https://github.com/anu294'
       text: "There are few sites I like as much that have a step by step guide. The real-time feedback is so good, it's creepy!"
 
-    - author_name: "Patrick Burris"
-      author_description: "Senior Software Developer, CenturyLink"
-      author_avatar: "https://codecrafters.io/images/external/testimonials/patrick-burris.jpeg"
-      link: "https://github.com/Jumballaya"
+    - author_name: 'Patrick Burris'
+      author_description: 'Senior Software Developer, CenturyLink'
+      author_avatar: 'https://codecrafters.io/images/external/testimonials/patrick-burris.jpeg'
+      link: 'https://github.com/Jumballaya'
       text: |-
         I think the instant feedback right there in the git push is really cool.
         Didn't even know that was possible!
 
 extensions:
-  - slug: "parsing-expressions"
-    name: "Parsing Expressions"
+  - slug: 'parsing-expressions'
+    name: 'Parsing Expressions'
     description_markdown: |
       This extension covers chapters 5 & 6 of the book ([Representing Code](https://craftinginterpreters.com/representing-code.html) & [Parsing Expressions](https://craftinginterpreters.com/parsing-expressions.html)).
 
       In this extension, you'll add the ability to parse expressions.
 
-  - slug: "evaluating-expressions"
-    name: "Evaluating Expressions"
+  - slug: 'evaluating-expressions'
+    name: 'Evaluating Expressions'
     description_markdown: |
       This extension covers chapters 7 of the book ([Evaluating Expressions](https://craftinginterpreters.com/evaluating-expressions.html)).
 
       In this extension, you'll add the ability to evaluate expressions.
 
-  - slug: "statements-and-state"
-    name: "Statements & State"
+  - slug: 'statements-and-state'
+    name: 'Statements & State'
     description_markdown: |
       This extension covers chapters 8 of the book ([Statements & State](https://craftinginterpreters.com/statements-and-state.html)).
 
       In this extension, you'll add the ability to add internal state to your interpreter & produce output.
 
 stages:
-  - slug: "ry8"
-    name: "Scanning: Empty file"
+  - slug: 'ry8'
+    name: 'Scanning: Empty file'
     difficulty: very_easy
     description_md: |-
       Before starting this stage, make sure you've read the "Welcome" section of the book that contains these chapters:
@@ -159,8 +161,8 @@ stages:
     marketing_md: |-
       In this stage, you'll implement basic support for the `tokenize` command which we'll use in all stages that are part of the [Scanning](https://craftinginterpreters.com/scanning.html) chapter.
 
-  - slug: "ol4"
-    name: "Scanning: Parentheses"
+  - slug: 'ol4'
+    name: 'Scanning: Parentheses'
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for scanning parentheses.
@@ -198,8 +200,8 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for scanning parentheses.
 
-  - slug: "oe8"
-    name: "Scanning: Braces"
+  - slug: 'oe8'
+    name: 'Scanning: Braces'
     difficulty: easy
     description_md: |-
       In this stage, you'll add support for scanning braces.
@@ -238,8 +240,8 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for scanning braces.
 
-  - slug: "xc5"
-    name: "Scanning: Other single-character tokens"
+  - slug: 'xc5'
+    name: 'Scanning: Other single-character tokens'
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for scanning other single-character tokens, namely `,`, `.`, `-`, `+`, `;` and `*`.
@@ -284,8 +286,8 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for scanning other single-character tokens.
 
-  - slug: "ea6"
-    name: "Scanning: Lexical errors"
+  - slug: 'ea6'
+    name: 'Scanning: Lexical errors'
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for reporting errors when scanning invalid tokens like `$`, `#`, etc.
@@ -338,8 +340,8 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for scanning lexical errors.
 
-  - slug: "mp7"
-    name: "Scanning: Assignment & equality Operators"
+  - slug: 'mp7'
+    name: 'Scanning: Assignment & equality Operators'
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for scanning assignment & equality operators.
@@ -379,8 +381,8 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for scanning the assignment & equality operators.
 
-  - slug: "bu3"
-    name: "Scanning: Negation & inequality operators"
+  - slug: 'bu3'
+    name: 'Scanning: Negation & inequality operators'
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for scanning negation & inequality operators.
@@ -418,8 +420,8 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for scanning negation & inequality operators.
 
-  - slug: "et2"
-    name: "Scanning: Relational operators"
+  - slug: 'et2'
+    name: 'Scanning: Relational operators'
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for scanning relational operators, which are: `<`, `>`, `<=`, `>=`.
@@ -458,8 +460,8 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for scanning relational operators.
 
-  - slug: "ml2"
-    name: "Scanning: Division operator & comments"
+  - slug: 'ml2'
+    name: 'Scanning: Division operator & comments'
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for scanning the division operator & comments.
@@ -514,8 +516,8 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for scanning the division operator & comments.
 
-  - slug: "er2"
-    name: "Scanning: Whitespace"
+  - slug: 'er2'
+    name: 'Scanning: Whitespace'
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for scanning whitespace characters (tabs, spaces and newlines).
@@ -556,8 +558,8 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for scanning whitespace characters.
 
-  - slug: "tz7"
-    name: "Scanning: Multi-line errors"
+  - slug: 'tz7'
+    name: 'Scanning: Multi-line errors'
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for scanning lexical errors, which span multiple lines.
@@ -610,8 +612,8 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for scanning multi-line errors.
 
-  - slug: "ue7"
-    name: "Scanning: String literals"
+  - slug: 'ue7'
+    name: 'Scanning: String literals'
     difficulty: hard
     description_md: |-
       In this stage, you'll add support for scanning string literals.
@@ -671,8 +673,8 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for scanning string literals.
 
-  - slug: "kj0"
-    name: "Scanning: Number literals"
+  - slug: 'kj0'
+    name: 'Scanning: Number literals'
     difficulty: hard
     description_md: |-
       In this stage, you'll add support for scanning number literals.
@@ -727,8 +729,8 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for scanning number literals.
 
-  - slug: "ey7"
-    name: "Scanning: Identifiers"
+  - slug: 'ey7'
+    name: 'Scanning: Identifiers'
     difficulty: hard
     description_md: |-
       In this stage, you'll add support for scanning identifiers.
@@ -766,8 +768,8 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for scanning identifiers.
 
-  - slug: "pq5"
-    name: "Scanning: Reserved words"
+  - slug: 'pq5'
+    name: 'Scanning: Reserved words'
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for scanning reserved words, which are: `and`, `class`, `else`, `false`, `for`, `fun`, `if`, `nil`, `or`, `print`, `return`, `super`, `this`, `true`, `var`, `while`.
@@ -803,9 +805,9 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for scanning reserved words.
 
-  - slug: "sc2"
-    primary_extension_slug: "parsing-expressions"
-    name: "Booleans & Nil"
+  - slug: 'sc2'
+    primary_extension_slug: 'parsing-expressions'
+    name: 'Booleans & Nil'
     difficulty: hard
     description_md: |-
       In this stage you'll implement support for the `parse` command and handle parsing `true`, `false`, and `nil` literals.
@@ -875,9 +877,9 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for parsing binary values and the nil literal.
 
-  - slug: "ra8"
-    primary_extension_slug: "parsing-expressions"
-    name: "Number literals"
+  - slug: 'ra8'
+    primary_extension_slug: 'parsing-expressions'
+    name: 'Number literals'
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for parsing number literals.
@@ -911,9 +913,9 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for parsing number literals.
 
-  - slug: "th5"
-    primary_extension_slug: "parsing-expressions"
-    name: "String literals"
+  - slug: 'th5'
+    primary_extension_slug: 'parsing-expressions'
+    name: 'String literals'
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for parsing string literals.
@@ -947,9 +949,9 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for parsing string literals.
 
-  - slug: "xe6"
-    primary_extension_slug: "parsing-expressions"
-    name: "Parentheses"
+  - slug: 'xe6'
+    primary_extension_slug: 'parsing-expressions'
+    name: 'Parentheses'
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for parsing parentheses.
@@ -984,9 +986,9 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for parsing parentheses.
 
-  - slug: "mq1"
-    primary_extension_slug: "parsing-expressions"
-    name: "Unary Operators"
+  - slug: 'mq1'
+    primary_extension_slug: 'parsing-expressions'
+    name: 'Unary Operators'
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for parsing the negation operator (`-`) & the logical not operator (`!`).
@@ -1020,9 +1022,9 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for parsing unary operators `!` and `-`.
 
-  - slug: "wa9"
-    primary_extension_slug: "parsing-expressions"
-    name: "Arithmetic operators (1/2)"
+  - slug: 'wa9'
+    primary_extension_slug: 'parsing-expressions'
+    name: 'Arithmetic operators (1/2)'
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for parsing the multiplication operator (`*`) & the division operator (`/`).
@@ -1056,9 +1058,9 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for parsing multiplicative algebraic operators `*` and `/`.
 
-  - slug: "yf2"
-    primary_extension_slug: "parsing-expressions"
-    name: "Arithmetic operators (2/2)"
+  - slug: 'yf2'
+    primary_extension_slug: 'parsing-expressions'
+    name: 'Arithmetic operators (2/2)'
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for parsing the addition operator (`+`) & the subtraction operator (`-`).
@@ -1092,9 +1094,9 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for parsing additive algebraic operators `+` and `-`.
 
-  - slug: "uh4"
-    primary_extension_slug: "parsing-expressions"
-    name: "Comparison operators"
+  - slug: 'uh4'
+    primary_extension_slug: 'parsing-expressions'
+    name: 'Comparison operators'
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for parsing comparison operators: `>`, `<`, `>=` & `<=`.
@@ -1128,9 +1130,9 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for parsing comparison operators `>`, `<`, `>=` & `<=`.
 
-  - slug: "ht8"
-    primary_extension_slug: "parsing-expressions"
-    name: "Equality operators"
+  - slug: 'ht8'
+    primary_extension_slug: 'parsing-expressions'
+    name: 'Equality operators'
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for parsing equality operators: `==` & `!=`.
@@ -1164,9 +1166,9 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for parsing equality operators `==` & `!=`.
 
-  - slug: "wz8"
-    primary_extension_slug: "parsing-expressions"
-    name: "Syntactic errors"
+  - slug: 'wz8'
+    primary_extension_slug: 'parsing-expressions'
+    name: 'Syntactic errors'
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for handling syntax errors in expressions.
@@ -1201,9 +1203,9 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for handling syntax errors in expressions.
 
-  - slug: "iz6"
-    primary_extension_slug: "evaluating-expressions"
-    name: "Literals: Booleans & Nil"
+  - slug: 'iz6'
+    primary_extension_slug: 'evaluating-expressions'
+    name: 'Literals: Booleans & Nil'
     difficulty: hard
     description_md: |-
       In this stage you'll implement support for the `evaluate` command and handle evaluating the `true`, `false`, and `nil` literals.
@@ -1275,9 +1277,9 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for evaluating binary values and the nil literal.
 
-  - slug: "lv1"
-    primary_extension_slug: "evaluating-expressions"
-    name: "Literals: Strings & Numbers"
+  - slug: 'lv1'
+    primary_extension_slug: 'evaluating-expressions'
+    name: 'Literals: Strings & Numbers'
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for evaluating number and string literals.
@@ -1321,9 +1323,9 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for evaluating number and string literals.
 
-  - slug: "oq9"
-    primary_extension_slug: "evaluating-expressions"
-    name: "Parentheses"
+  - slug: 'oq9'
+    primary_extension_slug: 'evaluating-expressions'
+    name: 'Parentheses'
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for evaluating expressions inside parentheses.
@@ -1367,9 +1369,9 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for evaluating expressions inside parentheses.
 
-  - slug: "dc1"
-    primary_extension_slug: "evaluating-expressions"
-    name: "Unary Operators: Negation & Not"
+  - slug: 'dc1'
+    primary_extension_slug: 'evaluating-expressions'
+    name: 'Unary Operators: Negation & Not'
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for evaluating unary operators `-` and `!`.
@@ -1413,9 +1415,9 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for evaluating unary operators `-` and `!`.
 
-  - slug: "bp3"
-    primary_extension_slug: "evaluating-expressions"
-    name: "Arithmetic Operators (1/2)"
+  - slug: 'bp3'
+    primary_extension_slug: 'evaluating-expressions'
+    name: 'Arithmetic Operators (1/2)'
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for evaluating binary operators `*` and `/`.
@@ -1458,9 +1460,9 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for evaluating binary operators `*` and `/`.
 
-  - slug: "jy2"
-    primary_extension_slug: "evaluating-expressions"
-    name: "Arithmetic Operators (2/2)"
+  - slug: 'jy2'
+    primary_extension_slug: 'evaluating-expressions'
+    name: 'Arithmetic Operators (2/2)'
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for evaluating binary operators `+` and `-`.
@@ -1504,9 +1506,9 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for evaluating binary operators `+` and `-`.
 
-  - slug: "jx8"
-    primary_extension_slug: "evaluating-expressions"
-    name: "String Concatenation"
+  - slug: 'jx8'
+    primary_extension_slug: 'evaluating-expressions'
+    name: 'String Concatenation'
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for overloading the `+` operator. When the `+` operator is applied to two strings, it should concatenate them.
@@ -1549,9 +1551,9 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for overloading the `+` operator. When the `+` operator is applied to two strings, it should concatenate them.
 
-  - slug: "et4"
-    primary_extension_slug: "evaluating-expressions"
-    name: "Relational Operators"
+  - slug: 'et4'
+    primary_extension_slug: 'evaluating-expressions'
+    name: 'Relational Operators'
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for evaluating relational operators `>`, `<`, `>=` & `<=`.
@@ -1594,9 +1596,9 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for evaluating relational operators `>`, `<`, `>=` & `<=`.
 
-  - slug: "hw7"
-    primary_extension_slug: "evaluating-expressions"
-    name: "Equality Operators"
+  - slug: 'hw7'
+    primary_extension_slug: 'evaluating-expressions'
+    name: 'Equality Operators'
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for evaluating equality operators `==` and `!=`.
@@ -1640,9 +1642,9 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for evaluating equality operators `==` and `!=`.
 
-  - slug: "gj9"
-    primary_extension_slug: "evaluating-expressions"
-    name: "Runtime Errors: Unary Operators"
+  - slug: 'gj9'
+    primary_extension_slug: 'evaluating-expressions'
+    name: 'Runtime Errors: Unary Operators'
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for handling runtime errors while evaluating the unary operator `-`.
@@ -1689,9 +1691,9 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for handling runtime errors while evaluating the unary operator `-`.
 
-  - slug: "yu6"
-    primary_extension_slug: "evaluating-expressions"
-    name: "Runtime Errors: Binary Operators (1/2)"
+  - slug: 'yu6'
+    primary_extension_slug: 'evaluating-expressions'
+    name: 'Runtime Errors: Binary Operators (1/2)'
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for handling runtime errors while evaluating the binary operators `*` & `/`.
@@ -1738,9 +1740,9 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for handling runtime errors while evaluating the binary operators `*` & `/`.
 
-  - slug: "cq1"
-    primary_extension_slug: "evaluating-expressions"
-    name: "Runtime Errors: Binary Operators (2/2)"
+  - slug: 'cq1'
+    primary_extension_slug: 'evaluating-expressions'
+    name: 'Runtime Errors: Binary Operators (2/2)'
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for handling runtime errors while evaluating the binary operators `+` & `-`.
@@ -1787,9 +1789,9 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for handling runtime errors while evaluating the binary operators `+` & `-`.
 
-  - slug: "ib5"
-    primary_extension_slug: "evaluating-expressions"
-    name: "Runtime Errors: Relational Operators"
+  - slug: 'ib5'
+    primary_extension_slug: 'evaluating-expressions'
+    name: 'Runtime Errors: Relational Operators'
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for handling runtime errors while evaluating the relational operators `>`, `<`, `>=` & `<=`.
@@ -1836,9 +1838,9 @@ stages:
     marketing_md: |-
       In this stage, you'll implement support for handling runtime errors while evaluating the relational operators `>`, `<`, `>=` & `<=`.
 
-  - slug: "xy1"
-    primary_extension_slug: "statements-and-state"
-    name: "Print: Generate output"
+  - slug: 'xy1'
+    primary_extension_slug: 'statements-and-state'
+    name: 'Print: Generate output'
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for generating output using the `print` statement. For this, you'll need to add support for the `print` statement in your AST generator, parser & interpreter.
@@ -1881,9 +1883,9 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for generating output using the `print` statement.
 
-  - slug: "oe4"
-    primary_extension_slug: "statements-and-state"
-    name: "Print: Multiple statements"
+  - slug: 'oe4'
+    primary_extension_slug: 'statements-and-state'
+    name: 'Print: Multiple statements'
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for handling multiple statements in a single `program`. From here on, we will create test programs that span across multiple statements.
@@ -2003,9 +2005,9 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for handling multiple statements in a single `program`.
 
-  - slug: "fi3"
-    primary_extension_slug: "statements-and-state"
-    name: "Expression statements"
+  - slug: 'fi3'
+    primary_extension_slug: 'statements-and-state'
+    name: 'Expression statements'
     difficulty: easy
     description_md: |-
       In this stage, you'll add support for handling expression statements. An expression statement lets you place an expression where a statement is expected. They exist to evaluate expressions that have side effects.
@@ -2112,9 +2114,9 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for handling expression statements.
 
-  - slug: "yg2"
-    primary_extension_slug: "statements-and-state"
-    name: "Variables: Declare variables"
+  - slug: 'yg2'
+    primary_extension_slug: 'statements-and-state'
+    name: 'Variables: Declare variables'
     difficulty: easy
     description_md: |-
       In this stage, you'll add support for declaring variables using the `var` statement. For this, you'll need to add support for the `var` declaration in your AST generator, parser & interpreter.
@@ -2216,9 +2218,9 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for declaring variables using the `var` statement.
 
-  - slug: "sv7"
-    primary_extension_slug: "statements-and-state"
-    name: "Variables: Runtime Errors"
+  - slug: 'sv7'
+    primary_extension_slug: 'statements-and-state'
+    name: 'Variables: Runtime Errors'
     difficulty: easy
     description_md: |-
       In this stage, you'll add support for handling runtime errors while accessing variables that haven't been declared yet.
@@ -2323,9 +2325,9 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for declaring variables using the `var` statement.
 
-  - slug: "bc1"
-    primary_extension_slug: "statements-and-state"
-    name: "Variables: Initialize variables"
+  - slug: 'bc1'
+    primary_extension_slug: 'statements-and-state'
+    name: 'Variables: Initialize variables'
     difficulty: easy
     description_md: |-
       In this stage, you'll add support for initializing variables with the value passed to the `var` statement, or initializing them with `nil` if no value is passed.
@@ -2431,9 +2433,9 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for initializing variables.
 
-  - slug: "dw9"
-    primary_extension_slug: "statements-and-state"
-    name: "Variables: Redeclare variables"
+  - slug: 'dw9'
+    primary_extension_slug: 'statements-and-state'
+    name: 'Variables: Redeclare variables'
     difficulty: easy
     description_md: |-
       In this stage, you'll add support for redeclaring variables using the `var` statement.
@@ -2545,9 +2547,9 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for redeclaring variables.
 
-  - slug: "pl3"
-    primary_extension_slug: "statements-and-state"
-    name: "Assignment operation"
+  - slug: 'pl3'
+    primary_extension_slug: 'statements-and-state'
+    name: 'Assignment operation'
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for assigning values to variables using the `=` operator. You need to only support variables that have already been declared on the left side of the assignment.
@@ -2668,9 +2670,9 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for the assignment operation (=).
 
-  - slug: "vr5"
-    primary_extension_slug: "statements-and-state"
-    name: "Block syntax"
+  - slug: 'vr5'
+    primary_extension_slug: 'statements-and-state'
+    name: 'Block syntax'
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for block syntax in your interpreter. Blocks are enclosed in curly braces `{}` and are used to group statements together. They are also used to create local scopes. We will test scopes in the next stage, in this stage you just need to handle the block syntax.
@@ -2794,9 +2796,9 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for block syntax using curly braces `{}`.
 
-  - slug: "fb4"
-    primary_extension_slug: "statements-and-state"
-    name: "Scopes"
+  - slug: 'fb4'
+    primary_extension_slug: 'statements-and-state'
+    name: 'Scopes'
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for scopes in your interpreter. Scopes are created by blocks, and they are used to group variables together. We will test variables in local scopes, nested scopes, shadowing of variables, and accessing variables outside of the scope where they are defined.
