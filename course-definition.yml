@@ -2954,7 +2954,7 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for scopes in your interpreter.
 
-  - slug: "c1"
+  - slug: "ne3"
     primary_extension_slug: "control-flow"
     name: "If statements"
     difficulty: medium
@@ -3061,7 +3061,7 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for the `if` statement in your interpreter.
 
-  - slug: "c2"
+  - slug: "st5"
     primary_extension_slug: "control-flow"
     name: "Else statements"
     difficulty: medium
@@ -3181,7 +3181,7 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for the `else` statement in your interpreter.
 
-  - slug: "c3"
+  - slug: "fh8"
     primary_extension_slug: "control-flow"
     name: "Else-if statements"
     difficulty: medium
@@ -3299,7 +3299,7 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for the `else-if` statement in your interpreter.
 
-  - slug: "c4"
+  - slug: "xj4"
     primary_extension_slug: "control-flow"
     name: "Nested if statements"
     difficulty: medium
@@ -3436,7 +3436,7 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for nested `if` statements in your interpreter.
 
-  - slug: "c5"
+  - slug: "wk8"
     primary_extension_slug: "control-flow"
     name: "Logical OR operator"
     difficulty: medium
@@ -3566,7 +3566,7 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for the logical OR operator in your interpreter.
 
-  - slug: "c6"
+  - slug: "jx4"
     primary_extension_slug: "control-flow"
     name: "Logical AND operator"
     difficulty: medium
@@ -3692,7 +3692,7 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for the logical AND operator in your interpreter.
 
-  - slug: "c7"
+  - slug: "qy3"
     primary_extension_slug: "control-flow"
     name: "While statements"
     difficulty: medium
@@ -3831,7 +3831,7 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for `while` statements in your interpreter.
 
-  - slug: "c8"
+  - slug: "bw6"
     primary_extension_slug: "control-flow"
     name: "For statements"
     difficulty: medium
@@ -3965,7 +3965,7 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for `for` statements in your interpreter.
 
-  - slug: "c9"
+  - slug: "vt1"
     primary_extension_slug: "control-flow"
     name: "Syntactic errors"
     difficulty: medium
