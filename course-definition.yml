@@ -77,6 +77,13 @@ extensions:
 
       In this extension, you'll add the ability to add internal state to your interpreter & produce output.
 
+  - slug: "control-flow"
+    name: "Control Flow"
+    description_markdown: |
+      This extension covers chapters 9 of the book ([Control Flow](https://craftinginterpreters.com/control-flow.html)).
+
+      In this extension, you'll add the ability to handle control flow statements like `if/else`, `while` & `for`.
+
 stages:
   - slug: "ry8"
     name: "Scanning: Empty file"
@@ -2946,3 +2953,1110 @@ stages:
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/string/literals.lox)
     marketing_md: |-
       In this stage, you'll add support for scopes in your interpreter.
+
+  - slug: "ne3"
+    primary_extension_slug: "control-flow"
+    name: "If statements"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for the `if` statement in your interpreter. The `if` statement is used to conditionally execute statements based on a boolean condition.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 9.2: Conditional execution](https://craftinginterpreters.com/control-flow.html#conditional-execution).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain programs with `if` statements.
+
+      For example, if `test.lox` contains the following
+
+      ```
+      if (true) print "good";
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      good
+      ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      Test Case 1:
+
+      Input:
+
+      ```
+      if (true) print "bar";
+      ```
+
+      Expected Output:
+
+      ```
+      bar
+      ```
+
+      Test Case 2:
+
+      Input:
+
+      ```
+      if (false) {
+        print "block body";
+      }
+      ```
+
+      Expected Output:
+
+      ```
+      ```
+
+      Test Case 3:
+
+      Input:
+
+      ```
+      var a = false;
+      if (a = true) {
+        print (a == true);
+      }
+      ```
+
+      Expected Output:
+
+      ```
+      true
+      ```
+
+      Test Case 4:
+
+      Input:
+
+      ```
+      var stage = "unknown";
+      var age = 50;
+      if (age < 18) { stage = "child"; }
+      if (age >= 18) { stage = "adult"; }
+      print stage;
+
+      var isAdult = age >= 18;
+      if (isAdult) { print "eligible for voting: true"; }
+      if (!isAdult) { print "eligible for voting: false"; }
+      ```
+
+      Expected Output:
+
+      ```
+      adult
+      eligible for voting: true
+      ```
+
+      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/if/if.lox)
+    marketing_md: |-
+      In this stage, you'll add support for the `if` statement in your interpreter.
+
+  - slug: "st5"
+    primary_extension_slug: "control-flow"
+    name: "Else statements"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for the `else` statement in your interpreter. The `else` statement is used to conditionally execute statements when the `if` condition is false.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 9.2: Conditional execution](https://craftinginterpreters.com/control-flow.html#conditional-execution).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain programs with `if` statements.
+
+      For example, if `test.lox` contains the following
+
+      ```
+      if (true) print "if branch"; else print "else branch";
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      if branch
+      ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      Test Case 1:
+
+      Input:
+
+      ```
+      if (true) print "if branch"; else print "else branch";
+      ```
+
+      Expected Output:
+
+      ```
+      if branch
+      ```
+
+      Test Case 2:
+
+      Input:
+
+      ```
+      var age = 21;
+      if (age > 18) print "adult"; else print "child";
+      ```
+
+      Expected Output:
+
+      ```
+      adult
+      ```
+
+      Test Case 3:
+
+      Input:
+
+      ```
+      if (false) {
+        print "if block";
+      } else print "else statement";
+
+      if (false) print "if statement"; else {
+        print "else block";
+      }
+      ```
+
+      Expected Output:
+
+      ```
+      else statement
+      else block
+      ```
+
+      Test Case 4:
+
+      Input:
+
+      ```
+      var celsius = 67;
+      var fahrenheit = 0;
+      var isHot = false;
+
+      {
+        fahrenheit = celsius * 9 / 5 + 32;
+        print celsius; print fahrenheit;
+
+        if (celsius > 30) {
+          isHot = true;
+          print "It's a hot day. Stay hydrated!";
+        } else {
+          print "It's cold today. Wear a jacket!";
+        }
+
+        if (isHot) { print "Remember to use sunscreen!"; }
+      }
+      ```
+
+      Expected Output:
+
+      ```
+      67
+      152.6
+      It's a hot day. Stay hydrated!
+      ```
+
+      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/if/else.lox)
+    marketing_md: |-
+      In this stage, you'll add support for the `else` statement in your interpreter.
+
+  - slug: "fh8"
+    primary_extension_slug: "control-flow"
+    name: "Else-if statements"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for the `else-if` statement in your interpreter. The `else-if` statement is used to conditionally execute statements when the `if` condition is false.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 9.2: Conditional execution](https://craftinginterpreters.com/control-flow.html#conditional-execution).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain programs with `if` statements.
+
+      For example, if `test.lox` contains the following
+
+      ```
+      if (false) print "if branch"; else if (false) print "else-if branch";
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      Test Case 1:
+
+      Input:
+
+      ```
+      if (false) print "if branch"; else if (false) print "else-if branch";
+      ```
+
+      Expected Output:
+
+      ```
+      ```
+
+      Test Case 2:
+
+      Input:
+
+      ```
+      if (true) {
+        print "hello";
+      } else if (true) print "hello";
+
+      if (true) print "hello"; else if (true) {
+        print "hello";
+      }
+      ```
+
+      Expected Output:
+
+      ```
+      hello
+      hello
+      ```
+
+      Test Case 3:
+
+      Input:
+
+      ```
+      var age = 88;
+      var stage = "unknown";
+      if (age < 18) { stage = "child"; }
+      else if (age >= 18) { stage = "adult"; }
+      else if (age >= 65) { stage = "senior"; }
+      else if (age >= 100) { stage = "centenarian"; }
+      print stage;
+      ```
+
+      Expected Output:
+
+      ```
+      adult
+      ```
+
+      Test Case 4:
+
+      Input:
+
+      ```
+      var age = 67;
+
+      var isAdult = age >= 18;
+      if (isAdult) { print "eligible for voting: true"; }
+      else { print "eligible for voting: false"; }
+
+      if (age < 16) { print "eligible for driving: false"; }
+      else if (age < 18) { print "eligible for driving: learner's permit"; }
+      else { print "eligible for driving: full license"; }
+
+      if (age < 21) { print "eligible for drinking (US): false"; }
+      else { print "eligible for drinking (US): true"; }
+      ```
+
+      Expected Output:
+
+      ```
+      eligible for voting: true
+      eligible for driving: full license
+      eligible for drinking (US): true
+      ```
+
+      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/if/else.lox)
+    marketing_md: |-
+      In this stage, you'll add support for the `else-if` statement in your interpreter.
+
+  - slug: "xj4"
+    primary_extension_slug: "control-flow"
+    name: "Nested if statements"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for nested `if` statements in your interpreter. Nested `if` statements are `if` statements that are inside the body of another `if` statement.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 9.2: Conditional execution](https://craftinginterpreters.com/control-flow.html#conditional-execution).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain programs with `if` statements.
+
+      For example, if `test.lox` contains the following
+
+      ```
+      if (true) if (true) print "nested true";
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      nested true
+      ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      Test Case 1:
+
+      Input:
+
+      ```
+      if (true) if (true) print "nested true";
+      ```
+
+      Expected Output:
+
+      ```
+      nested true
+      ```
+
+      Test Case 2:
+
+      Input:
+
+      ```
+      if (true) {
+        if (false) print "quz"; else print "quz";
+      }
+      ```
+
+      Expected Output:
+
+      ```
+      quz
+      ```
+
+      Test Case 3:
+
+      Input:
+
+      ```
+      var stage = "unknown";
+      var age = 29;
+      if (age < 18) {
+          if (age < 13) { stage = "child"; }
+          else if (age < 16) { stage = "young teenager"; }
+          else { stage = "teenager"; }
+      }
+      else if (age < 65) {
+          if (age < 30) { stage = "young adult"; }
+          else if (age < 50) { stage = "adult"; }
+          else { stage = "middle-aged adult"; }
+      }
+      else { stage = "senior"; }
+      print stage;
+
+      var isAdult = age >= 18;
+      if (isAdult) {
+          print "eligible for voting: true";
+          if (age < 25) {
+              print "first-time voter: likely";
+          }
+          else { print "first-time voter: unlikely"; }
+      }
+      else { print "eligible for voting: false"; }
+
+      if (age < 16) { print "eligible for driving: false"; }
+      else if (age < 18) {
+          print "eligible for driving: learner's permit";
+          if (age < 17) { print "supervised driving required"; }
+          else { print "unsupervised driving allowed with restrictions"; }
+      }
+      else { print "eligible for driving: full license"; }
+
+      if (age < 21) { print "eligible for drinking (US): false"; }
+      else {
+          print "eligible for drinking (US): true";
+          if (age < 25) { print "remember: drink responsibly!"; }
+      }
+      ```
+
+      Expected Output:
+
+      ```
+      young adult
+      eligible for voting: true
+      first-time voter: unlikely
+      eligible for driving: full license
+      eligible for drinking (US): true
+      ```
+
+      Test Case 4:
+
+      Input:
+
+      ```
+      if (true) if (false) print "world"; else print "baz";
+      ```
+
+      Expected Output:
+
+      ```
+      baz
+      ```
+
+      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/if/dangling_else.lox)
+    marketing_md: |-
+      In this stage, you'll add support for nested `if` statements in your interpreter.
+
+  - slug: "wk8"
+    primary_extension_slug: "control-flow"
+    name: "Logical OR operator"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for the logical OR operator in your interpreter. The logical OR operator is used to combine two conditions and return true if either condition is true.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 9.3: Logical Operators](https://craftinginterpreters.com/control-flow.html#logical-operators).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain programs with the logical OR operator.
+
+      For example, if `test.lox` contains the following
+
+      ```
+      print nil or "ok";
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      ok
+      ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      Test Case 1:
+
+      Input:
+
+      ```
+      if (false or "ok") print "baz";
+      if (nil or "ok") print "baz";
+
+      if (false or false) print "world";
+      if (true or "world") print "world";
+
+      if (24 or "bar") print "bar";
+      if ("bar" or "bar") print "bar";
+      ```
+
+      Expected Output:
+
+      ```
+      baz
+      baz
+      world
+      bar
+      bar
+      ```
+
+      Test Case 2:
+
+      Input:
+
+      ```
+      print 41 or true;
+      print false or 41;
+      print false or false or true;
+
+      print false or false;
+      print false or false or false;
+      print true or true or true or true;
+      ```
+
+      Expected Output:
+
+      ```
+      41
+      41
+      true
+      false
+      false
+      true
+      ```
+
+      Test Case 3:
+
+      Input:
+
+      ```
+      var a = "hello";
+      var b = "hello";
+      (a = false) or (b = true) or (a = "hello");
+      print a;
+      print b;
+      ```
+
+      Expected Output:
+
+      ```
+      false
+      true
+      ```
+
+      Test Case 4:
+
+      Input:
+
+      ```
+      var stage = "unknown";
+      var age = 23;
+      if (age < 18) { stage = "child"; }
+      if (age >= 18) { stage = "adult"; }
+      print stage;
+
+      var isAdult = age >= 18;
+      if (isAdult) { print "eligible for voting: true"; }
+      if (!isAdult) { print "eligible for voting: false"; }
+      ```
+
+      Expected Output:
+
+      ```
+      adult
+      eligible for voting: true
+      ```
+
+      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/logical_operator/or.lox)
+    marketing_md: |-
+      In this stage, you'll add support for the logical OR operator in your interpreter.
+
+  - slug: "jx4"
+    primary_extension_slug: "control-flow"
+    name: "Logical AND operator"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for the logical AND operator in your interpreter. The logical AND operator is used to combine two conditions and return true only if both conditions are true.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 9.4: Logical Operators](https://craftinginterpreters.com/control-flow.html#logical-operators).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain programs with the logical AND operator.
+
+      For example, if `test.lox` contains the following
+
+      ```
+      print false and "ok";
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      false
+      ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      Test Case 1:
+
+      Input:
+
+      ```
+      if (false and "bad") print "foo";
+      if (nil and "bad") print "foo";
+
+      if (true and "hello") print "hello";
+      if (97 and "baz") print "baz";
+      if ("baz" and "baz") print "baz";
+      if ("" and "bar") print "bar";
+      ```
+
+      Expected Output:
+
+      ```
+      hello
+      baz
+      baz
+      bar
+      ```
+
+      Test Case 2:
+
+      Input:
+
+      ```
+      print false and 1;
+      print true and 1;
+      print 23 and "hello" and false;
+
+      print 23 and true;
+      print 23 and "hello" and 23;
+      ```
+
+      Expected Output:
+
+      ```
+      false
+      1
+      false
+      true
+      23
+      ```
+
+      Test Case 3:
+
+      Input:
+
+      ```
+      var a = "quz";
+      var b = "quz";
+      (a = true) and (b = false) and (a = "bad");
+      print a;
+      print b;
+      ```
+
+      Expected Output:
+
+      ```
+      true
+      false
+      ```
+
+      Test Case 4:
+
+      Input:
+
+      ```
+      var stage = "unknown";
+      var age = 14;
+      if (age < 18) { stage = "child"; }
+      if (age >= 18) { stage = "adult"; }
+      print stage;
+
+      var isAdult = age >= 18;
+      if (isAdult) { print "eligible for voting: true"; }
+      if (!isAdult) { print "eligible for voting: false"; }
+      ```
+
+      Expected Output:
+
+      ```
+      child
+      eligible for voting: false
+      ```
+
+      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/logical_operator/and.lox)
+    marketing_md: |-
+      In this stage, you'll add support for the logical AND operator in your interpreter.
+
+  - slug: "qy3"
+    primary_extension_slug: "control-flow"
+    name: "While statements"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for `while` statements in your interpreter. `while` statements are used to execute a block of code repeatedly while a condition is true.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 9.4: While loops](https://craftinginterpreters.com/control-flow.html#while-loops).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain programs with `while` statements.
+
+      For example, if `test.lox` contains the following
+
+      ```
+      var foo = 0;
+      while (foo < 3) print foo = foo + 1;
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      1
+      2
+      3
+      ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      Test Case 1:
+
+      Input:
+
+      ```
+      var foo = 0;
+      while (foo < 3) print foo = foo + 1;
+      ```
+
+      Expected Output:
+
+      ```
+      1
+      2
+      3
+      ```
+
+      Test Case 2:
+
+      Input:
+
+      ```
+      var quz = 0;
+      while (quz < 3) {
+        print quz;
+        quz = quz + 1;
+      }
+      ```
+
+      Expected Output:
+
+      ```
+      0
+      1
+      2
+      ```
+
+      Test Case 3:
+
+      Input:
+
+      ```
+      while (false) {
+        print "should not print";
+      }
+
+      var product = 1;
+      var i = 1;
+
+      while (i <= 5) {
+        product = product * i;
+        i = i + 1;
+      }
+
+      print "Product of numbers 1 to 5: "; print product;
+      ```
+
+      Expected Output:
+
+      ```
+      Product of numbers 1 to 5: 
+      120
+      ```
+
+      Test Case 4:
+
+      Input:
+
+      ```
+      var n = 10;
+      var fm = 0;
+      var fn = 1;
+      var index = 0;
+
+      while (index < n) {
+        print fm;
+        var temp = fm;
+        fm = fn;
+        fn = temp + fn;
+        index = index + 1;
+      }
+      ```
+
+      Expected Output:
+
+      ```
+      0
+      1
+      1
+      2
+      3
+      5
+      8
+      13
+      21
+      34
+      ```
+
+      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/while/syntax.lox)
+    marketing_md: |-
+      In this stage, you'll add support for `while` statements in your interpreter.
+
+  - slug: "bw6"
+    primary_extension_slug: "control-flow"
+    name: "For statements"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for nested `if` statements in your interpreter. Nested `if` statements are `if` statements that are inside the body of another `if` statement.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 9.5: For Loops](https://craftinginterpreters.com/control-flow.html#for-loops).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain programs with `if` statements.
+
+      For example, if `test.lox` contains the following
+
+      ```
+      for (var baz = 0; baz < 3;) print baz = baz + 1;
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      1
+      2
+      3
+      ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      Test Case 1:
+
+      Input:
+
+      ```
+      for (var baz = 0; baz < 3;) print baz = baz + 1;
+      ```
+
+      Expected Output:
+
+      ```
+      1
+      2
+      3
+      ```
+
+      Test Case 2:
+
+      Input:
+
+      ```
+      for (var world = 0; world < 3; world = world + 1) {
+        print world;
+      }
+      ```
+
+      Expected Output:
+
+      ```
+      0
+      1
+      2
+      ```
+
+      Test Case 3:
+
+      Input:
+
+      ```
+      var world = 0;
+      for (; world < 2; world = world + 1) print world;
+
+      for (var foo = 0; foo < 2;) {
+        print foo;
+        foo = foo + 1;
+      }
+      ```
+
+      Expected Output:
+
+      ```
+      0
+      1
+      0
+      1
+      ```
+
+      Test Case 4:
+
+      Input:
+
+      ```
+      var quz = "after";
+      {
+        var quz = "before";
+
+        for (var quz = 0; quz < 1; quz = quz + 1) {
+          print quz;
+          var quz = -1;
+          print quz;
+        }
+      }
+
+      {
+        for (var quz = 0; quz > 0; quz = quz + 1) {}
+
+        var quz = "after";
+        print quz;
+
+        for (quz = 0; quz < 1; quz = quz + 1) {
+          print quz;
+        }
+      }
+      ```
+
+      Expected Output:
+
+      ```
+      0
+      -1
+      after
+      0
+      ```
+
+      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/for/syntax.lox)
+    marketing_md: |-
+      In this stage, you'll add support for `for` statements in your interpreter.
+
+  - slug: "vt1"
+    primary_extension_slug: "control-flow"
+    name: "Syntactic errors"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for syntactic errors in your interpreter. Syntactic errors are errors that occur when the code is not written in the correct syntax.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 9.5: For Loops](https://craftinginterpreters.com/control-flow.html#for-loops).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain programs with syntactic errors.
+
+      For example, if `test.lox` contains the following
+
+      ```
+      for (;;) var foo;
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      [line 1] Error at 'var': Expect expression.
+      ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      Test Case 1:
+
+      Input:
+
+      ```
+      if (true) "ok"; else var foo;
+      ```
+
+      Expected Output:
+
+      ```
+      [line 1] Error at 'var': Expect expression.
+      ```
+
+      Test Case 2:
+
+      Input:
+
+      ```
+      for (var a = 1; {}; a = a + 1) {}
+      ```
+
+      Expected Output:
+
+      ```
+      [line 2] Error at '{': Expect expression.
+      [line 2] Error at ')': Expect ';' after expression.
+      ```
+
+      Test Case 3:
+
+      Input:
+
+      ```
+      for (var a = 1; a < 2; {}) {}
+      ```
+
+      Expected Output:
+
+      ```
+      [line 2] Error at '{': Expect expression.
+      ```
+
+      Test Case 4:
+
+      Input:
+
+      ```
+      for ({}; a < 2; a = a + 1) {}
+      ```
+
+      Expected Output:
+
+      ```
+      [line 2] Error at '{': Expect expression.
+      [line 2] Error at ')': Expect ';' after expression.
+      ```
+
+      The tester will only assert that the exit code is 65, when there is a compilation error.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/if/dangling_else.lox)
+    marketing_md: |-
+      In this stage, you'll handle several syntactic errors in your interpreter.
