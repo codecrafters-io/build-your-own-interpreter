@@ -3003,7 +3003,7 @@ stages:
       Input:
 
       ```
-      if (false) {
+      if (true) {
         print "block body";
       }
       ```
@@ -3011,6 +3011,7 @@ stages:
       Expected Output:
 
       ```
+      block body
       ```
 
       Test Case 3:
@@ -3215,12 +3216,13 @@ stages:
       Input:
 
       ```
-      if (false) print "if branch"; else if (false) print "else-if branch";
+      if (true) print "if branch"; else if (false) print "else-if branch";
       ```
 
       Expected Output:
 
       ```
+      if branch
       ```
 
       Test Case 2:
