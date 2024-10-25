@@ -8,5 +8,6 @@
 
 set -e # Exit on failure
 
+echo "!!!running compile.sh"
 cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake
 cmake --build ./build
