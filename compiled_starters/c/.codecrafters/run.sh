@@ -8,5 +8,4 @@
 
 set -e # Exit on failure
 
-echo "!!!running run.sh"
 exec $(dirname $0)/build/interpreter "$@"
