@@ -3174,6 +3174,7 @@ stages:
       67
       152.6
       It's a hot day. Stay hydrated!
+      Remember to use sunscreen!
       ```
 
       The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
