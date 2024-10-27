@@ -2,7 +2,7 @@
  import Foundation
 
 -// You can use print statements as follows for debugging, they'll be visible when running tests.
--print("Logs from your program will appear here!")
+-eprint("Logs from your program will appear here!")
 -
  guard CommandLine.argc == 3 else {
      print("Usage: ./your_program.sh tokenize <filename>")
