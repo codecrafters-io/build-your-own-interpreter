@@ -8,5 +8,8 @@
 
 set -e # Exit on failure
 
+echo "Checking builder folder timestamp..."
+ls -lah
+
 cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake
 cmake --build ./build
