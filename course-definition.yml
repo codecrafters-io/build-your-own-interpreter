@@ -3840,7 +3840,7 @@ stages:
     name: "For statements"
     difficulty: medium
     description_md: |-
-      In this stage, you'll add support for the `for` statement in your interpreter. The `for` statement is used to execute a block of code repeatedly, with an initial starting point, a continuation condition, and an update step after each iteration.
+      In this stage, you'll add support for the `for` statement in your interpreter. The `for` statement executes a block of code repeatedly using a “initializer” clause, a “condition” clause and an “increment” clause.
 
       ### Book reference
 
