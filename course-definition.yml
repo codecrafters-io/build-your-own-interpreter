@@ -26,7 +26,6 @@ completion_percentage: 15
 languages:
   - slug: "c"
   - slug: "cpp"
-    release_status: "alpha"
   - slug: "gleam"
   - slug: "go"
   - slug: "kotlin"

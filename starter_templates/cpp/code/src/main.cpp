@@ -28,7 +28,7 @@ int main(int argc, char *argv[]) {
         // 
         // if (!file_contents.empty()) {
         //     std::cerr << "Scanner not implemented" << std::endl;
-        //     std::exit(1);
+        //     return 1;
         // }
         // std::cout << "EOF  null" << std::endl; // Placeholder, remove this line when implementing the scanner
         
