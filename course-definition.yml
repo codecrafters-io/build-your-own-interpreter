@@ -28,7 +28,6 @@ languages:
   - slug: "gleam"
   - slug: "go"
   - slug: "java"
-    release_status: "alpha"
   - slug: "kotlin"
   - slug: "ocaml"
   - slug: "python"
