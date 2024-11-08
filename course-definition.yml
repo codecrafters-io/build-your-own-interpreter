@@ -3577,7 +3577,7 @@ stages:
     name: "Logical AND operator"
     difficulty: medium
     description_md: |-
-      In this stage, you'll add support for the logical AND operator in your interpreter. The logical AND operator is used to combine two conditions and return true only if both conditions are true.
+      In this stage, you'll add support for the logical AND operator in your interpreter. The logical AND operator combines two conditions and returns the first falsy value. If all values are truthy, it returns the last value.
 
       ### Book reference
 
