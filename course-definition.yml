@@ -3447,7 +3447,7 @@ stages:
     name: "Logical OR operator"
     difficulty: medium
     description_md: |-
-      In this stage, you'll add support for the logical OR operator in your interpreter. The logical OR operator is used to combine two conditions and return true if either condition is true.
+      In this stage, you'll add support for the logical OR operator in your interpreter. The logical OR operator combines two conditions and returns the first value that is truthy.
 
       ### Book reference
 
