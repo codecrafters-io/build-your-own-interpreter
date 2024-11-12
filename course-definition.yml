@@ -87,6 +87,13 @@ extensions:
 
       In this extension, you'll add the ability to handle control flow statements like `if/else`, `while` & `for`.
 
+  - slug: "functions"
+    name: "Functions"
+    description_markdown: |
+      This extension covers chapters 10 of the book ([Functions](https://craftinginterpreters.com/functions.html)).
+
+      In this extension, you'll add the ability to handle lox native functions & user-defined functions.
+
 stages:
   - slug: "ry8"
     name: "Scanning: Empty file"
@@ -4066,3 +4073,1288 @@ stages:
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/if/dangling_else.lox)
     marketing_md: |-
       In this stage, you'll handle several syntactic errors in your interpreter.
+
+  - slug: "av4"
+    primary_extension_slug: "functions"
+    name: "Native functions"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for native functions in your lox interpreter.
+      You can just define a single native function for now, we will go with `clock()` which returns the current time in seconds since 1 January 1970 00:00.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 10.2: Native Functions](https://craftinginterpreters.com/functions.html#native-functions).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain programs with native functions.
+
+      For example, if `test.lox` contains the following
+
+      ```
+      print clock();
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      1731411035
+      ```
+
+      The return type for clock() can be a floating point number or an integer, the tester will cast it to an integer and then check if it is in a reasonable range.
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      Test Case 1:
+
+      Input:
+
+      ```
+      print clock() + 75;
+      ```
+
+      Expected Output:
+
+      ```
+      1731411035
+      ```
+
+      Test Case 2:
+
+      Input:
+
+      ```
+      print clock() / 1000;
+      ```
+
+      Expected Output:
+
+      ```
+      1731410
+      ```
+
+      Test Case 3:
+
+      Input:
+
+      ```
+      var startTime = clock();
+      var timeoutSeconds = 2;
+
+      // Check if less than 2 seconds have elapsed
+      if ((clock() >= startTime) and (clock() <= (startTime + timeoutSeconds))) {
+        print "Operation in progress...";
+      } else {
+        print "Operation timed out!";
+      }
+      ```
+
+      Expected Output:
+
+      ```
+      Operation in progress...
+      ```
+
+      Test Case 4:
+
+      Input:
+
+      ```
+      // Countdown from 3 seconds
+      var startTime = clock();
+      var totalDuration = 3; // 3 seconds countdown
+      var lastCheck = startTime;
+      var completed = false;
+
+      while (!completed) {
+        var currentTime = clock();
+        var elapsedTime = currentTime - startTime;
+        var remainingTime = totalDuration - elapsedTime;
+
+        // Update progress every second
+        if (currentTime >= lastCheck + 1) {
+          if (remainingTime >= 2) {
+            print "Plenty of time remaining: ";
+            print remainingTime;
+          } else if (remainingTime >= 1) {
+            print "Getting closer: ";
+            print remainingTime;
+          } else if (remainingTime > 0) {
+            print "Almost there: ";
+            print remainingTime;
+          }
+          lastCheck = currentTime;
+        }
+
+        // Check for completion
+        if (elapsedTime >= totalDuration) {
+          completed = true;
+          print "Countdown complete!";
+        } else if (elapsedTime < 0) {
+          // Handle clock overflow or system time changes
+          print "Time error detected!";
+          completed = true;
+        }
+      }
+      ```
+
+      Expected Output:
+
+      ```
+      Plenty of time remaining: 
+      2
+      Getting closer: 
+      1
+      Countdown complete!
+      ```
+
+      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/function/print.lox)
+    marketing_md: |-
+      In this stage, you'll add native functions to your lox interpreter.
+  
+  - slug: "pg8"
+    primary_extension_slug: "functions"
+    name: "Functions: No arguments"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for declaring, defining and interpreting user defined functions with no arguments in your lox interpreter.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 10.3: Function declarations](https://craftinginterpreters.com/functions.html#function-declarations).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain programs with user defined functions with no arguments.
+
+      For example, if `test.lox` contains the following
+
+      ```
+      fun bar() { print 10; }
+      bar();
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      10
+      ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      Test Case 1:
+
+      Input:
+
+      ```
+      fun foo() { 
+        print 7;
+      }
+      foo();
+      ```
+
+      Expected Output:
+
+      ```
+      7
+      ```
+
+      Test Case 2:
+
+      Input:
+
+      ```
+      fun f() {}
+      f();
+      ```
+
+      Expected Output:
+
+      ```
+      ```
+
+      Test Case 3:
+
+      Input:
+
+      ```
+      fun foo() {}
+      print foo;
+      ```
+
+      Expected Output:
+
+      ```
+      <fn foo>
+      ```
+
+      Test Case 4:
+
+      Input:
+
+      ```
+      fun isEven(n) {
+        if (n == 0) return true;
+        return isOdd(n - 1);
+      }
+
+      fun isOdd(n) {
+        if (n == 0) return false;
+        return isEven(n - 1);
+      }
+
+      print isEven(46);
+      print isOdd(94);
+      ```
+
+      Expected Output:
+
+      ```
+      true
+      false
+      ```
+
+      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/function/print.lox)
+    marketing_md: |-
+      In this stage, you'll add support for user defined functions with no arguments to your lox interpreter.
+
+  - slug: "lb6"
+    primary_extension_slug: "functions"
+    name: "Functions: With arguments"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for declaring, defining and interpreting user defined functions with arguments in your lox interpreter.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 10.3: Function declarations](https://craftinginterpreters.com/functions.html#function-declarations).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain programs with user defined functions with arguments.
+
+      For example, if `test.lox` contains the following
+
+      ```
+      fun foo(a) { print a; }
+      foo(10);
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      10
+      ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      Test Case 1:
+
+      Input:
+
+      ```
+      fun f1(a) {
+        print a;
+      }
+      f1(76);
+      ```
+
+      Expected Output:
+
+      ```
+      76
+      ```
+
+      Test Case 2:
+
+      Input:
+
+      ```
+      fun f3(a, b, c) { print a + b + c; }
+      f3(24, 24, 24);
+      ```
+
+      Expected Output:
+
+      ```
+      72
+      ```
+
+      Test Case 3:
+
+      Input:
+
+      ```
+      fun f8(a, b, c, d, e, f, g, h) { print a - b + c * d + e - f + g - h; }
+      f8(51, 51, 51, 51, 51, 51, 51, 51);
+      ```
+
+      Expected Output:
+
+      ```
+      2601
+      ```
+
+      Test Case 4:
+
+      Input:
+
+      ```
+      fun calculateGrade(score, bonus) {
+        var finalScore = score + bonus;
+
+        if (finalScore >= 90) {
+          print "A";
+        } else if (finalScore >= 80) {
+          print "B";
+        } else if (finalScore >= 70) {
+          print "C";
+        } else if (finalScore >= 60) {
+          print "D";
+        } else {
+          print "F";
+        }
+      }
+
+      var score = 81;
+      var bonus = 3;
+      print "Grade for given score is: ";
+      calculateGrade(score, bonus);
+      ```
+
+      Expected Output:
+
+      ```
+      Grade for given score is: 
+      B
+      ```
+
+      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/function/parameters.lox)
+    marketing_md: |-
+      In this stage, you'll add support for user defined functions with arguments to your lox interpreter.
+  
+  - slug: "px4"
+    primary_extension_slug: "functions"
+    name: "Functions: Syntax errors"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for detecting and handling syntax errors in user defined functions in your lox interpreter.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 10.3: Function Declarations](https://craftinginterpreters.com/functions.html#function-declarations).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain programs with user defined functions with arguments.
+
+      For example, if `test.lox` contains the following
+
+      ```
+      clock(;
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      [line 2] Error at ';': Expect expression.
+      ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      Test Case 1:
+
+      Input:
+
+      ```
+      print clock(;
+      ```
+
+      Expected Output:
+
+      ```
+      [line 1] Error at ';': Expect expression.
+      ```
+
+      Test Case 2:
+
+      Input:
+
+      ```
+      print clock)));
+      ```
+
+      Expected Output:
+
+      ```
+      [line 1] Error at ')': Expect ';' after value.
+      ```
+
+      Test Case 3:
+
+      Input:
+
+      ```
+      fun f() 74;
+      print f();
+      ```
+
+      Expected Output:
+
+      ```
+      [line 2] Error at '74': Expect '{' before function body.
+      ```
+
+      Test Case 4:
+
+      Input:
+
+      ```
+      fun foo(a, b c, d, e, f) {}
+      foo();
+      ```
+
+      Expected Output:
+
+      ```
+      [line 2] Error at 'c': Expect ')' after parameters.
+      ```
+
+      The tester will assert that the exit code of your program is 65, when there is a compilation error.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/function/body_must_be_block.lox)
+    marketing_md: |-
+      In this stage, you'll add support for detecting and handling syntax errors.
+
+  - slug: "rd2"
+    primary_extension_slug: "functions"
+    name: "Return statements"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for return statements in functions in your lox interpreter.
+      
+      ### Book reference
+
+      The code for this stage is implemented in [Section 10.5: Return Statements](https://craftinginterpreters.com/functions.html#return-statements).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain programs with return statements in functions.
+
+      For example, if `test.lox` contains the following
+
+      ```
+      fun foo() { return 10; }
+      print foo();
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      10
+      ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      Test Case 1:
+
+      Input:
+
+      ```
+      fun fib(n) {
+        if (n < 2) return n;
+        return fib(n - 2) + fib(n - 1);
+      }
+
+      var start = clock();
+      print fib(32) == 2178309;
+      print (clock() - start) < 5; // 5 seconds
+      ```
+
+      Expected Output:
+
+      ```
+      true
+      true
+      ```
+
+      Test Case 2:
+
+      Input:
+
+      ```
+      fun f() {
+        if (false) return "no"; else return "ok";
+      }
+
+      print f();
+      ```
+
+      Expected Output:
+
+      ```
+      ok
+      ```
+
+      Test Case 3:
+
+      Input:
+
+      ```
+      fun f() {
+        while (!true) return "ok";
+      }
+
+      print f();
+      ```
+
+      Expected Output:
+
+      ```
+      nil
+      ```
+
+      Test Case 4:
+
+      Input:
+
+      ```
+      fun f() {
+        return;
+        print "bad";
+      }
+
+      print f();
+      ```
+
+      Expected Output:
+
+      ```
+      nil
+      ```
+
+      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/function/local_recursion.lox)
+    marketing_md: |-
+      In this stage, you'll add support for return statements in functions to your lox interpreter.
+
+  - slug: "ey3"
+    primary_extension_slug: "functions"
+    name: "Higher order functions"
+    difficulty: hard
+    description_md: |-
+      In this stage, you'll add support for higher order functions in your lox interpreter.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 10.4: Function Objects](https://craftinginterpreters.com/functions.html#function-objects).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain programs with higher order functions.
+
+      For example, if `test.lox` contains the following
+
+      ```
+      fun makeGreeter(greeting) {
+        fun greet(name) {
+          print greeting + " " + name;
+        }
+        return greet;
+      }
+
+      var sayHello = makeGreeter("Hello");
+      sayHello("Bob");
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      Hello Bob
+      ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      Test Case 1:
+
+      Input:
+
+      ```
+      fun makeGreeter(greeting) {
+        fun greet(name) {
+          print greeting + " " + name;
+        }
+        return greet;
+      }
+
+      var sayHello = makeGreeter("Hello");
+      var sayHi = makeGreeter("Hi");
+
+      sayHello("Bob");
+      sayHi("Alice");
+      ```
+
+      Expected Output:
+
+      ```
+      Hello Bob
+      Hi Alice
+      ```
+
+      Test Case 2:
+
+      Input:
+
+      ```
+      fun returnArg(arg) {
+        return arg;
+      }
+
+      fun returnFunCallWithArg(func, arg) {
+        return returnArg(func)(arg);
+      }
+
+      fun printArg(arg) {
+        print arg;
+      }
+
+      returnFunCallWithArg(printArg, "foo");
+      ```
+
+      Expected Output:
+
+      ```
+      foo
+      ```
+
+      Test Case 3:
+
+      Input:
+
+      ```
+      fun makeAdder(x) {
+        fun add(y) {
+          return x + y;
+        }
+        return add;
+      }
+
+      fun applyTwice(f, x) {
+        return f(f(x));
+      }
+
+      var addx = makeAdder(2);
+      var addy = makeAdder(2);
+
+      print applyTwice(addx, 2);
+      print applyTwice(addy, 2);
+      ```
+
+      Expected Output:
+
+      ```
+      6
+      6
+      ```
+
+      Test Case 4:
+
+      Input:
+
+      ```
+      fun makeFilter(min) {
+        fun filter(n) {
+          if (n < min) {
+            return false;
+          }
+          return true;
+        }
+        return filter;
+      }
+
+      // This function applies a function to a list of numbers
+      fun applyToNumbers(f, count) {
+        var n = 0;
+        while (n < count) {
+          if (f(n)) {
+            print n;
+          }
+          n = n + 1;
+        }
+      }
+
+      var greaterThanX = makeFilter(55);
+      var greaterThanY = makeFilter(10);
+
+      print "Numbers >= 55:";
+      applyToNumbers(greaterThanX, 55 + 5);
+
+      print "Numbers >= 10:";
+      applyToNumbers(greaterThanY, 10 + 5);
+      ```
+
+      Expected Output:
+
+      ```
+      Numbers >= 55:
+      55
+      56
+      57
+      58
+      59
+      Numbers >= 10:
+      10
+      11
+      12
+      13
+      14
+      ```
+
+      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/function/local_recursion.lox)
+    marketing_md: |-
+      In this stage, you'll add support for higher order functions to your lox interpreter.
+
+  - slug: "fj7"
+    primary_extension_slug: "functions"
+    name: "Functions: Runtime errors"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for runtime errors in your lox interpreter.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 10.4: Function Objects](https://craftinginterpreters.com/functions.html#function-objects).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain programs with runtime errors.
+
+      For example, if `test.lox` contains the following
+
+      ```
+      85();
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      Can only call functions and classes.
+      [line 1]
+      ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      Test Case 1:
+
+      Input:
+
+      ```
+      "not a function"();
+      ```
+
+      Expected Output:
+
+      ```
+      Can only call functions and classes.
+      [line 1]
+      ```
+
+      Test Case 2:
+
+      Input:
+
+      ```
+      fun f(a, b) {
+        print a;
+        print b;
+      }
+
+      f(1, 2, 3, 4);
+      ```
+
+      Expected Output:
+
+      ```
+      Expected 2 arguments but got 4.
+      [line 6]
+      ```
+
+      Test Case 3:
+
+      Input:
+
+      ```
+      fun f(a, b) {}
+
+      f(1);
+      ```
+
+      Expected Output:
+
+      ```
+      Expected 2 arguments but got 1.
+      [line 3]
+      ```
+
+      Test Case 4:
+
+      Input:
+
+      ```
+      false();
+      ```
+
+      Expected Output:
+
+      ```
+      Can only call functions and classes.
+      [line 1]
+      ```
+
+      The tester will assert that the stdout of your program matches the format above, and that the exit code is 70.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/function/body_must_be_block.lox)
+    marketing_md: |-
+      In this stage, you'll add handling for runtime errors in your lox interpreter.
+
+  - slug: "bz4"
+    primary_extension_slug: "functions"
+    name: "Global & local scope"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for global and local scope in your lox interpreter.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 10.6: Local functions & Closures](https://craftinginterpreters.com/functions.html#local-functions-and-closures).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain programs with global and local scope.
+
+      For example, if `test.lox` contains the following
+
+      ```
+      var a = 20;
+      {
+        var a = 30;
+        print a;
+      }
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      30
+      ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      Test Case 1:
+
+      Input:
+
+      ```
+      var a = 20;
+      {
+        print a;
+        var a = 42;
+        print a;
+      }
+      print a;
+      ```
+
+      Expected Output:
+
+      ```
+      20
+      42
+      20
+      ```
+
+      Test Case 2:
+
+      Input:
+
+      ```
+      var count = 3;
+
+      fun tick() {
+        if (count > 0) {
+          print count;
+          count = count - 1;
+          return false;
+        }
+        print "Blast off!";
+        return true;
+      }
+
+      while (!tick()) {}
+      ```
+
+      Expected Output:
+
+      ```
+      3
+      2
+      1
+      Blast off!
+      ```
+
+      Test Case 3:
+
+      Input:
+
+      ```
+      var counter = 99;
+      {
+        counter = counter + 5;
+        {
+          counter = counter + 5;
+          print counter;
+        }
+      }
+      print counter;
+      {
+        var counter = 99;
+        print counter;
+      }
+      print counter;
+      ```
+
+      Expected Output:
+
+      ```
+      109
+      109
+      99
+      109
+      ```
+
+      Test Case 4:
+
+      Input:
+
+      ```
+      var x = 1;
+      var y = 2;
+
+      fun printBoth() {
+        if (x < y) {
+          print "x is less than y:";
+          print x;
+          print y;
+        } else {
+          print "x is not less than y:";
+          print x;
+          print y;
+        }
+      }
+
+      {
+        var x = 10;
+        {
+          var y = 20;
+
+          var i = 0;
+          while (i < 3) {
+            x = x + 1;
+            y = y - 1;
+            print "Local x: ";
+            print x;
+            print "Local y: ";
+            print y;
+            i = i + 1;
+          }
+
+          if (x > y) {
+            print "Local x > y";
+          }
+
+          printBoth();
+        }
+      }
+      ```
+
+      Expected Output:
+
+      ```
+      Local x: 
+      11
+      Local y: 
+      19
+      Local x: 
+      12
+      Local y: 
+      18
+      Local x: 
+      13
+      Local y: 
+      17
+      x is less than y:
+      1
+      2      
+      ```
+
+      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/closure/open_closure_in_function.lox)
+    marketing_md: |-
+      In this stage, you'll add support for global and local scope to your lox interpreter.
+
+  - slug: "gg6"
+    primary_extension_slug: "functions"
+    name: "Closures"
+    difficulty: hard
+    description_md: |-
+      In this stage, you'll add support for closures in your lox interpreter.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 10.6: Local functions & Closures](https://craftinginterpreters.com/functions.html#local-functions-and-closures).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain programs with closures.
+
+      For example, if `test.lox` contains the following
+
+      ```
+      fun makeCounter() {
+        var i = 0;
+        fun count() {
+          i = i + 1;
+          print i;
+        }
+
+        return count;
+      }
+
+      var counter = makeCounter();
+      counter();
+      counter();
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      1
+      2
+      ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      Test Case 1:
+
+      Input:
+
+      ```
+      fun makeCounter() {
+        var i = 0;
+        fun count() {
+          i = i + 1;
+          print i;
+        }
+
+        return count;
+      }
+
+      var counter = makeCounter();
+      counter();
+      counter();
+      ```
+
+      Expected Output:
+
+      ```
+      1
+      2
+      ```
+
+      Test Case 2:
+
+      Input:
+
+      ```
+      {
+        var threshold = 50;
+
+        fun isEven(n) {
+          if (n == 0) return true;
+          if (n > threshold) return false;
+          return isOdd(n - 1);
+        }
+
+        fun isOdd(n) {
+          if (n == 0) return false;
+          if (n > threshold) return false;
+          return isEven(n - 1);
+        }
+
+        print isEven(61);
+      }
+      ```
+
+      Expected Output:
+
+      ```
+      false
+      ```
+
+      Test Case 3:
+
+      Input:
+
+      ```
+      fun makeLogger(prefix) {
+        var logCount = 0;
+
+        fun log(message) {
+          logCount = logCount + 1;
+          print prefix + ": " + message;
+
+          if (logCount > 6) {
+            print prefix + ": Too many log lines!";
+            logCount = 0;
+          }
+        }
+
+        return log;
+      }
+
+      var debugLog = makeLogger("debug");
+      var errorLog = makeLogger("error");
+
+      debugLog("Starting");
+      debugLog("Processing");
+      debugLog("Finishing");
+      debugLog("Extra line");
+
+      errorLog("Failed!");
+      errorLog("Retrying...");
+      ```
+
+      Expected Output:
+
+      ```
+      debug: Starting
+      debug: Processing
+      debug: Finishing
+      debug: Extra line
+      error: Failed!
+      error: Retrying...
+      ```
+
+      Test Case 4:
+
+      Input:
+
+      ```
+      fun makeAccumulator(label) {
+        var sum = 0;
+        var count = 0;
+
+        fun accumulate(value) {
+          sum = sum + value;
+          count = count + 1;
+
+          print label;
+          print count;
+          print sum;
+          print sum;
+
+          if (count > 3) {
+            print "reset";
+            sum = 0;
+            count = 0;
+          }
+
+          return sum;
+        }
+
+        return accumulate;
+      }
+
+      var acc1 = makeAccumulator("First:");
+      var acc2 = makeAccumulator("Second:");
+
+      acc1(2);
+      acc1(6);
+      acc1(3);
+      acc1(4);
+
+      acc2(6);
+      acc2(4);
+      ```
+
+      Expected Output:
+
+      ```
+      First:
+      1
+      2
+      2
+      First:
+      2
+      8
+      8
+      First:
+      3
+      11
+      11
+      First:
+      4
+      15
+      15
+      reset
+      Second:
+      1
+      6
+      6
+      Second:
+      2
+      10
+      10
+      ```
+
+      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/closure/open_closure_in_function.lox)
+    marketing_md: |-
+      In this stage, you'll add support for closures to your lox interpreter.
