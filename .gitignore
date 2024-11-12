@@ -1,3 +1,7 @@
-course-definition-tester
+.vscode/
+
 .history/
 .idea/
+
+starter_templates/ruby/*
+course-definition-tester/
