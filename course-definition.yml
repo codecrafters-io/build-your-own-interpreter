@@ -4080,7 +4080,8 @@ stages:
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for native functions in your lox interpreter.
-      You can just define a single native function for now, we will go with `clock()` which returns the number of seconds elapsed since midnight January 1, 1970 UTC.
+      You can just define a single native function for now, we will go with `clock()` which returns the number of seconds elapsed since midnight January 1, 1970 UTC.  
+      The return type for `clock()` can be a floating point number or an integer, the tester will cast it to an integer and then check if it is in a reasonable range.  
 
       ### Book reference
 
@@ -4103,7 +4104,6 @@ stages:
       1731411035
       ```
 
-      The return type for clock() can be a floating point number or an integer, the tester will cast it to an integer and then check if it is in a reasonable range.
       The tester will run multiple such tests with randomized expressions, for example:
 
       Test Case 1:
