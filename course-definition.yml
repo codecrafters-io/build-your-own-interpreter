@@ -4080,7 +4080,7 @@ stages:
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for native functions in your lox interpreter.
-      You can just define a single native function for now, we will go with `clock()` which returns the current time in seconds since 1 January 1970 00:00.
+      You can just define a single native function for now, we will go with `clock()` which returns the number of seconds elapsed since midnight January 1, 1970 UTC.
 
       ### Book reference
 
