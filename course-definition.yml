@@ -4215,7 +4215,7 @@ stages:
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/if/dangling_else.lox)
     marketing_md: |-
-    In this stage, you'll add native functions to your lox interpreter.
+      In this stage, you'll add native functions to your lox interpreter.
   
   - slug: "pg8"
     primary_extension_slug: "functions"
@@ -4326,7 +4326,7 @@ stages:
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/if/dangling_else.lox)
     marketing_md: |-
-    In this stage, you'll add support for user defined functions with no arguments to your lox interpreter.
+      In this stage, you'll add support for user defined functions with no arguments to your lox interpreter.
 
   - slug: "lb6"
     primary_extension_slug: "functions"
@@ -4446,7 +4446,7 @@ stages:
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/if/dangling_else.lox)
     marketing_md: |-
-    In this stage, you'll add support for user defined functions with arguments to your lox interpreter.
+      In this stage, you'll add support for user defined functions with arguments to your lox interpreter.
   
   - slug: "px4"
     primary_extension_slug: "functions"
@@ -4542,7 +4542,7 @@ stages:
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/if/dangling_else.lox)
     marketing_md: |-
-    In this stage, you'll add support for detecting and handling syntax errors.
+      In this stage, you'll add support for detecting and handling syntax errors.
 
   - slug: "rd2"
     primary_extension_slug: "functions"
@@ -4658,7 +4658,7 @@ stages:
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/if/dangling_else.lox)
     marketing_md: |-
-    In this stage, you'll add support for return statements in functions to your lox interpreter.
+      In this stage, you'll add support for return statements in functions to your lox interpreter.
 
   - slug: "ey3"
     primary_extension_slug: "functions"
@@ -4839,7 +4839,7 @@ stages:
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/if/dangling_else.lox)
     marketing_md: |-
-    In this stage, you'll add support for higher order functions to your lox interpreter.
+      In this stage, you'll add support for higher order functions to your lox interpreter.
 
   - slug: "fj7"
     primary_extension_slug: "functions"
@@ -4945,7 +4945,7 @@ stages:
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/if/dangling_else.lox)
     marketing_md: |-
-    In this stage, you'll add handling for runtime errors in your lox interpreter.
+      In this stage, you'll add handling for runtime errors in your lox interpreter.
 
   - slug: "bz4"
     primary_extension_slug: "functions"
@@ -5133,7 +5133,7 @@ stages:
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/if/dangling_else.lox)
     marketing_md: |-
-    In this stage, you'll add support for global and local scope to your lox interpreter.
+      In this stage, you'll add support for global and local scope to your lox interpreter.
 
   - slug: "gg6"
     primary_extension_slug: "functions"
@@ -5357,4 +5357,4 @@ stages:
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/if/dangling_else.lox)
     marketing_md: |-
-    In this stage, you'll add support for closures to your lox interpreter.
+      In this stage, you'll add support for closures to your lox interpreter.
