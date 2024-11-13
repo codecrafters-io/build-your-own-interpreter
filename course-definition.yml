@@ -4952,7 +4952,7 @@ stages:
 
   - slug: "bz4"
     primary_extension_slug: "functions"
-    name: "Global & local scope"
+    name: "Function scope"
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for global and local scope in your lox interpreter.
