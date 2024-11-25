@@ -4683,14 +4683,16 @@ stages:
       For example, if `test.lox` contains the following
 
       ```
-      fun makeGreeter(greeting) {
+      var globalGreeting = "Hello";
+
+      fun makeGreeter() {
         fun greet(name) {
-          print greeting + " " + name;
+          print globalGreeting + " " + name;
         }
         return greet;
       }
 
-      var sayHello = makeGreeter("Hello");
+      var sayHello = makeGreeter();
       sayHello("Bob");
       ```
 
@@ -4708,18 +4710,17 @@ stages:
       Input:
 
       ```
-      fun makeGreeter(greeting) {
+      var globalGreeting = "Hello";
+
+      fun makeGreeter() {
         fun greet(name) {
-          print greeting + " " + name;
+          print globalGreeting + " " + name;
         }
         return greet;
       }
 
-      var sayHello = makeGreeter("Hello");
-      var sayHi = makeGreeter("Hi");
-
+      var sayHello = makeGreeter();
       sayHello("Bob");
-      sayHi("Alice");
       ```
 
       Expected Output:
