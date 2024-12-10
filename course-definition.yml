@@ -2328,7 +2328,7 @@ stages:
       Expected Output:
 
       ```
-      Undefined variable 'bar'.
+      Undefined variable 'he'.
       [line 4]
       ```
 
