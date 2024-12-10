@@ -1,0 +1,25 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1700.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "codecrafters-interpreter", "codecrafters-interpreter.csproj", "{08AEDCCA-10D2-4981-A45C-00034A41A88A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{08AEDCCA-10D2-4981-A45C-00034A41A88A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08AEDCCA-10D2-4981-A45C-00034A41A88A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08AEDCCA-10D2-4981-A45C-00034A41A88A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08AEDCCA-10D2-4981-A45C-00034A41A88A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {210D066B-4009-4116-8A66-000C85EF6E8B}
+	EndGlobalSection
+EndGlobal

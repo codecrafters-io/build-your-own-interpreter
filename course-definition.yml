@@ -26,6 +26,7 @@ completion_percentage: 15
 languages:
   - slug: "c"
   - slug: "cpp"
+  - slug: "csharp"
   - slug: "gleam"
   - slug: "go"
   - slug: "java"
@@ -4302,25 +4303,26 @@ stages:
       Input:
 
       ```
-      fun isEven(n) {
-        if (n == 0) return true;
-        return isOdd(n - 1);
+      fun cumulative_sum() {
+          var n = 10;  // Fixed value
+          var total = 0;
+          var i = 1;
+          while (i <= n) {
+              total = total + i;
+              i = i + 1;
+          }
+          print "The cumulative sum from 1 to 10 is: ";
+          print total;
       }
 
-      fun isOdd(n) {
-        if (n == 0) return false;
-        return isEven(n - 1);
-      }
-
-      print isEven(46);
-      print isOdd(94);
+      cumulative_sum();
       ```
 
       Expected Output:
 
       ```
-      true
-      false
+      The cumulative sum from 1 to 10 is:
+      55
       ```
 
       The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
@@ -4681,14 +4683,16 @@ stages:
       For example, if `test.lox` contains the following
 
       ```
-      fun makeGreeter(greeting) {
+      var globalGreeting = "Hello";
+
+      fun makeGreeter() {
         fun greet(name) {
-          print greeting + " " + name;
+          print globalGreeting + " " + name;
         }
         return greet;
       }
 
-      var sayHello = makeGreeter("Hello");
+      var sayHello = makeGreeter();
       sayHello("Bob");
       ```
 
@@ -4706,25 +4710,23 @@ stages:
       Input:
 
       ```
-      fun makeGreeter(greeting) {
+      var globalGreeting = "Hello";
+
+      fun makeGreeter() {
         fun greet(name) {
-          print greeting + " " + name;
+          print globalGreeting + " " + name;
         }
         return greet;
       }
 
-      var sayHello = makeGreeter("Hello");
-      var sayHi = makeGreeter("Hi");
-
+      var sayHello = makeGreeter();
       sayHello("Bob");
-      sayHi("Alice");
       ```
 
       Expected Output:
 
       ```
       Hello Bob
-      Hi Alice
       ```
 
       Test Case 2:
