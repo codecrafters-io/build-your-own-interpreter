@@ -3589,7 +3589,7 @@ stages:
 
       ### Book reference
 
-      The code for this stage is implemented in [Section 9.4: Logical Operators](https://craftinginterpreters.com/control-flow.html#logical-operators).
+      The code for this stage is implemented in [Section 9.3: Logical Operators](https://craftinginterpreters.com/control-flow.html#logical-operators).
 
       ### Tests
 
