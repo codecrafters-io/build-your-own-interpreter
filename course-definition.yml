@@ -890,7 +890,7 @@ stages:
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/parse.lox)
       <!-- TODO: Clarify how `nil` must be printed: `nil`/`null`? -->
     marketing_md: |-
-      In this stage, you'll implement support for parsing binary values and the nil literal.
+      In this stage, you'll implement support for parsing boolean values and the nil literal.
 
   - slug: "ra8"
     primary_extension_slug: "parsing-expressions"
@@ -1290,7 +1290,7 @@ stages:
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/evaluate.lox)
       - For the `nil` literal, the tester will check that the program prints `nil`.
     marketing_md: |-
-      In this stage, you'll implement support for evaluating binary values and the nil literal.
+      In this stage, you'll implement support for evaluating boolean values and the nil literal.
 
   - slug: "lv1"
     primary_extension_slug: "evaluating-expressions"
