@@ -2,9 +2,6 @@ import sys
 
 
 def main():
-    # You can use print statements as follows for debugging, they'll be visible when running tests.
-    print("Logs from your program will appear here!", file=sys.stderr)
-
     if len(sys.argv) < 3:
         print("Usage: ./your_program.sh tokenize <filename>", file=sys.stderr)
         exit(1)
@@ -18,6 +15,9 @@ def main():
 
     with open(filename) as file:
         file_contents = file.read()
+
+    # You can use print statements as follows for debugging, they'll be visible when running tests.
+    print("Logs from your program will appear here!", file=sys.stderr)
 
     # Uncomment this block to pass the first stage
     # if file_contents:
