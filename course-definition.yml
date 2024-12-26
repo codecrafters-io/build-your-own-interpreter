@@ -1705,6 +1705,7 @@ stages:
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/evaluate.lox)
+      - For this stage, stderr output will NOT be tested by the tester. Error messages should only be printed to stdout.
     marketing_md: |-
       In this stage, you'll implement support for handling runtime errors while evaluating the unary operator `-`.
 
@@ -1754,6 +1755,7 @@ stages:
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/evaluate.lox)
+      - For this stage, stderr output will NOT be tested by the tester. Error messages should only be printed to stdout.
     marketing_md: |-
       In this stage, you'll implement support for handling runtime errors while evaluating the binary operators `*` & `/`.
 
@@ -1803,6 +1805,7 @@ stages:
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/evaluate.lox)
+      - For this stage, stderr output will NOT be tested by the tester. Error messages should only be printed to stdout.
     marketing_md: |-
       In this stage, you'll implement support for handling runtime errors while evaluating the binary operators `+` & `-`.
 
@@ -1852,6 +1855,7 @@ stages:
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/evaluate.lox)
+      - For this stage, stderr output will NOT be tested by the tester. Error messages should only be printed to stdout.
     marketing_md: |-
       In this stage, you'll implement support for handling runtime errors while evaluating the relational operators `>`, `<`, `>=` & `<=`.
 
