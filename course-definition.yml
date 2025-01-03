@@ -1216,7 +1216,9 @@ stages:
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/parse.lox)
+      - Error messages should be printed to `stderr`, not `stdout`.
       - The tester won't check the exact error message in this stage, it will only check that the program exits with code 65.
+
     marketing_md: |-
       In this stage, you'll implement support for handling syntax errors in expressions.
 
@@ -1705,6 +1707,9 @@ stages:
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/evaluate.lox)
+      - Error messages should be printed to `stderr`, not `stdout`.
+      - The tester won't check the exact error message in this stage, it will only check that the program exits with code 70.
+
     marketing_md: |-
       In this stage, you'll implement support for handling runtime errors while evaluating the unary operator `-`.
 
@@ -1754,6 +1759,9 @@ stages:
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/evaluate.lox)
+      - Error messages should be printed to `stderr`, not `stdout`.
+      - The tester won't check the exact error message in this stage, it will only check that the program exits with code 70.
+
     marketing_md: |-
       In this stage, you'll implement support for handling runtime errors while evaluating the binary operators `*` & `/`.
 
@@ -1803,6 +1811,9 @@ stages:
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/evaluate.lox)
+      - Error messages should be printed to `stderr`, not `stdout`.
+      - The tester won't check the exact error message in this stage, it will only check that the program exits with code 70.
+
     marketing_md: |-
       In this stage, you'll implement support for handling runtime errors while evaluating the binary operators `+` & `-`.
 
@@ -1852,6 +1863,9 @@ stages:
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/evaluate.lox)
+      - Error messages should be printed to `stderr`, not `stdout`.
+      - The tester won't check the exact error message in this stage, it will only check that the program exits with code 70.
+
     marketing_md: |-
       In this stage, you'll implement support for handling runtime errors while evaluating the relational operators `>`, `<`, `>=` & `<=`.
 
@@ -2339,6 +2353,9 @@ stages:
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/variable/in_nested_block.lox)
+      - Error messages should be printed to `stderr`, not `stdout`.
+      - The tester won't check the exact error message in this stage, it will only check that the program exits with code 70.
+
     marketing_md: |-
       In this stage, you'll add support for declaring variables using the `var` statement.
 
@@ -4073,6 +4090,9 @@ stages:
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/if/dangling_else.lox)
+      - Error messages should be printed to `stderr`, not `stdout`.
+      - The tester won't check the exact error message in this stage, it will only check that the program exits with code 65.
+
     marketing_md: |-
       In this stage, you'll handle several syntactic errors in your interpreter.
 
@@ -4547,6 +4567,9 @@ stages:
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/function/body_must_be_block.lox)
+      - Error messages should be printed to `stderr`, not `stdout`.
+      - The tester won't check the exact error message in this stage, it will only check that the program exits with code 65.
+
     marketing_md: |-
       In this stage, you'll add support for detecting and handling syntax errors.
 
@@ -4950,6 +4973,9 @@ stages:
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/function/body_must_be_block.lox)
+      - Error messages should be printed to `stderr`, not `stdout`.
+      - The tester won't check the exact error message in this stage, it will only check that the program exits with code 70.
+
     marketing_md: |-
       In this stage, you'll add handling for runtime errors in your lox interpreter.
 
