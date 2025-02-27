@@ -6,4 +6,6 @@
 #
 # Learn more: https://codecrafters.io/program-interface
 
-exec /tmp/interpreter-target "$@"
+set -e # Exit on failure
+
+exec /tmp/codecrafters-build-interpreter-go "$@"

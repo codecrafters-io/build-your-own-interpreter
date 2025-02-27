@@ -6,7 +6,6 @@
 #
 # Learn more: https://codecrafters.io/program-interface
 
-# Exit early if any commands fail
-set -e
+set -e # Exit on failure
 
-go build -o /tmp/interpreter-target ./cmd/myinterpreter
+go build -o /tmp/codecrafters-build-interpreter-go app/*.go
