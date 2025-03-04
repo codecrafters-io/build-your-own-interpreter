@@ -3875,7 +3875,7 @@ stages:
     name: "For statements"
     difficulty: medium
     description_md: |-
-      In this stage, you'll add support for the `for` statement in your interpreter. The `for` statement executes a block of code repeatedly using a “initializer” clause, a “condition” clause and an “increment” clause.
+      In this stage, you'll add support for the `for` statement in your interpreter. The `for` statement executes a block of code repeatedly using a "initializer" clause, a "condition" clause and an "increment" clause.
 
       ### Book reference
 
@@ -5415,30 +5415,30 @@ stages:
 
       The tester will run a series of tests with `test.lox` files that contain programs with identifier resolution and binding.
 
-      For example, if `test.lox` contains the following
+      For example, if `test.lox` contains the following:
 
       ```
-      fun makeCounter() {
-        var i = 0;
-        fun count() {
-          i = i + 1;
-          print i;
+      var variable = "global";
+
+      {
+        fun f() {
+          print variable;
         }
 
-        return count;
-      }
+        f(); // this should print "global"
 
-      var counter = makeCounter();
-      counter();
-      counter();
+        var variable = "local";
+
+        f(); // this should still print "global"
+      }
       ```
 
       The tester will run your program like this:
 
       ```
       $ ./your_program.sh run test.lox
-      1
-      2
+      global
+      global
       ```
 
       The tester will run multiple such tests with randomized expressions, for example:
@@ -5448,26 +5448,30 @@ stages:
       Input:
 
       ```
-      fun makeCounter() {
-        var i = 0;
-        fun count() {
-          i = i + 1;
-          print i;
-        }
-
-        return count;
+      fun global() {
+        print "global";
       }
 
-      var counter = makeCounter();
-      counter();
-      counter();
+      {
+        fun f() {
+          global();
+        }
+
+        f(); // this should print "global"
+
+        fun global() {
+          print "local";
+        }
+
+        f(); // this should also print "global"
+      }
       ```
 
       Expected Output:
 
       ```
-      1
-      2
+      global
+      global
       ```
 
       Test Case 2:
@@ -5475,29 +5479,34 @@ stages:
       Input:
 
       ```
-      {
-        var threshold = 50;
+      var x = "global";
 
-        fun isEven(n) {
-          if (n == 0) return true;
-          if (n > threshold) return false;
-          return isOdd(n - 1);
+      fun outer() {
+        var x = "outer";
+
+        fun middle() {
+          fun inner() {
+            print x; // Should capture "outer", not "global"
+          }
+
+          inner(); // Should print "outer"
+
+          var x = "middle";
+
+          inner(); // Should still print "outer"
         }
 
-        fun isOdd(n) {
-          if (n == 0) return false;
-          if (n > threshold) return false;
-          return isEven(n - 1);
-        }
-
-        print isEven(61);
+        middle();
       }
+
+      outer();
       ```
 
       Expected Output:
 
       ```
-      false
+      outer
+      outer
       ```
 
       Test Case 3:
@@ -5505,43 +5514,33 @@ stages:
       Input:
 
       ```
-      fun makeLogger(prefix) {
-        var logCount = 0;
+      var count = 0;
 
-        fun log(message) {
-          logCount = logCount + 1;
-          print prefix + ": " + message;
-
-          if (logCount > 6) {
-            print prefix + ": Too many log lines!";
-            logCount = 0;
+      {
+        fun makeCounter() {
+          fun counter() {
+            count = count + 1;
+            print count;
           }
+          return counter;
         }
 
-        return log;
+        var counter1 = makeCounter();
+        counter1(); // Should print 1
+        counter1(); // Should print 2
+
+        var count = 0;
+
+        counter1(); // Should print 3
       }
-
-      var debugLog = makeLogger("debug");
-      var errorLog = makeLogger("error");
-
-      debugLog("Starting");
-      debugLog("Processing");
-      debugLog("Finishing");
-      debugLog("Extra line");
-
-      errorLog("Failed!");
-      errorLog("Retrying...");
       ```
 
       Expected Output:
 
       ```
-      debug: Starting
-      debug: Processing
-      debug: Finishing
-      debug: Extra line
-      error: Failed!
-      error: Retrying...
+      1
+      2
+      3
       ```
 
       The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
@@ -5549,5 +5548,8 @@ stages:
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/closure/open_closure_in_function.lox)
+      - The resolver should ensure that variables are resolved to their correct scopes at compile time
+      - The resolver should handle nested functions and closures correctly
+      - The resolver should respect lexical scoping rules
     marketing_md: |-
-      In this stage, you'll add support for closures to your lox interpreter.
+      In this stage, you'll add support for identifier resolution and binding at compile time.
