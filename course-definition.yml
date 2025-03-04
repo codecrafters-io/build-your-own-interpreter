@@ -5425,11 +5425,11 @@ stages:
           print variable;
         }
 
-        f(); // this should print "global"
+        f();
 
         var variable = "local";
 
-        f(); // this should still print "global"
+        f();
       }
       ```
 
@@ -5554,7 +5554,7 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for identifier resolution and binding at compile time.
 
-  - slug: "vx4"
+  - slug: "pt7"
     primary_extension_slug: "resolving-binding"
     name: "Self Initialization"
     difficulty: medium
@@ -5665,7 +5665,7 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for detecting invalid self-initialization of variables, ensuring variables can't reference themselves before they're fully defined.
 
-  - slug: "kp7"
+  - slug: "pz7"
     primary_extension_slug: "resolving-binding"
     name: "Variable Re-declaration"
     difficulty: medium
@@ -5768,3 +5768,128 @@ stages:
       - Error messages should be printed to stderr with the format `[line N] Error at 'identifier': Already a variable with this name in this scope.`
     marketing_md: |-
       In this stage, you'll add support for detecting invalid variable re-declarations, ensuring variables can't be declared multiple times in the same local scope.
+
+  - slug: "eh3"
+    primary_extension_slug: "resolving-binding"
+    name: "Invalid Return"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for detecting invalid return statements. Return statements are only allowed within function bodies and should be detected as errors when they appear in top-level code or blocks outside of functions.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 11.3: A Resolver Class](https://craftinginterpreters.com/resolving-and-binding.html#a-resolver-class).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain programs with return statements in various contexts.
+
+      For example, if `test.lox` contains the following:
+
+      ```
+      fun foo() {
+        // Return statements are allowed within function scope
+        return "at function scope is ok";
+      }
+
+      return;    // Error: Can't return from top-level code
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      [line 6] Error at 'return': Can't return from top-level code.
+      ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      Test Case 1:
+
+      Input:
+
+      ```
+      fun foo() {
+        if (true) {
+          return "early return";    // OK: Inside function
+        }
+
+        for (var i = 0; i < 10; i = i + 1) {
+          return "loop return";     // OK: Inside function
+        }
+      }
+
+      if (true) {
+        return "conditional return";    // Error: Top-level return
+      }
+      ```
+
+      Expected Output:
+
+      ```
+      [line 12] Error at 'return': Can't return from top-level code.
+      ```
+
+      Test Case 2:
+
+      Input:
+
+      ```
+      {
+        // Return statements are not allowed in top-level blocks
+        return "not allowed in a block either";    // Error: Top-level return
+      }
+
+      fun allowed() {
+        if (true) {
+          return "this is fine";    // OK: Inside function
+        }
+        return;    // OK: Inside function
+      }
+      ```
+
+      Expected Output:
+
+      ```
+      [line 3] Error at 'return': Can't return from top-level code.
+      ```
+
+      Test Case 3:
+
+      Input:
+
+      ```
+      fun outer() {
+        fun inner() {
+          return "ok";    // OK: Inside inner function
+        }
+
+        return "also ok";    // OK: Inside outer function
+      }
+
+      if (true) {
+        fun nested() {
+          return;    // OK: Inside nested function
+        }
+
+        return "not ok";    // Error: Top-level return
+      }
+      ```
+
+      Expected Output:
+
+      ```
+      [line 15] Error at 'return': Can't return from top-level code.
+      ```
+
+      The tester will assert that for return statements inside functions, the code should compile successfully. For return statements outside functions (in top-level code or blocks), the program should exit with code 65 and print an appropriate error message.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/return/top_level.lox)
+      - Return statements are only valid inside function bodies
+      - Return statements in top-level code or blocks outside functions are errors
+      - The error should be detected at compile time, not runtime
+      - Error messages should be printed to stderr with the format `[line N] Error at 'return': Can't return from top-level code.`
+    marketing_md: |-
+      In this stage, you'll add support for detecting invalid return statements, ensuring they only appear within function bodies.
