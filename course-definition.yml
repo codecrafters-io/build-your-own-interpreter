@@ -5664,3 +5664,107 @@ stages:
       - Error messages should be printed to stderr with the format `[line N] Error at 'identifier': Can't read local variable in its own initializer.`
     marketing_md: |-
       In this stage, you'll add support for detecting invalid self-initialization of variables, ensuring variables can't reference themselves before they're fully defined.
+
+  - slug: "kp7"
+    primary_extension_slug: "resolving-binding"
+    name: "Variable Re-declaration"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for detecting invalid variable re-declarations in the same scope. This means catching cases where a variable is declared multiple times in the same scope, which is not allowed in local scopes (though it is allowed in global scope).
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 11.3: A Resolver Class](https://craftinginterpreters.com/resolving-and-binding.html#a-resolver-class).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain programs with variable re-declarations.
+
+      For example, if `test.lox` contains the following:
+
+      ```
+      {
+        var a = "value";
+        var a = "other";    // Error: Already a variable with this name in this scope
+      }
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      [line 3] Error at 'a': Already a variable with this name in this scope.
+      ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      Test Case 1:
+
+      Input:
+
+      ```
+      fun foo(a) {
+        var a;    // Error: Already a variable with this name in this scope (parameter counts as declaration)
+      }
+      ```
+
+      Expected Output:
+
+      ```
+      [line 2] Error at 'a': Already a variable with this name in this scope.
+      ```
+
+      Test Case 2:
+
+      Input:
+
+      ```
+      fun foo(arg, arg) {    // Error: Function parameters must be unique
+        "body";
+      }
+      ```
+
+      Expected Output:
+
+      ```
+      [line 1] Error at 'arg': Already a variable with this name in this scope.
+      ```
+
+      Test Case 3:
+
+      Input:
+
+      ```
+      var a = "1";
+      print a;        // Should print 1
+
+      var a;          // Allowed in global scope
+      print a;        // Should print nil
+
+      var a = "2";    // Allowed in global scope
+      print a;        // Should print 2
+
+      {
+        var a = "1";
+        var a = "2";  // Error: Already a variable with this name in this scope
+        print a;
+      }
+      ```
+
+      Expected Output:
+
+      ```
+      [line 12] Error at 'a': Already a variable with this name in this scope.
+      ```
+
+      The tester will assert that for valid global re-declarations, the exit code should be 0. For invalid local re-declarations, the program should exit with code 65 and print an appropriate error message.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/variable/duplicate_local.lox)
+      - Variable re-declaration is allowed in global scope but not in local scopes
+      - Function parameters count as variables in the function's scope and must be unique
+      - The error should be detected at compile time, not runtime
+      - Error messages should be printed to stderr with the format `[line N] Error at 'identifier': Already a variable with this name in this scope.`
+    marketing_md: |-
+      In this stage, you'll add support for detecting invalid variable re-declarations, ensuring variables can't be declared multiple times in the same local scope.
