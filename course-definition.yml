@@ -5457,13 +5457,13 @@ stages:
           global();
         }
 
-        f(); // this should print "global"
+        f();
 
         fun global() {
           print "local";
         }
 
-        f(); // this should also print "global"
+        f();
       }
       ```
 
@@ -5486,14 +5486,14 @@ stages:
 
         fun middle() {
           fun inner() {
-            print x; // Should capture "outer", not "global"
+            print x;
           }
 
-          inner(); // Should print "outer"
+          inner();
 
           var x = "middle";
 
-          inner(); // Should still print "outer"
+          inner();
         }
 
         middle();
@@ -5526,12 +5526,12 @@ stages:
         }
 
         var counter1 = makeCounter();
-        counter1(); // Should print 1
-        counter1(); // Should print 2
+        counter1();
+        counter1();
 
         var count = 0;
 
-        counter1(); // Should print 3
+        counter1();
       }
       ```
 
@@ -5685,7 +5685,7 @@ stages:
       ```
       {
         var a = "value";
-        var a = "other";    // Error: Already a variable with this name in this scope
+        var a = "other";
       }
       ```
 
@@ -5704,7 +5704,7 @@ stages:
 
       ```
       fun foo(a) {
-        var a;    // Error: Already a variable with this name in this scope (parameter counts as declaration)
+        var a;
       }
       ```
 
@@ -5719,7 +5719,7 @@ stages:
       Input:
 
       ```
-      fun foo(arg, arg) {    // Error: Function parameters must be unique
+      fun foo(arg, arg) {
         "body";
       }
       ```
@@ -5736,17 +5736,17 @@ stages:
 
       ```
       var a = "1";
-      print a;        // Should print 1
+      print a;
 
-      var a;          // Allowed in global scope
-      print a;        // Should print nil
+      var a;
+      print a;
 
-      var a = "2";    // Allowed in global scope
-      print a;        // Should print 2
+      var a = "2";
+      print a;
 
       {
         var a = "1";
-        var a = "2";  // Error: Already a variable with this name in this scope
+        var a = "2";
         print a;
       }
       ```
@@ -5788,11 +5788,10 @@ stages:
 
       ```
       fun foo() {
-        // Return statements are allowed within function scope
         return "at function scope is ok";
       }
 
-      return;    // Error: Can't return from top-level code
+      return;
       ```
 
       The tester will run your program like this:
@@ -5811,16 +5810,16 @@ stages:
       ```
       fun foo() {
         if (true) {
-          return "early return";    // OK: Inside function
+          return "early return";
         }
 
         for (var i = 0; i < 10; i = i + 1) {
-          return "loop return";     // OK: Inside function
+          return "loop return";
         }
       }
 
       if (true) {
-        return "conditional return";    // Error: Top-level return
+        return "conditional return";
       }
       ```
 
@@ -5836,15 +5835,14 @@ stages:
 
       ```
       {
-        // Return statements are not allowed in top-level blocks
-        return "not allowed in a block either";    // Error: Top-level return
+        return "not allowed in a block either";
       }
 
       fun allowed() {
         if (true) {
-          return "this is fine";    // OK: Inside function
+          return "this is fine";
         }
-        return;    // OK: Inside function
+        return;
       }
       ```
 
@@ -5861,18 +5859,18 @@ stages:
       ```
       fun outer() {
         fun inner() {
-          return "ok";    // OK: Inside inner function
+          return "ok";
         }
 
-        return "also ok";    // OK: Inside outer function
+        return "also ok";
       }
 
       if (true) {
         fun nested() {
-          return;    // OK: Inside nested function
+          return;
         }
 
-        return "not ok";    // Error: Top-level return
+        return "not ok";
       }
       ```
 
