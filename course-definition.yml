@@ -5404,7 +5404,9 @@ stages:
     difficulty: hard
     description_md: |-
       In this stage, you'll add support for identifier resolution and binding at compile time.
+
       You will have to implement a resolver that will traverse the AST and resolve identifiers to their corresponding bindings, and execute the resolver in a separate pass over the AST.
+      
       We say identifier resolution because in this stage you'll resolve variable declarations, variable assignments, function declarations and all other AST nodes.
 
       ### Book reference
@@ -5549,8 +5551,6 @@ stages:
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/closure/open_closure_in_function.lox)
       - The resolver should ensure that variables are resolved to their correct scopes at compile time
-      - The resolver should handle nested functions and closures correctly
-      - The resolver should respect lexical scoping rules
     marketing_md: |-
       In this stage, you'll add support for identifier resolution and binding at compile time.
 
@@ -5661,16 +5661,16 @@ stages:
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/variable/use_local_in_initializer.lox)
       - Self-initialization is allowed in global scope but not in local scopes
       - The error should be detected at compile time, not runtime
-      - Error messages should be printed to stderr, but the exact error message is not checked.
+      - Error messages should be written to stderr, but the exact error message is not checked.
     marketing_md: |-
       In this stage, you'll add support for detecting invalid self-initialization of variables, ensuring variables can't reference themselves before they're fully defined.
 
   - slug: "pz7"
     primary_extension_slug: "resolving-binding"
-    name: "Variable Re-declaration"
+    name: "Variable Redeclaration"
     difficulty: medium
     description_md: |-
-      In this stage, you'll add support for detecting invalid variable re-declarations in the same scope. This means catching cases where a variable is declared multiple times in the same scope, which is not allowed in local scopes (though it is allowed in global scope).
+      In this stage, you'll add support for detecting invalid variable redeclarations in the same scope. This means catching cases where a variable is declared multiple times in the same local scope.
 
       ### Book reference
 
@@ -5678,7 +5678,7 @@ stages:
 
       ### Tests
 
-      The tester will run a series of tests with `test.lox` files that contain programs with variable re-declarations.
+      The tester will run a series of tests with `test.lox` files that contain programs with variable redeclarations.
 
       For example, if `test.lox` contains the following:
 
@@ -5757,21 +5757,21 @@ stages:
       [line 12] Error at 'a': Already a variable with this name in this scope.
       ```
 
-      The tester will assert that for valid global re-declarations, the exit code should be 0. For invalid local re-declarations, the program should exit with code 65 and print an appropriate error message.
+      The tester will assert that for valid global redeclarations, the exit code should be 0. For invalid local redeclarations, the program should exit with code 65 and print an appropriate error message.
 
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/variable/duplicate_local.lox)
-      - Variable re-declaration is allowed in global scope but not in local scopes
+      - Variable redeclaration is allowed in global scope but not in local scopes
       - The error should be detected at compile time, not runtime
-      - Error messages should be printed to stderr, but the exact error message is not checked.
+      - Error messages should be written to stderr, but the exact error message is not checked.
     marketing_md: |-
-      In this stage, you'll add support for detecting invalid variable re-declarations, ensuring variables can't be declared multiple times in the same local scope.
+      In this stage, you'll add support for detecting invalid variable redeclarations, ensuring variables can't be declared multiple times in the same local scope.
 
   - slug: "eh3"
     primary_extension_slug: "resolving-binding"
     name: "Invalid Return"
-    difficulty: medium
+    difficulty: easy
     description_md: |-
       In this stage, you'll add support for detecting invalid return statements. Return statements are only allowed within function bodies and should be detected as errors when they appear in top-level code or blocks outside of functions.
 
@@ -5885,6 +5885,6 @@ stages:
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/return/at_top_level.lox)
       - The error should be detected at compile time, not runtime
-      - Error messages should be printed to stderr, but the exact error message is not checked.
+      - Error messages should be written to stderr, but the exact error message is not checked.
     marketing_md: |-
       In this stage, you'll add support for detecting invalid return statements, ensuring they only appear within function bodies.
