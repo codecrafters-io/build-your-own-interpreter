@@ -108,7 +108,7 @@ extensions:
     description_markdown: |
       This extension covers chapters 12 of the book ([Classes](https://craftinginterpreters.com/classes.html)).
 
-      In this extension, you'll add the ability to handle lox classes, instances, constructors and instance methods.      
+      In this extension, you'll add the ability to handle lox classes, instances, constructors and methods.
 
 stages:
   - slug: "ry8"
