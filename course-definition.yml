@@ -103,6 +103,13 @@ extensions:
 
       In this extension, you'll add the ability to semantically analyze variable declarations and resolve variable bindings at compile time.
 
+  - slug: "classes"
+    name: "Classes"
+    description_markdown: |
+      This extension covers chapters 12 of the book ([Classes](https://craftinginterpreters.com/classes.html)).
+
+      In this extension, you'll add the ability to handle lox classes, instances, constructors and methods.
+
 stages:
   - slug: "ry8"
     name: "Scanning: Empty file"
@@ -5888,3 +5895,1022 @@ stages:
       - Error messages should be written to stderr, but the exact error message is not checked.
     marketing_md: |-
       In this stage, you'll add support for detecting invalid return statements, ensuring they only appear within function bodies.
+
+  - slug: "vf4"
+    primary_extension_slug: "classes"
+    name: "Class Declarations"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for class declarations in your Lox interpreter. This will allow users to define classes using the `class` keyword, which can later be instantiated and used.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 12.2: Class Declarations](https://craftinginterpreters.com/classes.html#class-declarations).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain class declarations in various contexts.
+
+      For example, if `test.lox` contains the following:
+
+      ```
+      class Spaceship {}
+      print Spaceship;
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      Spaceship
+      ```
+
+      The tester will run multiple such tests with class declarations in different contexts, for example:
+
+      Test Case 1:
+
+      Input:
+
+      ```
+      // Multiple class declarations with empty body
+      class Robot {}
+      class Wizard {}
+      print Robot;
+      print Wizard;
+      print "Both classes successfully printed";
+      ```
+
+      Expected Output:
+
+      ```
+      Robot
+      Wizard
+      Both classes successfully printed
+      ```
+
+      Test Case 2:
+
+      Input:
+
+      ```
+      {
+        // Class declaration inside blocks should work
+        class Dinosaur {}
+        print "Inside block: Dinosaur exists";
+        print Dinosaur;
+      }
+      print "Accessing out-of-scope class:";
+      print Dinosaur; // expect runtime error
+      ```
+
+      Expected Output:
+
+      ```
+      Inside block: Dinosaur exists
+      Dinosaur
+      Accessing out-of-scope class:
+      Undefined variable 'Dinosaur'.
+      [line 8]
+      ```
+
+      Test Case 3:
+
+      Input:
+
+      ```
+      // Class declaration inside function should work
+      fun foo() {
+        class Superhero {}
+        print "Class declared inside function";
+        print Superhero;
+      }
+
+      foo();
+      print "Function called successfully";
+      ```
+
+      Expected Output:
+
+      ```
+      Class declared inside function
+      Superhero
+      Function called successfully
+      ```
+
+      The tester will assert that your program correctly handles class declarations and follows the scoping rules for classes.
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/class/empty.lox)
+      - Classes should follow the same scoping rules as variables
+      - When a class is printed, it should display its name
+      - The tester won't check the exact error message in this stage, it will only check that the program exits with code 70.
+
+    marketing_md: |-
+      In this stage, you'll add support for class declarations, allowing users to define classes in their Lox programs.
+
+  - slug: "yk8"
+    primary_extension_slug: "classes"
+    name: "Class Instances"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for class instances in your Lox interpreter. This will allow users to instantiate classes using the class name followed by parentheses, e.g., `ClassName()`.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 12.3: Creating Instances](https://craftinginterpreters.com/classes.html#creating-instances).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain class instantiation in various contexts.
+
+      For example, if `test.lox` contains the following:
+
+      ```
+      class Spaceship {}
+      var falcon = Spaceship();
+      print falcon;
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      Spaceship instance
+      ```
+
+      The tester will run multiple such tests with class instantiation in different contexts, for example:
+
+      Test Case 1:
+
+      Input:
+
+      ```
+      // Creating multiple instances of the same class
+      class Robot {}
+      var r1 = Robot();
+      var r2 = Robot();
+      
+      print "Created multiple robots:";
+      print r1;
+      print r2;
+      ```
+
+      Expected Output:
+
+      ```
+      Created multiple robots:
+      Robot instance
+      Robot instance
+      ```
+
+      Test Case 2:
+
+      Input:
+
+      ```
+      class Wizard {}
+      class Dragon {}
+
+      // Instantiating classes in a function should work
+      fun createCharacters() {
+        var merlin = Wizard();
+        var smaug = Dragon();
+        print "Characters created in fantasy world:";
+        print merlin;
+        print smaug;
+        return merlin;
+      }
+
+      var mainCharacter = createCharacters();
+      // An instance of a class should be truthy
+      if (mainCharacter) {
+        print "The main character is:";
+        print mainCharacter;
+      } else {
+        print "Failed to create a main character.";
+      }
+      ```
+
+      Expected Output:
+
+      ```
+      Characters created in fantasy world:
+      Wizard instance
+      Dragon instance
+      The main character is:
+      Wizard instance
+      ```
+
+      Test Case 3:
+
+      Input:
+
+      ```
+      class Superhero {}
+
+      var count = 0;
+      while (count < 3) {
+        var hero = Superhero();
+        print "Hero created:";
+        print hero;
+        count = count + 1;
+      }
+
+      print "All heroes created!";
+      ```
+
+      Expected Output:
+
+      ```
+      Hero created:
+      Superhero instance
+      Hero created:
+      Superhero instance
+      Hero created:
+      Superhero instance
+      All heroes created!
+      ```
+
+      The tester will assert that your program correctly handles class instantiation and that instances are printed with the format "ClassName instance".
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/call/object.lox)
+      - Class instances should be truthy when used in conditional expressions
+      - When an instance is printed, it should display its class name followed by the word "instance"
+
+    marketing_md: |-
+      In this stage, you'll add support for class instantiation, allowing users to create instances of classes in their Lox programs.
+
+  - slug: "yf3"
+    primary_extension_slug: "classes"
+    name: "Getters & Setters"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for getting and setting properties on class instances. Properties can be dynamically added to instances after creation and can hold any type of value.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 12.4: Properties on Instances](https://craftinginterpreters.com/classes.html#properties-on-instances).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain property access and modification.
+
+      For example, if `test.lox` contains the following:
+
+      ```
+      // Basic property setting and getting
+      class Spaceship {}
+      var falcon = Spaceship();
+      
+      falcon.name = "Millennium Falcon";
+      falcon.speed = 75.5;
+      
+      print "Ship details:";
+      print falcon.name;
+      print falcon.speed;
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      Ship details:
+      Millennium Falcon
+      75.5
+      ```
+
+      The tester will run multiple such tests with property access in different contexts, for example:
+
+      Test Case 1:
+
+      Input:
+      ```
+      // Multiple properties and conditional access
+      class Robot {}
+      var r2d2 = Robot();
+
+      r2d2.model = "Astromech";
+      r2d2.operational = false;
+
+      if (r2d2.operational) {
+        print r2d2.model;
+        r2d2.mission = "Navigate hyperspace";
+        print r2d2.mission;
+      }
+      ```
+
+      Expected Output:
+      ```
+      ```
+      (No output because the condition is false)
+
+      Test Case 2:
+
+      Input:
+      ```
+      // Multiple instances with properties
+      class Superhero {}
+      var batman = Superhero();
+      var superman = Superhero();
+
+      batman.name = "Batman";
+      batman.called = 18;
+
+      superman.name = "Superman";
+      superman.called = 66;
+
+      print "Times " + superman.name + " was called: ";
+      print superman.called;
+      print "Times " + batman.name + " was called: ";
+      print batman.called;
+      ```
+
+      Expected Output:
+      ```
+      Times Superman was called: 
+      66
+      Times Batman was called: 
+      18
+      ```
+
+      Test Case 3:
+
+      Input:
+      ```
+      // Property manipulation in functions
+      class Wizard {}
+      var gandalf = Wizard();
+
+      gandalf.color = "Grey";
+      gandalf.power = nil;
+      print gandalf.color;
+
+      fun promote(wizard) {
+        wizard.color = "White";
+        if (true) {
+          wizard.power = 100;
+        } else {
+          wizard.power = 0;
+        }
+      }
+
+      promote(gandalf);
+      print gandalf.color;
+      print gandalf.power;
+      ```
+
+      Expected Output:
+      ```
+      Grey
+      White
+      100
+      ```
+
+      The tester will assert that your program correctly handles property access and modification, including:
+      - Setting properties with different types of values
+      - Reading property values
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/benchmark/binary_trees.lox)
+      - Properties can be dynamically added to instances at any time
+      - Properties can hold any valid Lox value (strings, numbers, nil, etc.)
+      - Accessing undefined properties should result in a runtime error
+
+    marketing_md: |-
+      In this stage, you'll add support for getting and setting properties on class instances.
+
+  - slug: "qr2"
+    primary_extension_slug: "classes"
+    name: "Instance Methods"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for instance methods in your Lox interpreter. Methods are functions defined within a class that can be called on instances of that class.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 12.5: Methods on Classes](https://craftinginterpreters.com/classes.html#methods-on-classes).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain method definitions and calls.
+
+      For example, if `test.lox` contains the following:
+
+      ```
+      class Robot {
+        beep() {
+          print "Beep boop!";
+        }
+      }
+
+      var r2d2 = Robot();
+      r2d2.beep();
+
+      Robot().beep();
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      Beep boop!
+      Beep boop!
+      ```
+
+      The tester will run multiple such tests with methods in different contexts, for example:
+
+      Test Case 1:
+
+      Input:
+      ```
+      {
+        class Foo {
+          returnSelf() {
+            return Foo;
+          }
+        }
+
+        print Foo().returnSelf();  // expect: Foo
+      }
+      ```
+
+      Expected Output:
+      ```
+      Foo
+      ```
+
+      Test Case 2:
+
+      Input:
+      ```
+      class Wizard {
+        castSpell(spell) {
+          print "Casting a magical spell: " + spell;
+        }
+      }
+
+      class Dragon {
+        breatheFire(fire, intensity) {
+          print "Breathing " + fire + " with intensity: "
+          + intensity;
+        }
+      }
+
+      // Methods on different class instances
+      var merlin = Wizard();
+      var smaug = Dragon();
+
+      // Conditional method calling
+      if (true) {
+        var action = merlin.castSpell;
+        action("Fireball");
+      } else {
+        var action = smaug.breatheFire;
+        action("Fire", "100");
+      }
+      ```
+
+      Expected Output:
+      ```
+      Casting a magical spell: Fireball
+      ```
+
+      Test Case 3:
+
+      Input:
+      ```
+      class Superhero {
+        useSpecialPower(hero) {
+          print "Using power: " + hero.specialPower;
+        }
+
+        hasSpecialPower(hero) {
+          return hero.specialPower;
+        }
+
+        giveSpecialPower(hero, power) {
+          hero.specialPower = power;
+        }
+      }
+
+      // Methods in functions
+      fun performHeroics(hero, superheroClass) {
+        if (superheroClass.hasSpecialPower(hero)) {
+          superheroClass.useSpecialPower(hero);
+        } else {
+          print "No special power available";
+        }
+      }
+
+      var superman = Superhero();
+      var heroClass = Superhero();
+
+      if (true) {
+        heroClass.giveSpecialPower(superman, "Flight");
+      } else {
+        heroClass.giveSpecialPower(superman, "Strength");
+      }
+
+      performHeroics(superman, heroClass);
+      ```
+
+      Expected Output:
+      ```
+      Using power: Flight
+      ```
+
+      The tester will assert that your program correctly handles methods, including:        
+      - Defining methods within classes
+      - Calling methods on instances
+
+      ### Notes
+
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/benchmark/method_call.lox)
+      - Methods are defined within the class body
+      - Methods can take parameters and return values
+      - Methods can be used to manipulate instance properties
+
+    marketing_md: |-
+      In this stage, you'll add support for instance methods, allowing classes to define behavior that operates on their instances.
+
+  - slug: "yd7"
+    primary_extension_slug: "classes"
+    name: "The 'this' keyword"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for the `this` keyword in your Lox interpreter. The `this` keyword allows methods to access the instance they were called on, enabling full object-oriented programming.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 12.6: This](https://craftinginterpreters.com/classes.html#this).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that use the `this` keyword in various contexts.
+
+      For example, if `test.lox` contains the following:
+
+      ```
+      class Spaceship {
+        identify() {
+          print this;
+        }
+      }
+
+      Spaceship().identify();
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      Spaceship instance
+      ```
+
+      The tester will run multiple such tests with `this` in different contexts, for example:
+
+      Test Case 1:
+
+      Input:
+      ```
+      class Calculator {
+        add(a, b) {
+          return a + b + this.memory;
+        }
+      }
+
+      var calc = Calculator();
+      calc.memory = 82;
+      print calc.add(92, 1);
+      ```
+
+      Expected Output:
+      ```
+      175
+      ```
+
+      Test Case 2:
+
+      Input:
+      ```
+      class Animal {
+        makeSound() {
+          print this.sound;
+        }
+        identify() {
+          print this.species;
+        }
+      }
+
+      var dog = Animal();
+      dog.sound = "Woof";
+      dog.species = "Dog";
+
+      var cat = Animal();
+      cat.sound = "Meow";
+      cat.species = "Cat";
+
+      // Swap methods between instances
+      cat.makeSound = dog.makeSound;
+      dog.identify = cat.identify;
+
+      cat.makeSound();
+      dog.identify();
+      ```
+
+      Expected Output:
+      ```
+      Woof
+      Cat
+      ```
+
+      Test Case 3:
+
+      Input:
+      ```
+      class Wizard {
+        getSpellCaster() {
+          fun castSpell() {
+            print this;
+            print "Casting spell as " + this.name;
+          }
+
+          return castSpell;
+        }
+      }
+
+      var wizard = Wizard();
+      wizard.name = "Merlin";
+      wizard.getSpellCaster()();
+      ```
+
+      Expected Output:
+      ```
+      Wizard instance
+      Casting spell as Merlin
+      ```
+
+      The tester will assert that your program correctly handles the `this` keyword, including:
+      - Referring to the instance in methods
+      - Accessing instance properties through `this`
+      - Maintaining correct `this` binding when methods are passed around
+
+      ### Notes
+
+      - When methods are called, `this` should be bound to the instance the method was called on
+      - The `this` binding should persist even when methods are passed around as first-class values
+      - The output formats in this stage match those in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/benchmark/binary_trees.lox)
+
+    marketing_md: |-
+      In this stage, you'll add support for the `this` keyword, enabling methods to access and manipulate the instance they were called on.
+
+  - slug: "dg2"
+    primary_extension_slug: "classes"
+    name: "Invalid usages of 'this'"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add validation for the `this` keyword to ensure it's only used in appropriate contexts. This involves detecting and reporting errors when `this` is used incorrectly.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 12.6: The 'this' Keyword](https://craftinginterpreters.com/classes.html#the-this-keyword), specifically the error handling parts.
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain invalid usages of `this`.
+
+      For example, if `test.lox` contains the following:
+
+      ```
+      print this;
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      [line 1] Error at 'this': Can't use 'this' outside of a class.
+      ```
+
+      The tester will run multiple tests with invalid `this` usage, for example:
+
+      Test Case 1:
+
+      Input:
+      ```
+      fun notAMethod() {
+        print this;
+      }
+      ```
+
+      Expected Output:
+      ```
+      [line 2] Error at 'this': Can't use 'this' outside of a class.
+      ```
+
+      Test Case 2:
+
+      Input:
+      ```
+      class Person {
+        sayName() {
+          print this();
+        }
+      }
+      Person().sayName();
+      ```
+
+      Expected Output:
+      ```
+      Can only call functions and classes.
+      [line 3]
+      ```
+
+      Test Case 3:
+
+      Input:
+      ```
+      class Confused {
+        method() {
+          fun inner(instance) {
+            var feeling = "confused";
+            print this.feeling;
+          }
+          return inner;
+        }
+      }
+
+      var instance = Confused();
+      var m = instance.method();
+      m(instance);
+      ```
+
+      Expected Output:
+      ```
+      Undefined property 'feeling'.
+      [line 5]
+      ```
+
+      The tester will assert that your program correctly handles invalid `this` usages, including:
+      - Using `this` outside of a class context
+      - Using `this` in functions that aren't methods
+      - Attempting to call `this` as a function
+      - Using `this` incorrectly in nested functions within methods
+
+      ### Notes
+
+      - The `this` keyword should only be valid within class methods
+      - Your interpreter should exit with code 65 for syntax errors and code 70 for runtime errors
+      - These error formats match those in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/this/this_in_top_level_function.lox)
+
+    marketing_md: |-
+      In this stage, you'll add validation for the `this` keyword, ensuring it's only used in appropriate contexts and providing clear error messages when it's not.
+
+  - slug: "ou5"
+    primary_extension_slug: "classes"
+    name: "Constructor calls"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll add support for constructors in your Lox interpreter. In Lox, a constructor is a method named `init()` that is automatically called when a class instance is created.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 12.7: Constructors and Initializers](https://craftinginterpreters.com/classes.html#constructors-and-initializers).
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain constructor definitions and calls.
+
+      For example, if `test.lox` contains the following:
+
+      ```
+      class Default {
+        init() {
+          this.x = "bar";
+          this.y = 91;
+        }
+      }
+      print Default().x;
+      print Default().y;
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      bar
+      91
+      ```
+
+      The tester will run multiple such tests with constructors in different contexts, for example:
+
+      Test Case 1:
+
+      Input:
+      ```
+      class Robot {
+        init(model, function) {
+          this.model = model;
+          this.function = function;
+        }
+      }
+      print Robot("R2-D2", "Astromech").model;
+      ```
+
+      Expected Output:
+      ```
+      R2-D2
+      ```
+
+      Test Case 2:
+
+      Input:
+      ```
+      class Counter {
+        init(startValue) {
+          if (startValue < 0) {
+            print "startValue can't be negative";
+            this.count = 0;
+          } else {
+            this.count = startValue;
+          }
+        }
+      }
+
+      var instance = Counter(-52);
+      print instance.count;
+      print instance.init(52).count;
+      ```
+
+      Expected Output:
+      ```
+      startValue can't be negative
+      0
+      52
+      ```
+
+      Test Case 3:
+
+      Input:
+      ```
+      class Vehicle {
+        init(type) {
+          this.type = type;
+        }
+      }
+
+      class Car {
+        init(make, model) {
+          this.make = make;
+          this.model = model;
+          this.wheels = "four";
+        }
+
+        describe() {
+          print this.make + " " + this.model +
+          " with " + this.wheels + " wheels";
+        }
+      }
+
+      var vehicle = Vehicle("Generic");
+      print "Generic " + vehicle.type;
+
+      var myCar = Car("Toyota", "Corolla");
+      myCar.describe();
+      ```
+
+      Expected Output:
+      ```
+      Generic Generic
+      Toyota Corolla with four wheels
+      ```
+
+      The tester will assert that your program correctly handles constructors, including:
+      - Calling the `init()` method automatically when a class is instantiated
+      - Passing constructor arguments correctly
+      - Setting instance properties in the constructor
+
+      ### Notes
+
+      - The `init()` method can be called explicitly like any other method
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/constructor/call_init_early_return.lox)
+
+    marketing_md: |-
+      In this stage, you'll add support for constructors, allowing classes to initialize their instances with custom logic when they're created.
+
+  - slug: "eb9"
+    primary_extension_slug: "classes"
+    name: "Return within constructors"
+    difficulty: medium
+    description_md: |-
+      In this stage, you'll handle special return behavior for constructors. In Lox, constructors (`init()` methods) have special rules for return statements: they can contain an empty return, but cannot return a value.
+
+      ### Book reference
+
+      The code for this stage is implemented in [Section 12.7: Constructors](https://craftinginterpreters.com/classes.html#constructors), specifically the parts about return statements in initializers.
+
+      ### Tests
+
+      The tester will run a series of tests with `test.lox` files that contain return statements within constructors.
+
+      For example, if `test.lox` contains the following:
+
+      ```
+      class Person {
+        init() {
+          print "world";
+          return;
+        }
+      }
+
+      Person();
+      ```
+
+      The tester will run your program like this:
+
+      ```
+      $ ./your_program.sh run test.lox
+      world
+      ```
+
+      The tester will run multiple such tests with different return patterns in constructors, for example:
+
+      Test Case 1:
+
+      Input:
+      ```
+      class ThingDefault {
+        init() {
+          this.x = "foo";
+          this.y = 42;
+          return this;
+        }
+      }
+      var out = ThingDefault();
+      print out;
+      ```
+
+      Expected Output:
+      ```
+      [line 5] Error at 'return': Can't return a value from an initializer.
+      ```
+
+      Test Case 2:
+
+      Input:
+      ```
+      class Foo {
+        init() {
+          return "something else";
+        }
+      }
+
+      Foo();
+      ```
+
+      Expected Output:
+      ```
+      [line 3] Error at 'return': Can't return a value from an initializer.
+      ```
+
+      Test Case 3:
+
+      Input:
+      ```
+      class Foo {
+        init() {
+          return this.callback();
+        }
+
+        callback() {
+          return "callback";
+        }
+      }
+
+      Foo();
+      ```
+
+      Expected Output:
+      ```
+      [line 3] Error at 'return': Can't return a value from an initializer.
+      ```
+
+      The tester will assert that your program correctly handles return statements in constructors, including:
+      - Allowing empty return statements in constructors
+      - Rejecting return statements with values in constructors
+      - Validating return statements in constructors where the value comes from a method call
+
+      ### Notes
+
+      - A constructor (method named `init()`) should allow empty return statements
+      - A constructor should reject return statements that attempt to return a value
+      - The constructor should implicitly return the instance being constructed
+      - Your interpreter should exit with code 65 for syntax errors
+      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/master/test/constructor/return_in_nested_function.lox)
+
+    marketing_md: |-
+      In this stage, you'll handle return statements within constructors, ensuring they follow Lox's special rules for initializers.
