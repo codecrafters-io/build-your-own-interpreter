@@ -5896,7 +5896,7 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for detecting invalid return statements, ensuring they only appear within function bodies.
 
-  - slug: "801"
+  - slug: "vf4"
     primary_extension_slug: "classes"
     name: "Class Declarations"
     difficulty: medium
@@ -6009,7 +6009,7 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for class declarations, allowing users to define classes in their Lox programs.
 
-  - slug: "802"
+  - slug: "yk8"
     primary_extension_slug: "classes"
     name: "Class Instances"
     difficulty: medium
@@ -6143,7 +6143,7 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for class instantiation, allowing users to create instances of classes in their Lox programs.
 
-  - slug: "803"
+  - slug: "yf3"
     primary_extension_slug: "classes"
     name: "Getters & Setters"
     difficulty: medium
@@ -6283,7 +6283,7 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for getting and setting properties on class instances.
 
-  - slug: "804"
+  - slug: "qr2"
     primary_extension_slug: "classes"
     name: "Instance Methods"
     difficulty: medium
@@ -6437,7 +6437,7 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for instance methods, allowing classes to define behavior that operates on their instances.
 
-  - slug: "805"
+  - slug: "yd7"
     primary_extension_slug: "classes"
     name: "The 'this' keyword"
     difficulty: medium
@@ -6568,7 +6568,7 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for the `this` keyword, enabling methods to access and manipulate the instance they were called on.
 
-  - slug: "806"
+  - slug: "dg2"
     primary_extension_slug: "classes"
     name: "Invalid usages of 'this'"
     difficulty: medium
@@ -6670,7 +6670,7 @@ stages:
     marketing_md: |-
       In this stage, you'll add validation for the `this` keyword, ensuring it's only used in appropriate contexts and providing clear error messages when it's not.
 
-  - slug: "807"
+  - slug: "ou5"
     primary_extension_slug: "classes"
     name: "Constructor calls"
     difficulty: medium
@@ -6802,7 +6802,7 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for constructors, allowing classes to initialize their instances with custom logic when they're created.
 
-  - slug: "808"
+  - slug: "eb9"
     primary_extension_slug: "classes"
     name: "Return within constructors"
     difficulty: medium
