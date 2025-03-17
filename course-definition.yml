@@ -110,6 +110,13 @@ extensions:
 
       In this extension, you'll add the ability to handle lox classes, instances, constructors and methods.
 
+  - slug: "inheritance"
+    name: "Inheritance"
+    description_markdown: |
+      This extension covers chapters 13 of the book ([Inheritance](https://craftinginterpreters.com/inheritance.html)).
+
+      In this extension, you'll add the ability to handle class inheritance, method overriding and the super keyword. 
+
 stages:
   - slug: "ry8"
     name: "Scanning: Empty file"
