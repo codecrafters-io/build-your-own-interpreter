@@ -6909,7 +6909,7 @@ stages:
     marketing_md: |-
       In this stage, you'll handle return statements within constructors, ensuring they follow Lox's special rules for initializers.
 
-  - slug: "901"
+  - slug: "mf6"
     primary_extension_slug: "inheritance"
     name: "Class Hierarchy"
     difficulty: medium
@@ -7013,7 +7013,7 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for class inheritance, allowing users to create class hierarchies in their Lox programs.
 
-  - slug: "902"
+  - slug: "ky1"
     primary_extension_slug: "inheritance"
     name: "Inheriting Methods"
     difficulty: medium
@@ -7117,7 +7117,7 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for method inheritance, allowing subclasses to use methods defined in their parent classes.
 
-  - slug: "903"
+  - slug: "ka5"
     primary_extension_slug: "inheritance" 
     name: "Overriding Methods"
     difficulty: medium
@@ -7255,7 +7255,7 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for method overriding, allowing subclasses to provide their own implementations of inherited methods.
 
-  - slug: "904"
+  - slug: "ab0"
     primary_extension_slug: "inheritance"
     name: "Invalid Class Hierarchies"
     difficulty: medium
@@ -7333,7 +7333,7 @@ stages:
     marketing_md: |-
       In this stage, you'll add validation for class inheritance, ensuring that class hierarchies are valid and providing clear error messages when they're not.
 
-  - slug: "905"
+  - slug: "qi0"
     primary_extension_slug: "inheritance"
     name: "The `super` keyword"
     difficulty: medium
@@ -7423,7 +7423,7 @@ stages:
     marketing_md: |-
       In this stage, you'll add support for the `super` keyword, allowing methods to call overridden methods from their parent class.
 
-  - slug: "906"
+  - slug: "ib9"
     primary_extension_slug: "inheritance"
     name: "Invalid Usages of the `super` Keyword"
     difficulty: medium
