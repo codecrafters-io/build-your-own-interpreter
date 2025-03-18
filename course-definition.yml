@@ -5413,7 +5413,7 @@ stages:
       In this stage, you'll add support for identifier resolution and binding at compile time.
 
       You will have to implement a resolver that will traverse the AST and resolve identifiers to their corresponding bindings, and execute the resolver in a separate pass over the AST.
-      
+
       We say identifier resolution because in this stage you'll resolve variable declarations, variable assignments, function declarations and all other AST nodes.
 
       ### Book reference
@@ -6050,7 +6050,7 @@ stages:
       class Robot {}
       var r1 = Robot();
       var r2 = Robot();
-      
+
       print "Created multiple robots:";
       print r1;
       print r2;
@@ -6164,10 +6164,10 @@ stages:
       // Basic property setting and getting
       class Spaceship {}
       var falcon = Spaceship();
-      
+
       falcon.name = "Millennium Falcon";
       falcon.speed = 75.5;
-      
+
       print "Ship details:";
       print falcon.name;
       print falcon.speed;
@@ -6204,8 +6204,8 @@ stages:
 
       Expected Output:
       ```
-      ```
       (No output because the condition is false)
+      ```
 
       Test Case 2:
 
