@@ -310,6 +310,22 @@ stages:
 
       The tester will assert that the stdout of your program matches the format above.
 
+      Reference character names:
+
+      | Character | Name |
+      | :-------: | :---------: |
+      | , | COMMA |
+      | . | DOT |
+      | - | MINUS |
+      | + | PLUS |
+      | ; | SEMICOLON |
+      | / | SLASH |
+      | * | STAR |
+      | ( | LEFT_PAREN |
+      | ) | RIGHT_PAREN |
+      | { | LEFT_BRACE |
+      | } | RIGHT_BRACE |
+
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning)
