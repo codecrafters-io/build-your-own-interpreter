@@ -310,21 +310,21 @@ stages:
 
       The tester will assert that the stdout of your program matches the format above.
 
-      Reference character names:
+      Here's a list of all the single-character tokens along with their types:
 
-      | Character | Name |
-      | :-------: | :---------: |
-      | , | COMMA |
-      | . | DOT |
-      | - | MINUS |
-      | + | PLUS |
-      | ; | SEMICOLON |
-      | / | SLASH |
-      | * | STAR |
-      | ( | LEFT_PAREN |
-      | ) | RIGHT_PAREN |
-      | { | LEFT_BRACE |
-      | } | RIGHT_BRACE |
+      | Token | Token Type |
+      | :---: | :-----------: |
+      | `,` | `COMMA` |
+      | `.` | `DOT` |
+      | `-` | `MINUS` |
+      | `+` | `PLUS` |
+      | `;` | `SEMICOLON` |
+      | `/` | `SLASH` |
+      | `*` | `STAR` |
+      | `(` | `LEFT_PAREN` |
+      | `)` | `RIGHT_PAREN` |
+      | `{` | `LEFT_BRACE` |
+      | `}` | `RIGHT_BRACE` |
 
       ### Notes
 
