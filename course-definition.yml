@@ -4822,29 +4822,35 @@ stages:
       Input:
 
       ```
-      fun makeAdder(x) {
-        fun add(y) {
-          return x + y;
+      fun square(x) {
+        return x * x;
+      }
+
+      // This higher-order function applies a
+      // function N times to a starting value x.
+      fun applyTimesN(N, f, x) {
+        var i = 0;
+        while (i < N) {
+          x = f(x);
+          i = i + 1;
         }
-        return add;
+        return x;
       }
 
-      fun applyTwice(f, x) {
-        return f(f(x));
-      }
-
-      var addx = makeAdder(2);
-      var addy = makeAdder(2);
-
-      print applyTwice(addx, 2);
-      print applyTwice(addy, 2);
+      // 6 is squared once
+      print applyTimesN(1, square, 6);
+      // 6 is squared twice
+      print applyTimesN(2, square, 6);
+      // 6 is squared thrice
+      print applyTimesN(3, square, 6);
       ```
 
       Expected Output:
 
       ```
-      6
-      6
+      36
+      1296
+      1679616
       ```
 
       Test Case 4:
