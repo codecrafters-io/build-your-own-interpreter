@@ -7257,7 +7257,7 @@ stages:
 
   - slug: "ab0"
     primary_extension_slug: "inheritance"
-    name: "Invalid Class Hierarchies"
+    name: "Inheritance errrors"
     difficulty: medium
     description_md: |-
       In this stage, you'll add validation for class inheritance to ensure valid class hierarchies. This involves detecting and reporting errors for invalid inheritance patterns.
@@ -7335,7 +7335,7 @@ stages:
 
   - slug: "qi0"
     primary_extension_slug: "inheritance"
-    name: "The `super` keyword"
+    name: "The super keyword"
     difficulty: medium
     description_md: |-
       In this stage, you'll add support for the `super` keyword in your Lox interpreter. The `super` keyword allows methods to call overridden methods from their superclass.
@@ -7425,7 +7425,7 @@ stages:
 
   - slug: "ib9"
     primary_extension_slug: "inheritance"
-    name: "Invalid Usages of the `super` Keyword"
+    name: "Invalid Usages of the super Keyword"
     difficulty: medium
     description_md: |-
       In this stage, you'll add validation for the `super` keyword to ensure it's only used in appropriate contexts. This involves detecting and reporting errors when `super` is used incorrectly.
