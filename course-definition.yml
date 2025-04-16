@@ -4761,6 +4761,7 @@ stages:
         return greet;
       }
 
+      var sayHello = makeGreeter();
       sayHello("Bob");
       ```
 
