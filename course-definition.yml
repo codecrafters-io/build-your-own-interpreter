@@ -4743,7 +4743,7 @@ stages:
 
       ### Book reference
 
-      The code for this stage is implemented in [Section 10.4: Function Objects](https://craftinginterpreters.com/functions.html#function-objects).
+      The code for this stage is implemented in [Section 10.6: Local functions and Closures](https://craftinginterpreters.com/functions.html#local-functions-and-closures).
 
       ### Tests
 
@@ -4761,7 +4761,6 @@ stages:
         return greet;
       }
 
-      var sayHello = makeGreeter();
       sayHello("Bob");
       ```
 
