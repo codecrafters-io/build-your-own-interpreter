@@ -39,6 +39,7 @@ languages:
   - slug: "swift"
     release_status: "alpha"
     alpha_tester_usernames: ["JWShroyer"]
+  - slug: "typescript"
   - slug: "zig"
 
 marketing:
