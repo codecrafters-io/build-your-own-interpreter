@@ -12,6 +12,7 @@ defmodule CLI do
         # else
         #   IO.puts("EOF  null") # Placeholder, remove this line when implementing the scanner
         # end
+        :ok # Placeholder, remove this line when implementing the scanner
 
       {:error, reason} ->
         IO.puts(:stderr, "Error reading file: #{reason}")
