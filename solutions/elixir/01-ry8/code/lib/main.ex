@@ -1,0 +1,27 @@
+defmodule CLI do
+  # This is the main entry point of our program
+  def main(["tokenize", filename]) do
+    case File.read(filename) do
+      {:ok, file_contents} ->
+        if file_contents != "" do
+          raise "Scanner not implemented"
+        else
+          IO.puts("EOF  null") # Placeholder, remove this line when implementing the scanner
+        end
+
+      {:error, reason} ->
+        IO.puts(:stderr, "Error reading file: #{reason}")
+        System.halt(1)
+    end
+  end
+
+  def main([command, _filename]) do
+    IO.puts(:stderr, "Unknown command: #{command}")
+    System.halt(1)
+  end
+
+  def main(_) do
+    IO.puts(:stderr, "Usage: ./your_program.sh tokenize <filename>")
+    System.halt(1)
+  end
+end
