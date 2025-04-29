@@ -18,7 +18,7 @@
 +        else
 +          IO.puts("EOF  null") # Placeholder, remove this line when implementing the scanner
 +        end
-         :ok # Placeholder, remove this line when implementing the scanner
+         :ok # Remove this when you uncomment the code above, it's just a placeholder for the compiler
 
        {:error, reason} ->
          IO.puts(:stderr, "Error reading file: #{reason}")
