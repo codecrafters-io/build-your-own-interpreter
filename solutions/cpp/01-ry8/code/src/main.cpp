@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
             std::cerr << "Scanner not implemented" << std::endl;
             return 1;
         }
-        std::cout << "EOF  null" << std::endl; // Placeholder, remove this line when implementing the scanner
+        std::cout << "EOF  null" << std::endl; // Placeholder, replace this line when implementing the scanner
         
     } else {
         std::cerr << "Unknown command: " << command << std::endl;

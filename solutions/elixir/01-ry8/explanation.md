@@ -7,7 +7,7 @@ Study and uncomment the relevant code:
 if file_contents != "" do
   raise "Scanner not implemented"
 else
-  IO.puts("EOF  null") # Placeholder, remove this line when implementing the scanner
+  IO.puts("EOF  null") # Placeholder, replace this line when implementing the scanner
 end
 ```
 

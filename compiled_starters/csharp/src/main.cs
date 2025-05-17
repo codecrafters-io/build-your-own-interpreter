@@ -28,5 +28,5 @@ Console.Error.WriteLine("Logs from your program will appear here!");
 // }
 // else
 // {
-//     Console.WriteLine("EOF  null"); // Placeholder, remove this line when implementing the scanner
+//     Console.WriteLine("EOF  null"); // Placeholder, replace this line when implementing the scanner
 // }

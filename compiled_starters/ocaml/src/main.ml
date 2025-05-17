@@ -20,5 +20,5 @@ let () =
     failwith "Scanner not implemented"
   else
     (* Uncomment this block to pass the first stage *)
-    (* print_endline "EOF  null"; (* Placeholder, remove this line when implementing the scanner *) *)
+    (* print_endline "EOF  null"; (* Placeholder, replace this line when implementing the scanner *) *)
     ()

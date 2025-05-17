@@ -9,7 +9,7 @@ if (!file_contents.empty()) {
     std::cerr << "Scanner not implemented" << std::endl;
     return 1;
 }
-std::cout << "EOF  null" << std::endl; // Placeholder, remove this line when implementing the scanner
+std::cout << "EOF  null" << std::endl; // Placeholder, replace this line when implementing the scanner
 ```
 
 Push your changes to pass the first stage:

@@ -33,6 +33,6 @@ func main() {
 	// if len(fileContents) > 0 {
 	// 	panic("Scanner not implemented")
 	// } else {
-	// 	fmt.Println("EOF  null") // Placeholder, remove this line when implementing the scanner
+	// 	fmt.Println("EOF  null") // Placeholder, replace this line when implementing the scanner
 	// }
 }

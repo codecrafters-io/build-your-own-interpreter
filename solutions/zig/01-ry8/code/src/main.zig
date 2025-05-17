@@ -23,6 +23,6 @@ pub fn main() !void {
     if (file_contents.len > 0) {
         @panic("Scanner not implemented");
     } else {
-        try std.io.getStdOut().writer().print("EOF  null\n", .{}); // Placeholder, remove this line when implementing the scanner
+        try std.io.getStdOut().writer().print("EOF  null\n", .{}); // Placeholder, replace this line when implementing the scanner
     }
 }
