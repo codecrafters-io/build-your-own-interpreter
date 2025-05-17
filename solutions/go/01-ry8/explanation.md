@@ -1,6 +1,6 @@
 The entry point for your Interpreter implementation is in `app/main.go`.
 
-Study and uncomment the relevant code: 
+Study and uncomment the relevant code:
 
 ```go
 // Uncomment this block to pass the first stage
@@ -15,7 +15,7 @@ if err != nil {
 if len(fileContents) > 0 {
 	panic("Scanner not implemented")
 } else {
-	fmt.Println("EOF  null") // Placeholder, remove this line when implementing the scanner
+	fmt.Println("EOF  null") // Placeholder, replace this line when implementing the scanner
 }
 ```
 

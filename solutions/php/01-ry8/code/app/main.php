@@ -19,5 +19,5 @@ $file_contents = file_get_contents($filename);
 if ($file_contents) {
     throw new Exception("Scanner not implemented");
 } else {
-    echo "EOF  null\n"; // Placeholder, remove this line when implementing the scanner
+    echo "EOF  null\n"; // Placeholder, replace this line when implementing the scanner
 }

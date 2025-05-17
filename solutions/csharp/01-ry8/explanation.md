@@ -1,6 +1,6 @@
 The entry point for your Interpreter implementation is in `src/main.cs`.
 
-Study and uncomment the relevant code: 
+Study and uncomment the relevant code:
 
 ```csharp
 // Uncomment this block to pass the first stage
@@ -10,7 +10,7 @@ if (!string.IsNullOrEmpty(fileContents))
 }
 else
 {
-    Console.WriteLine("EOF  null"); // Placeholder, remove this line when implementing the scanner
+    Console.WriteLine("EOF  null"); // Placeholder, replace this line when implementing the scanner
 }
 ```
 

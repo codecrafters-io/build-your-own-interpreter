@@ -1,13 +1,13 @@
 The entry point for your Interpreter implementation is in `src/main/kotlin/Main.kt`.
 
-Study and uncomment the relevant code: 
+Study and uncomment the relevant code:
 
 ```kotlin
 // Uncomment this block to pass the first stage
 if (fileContents.isNotEmpty()) {
     throw NotImplementedError("Scanner not implemented")
 } else {
-    println("EOF  null") // Placeholder, remove this line when implementing the scanner
+    println("EOF  null") // Placeholder, replace this line when implementing the scanner
 }
 ```
 

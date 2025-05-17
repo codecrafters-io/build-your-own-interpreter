@@ -1,6 +1,6 @@
 The entry point for your Interpreter implementation is in `src/main/java/Main.java`.
 
-Study and uncomment the relevant code: 
+Study and uncomment the relevant code:
 
 ```java
 // Uncomment this block to pass the first stage
@@ -8,7 +8,7 @@ Study and uncomment the relevant code:
 if (fileContents.length() > 0) {
   throw new RuntimeException("Scanner not implemented");
 } else {
-  System.out.println("EOF  null"); // Placeholder, remove this line when implementing the scanner
+  System.out.println("EOF  null"); // Placeholder, replace this line when implementing the scanner
 }
 ```
 
