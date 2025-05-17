@@ -1,6 +1,6 @@
 The entry point for your Interpreter implementation is in `app/main.py`.
 
-Study and uncomment the relevant code:
+Study and uncomment the relevant code: 
 
 ```python
 # Uncomment this block to pass the first stage

@@ -1,6 +1,6 @@
 The entry point for your Interpreter implementation is in `lib/main.ex`.
 
-Study and uncomment the relevant code:
+Study and uncomment the relevant code: 
 
 ```elixir
 # TODO: Uncomment this when implementing the scanner

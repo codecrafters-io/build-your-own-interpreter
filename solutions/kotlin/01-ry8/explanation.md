@@ -1,6 +1,6 @@
 The entry point for your Interpreter implementation is in `src/main/kotlin/Main.kt`.
 
-Study and uncomment the relevant code:
+Study and uncomment the relevant code: 
 
 ```kotlin
 // Uncomment this block to pass the first stage

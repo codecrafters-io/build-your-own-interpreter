@@ -1,6 +1,6 @@
 The entry point for your Interpreter implementation is in `src/main/java/Main.java`.
 
-Study and uncomment the relevant code:
+Study and uncomment the relevant code: 
 
 ```java
 // Uncomment this block to pass the first stage

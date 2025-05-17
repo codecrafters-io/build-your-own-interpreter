@@ -1,6 +1,6 @@
 The entry point for your Interpreter implementation is in `app/main.php`.
 
-Study and uncomment the relevant code:
+Study and uncomment the relevant code: 
 
 ```php
 // Uncomment this block to pass the first stage

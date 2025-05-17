@@ -1,6 +1,6 @@
 The entry point for your Interpreter implementation is in `src/main.c`.
 
-Study and uncomment the relevant code:
+Study and uncomment the relevant code: 
 
 ```c
 // Uncomment this block to pass the first stage
