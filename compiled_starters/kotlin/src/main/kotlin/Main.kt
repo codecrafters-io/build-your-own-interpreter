@@ -24,6 +24,6 @@ fun main(args: Array<String>) {
     // if (fileContents.isNotEmpty()) {
     //     throw NotImplementedError("Scanner not implemented")
     // } else {
-    //     println("EOF  null") // Placeholder, remove this line when implementing the scanner
+    //     println("EOF  null") // Placeholder, replace this line when implementing the scanner
     // }
 }

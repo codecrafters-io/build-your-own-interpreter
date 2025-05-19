@@ -4,7 +4,7 @@ Study and uncomment the relevant code:
 
 ```ocaml
 (* Uncomment this block to pass the first stage *)
-print_endline "EOF  null"; (* Placeholder, remove this line when implementing the scanner *)
+print_endline "EOF  null"; (* Placeholder, replace this line when implementing the scanner *)
 ```
 
 Push your changes to pass the first stage:

@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
         //     fprintf(stderr, "Scanner not implemented\n");
         //     exit(1);
         // } 
-        // printf("EOF  null\n"); // Placeholder, remove this line when implementing the scanner
+        // printf("EOF  null\n"); // Placeholder, replace this line when implementing the scanner
         
         free(file_contents);
     } else {
