@@ -9,7 +9,7 @@ homepage: "https://codecrafters.io"
 bug-reports:
   "https://github.com/codecrafters-io/build-your-own-interpreter/issues"
 depends: [
-  "dune" {>= "3.19"}
+  "dune" {>= "3.16"}
   "lwt"
   "odoc" {with-doc}
 ]
