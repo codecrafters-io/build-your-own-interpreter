@@ -776,6 +776,14 @@ stages:
       EOF  null
       ```
 
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      | Input | Expected output |
+      | :---: | :-------------: |
+      | `1` | `NUMBER 1 1.0` |
+      | `2345.6789` | `NUMBER 2345.6789 2345.6789` |
+      | `42.0000` | `NUMBER 42.0000 42.0` |
+
       The tester will assert that the stdout of your program matches the format above.
 
       ### Notes
@@ -1377,9 +1385,9 @@ stages:
 
       ### Notes
 
-      - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/evaluate.lox)
       - For the string literals, the tester will check that the program prints the string without quotes.
       - For the number literals, the tester will check that the program prints the number with the minimum number of decimal places without losing precision. (For example, 10.40 should be printed as 10.4).
+      - The formatting for numbers differs slightly from the scanning and parsing stages, but it aligns with the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/evaluate.lox)
     marketing_md: |-
       In this stage, you'll implement support for evaluating number and string literals.
 
@@ -1915,7 +1923,7 @@ stages:
     name: "Print: Generate output"
     difficulty: medium
     description_md: |-
-      In this stage, you'll add support for generating output using the `print` statement. For this, you'll need to add support for the `print` statement in your AST generator, parser & interpreter.
+      In this stage, you'll add support for the `run` command and handle running the `print` statement. For this, you'll need to update your AST generator, parser & interpreter.
 
       ### Book reference
 
