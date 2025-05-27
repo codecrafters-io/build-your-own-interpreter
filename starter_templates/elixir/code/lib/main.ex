@@ -4,7 +4,7 @@ defmodule CLI do
     case args do
       ["tokenize", filename] ->
         # You can use print statements as follows for debugging, they'll be visible when running tests.
-        IO.puts("Logs from your program will appear here!")
+        IO.puts(:stderr, "Logs from your program will appear here!")
 
         case File.read(filename) do
           {:ok, file_contents} ->
