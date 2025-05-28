@@ -1968,6 +1968,7 @@ stages:
       ### Notes
 
       - This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/string/literals.lox)
+      - The `run` command expects each statement to end with a semicolon. In contrast, the `evaluate` command is intended for single expressions and does not require a semicolon. Your implementation should support both modes of execution.
     marketing_md: |-
       In this stage, you'll add support for generating output using the `print` statement.
 
