@@ -721,7 +721,7 @@ stages:
       EOF  null
       ```
 
-      The tester will assert that an error is raised, and that the error string matches the format above.
+      The tester will assert that a lexical error is raised, the error message matches the expected format, and the program exits with status code 65.
 
       ### Notes
 
