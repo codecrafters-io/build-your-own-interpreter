@@ -5070,18 +5070,26 @@ stages:
       For example, if `test.lox` contains the following
 
       ```
-      var a = 20;
-      {
-        var a = 30;
+      var a = 38;
+
+      fun printAndModify() {
+        print a;
+        var a = 95;
         print a;
       }
+
+      print a;
+      a = 68;
+      printAndModify();
       ```
 
       The tester will run your program like this:
 
       ```
       $ ./your_program.sh run test.lox
-      30
+      38
+      68
+      95
       ```
 
       The tester will run multiple such tests with randomized expressions, for example:
@@ -5091,21 +5099,25 @@ stages:
       Input:
 
       ```
-      var a = 20;
-      {
+      var a = 38;
+
+      fun printAndModify() {
         print a;
-        var a = 42;
+        var a = 95;
         print a;
       }
+
       print a;
+      a = 68;
+      printAndModify();
       ```
 
       Expected Output:
 
       ```
-      20
-      42
-      20
+      38
+      68
+      95
       ```
 
       Test Case 2:
@@ -5142,17 +5154,16 @@ stages:
       Input:
 
       ```
-      var counter = 99;
-      {
-        counter = counter + 5;
-        {
-          counter = counter + 5;
-          print counter;
-        }
+      var counter = 89;
+
+      fun incrementCounter(amount) {
+        counter = counter + amount;
+        print counter;
       }
-      print counter;
+
       {
-        var counter = 99;
+        counter = 83;
+        incrementCounter(6);
         print counter;
       }
       print counter;
@@ -5161,10 +5172,9 @@ stages:
       Expected Output:
 
       ```
-      109
-      109
-      99
-      109
+      89
+      89
+      89
       ```
 
       Test Case 4:
