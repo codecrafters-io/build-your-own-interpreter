@@ -778,7 +778,7 @@ stages:
       EOF  null
       ```
 
-      The tester will run multiple such tests with randomized expressions, for example:
+      The tester will run multiple such tests with randomized tokens, for example:
 
       | Input | Expected output |
       | :---: | :-------------: |
@@ -979,6 +979,14 @@ stages:
       $ ./your_program.sh parse test.lox
       42.47
       ```
+
+      The tester will run multiple such tests with randomized expressions, for example:
+
+      | Input | Expected output |
+      | :---: | :-------------: |
+      | `42` | `42.0` |
+      | `0.0` | `0.0` |
+      | `12.34` | `12.34` |
 
       The tester will assert that the stdout of your program matches the format above.
 
