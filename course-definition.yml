@@ -4782,11 +4782,9 @@ stages:
       For example, if `test.lox` contains the following
 
       ```
-      var globalGreeting = "Hello";
-
       fun makeGreeter() {
         fun greet(name) {
-          print globalGreeting + " " + name;
+          print "Hello " + name;
         }
         return greet;
       }
@@ -4809,11 +4807,9 @@ stages:
       Input:
 
       ```
-      var globalGreeting = "Hello";
-
       fun makeGreeter() {
         fun greet(name) {
-          print globalGreeting + " " + name;
+          print "Hello " + name;
         }
         return greet;
       }
