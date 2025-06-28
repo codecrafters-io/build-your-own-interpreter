@@ -2212,7 +2212,7 @@ stages:
       [line 2]
       ```
 
-      The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+      The tester will assert that the stdout of your program matches the format above, and that the exit code is 70.
 
       ### Notes
 
