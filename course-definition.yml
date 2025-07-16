@@ -2,8 +2,6 @@ slug: "interpreter"
 name: "Build your own Interpreter"
 short_name: "Interpreter"
 release_status: "live"
-
-description_md: |-
   This challenge follows the book [Crafting Interpreters](https://craftinginterpreters.com/) by Robert Nystrom.
 
   In this challenge you'll build an interpreter for [Lox](https://craftinginterpreters.com/the-lox-language.html), a simple scripting
@@ -125,7 +123,6 @@ stages:
   - slug: "ry8"
     name: "Scanning: Empty file"
     difficulty: very_easy
-    description_md: |-
       Before starting this stage, make sure you've read the "Welcome" section of the book that contains these chapters:
 
       - [Introduction](https://craftinginterpreters.com/introduction.html) (chapter 1)
@@ -208,7 +205,6 @@ stages:
   - slug: "ol4"
     name: "Scanning: Parentheses"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for scanning parentheses.
 
       ### Book reference
@@ -247,7 +243,6 @@ stages:
   - slug: "oe8"
     name: "Scanning: Braces"
     difficulty: easy
-    description_md: |-
       In this stage, you'll add support for scanning braces.
 
       ### Book reference
@@ -287,7 +282,6 @@ stages:
   - slug: "xc5"
     name: "Scanning: Other single-character tokens"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for scanning other single-character tokens, namely `,`, `.`, `-`, `+`, `;` and `*`.
       `/` is not covered here, it's covered in later stages.
 
@@ -349,7 +343,6 @@ stages:
   - slug: "ea6"
     name: "Scanning: Lexical errors"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for reporting errors when scanning invalid tokens like `$`, `#`, etc.
 
       ### Book reference
@@ -403,7 +396,6 @@ stages:
   - slug: "mp7"
     name: "Scanning: Assignment & equality Operators"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for scanning assignment & equality operators.
 
       ### Book reference
@@ -444,7 +436,6 @@ stages:
   - slug: "bu3"
     name: "Scanning: Negation & inequality operators"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for scanning negation & inequality operators.
 
       ### Book reference
@@ -483,7 +474,6 @@ stages:
   - slug: "et2"
     name: "Scanning: Relational operators"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for scanning relational operators, which are: `<`, `>`, `<=`, `>=`.
 
       ### Book reference
@@ -523,7 +513,6 @@ stages:
   - slug: "ml2"
     name: "Scanning: Division operator & comments"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for scanning the division operator & comments.
       Comments start with `//`, and the division operator is `/`.
 
@@ -579,7 +568,6 @@ stages:
   - slug: "er2"
     name: "Scanning: Whitespace"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for scanning whitespace characters (tabs, spaces and newlines).
 
       ### Book reference
@@ -621,7 +609,6 @@ stages:
   - slug: "tz7"
     name: "Scanning: Multi-line errors"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for scanning lexical errors, which span multiple lines.
 
       ### Book reference
@@ -675,7 +662,6 @@ stages:
   - slug: "ue7"
     name: "Scanning: String literals"
     difficulty: hard
-    description_md: |-
       In this stage, you'll add support for scanning string literals.
 
       ### Book reference
@@ -736,7 +722,6 @@ stages:
   - slug: "kj0"
     name: "Scanning: Number literals"
     difficulty: hard
-    description_md: |-
       In this stage, you'll add support for scanning number literals.
 
       ### Book reference
@@ -800,7 +785,6 @@ stages:
   - slug: "ey7"
     name: "Scanning: Identifiers"
     difficulty: hard
-    description_md: |-
       In this stage, you'll add support for scanning identifiers.
 
       ### Book reference
@@ -839,7 +823,6 @@ stages:
   - slug: "pq5"
     name: "Scanning: Reserved words"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for scanning reserved words, which are: `and`, `class`, `else`, `false`, `for`, `fun`, `if`, `nil`, `or`, `print`, `return`, `super`, `this`, `true`, `var`, `while`.
 
       ### Book reference
@@ -877,7 +860,6 @@ stages:
     primary_extension_slug: "parsing-expressions"
     name: "Booleans & Nil"
     difficulty: hard
-    description_md: |-
       In this stage you'll implement support for the `parse` command and handle parsing `true`, `false`, and `nil` literals.
 
       ### Book reference
@@ -956,7 +938,6 @@ stages:
     primary_extension_slug: "parsing-expressions"
     name: "Number literals"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for parsing number literals.
 
       ### Book reference
@@ -1000,7 +981,6 @@ stages:
     primary_extension_slug: "parsing-expressions"
     name: "String literals"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for parsing string literals.
 
       ### Book reference
@@ -1036,7 +1016,6 @@ stages:
     primary_extension_slug: "parsing-expressions"
     name: "Parentheses"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for parsing parentheses.
 
       ### Book reference
@@ -1073,7 +1052,6 @@ stages:
     primary_extension_slug: "parsing-expressions"
     name: "Unary Operators"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for parsing the negation operator (`-`) & the logical not operator (`!`).
 
       ### Book reference
@@ -1109,7 +1087,6 @@ stages:
     primary_extension_slug: "parsing-expressions"
     name: "Arithmetic operators (1/2)"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for parsing the multiplication operator (`*`) & the division operator (`/`).
 
       ### Book reference
@@ -1145,7 +1122,6 @@ stages:
     primary_extension_slug: "parsing-expressions"
     name: "Arithmetic operators (2/2)"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for parsing the addition operator (`+`) & the subtraction operator (`-`).
 
       ### Book reference
@@ -1181,7 +1157,6 @@ stages:
     primary_extension_slug: "parsing-expressions"
     name: "Comparison operators"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for parsing comparison operators: `>`, `<`, `>=` & `<=`.
 
       ### Book reference
@@ -1217,7 +1192,6 @@ stages:
     primary_extension_slug: "parsing-expressions"
     name: "Equality operators"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for parsing equality operators: `==` & `!=`.
 
       ### Book reference
@@ -1253,7 +1227,6 @@ stages:
     primary_extension_slug: "parsing-expressions"
     name: "Syntactic errors"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for handling syntax errors in expressions.
 
       ### Book reference
@@ -1292,7 +1265,6 @@ stages:
     primary_extension_slug: "evaluating-expressions"
     name: "Literals: Booleans & Nil"
     difficulty: hard
-    description_md: |-
       In this stage you'll implement support for the `evaluate` command and handle evaluating the `true`, `false`, and `nil` literals.
 
       ### Book reference
@@ -1366,7 +1338,6 @@ stages:
     primary_extension_slug: "evaluating-expressions"
     name: "Literals: Strings & Numbers"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for evaluating number and string literals.
 
       ### Book reference
@@ -1412,7 +1383,6 @@ stages:
     primary_extension_slug: "evaluating-expressions"
     name: "Parentheses"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for evaluating expressions inside parentheses.
 
       ### Book reference
@@ -1458,7 +1428,6 @@ stages:
     primary_extension_slug: "evaluating-expressions"
     name: "Unary Operators: Negation & Not"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for evaluating unary operators `-` and `!`.
 
       ### Book reference
@@ -1504,7 +1473,6 @@ stages:
     primary_extension_slug: "evaluating-expressions"
     name: "Arithmetic Operators (1/2)"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for evaluating binary operators `*` and `/`.
 
       ### Book reference
@@ -1549,7 +1517,6 @@ stages:
     primary_extension_slug: "evaluating-expressions"
     name: "Arithmetic Operators (2/2)"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for evaluating binary operators `+` and `-`.
 
       ### Book reference
@@ -1595,7 +1562,6 @@ stages:
     primary_extension_slug: "evaluating-expressions"
     name: "String Concatenation"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for overloading the `+` operator. When the `+` operator is applied to two strings, it should concatenate them.
 
       ### Book reference
@@ -1640,7 +1606,6 @@ stages:
     primary_extension_slug: "evaluating-expressions"
     name: "Relational Operators"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for evaluating relational operators `>`, `<`, `>=` & `<=`.
 
       ### Book reference
@@ -1685,7 +1650,6 @@ stages:
     primary_extension_slug: "evaluating-expressions"
     name: "Equality Operators"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for evaluating equality operators `==` and `!=`.
 
       ### Book reference
@@ -1731,7 +1695,6 @@ stages:
     primary_extension_slug: "evaluating-expressions"
     name: "Runtime Errors: Unary Operators"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for handling runtime errors while evaluating the unary operator `-`.
 
       ### Book reference
@@ -1783,7 +1746,6 @@ stages:
     primary_extension_slug: "evaluating-expressions"
     name: "Runtime Errors: Binary Operators (1/2)"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for handling runtime errors while evaluating the binary operators `*` & `/`.
 
       ### Book reference
@@ -1835,7 +1797,6 @@ stages:
     primary_extension_slug: "evaluating-expressions"
     name: "Runtime Errors: Binary Operators (2/2)"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for handling runtime errors while evaluating the binary operators `+` & `-`.
 
       ### Book reference
@@ -1887,7 +1848,6 @@ stages:
     primary_extension_slug: "evaluating-expressions"
     name: "Runtime Errors: Relational Operators"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for handling runtime errors while evaluating the relational operators `>`, `<`, `>=` & `<=`.
 
       ### Book reference
@@ -1939,7 +1899,6 @@ stages:
     primary_extension_slug: "statements-and-state"
     name: "Print: Generate output"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for the `run` command and handle running the `print` statement. For this, you'll need to update your AST generator, parser & interpreter.
 
       ### Book reference
@@ -1993,7 +1952,6 @@ stages:
     primary_extension_slug: "statements-and-state"
     name: "Print: Multiple statements"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for handling multiple statements in a single `program`. From here on, we will create test programs that span across multiple statements.
 
       ### Book reference
@@ -2115,7 +2073,6 @@ stages:
     primary_extension_slug: "statements-and-state"
     name: "Expression statements"
     difficulty: easy
-    description_md: |-
       In this stage, you'll add support for handling expression statements. An expression statement lets you place an expression where a statement is expected. They exist to evaluate expressions that have side effects.
 
       ### Book reference
@@ -2224,7 +2181,6 @@ stages:
     primary_extension_slug: "statements-and-state"
     name: "Variables: Declare variables"
     difficulty: easy
-    description_md: |-
       In this stage, you'll add support for declaring variables using the `var` statement. For this, you'll need to add support for the `var` declaration in your AST generator, parser & interpreter.
 
       ### Book reference
@@ -2328,7 +2284,6 @@ stages:
     primary_extension_slug: "statements-and-state"
     name: "Variables: Runtime Errors"
     difficulty: easy
-    description_md: |-
       In this stage, you'll add support for handling runtime errors while accessing variables that haven't been declared yet.
 
       ### Book reference
@@ -2438,7 +2393,6 @@ stages:
     primary_extension_slug: "statements-and-state"
     name: "Variables: Initialize variables"
     difficulty: easy
-    description_md: |-
       In this stage, you'll add support for initializing variables with the value passed to the `var` statement, or initializing them with `nil` if no value is passed.
 
       ### Book reference
@@ -2546,7 +2500,6 @@ stages:
     primary_extension_slug: "statements-and-state"
     name: "Variables: Redeclare variables"
     difficulty: easy
-    description_md: |-
       In this stage, you'll add support for redeclaring variables using the `var` statement.
 
       ### Book reference
@@ -2660,7 +2613,6 @@ stages:
     primary_extension_slug: "statements-and-state"
     name: "Assignment operation"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for assigning values to variables using the `=` operator. You need to only support variables that have already been declared on the left side of the assignment.
       Note that assignment is right associative, so `a = b = 1` is equivalent to `a = (b = 1)`.
 
@@ -2783,7 +2735,6 @@ stages:
     primary_extension_slug: "statements-and-state"
     name: "Block syntax"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for block syntax in your interpreter. Blocks are enclosed in curly braces `{}` and are used to group statements together. They are also used to create local scopes. We will test scopes in the next stage, in this stage you just need to handle the block syntax.
 
       ### Book reference
@@ -2909,7 +2860,6 @@ stages:
     primary_extension_slug: "statements-and-state"
     name: "Scopes"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for scopes in your interpreter. Scopes are created by blocks, and they are used to group variables together. We will test variables in local scopes, nested scopes, shadowing of variables, and accessing variables outside of the scope where they are defined.
 
       ### Book reference
@@ -3062,7 +3012,6 @@ stages:
     primary_extension_slug: "control-flow"
     name: "If statements"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for the `if` statement in your interpreter. The `if` statement is used to conditionally execute statements based on a boolean condition.
 
       ### Book reference
@@ -3170,7 +3119,6 @@ stages:
     primary_extension_slug: "control-flow"
     name: "Else statements"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for the `else` statement in your interpreter. The `else` statement is used to conditionally execute statements when the `if` condition is false.
 
       ### Book reference
@@ -3291,7 +3239,6 @@ stages:
     primary_extension_slug: "control-flow"
     name: "Else-if statements"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for the `else-if` statement in your interpreter. The `else-if` statement is used to conditionally execute statements when the `if` condition is false.
 
       ### Book reference
@@ -3410,7 +3357,6 @@ stages:
     primary_extension_slug: "control-flow"
     name: "Nested if statements"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for nested `if` statements in your interpreter. Nested `if` statements are `if` statements that are inside the body of another `if` statement.
 
       ### Book reference
@@ -3547,7 +3493,6 @@ stages:
     primary_extension_slug: "control-flow"
     name: "Logical OR operator"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for the logical OR operator in your interpreter. The logical OR operator combines two conditions and returns the first value that is truthy.
 
       ### Book reference
@@ -3677,7 +3622,6 @@ stages:
     primary_extension_slug: "control-flow"
     name: "Logical AND operator"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for the logical AND operator in your interpreter. The logical AND operator combines two conditions and returns the first falsy value. If all values are truthy, it returns the last value.
 
       ### Book reference
@@ -3803,7 +3747,6 @@ stages:
     primary_extension_slug: "control-flow"
     name: "While statements"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for `while` statements in your interpreter. `while` statements are used to execute a block of code repeatedly while a condition is true.
 
       ### Book reference
@@ -3942,7 +3885,6 @@ stages:
     primary_extension_slug: "control-flow"
     name: "For statements"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for the `for` statement in your interpreter. The `for` statement executes a block of code repeatedly using a "initializer" clause, a "condition" clause and an "increment" clause.
 
       ### Book reference
@@ -4076,7 +4018,6 @@ stages:
     primary_extension_slug: "control-flow"
     name: "Syntactic errors"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for syntactic errors in your interpreter. Syntactic errors are errors that occur when the code is not written in the correct syntax.
 
       ### Book reference
@@ -4175,7 +4116,6 @@ stages:
     primary_extension_slug: "functions"
     name: "Native functions"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for native functions in your lox interpreter.
 
       You can just define a single native function for now, we will go with `clock()` which returns the number of seconds elapsed since midnight January 1, 1970 UTC.
@@ -4320,7 +4260,6 @@ stages:
     primary_extension_slug: "functions"
     name: "Functions without arguments"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for declaring, defining and interpreting user defined functions with no arguments in your lox interpreter.
 
       ### Book reference
@@ -4433,7 +4372,6 @@ stages:
     primary_extension_slug: "functions"
     name: "Functions with arguments"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for declaring, defining and interpreting user defined functions with arguments in your lox interpreter.
 
       ### Book reference
@@ -4553,7 +4491,6 @@ stages:
     primary_extension_slug: "functions"
     name: "Syntax errors"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for detecting and handling syntax errors in user defined functions in your lox interpreter.
 
       ### Book reference
@@ -4652,7 +4589,6 @@ stages:
     primary_extension_slug: "functions"
     name: "Return statements"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for return statements in functions in your lox interpreter.
 
       ### Book reference
@@ -4768,7 +4704,6 @@ stages:
     primary_extension_slug: "functions"
     name: "Higher order functions"
     difficulty: hard
-    description_md: |-
       In this stage, you'll add support for higher order functions in your lox interpreter.
 
       ### Book reference
@@ -4951,7 +4886,6 @@ stages:
     primary_extension_slug: "functions"
     name: "Runtime errors"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for runtime errors in your lox interpreter.
 
       ### Book reference
@@ -5060,7 +4994,6 @@ stages:
     primary_extension_slug: "functions"
     name: "Function scope"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for global and local scope in your lox interpreter.
 
       ### Book reference
@@ -5258,7 +5191,6 @@ stages:
     primary_extension_slug: "functions"
     name: "Closures"
     difficulty: hard
-    description_md: |-
       In this stage, you'll add support for closures in your lox interpreter.
 
       ### Book reference
@@ -5482,7 +5414,6 @@ stages:
     primary_extension_slug: "resolving-binding"
     name: "Identifier Resolution"
     difficulty: hard
-    description_md: |-
       In this stage, you'll add support for identifier resolution and binding at compile time.
 
       You will have to implement a resolver that will traverse the AST and resolve identifiers to their corresponding bindings, and execute the resolver in a separate pass over the AST.
@@ -5638,7 +5569,6 @@ stages:
     primary_extension_slug: "resolving-binding"
     name: "Self Initialization"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for detecting invalid self-initialization of variables. This means catching cases where a variable tries to use itself in its own initializer before it has been fully defined.
 
       ### Book reference
@@ -5749,7 +5679,6 @@ stages:
     primary_extension_slug: "resolving-binding"
     name: "Variable Redeclaration"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for detecting invalid variable redeclarations in the same scope. This means catching cases where a variable is declared multiple times in the same local scope.
 
       ### Book reference
@@ -5852,7 +5781,6 @@ stages:
     primary_extension_slug: "resolving-binding"
     name: "Invalid Return"
     difficulty: easy
-    description_md: |-
       In this stage, you'll add support for detecting invalid return statements. Return statements are only allowed within function bodies and should be detected as errors when they appear in top-level code or blocks outside of functions.
 
       ### Book reference
@@ -5973,7 +5901,6 @@ stages:
     primary_extension_slug: "classes"
     name: "Class Declarations"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for class declarations in your Lox interpreter. This will allow users to define classes using the `class` keyword, which can later be instantiated and used.
 
       ### Book reference
@@ -6086,7 +6013,6 @@ stages:
     primary_extension_slug: "classes"
     name: "Class Instances"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for class instances in your Lox interpreter. This will allow users to instantiate classes using the class name followed by parentheses, e.g., `ClassName()`.
 
       ### Book reference
@@ -6220,7 +6146,6 @@ stages:
     primary_extension_slug: "classes"
     name: "Getters & Setters"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for getting and setting properties on class instances. Properties can be dynamically added to instances after creation and can hold any type of value.
 
       ### Book reference
@@ -6360,7 +6285,6 @@ stages:
     primary_extension_slug: "classes"
     name: "Instance Methods"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for instance methods in your Lox interpreter. Methods are functions defined within a class that can be called on instances of that class.
 
       ### Book reference
@@ -6514,7 +6438,6 @@ stages:
     primary_extension_slug: "classes"
     name: "The 'this' keyword"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for the `this` keyword in your Lox interpreter. The `this` keyword allows methods to access the instance they were called on, enabling full object-oriented programming.
 
       ### Book reference
@@ -6645,7 +6568,6 @@ stages:
     primary_extension_slug: "classes"
     name: "Invalid usages of 'this'"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add validation for the `this` keyword to ensure it's only used in appropriate contexts. This involves detecting and reporting errors when `this` is used incorrectly.
 
       ### Book reference
@@ -6741,7 +6663,6 @@ stages:
     primary_extension_slug: "classes"
     name: "Constructor calls"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for constructors in your Lox interpreter. In Lox, a constructor is a method named `init()` that is automatically called when a class instance is created.
 
       ### Book reference
@@ -6873,7 +6794,6 @@ stages:
     primary_extension_slug: "classes"
     name: "Return within constructors"
     difficulty: medium
-    description_md: |-
       In this stage, you'll handle special return behavior for constructors. In Lox, constructors (`init()` methods) have special rules for return statements: they can contain an empty return, but cannot return a value.
 
       ### Book reference
@@ -6979,7 +6899,6 @@ stages:
     primary_extension_slug: "inheritance"
     name: "Class Hierarchy"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for class inheritance in your Lox interpreter. This will allow users to define class hierarchies using the `<` operator to specify a superclass.
 
       ### Book reference
@@ -7083,7 +7002,6 @@ stages:
     primary_extension_slug: "inheritance"
     name: "Inheriting Methods"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for method inheritance in your Lox interpreter. This allows subclasses to inherit and use methods defined in their superclass.
 
       ### Book reference
@@ -7187,7 +7105,6 @@ stages:
     primary_extension_slug: "inheritance"
     name: "Overriding Methods"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for method overriding in your Lox interpreter. This allows subclasses to provide their own implementation of methods defined in their superclass.
 
       ### Book reference
@@ -7325,7 +7242,6 @@ stages:
     primary_extension_slug: "inheritance"
     name: "Inheritance errrors"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add validation for class inheritance to ensure valid class hierarchies. This involves detecting and reporting errors for invalid inheritance patterns.
 
       ### Book reference
@@ -7403,7 +7319,6 @@ stages:
     primary_extension_slug: "inheritance"
     name: "The super keyword"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add support for the `super` keyword in your Lox interpreter. The `super` keyword allows methods to call overridden methods from their superclass.
 
       ### Book reference
@@ -7493,7 +7408,6 @@ stages:
     primary_extension_slug: "inheritance"
     name: "Invalid Usages of the super Keyword"
     difficulty: medium
-    description_md: |-
       In this stage, you'll add validation for the `super` keyword to ensure it's only used in appropriate contexts. This involves detecting and reporting errors when `super` is used incorrectly.
 
       ### Book reference
