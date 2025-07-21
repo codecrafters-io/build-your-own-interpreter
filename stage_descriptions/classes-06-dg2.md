@@ -80,7 +80,7 @@ Undefined property 'feeling'.
 [line 5]
 ```
 
-The tester will assert that for valid usages of this, the exit code should be 0. For invalid returns, the program should exit with code 65 (compile error) and print an appropriate error message.
+The tester will assert that for valid usages of this, the exit code should be 0. For compilation errors, the program should exit with code 65. For runtime errors, the program should exit with code 70. Both errors should print an appropriate error message.
 
 ### Notes
 
