@@ -8,4 +8,4 @@ debug: false
 # on Codecrafters.
 #
 # Available versions: php-8.4
-language_pack: php-8.4
+buildpack: php-8.4
