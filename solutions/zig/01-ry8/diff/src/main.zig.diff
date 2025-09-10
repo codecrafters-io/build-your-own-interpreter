@@ -1,21 +1,13 @@
-@@ -1,40 +1,37 @@
+@@ -1,33 +1,29 @@
  const std = @import("std");
+ const stdout = std.fs.File.stdout();
 
  pub fn main() !void {
-     var stdout_buffer: [1024]u8 = undefined;
-     var stdout_writer = std.fs.File.stdout().writer(&stdout_buffer);
-     const stdout = &stdout_writer.interface;
-
--    // You can use print statements as follows for debugging, they'll be visible when running tests.
--    try stdout.print("Logs from your program will appear here!\n", .{});
-     try stdout.flush();
-
      const args = try std.process.argsAlloc(std.heap.page_allocator);
      defer std.process.argsFree(std.heap.page_allocator, args);
 
      if (args.len < 3) {
-         try stdout.print("Usage: ./your_program.sh tokenize <filename>\n", .{});
-         try stdout.flush();
+         std.debug.print("Usage: ./your_program.sh tokenize <filename>\n", .{});
          std.process.exit(1);
      }
 
@@ -23,25 +15,25 @@
      const filename = args[2];
 
      if (!std.mem.eql(u8, command, "tokenize")) {
-         try stdout.print("Unknown command: {s}\n", .{command});
-         try stdout.flush();
+         std.debug.print("Unknown command: {s}\n", .{command});
          std.process.exit(1);
      }
 
      const file_contents = try std.fs.cwd().readFileAlloc(std.heap.page_allocator, filename, std.math.maxInt(usize));
      defer std.heap.page_allocator.free(file_contents);
 
+-    // You can use print statements as follows for debugging, they'll be visible when running tests.
+-    std.debug.print("Logs from your program will appear here!\n", .{});
+-
 -    // Uncomment this block to pass the first stage
 -    // if (file_contents.len > 0) {
 -    //     @panic("Scanner not implemented");
 -    // } else {
--    //     try stdout.print("EOF  null\n", .{}); // Placeholder, replace this line when implementing the scanner
--    //     try stdout.flush();
+-    //     try stdout.writeAll("EOF  null\n"); // Placeholder, replace this line when implementing the scanner
 -    // }
 +    if (file_contents.len > 0) {
 +        @panic("Scanner not implemented");
 +    } else {
-+        try stdout.print("EOF  null\n", .{}); // Placeholder, replace this line when implementing the scanner
-+        try stdout.flush();
++        try stdout.writeAll("EOF  null\n"); // Placeholder, replace this line when implementing the scanner
 +    }
  }

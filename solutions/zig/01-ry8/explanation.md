@@ -7,8 +7,7 @@ Study and uncomment the relevant code:
 if (file_contents.len > 0) {
     @panic("Scanner not implemented");
 } else {
-    try stdout.print("EOF  null\n", .{}); // Placeholder, replace this line when implementing the scanner
-    try stdout.flush();
+    try stdout.writeAll("EOF  null\n"); // Placeholder, replace this line when implementing the scanner
 }
 ```
 
