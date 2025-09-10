@@ -6,7 +6,7 @@ pub fn main() !void {
     defer std.process.argsFree(std.heap.page_allocator, args);
 
     if (args.len < 3) {
-        try stdout.writeAll("Usage: ./your_program.sh tokenize <filename>\n");
+        std.debug.print("Usage: ./your_program.sh tokenize <filename>\n", .{});
         std.process.exit(1);
     }
 
@@ -14,7 +14,7 @@ pub fn main() !void {
     const filename = args[2];
 
     if (!std.mem.eql(u8, command, "tokenize")) {
-        try stdout.writeAll("Unknown command: {s}\n");
+        std.debug.print("Unknown command: {s}\n", .{command});
         std.process.exit(1);
     }
 
@@ -22,7 +22,7 @@ pub fn main() !void {
     defer std.heap.page_allocator.free(file_contents);
 
     // You can use print statements as follows for debugging, they'll be visible when running tests.
-    try stdout.writeAll("Logs from your program will appear here!\n");
+    std.debug.print("Logs from your program will appear here!\n", .{});
 
     // Uncomment this block to pass the first stage
     // if (file_contents.len > 0) {

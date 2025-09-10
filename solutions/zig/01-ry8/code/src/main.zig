@@ -6,7 +6,7 @@ pub fn main() !void {
     defer std.process.argsFree(std.heap.page_allocator, args);
 
     if (args.len < 3) {
-        try stdout.writeAll("Usage: ./your_program.sh tokenize <filename>\n");
+        std.debug.print("Usage: ./your_program.sh tokenize <filename>\n", .{});
         std.process.exit(1);
     }
 
@@ -14,7 +14,7 @@ pub fn main() !void {
     const filename = args[2];
 
     if (!std.mem.eql(u8, command, "tokenize")) {
-        try stdout.writeAll("Unknown command: {s}\n");
+        std.debug.print("Unknown command: {s}\n", .{command});
         std.process.exit(1);
     }
 
