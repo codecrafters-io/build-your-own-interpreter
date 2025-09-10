@@ -1,11 +1,18 @@
 const std = @import("std");
 
 pub fn main() !void {
+    var stdout_buffer: [1024]u8 = undefined;
+    var stdout_writer = std.fs.File.stdout().writer(&stdout_buffer);
+    const stdout = &stdout_writer.interface;
+
+    try stdout.flush();
+
     const args = try std.process.argsAlloc(std.heap.page_allocator);
     defer std.process.argsFree(std.heap.page_allocator, args);
 
     if (args.len < 3) {
-        std.debug.print("Usage: ./your_program.sh tokenize <filename>\n", .{});
+        try stdout.print("Usage: ./your_program.sh tokenize <filename>\n", .{});
+        try stdout.flush();
         std.process.exit(1);
     }
 
@@ -13,7 +20,8 @@ pub fn main() !void {
     const filename = args[2];
 
     if (!std.mem.eql(u8, command, "tokenize")) {
-        std.debug.print("Unknown command: {s}\n", .{command});
+        try stdout.print("Unknown command: {s}\n", .{command});
+        try stdout.flush();
         std.process.exit(1);
     }
 
@@ -23,6 +31,7 @@ pub fn main() !void {
     if (file_contents.len > 0) {
         @panic("Scanner not implemented");
     } else {
-        try std.io.getStdOut().writer().print("EOF  null\n", .{}); // Placeholder, replace this line when implementing the scanner
+        try stdout.print("EOF  null\n", .{}); // Placeholder, replace this line when implementing the scanner
+        try stdout.flush();
     }
 }
