@@ -1,14 +1,3 @@
-Before starting this stage, make sure you've read the "Welcome" section of the book that contains these chapters:
-
-- [Introduction](https://craftinginterpreters.com/introduction.html) (chapter 1)
-- [A Map of the Territory](https://craftinginterpreters.com/a-map-of-the-territory.html) (chapter 2)
-- [The Lox Language](https://craftinginterpreters.com/the-lox-language.html) (chapter 3)
-
-These chapters don't involve writing code, so they won't be covered in this challenge. This challenge will start
-from chapter 4, [Scanning](https://craftinginterpreters.com/scanning.html).
-
----
-
 In this stage, you'll implement the `tokenize` command to handle empty .lox files.
 
 ### The `tokenize` command
