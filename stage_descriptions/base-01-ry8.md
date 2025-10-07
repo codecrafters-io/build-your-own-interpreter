@@ -1,4 +1,4 @@
-In this stage, you'll implement the `tokenize` command to handle empty .lox files.
+An interpreter’s first job is to turn raw source code text into tokens (the smallest meaningful units of code). In this stage, you’ll handle the simplest possible input: an empty .lox file.
 
 ### The `tokenize` command
 
