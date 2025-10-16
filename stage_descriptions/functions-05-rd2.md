@@ -35,7 +35,7 @@ fun fib(n) {
 }
 
 var start = clock();
-print fib(32) == 2178309;
+print fib(10) == 55;
 print (clock() - start) < 5; // 5 seconds
 ```
 
