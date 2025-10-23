@@ -8,7 +8,7 @@ defmodule CLI do
 
         case File.read(filename) do
           {:ok, file_contents} ->
-            # TODO: Uncomment this when implementing the scanner
+            # TODO: Uncomment the code below to pass the first stage
             # if file_contents != "" do
             #   raise "Scanner not implemented"
             # else

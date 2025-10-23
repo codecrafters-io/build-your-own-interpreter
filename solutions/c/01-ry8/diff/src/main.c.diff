@@ -23,7 +23,7 @@
 -        
          char *file_contents = read_file_contents(argv[2]);
 
--        // Uncomment this block to pass the first stage
+-        // TODO: Uncomment the code below to pass the first stage
 -        // if (strlen(file_contents) > 0) {
 -        //     fprintf(stderr, "Scanner not implemented\n");
 -        //     exit(1);

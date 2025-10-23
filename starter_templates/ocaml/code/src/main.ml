@@ -19,6 +19,6 @@ let () =
     (* Implement & use your scanner here *)
     failwith "Scanner not implemented"
   else
-    (* Uncomment this block to pass the first stage *)
+    (* TODO: Uncomment the code below to pass the first stage *)
     (* print_endline "EOF  null"; (* Placeholder, replace this line when implementing the scanner *) *)
     ()

@@ -21,7 +21,7 @@
 
      val fileContents = File(filename).readText()
 
--    // Uncomment this block to pass the first stage
+-    // TODO: Uncomment the code below to pass the first stage
 -    // if (fileContents.isNotEmpty()) {
 -    //     throw NotImplementedError("Scanner not implemented")
 -    // } else {
