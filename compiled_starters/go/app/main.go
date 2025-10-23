@@ -21,7 +21,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	// Uncomment this block to pass the first stage
+	// Uncomment the code below to pass the first stage
 	//
 	// filename := os.Args[2]
 	// fileContents, err := os.ReadFile(filename)

@@ -22,7 +22,7 @@ fn main() {
                 String::new()
             });
 
-            // Uncomment this block to pass the first stage
+            // Uncomment the code below to pass the first stage
             // if !file_contents.is_empty() {
             //     panic!("Scanner not implemented");
             // } else {

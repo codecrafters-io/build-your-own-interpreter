@@ -24,7 +24,7 @@ do {
     exit(1)
 }
 
-// Uncomment this block to pass the first stage
+// Uncomment the code below to pass the first stage
 // if fileContents.isEmpty {
 //    print("EOF  null")
 // } else {

@@ -19,7 +19,7 @@ $file_contents = file_get_contents($filename);
 // You can use print statements as follows for debugging, they'll be visible when running tests.
 fwrite(STDERR, "Logs from your program will appear here!\n");
 
-// Uncomment this block to pass the first stage
+// Uncomment the code below to pass the first stage
 // if ($file_contents) {
 //     throw new Exception("Scanner not implemented");
 // } else {

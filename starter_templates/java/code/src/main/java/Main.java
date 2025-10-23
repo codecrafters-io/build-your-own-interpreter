@@ -28,7 +28,7 @@ public class Main {
       System.exit(1);
     }
 
-    // Uncomment this block to pass the first stage
+    // Uncomment the code below to pass the first stage
     // 
     // if (fileContents.length() > 0) {
     //   throw new RuntimeException("Scanner not implemented");

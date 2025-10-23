@@ -20,7 +20,7 @@ fun main(args: Array<String>) {
 
     val fileContents = File(filename).readText()
 
-    // Uncomment this block to pass the first stage
+    // Uncomment the code below to pass the first stage
     // if (fileContents.isNotEmpty()) {
     //     throw NotImplementedError("Scanner not implemented")
     // } else {
