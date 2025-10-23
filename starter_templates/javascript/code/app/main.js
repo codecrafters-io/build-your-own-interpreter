@@ -19,7 +19,7 @@ console.error("Logs from your program will appear here!");
 
 const filename = args[1];
 
-// Uncomment this block to pass the first stage
+// TODO: Uncomment the code below to pass the first stage
 //
 // const fileContent = fs.readFileSync(filename, "utf8");
 //

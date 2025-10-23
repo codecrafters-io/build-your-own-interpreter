@@ -15,7 +15,7 @@ pub fn main() {
       case simplifile.read(filename) {
         Ok(contents) -> {
           case string.length(contents) {
-            // Uncomment this line to pass the first stage
+            // TODO: Uncomment the code below to pass the first stage
             // 0 -> io.println("EOF  null")
             _ -> io.println_error("TODO: Implement scanner!")
           }
