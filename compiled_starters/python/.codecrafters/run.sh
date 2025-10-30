@@ -6,4 +6,6 @@
 #
 # Learn more: https://codecrafters.io/program-interface
 
-exec pipenv run python3 -m app.main "$@"
+set -e # Exit on failure
+
+exec uv run --quiet -m app.main "$@"
