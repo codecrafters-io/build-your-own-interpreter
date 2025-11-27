@@ -1,3 +1,4 @@
+#![allow(unused_variables)]
 use std::env;
 use std::fs;
 
