@@ -40,6 +40,7 @@ languages:
   - slug: "python"
   - slug: "rust"
   - slug: "javascript"
+  - slug: "scala"
   - slug: "swift"
     release_status: "alpha"
     alpha_tester_usernames: ["JWShroyer"]
