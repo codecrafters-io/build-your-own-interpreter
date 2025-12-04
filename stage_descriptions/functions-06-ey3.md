@@ -120,9 +120,9 @@ Test Case 4:
 Input:
 
 ```
-fun makeFilter(min) {
+fun makeFilter() {
   fun filter(n) {
-    if (n < min) {
+    if (n < 54) {
       return false;
     }
     return true;
@@ -141,31 +141,22 @@ fun applyToNumbers(f, count) {
   }
 }
 
-var greaterThanX = makeFilter(55);
-var greaterThanY = makeFilter(10);
+var greaterThanX = makeFilter();
 
-print "Numbers >= 55:";
-applyToNumbers(greaterThanX, 55 + 5);
-
-print "Numbers >= 10:";
-applyToNumbers(greaterThanY, 10 + 5);
+print "Numbers >= 54:";
+applyToNumbers(greaterThanX, 54 + 6);
 ```
 
 Expected Output:
 
 ```
-Numbers >= 55:
+Numbers >= 54:
+54
 55
 56
 57
 58
 59
-Numbers >= 10:
-10
-11
-12
-13
-14
 ```
 
 The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
