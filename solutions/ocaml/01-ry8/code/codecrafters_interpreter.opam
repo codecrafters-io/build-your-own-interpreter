@@ -9,8 +9,7 @@ homepage: "https://codecrafters.io"
 bug-reports:
   "https://github.com/codecrafters-io/build-your-own-interpreter/issues"
 depends: [
-  "dune" {>= "3.16"}
-  "lwt"
+  "dune" {>= "3.21"}
   "odoc" {with-doc}
 ]
 build: [
@@ -27,3 +26,4 @@ build: [
     "@doc" {with-doc}
   ]
 ]
+x-maintenance-intent: ["(latest)"]

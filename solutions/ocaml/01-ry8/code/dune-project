@@ -1,4 +1,4 @@
-(lang dune 3.16)
+(lang dune 3.21)
 
 (name codecrafters_interpreter)
 
@@ -14,5 +14,4 @@
   "https://github.com/codecrafters-io/build-your-own-interpreter/issues")
  (license "MIT")
  (allow_empty true)
- (version 0.1)
- (depends lwt))
+ (version 0.1))
