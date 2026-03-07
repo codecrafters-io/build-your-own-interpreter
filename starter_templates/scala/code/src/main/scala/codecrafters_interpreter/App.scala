@@ -5,6 +5,10 @@ import java.nio.file.{Files, Path}
 
 object Main {
   def main(args: Array[String]): Unit = {
+    // Disable output buffering
+    System.setOut(new java.io.PrintStream(System.out, true))
+    System.setErr(new java.io.PrintStream(System.err, true))
+
     args match {
       case Array(command, filename, _*) =>
         if (command != "tokenize") {
@@ -25,11 +29,11 @@ object Main {
         Console.err.println("Logs from your program will appear here!")
 
         // TODO: Uncomment the code below to pass the first stage
-        // 
+        //
         // if (fileContents.nonEmpty) {
         //   throw new RuntimeException("Scanner not implemented")
         // } else {
-        //   println("EOF  null") // Placeholder, replace this line when implementing the scanner
+        //   System.out.println("EOF  null") // Placeholder, replace this line when implementing the scanner
         // }
 
       case _ =>
