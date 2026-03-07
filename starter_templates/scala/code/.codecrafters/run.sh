@@ -8,4 +8,4 @@
 
 set -e # Exit on failure
 
-exec java -jar ./target/scala-3.7.4/interpreter.jar "$@"
+exec java -jar ./target/scala-3.8.2/interpreter.jar "$@"

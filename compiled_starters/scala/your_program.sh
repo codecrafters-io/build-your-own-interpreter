@@ -14,11 +14,11 @@ set -e # Exit early if any commands fail
 # - Edit .codecrafters/compile.sh to change how your program compiles remotely
 (
   cd "$(dirname "$0")" # Ensure compile steps are run within the repository directory
-  SBT_OPTS="--enable-native-access=ALL-UNNAMED" sbt assembly
+  SBT_OPTS="--enable-native-access=ALL-UNNAMED --sun-misc-unsafe-memory-access=allow" sbt -error assembly
 )
 
 # Copied from .codecrafters/run.sh
 #
 # - Edit this to change how your program runs locally
 # - Edit .codecrafters/run.sh to change how your program runs remotely
-exec java -jar ./target/scala-3.7.4/interpreter.jar "$@"
+exec java -jar ./target/scala-3.8.2/interpreter.jar "$@"
