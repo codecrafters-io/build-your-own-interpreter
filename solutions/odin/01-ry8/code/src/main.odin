@@ -18,11 +18,12 @@ main :: proc() {
         os.exit(1)
     }
 
-    file_contents, ok := os.read_entire_file(filename)
-    if !ok {
+    file_contents, err := os.read_entire_file(filename, context.allocator)
+    if err != nil {
         fmt.eprintf("Failed to read file: %s\n", filename)
         os.exit(1)
     }
+    defer delete(file_contents, context.allocator)
 
     if len(file_contents) > 0 {
         panic("Scanner not implemented")
