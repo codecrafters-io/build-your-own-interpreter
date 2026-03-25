@@ -8,7 +8,7 @@ abort "Unknown command: #{command}" if command != "tokenize"
 file_contents = begin
   File.read(filename)
 rescue SystemCallError
-  false
+  ""
 end
 
 # You can use print statements as follows for debugging, they'll be visible when running tests.

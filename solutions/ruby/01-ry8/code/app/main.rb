@@ -8,7 +8,7 @@ abort "Unknown command: #{command}" if command != "tokenize"
 file_contents = begin
   File.read(filename)
 rescue SystemCallError
-  false
+  ""
 end
 
 unless file_contents.empty?
