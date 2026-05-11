@@ -680,7 +680,7 @@ stages:
 
   - slug: "ab0"
     primary_extension_slug: "inheritance"
-    name: "Inheritance errrors"
+    name: "Inheritance errors"
     difficulty: medium
     marketing_md: |-
       In this stage, you'll add validation for class inheritance, ensuring that class hierarchies are valid and providing clear error messages when they're not.
