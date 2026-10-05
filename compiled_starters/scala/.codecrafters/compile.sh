@@ -10,5 +10,5 @@ set -e # Exit on failure
 
 scala-cli package src/main/scala/ \
   -q --power --assembly --force --server=false --scala-version=3.9.0 \
-  --main-class codecrafters_interpreter.main \
+  --main-class codecrafters_interpreter.Main \
   -o /tmp/codecrafters-build-interpreter-scala
