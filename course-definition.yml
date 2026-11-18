@@ -4,19 +4,21 @@ short_name: "Interpreter"
 release_status: "live"
 
 description_md: |-
-  This challenge follows the book [Crafting Interpreters](https://craftinginterpreters.com/) by Robert Nystrom.
+  How does an interpreter know to multiply before adding in `2 + 3 * 4`?
 
-  In this challenge you'll build an interpreter for [Lox](https://craftinginterpreters.com/the-lox-language.html), a simple scripting
-  language. Along the way, you'll learn about tokenization, ASTs, tree-walk interpreters and more.
+  It represents the multiplication as an expression nested inside the addition. You'll build an interpreter for [Lox](https://craftinginterpreters.com/the-lox-language.html), a small scripting language. The core stages turn source text into tokens, the recognized pieces of code. Extensions organize those tokens into expression trees and evaluate them.
 
-  Before starting this challenge, make sure you've read the "Welcome" part of the book that contains these chapters:
+  Further extensions add variables, output, branches, loops, and functions that retain access to surrounding variables through closures. You'll resolve names to their declarations before execution and build classes with instances, methods, and inheritance, including method overrides.
+
+  The challenge follows Robert Nystrom's [Crafting Interpreters](https://craftinginterpreters.com/). Before starting, read its "Welcome" chapters:
 
   - [Introduction](https://craftinginterpreters.com/introduction.html) (chapter 1)
   - [A Map of the Territory](https://craftinginterpreters.com/a-map-of-the-territory.html) (chapter 2)
   - [The Lox Language](https://craftinginterpreters.com/the-lox-language.html) (chapter 3)
 
-  These chapters don't involve writing code, so they won't be covered in this challenge. This challenge will start
-  from chapter 4, [Scanning](https://craftinginterpreters.com/scanning.html).
+  These chapters introduce the language and its implementation without writing code. The challenge starts at chapter 4, [Scanning](https://craftinginterpreters.com/scanning.html).
+
+  You'll practice tokenization, parsing source into syntax trees, evaluating those trees, and resolving variable names to declarations.
 
 short_description_md: |-
   Learn about tokenization, ASTs, tree-walk interpreters and more.

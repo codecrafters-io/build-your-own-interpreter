@@ -1,13 +1,19 @@
-In this stage, you'll add support for scanning the division operator & comments.
-Comments start with `//`, and the division operator is `/`.
+In this stage, you'll distinguish the division operator `/` from a line comment
+beginning with `//`.
 
-### Book reference
+### Division and line comments
 
-The code for this stage is implemented in [Section 4.6: Longer Lexemes](https://craftinginterpreters.com/scanning.html#longer-lexemes).
+Comments let a programmer include text that the interpreter ignores.
+
+A single `/` produces `SLASH / null`. For `//`, ignore everything through the
+end of that line or the end of the file. Emit no token for the comment, even if
+its text contains otherwise invalid characters. The tests here use single-line
+inputs.
 
 ### Tests
 
-The tester will run a series of tests with `test.lox` files that contain `/` & `//` mixed with previously introduced tokens.
+The tester will run a series of tests with `test.lox` files that contain `/` &
+`//` mixed with previously introduced tokens.
 
 For example, if `test.lox` contains the following:
 
@@ -44,6 +50,9 @@ The tester will assert that the stdout of your program matches the format above.
 
 ### Notes
 
-- This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning)
-- There's no token type for comments, your scanner just needs to ignore any characters after `//`.
-- When scanning for tokens, it's valid to have "unbalanced" parentheses or braces. When we get to parsing expressions in later stages, these cases will be highlighted as errors.
+- This output format matches the spec in the
+  [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning)
+- Scanning does not check whether parentheses or braces are balanced. That
+  requires parsing the program's structure.
+- For the book's explanation, see
+  [Section 4.6: Longer Lexemes](https://craftinginterpreters.com/scanning.html#longer-lexemes).

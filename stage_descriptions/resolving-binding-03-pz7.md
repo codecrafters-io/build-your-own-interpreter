@@ -1,12 +1,22 @@
-In this stage, you'll add support for detecting invalid variable redeclarations in the same scope. This means catching cases where a variable is declared multiple times in the same local scope.
+In this stage, you'll reject two declarations of the same name in one local
+scope.
 
-### Book reference
+### Duplicate local declarations
 
-The code for this stage is implemented in [Section 11.3: A Resolver Class](https://craftinginterpreters.com/resolving-and-binding.html#a-resolver-class).
+Function parameters belong to the function body's local scope, so duplicate
+parameter names and redeclaring a parameter in that body are also invalid.
+
+Keep global redeclaration and shadowing in a nested block valid. Those are
+different cases: shadowing introduces a binding in another scope.
+
+Detect local duplicates during resolution. If any occur, execute none of the
+program, even statements before the invalid declaration. Send a diagnostic to
+stderr and exit with code 65, with empty stdout.
 
 ### Tests
 
-The tester will run a series of tests with `test.lox` files that contain programs with variable redeclarations.
+The tester will run a series of tests with `test.lox` files that contain
+programs with variable redeclarations.
 
 For example, if `test.lox` contains the following:
 
@@ -17,16 +27,18 @@ For example, if `test.lox` contains the following:
 }
 ```
 
-The tester will run your program like this:
+The tester will run your program like this. The shown diagnostic is on stderr,
+and stdout is empty:
 
 ```
 $ ./your_program.sh run test.lox
 [line 3] Error at 'a': Already a variable with this name in this scope.
 ```
 
-The tester will run multiple such tests with randomized expressions, for example:
+The tester varies the values and expressions. These examples show the required
+behavior:
 
-Test Case 1:
+A parameter and a local declaration share a scope:
 
 Input:
 
@@ -36,13 +48,13 @@ fun foo(a) {
 }
 ```
 
-Expected Output:
+Example stderr:
 
 ```
 [line 2] Error at 'a': Already a variable with this name in this scope.
 ```
 
-Test Case 2:
+Parameter names must be unique:
 
 Input:
 
@@ -52,13 +64,13 @@ fun foo(arg, arg) {
 }
 ```
 
-Expected Output:
+Example stderr:
 
 ```
 [line 1] Error at 'arg': Already a variable with this name in this scope.
 ```
 
-Test Case 3:
+An error prevents earlier statements from running:
 
 Input:
 
@@ -79,17 +91,20 @@ print a;
 }
 ```
 
-Expected Output:
+Example stderr:
 
 ```
 [line 12] Error at 'a': Already a variable with this name in this scope.
 ```
 
-The tester will assert that for valid global redeclarations, the exit code should be 0. For invalid local redeclarations, the program should exit with code 65 and print an appropriate error message.
+Valid global redeclarations exit with code 0. The invalid local examples produce
+no stdout and exit with code 65.
 
 ### Notes
 
-- This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/variable/duplicate_local.lox)
-- Variable redeclaration is allowed in global scope but not in local scopes
-- The error should be detected at compile time, not runtime
-- Error messages should be written to stderr, but the exact error message is not checked.
+- This output format matches the spec in the
+  [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/variable/duplicate_local.lox)
+- The exact diagnostic wording is not checked. The tester checks stdout and the
+  exit code.
+- For the book's explanation, see
+  [Section 11.3: A Resolver Class](https://craftinginterpreters.com/resolving-and-binding.html#a-resolver-class).

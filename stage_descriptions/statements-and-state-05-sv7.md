@@ -1,12 +1,19 @@
-In this stage, you'll add support for handling runtime errors while accessing variables that haven't been declared yet.
+In this stage, you'll report a runtime error when an expression reads a name
+with no existing binding.
 
-### Book reference
+### Undefined variables
 
-The code for this stage is implemented in [Section 8.2: Global Variables](https://craftinginterpreters.com/statements-and-state.html#global-variables).
+A later declaration cannot supply a value to an earlier read.
+
+Stop at the first failed lookup, send a diagnostic to stderr, and exit with
+code 70. Preserve output from statements that already ran, and do not run later
+statements. The same rule applies when the missing name occurs inside an
+initializer or a larger expression.
 
 ### Tests
 
-The tester will run a series of tests with `test.lox` files that access variables that haven't been declared yet.
+The tester will run a series of tests with `test.lox` files that access
+variables that haven't been declared yet.
 
 For example, if `test.lox` contains the following
 
@@ -14,7 +21,8 @@ For example, if `test.lox` contains the following
 print a;
 ```
 
-The tester will run your program like this:
+The tester will run your program like this. This example has empty stdout, with
+the shown diagnostic on stderr:
 
 ```
 $ ./your_program.sh run test.lox
@@ -22,9 +30,10 @@ Undefined variable 'a'.
 [line 1]
 ```
 
-The tester will run multiple such tests with randomized expressions, for example:
+The tester varies the values and expressions. These examples show the required
+behavior:
 
-Test Case 1:
+Output before the error is preserved:
 
 Input:
 
@@ -33,31 +42,20 @@ print 22;
 print x;
 ```
 
-Expected Output:
+Stdout:
 
 ```
 22
+```
+
+Example stderr:
+
+```
 Undefined variable 'x'.
 [line 2]
 ```
 
-Test Case 2:
-
-Input:
-
-```
-var baz = 96;
-print hello;
-```
-
-Expected Output:
-
-```
-Undefined variable 'hello'.
-[line 2]
-```
-
-Test Case 3:
+An error inside an initializer:
 
 Input:
 
@@ -67,35 +65,21 @@ var result = (hello + bar) / world;
 print result;
 ```
 
-Expected Output:
+Stdout is empty.
+
+Example stderr:
 
 ```
 Undefined variable 'bar'.
 [line 2]
 ```
 
-Test Case 4:
-
-Input:
-
-```
-var quz = 20;
-var world = 51;
-var hello = 56;
-print quz + world + he
-```
-
-Expected Output:
-
-```
-Undefined variable 'he'.
-[line 4]
-```
-
-The tester will assert that the exit code is 70, signifying a runtime error. Note that this is different from the expected exit code for a syntax error, which is 65.
+The tester checks for exit code 70 and the stdout produced before the error.
 
 ### Notes
 
-- This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/variable/in_nested_block.lox)
-- Error messages should be printed to `stderr`, not `stdout`.
-- The tester won't check the exact error message in this stage, it will only check that the program exits with code 70.
+- This output format matches the spec in the
+  [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/variable/in_nested_block.lox)
+- The exact error message is not checked in this stage.
+- For the book's explanation, see
+  [Section 8.2: Global Variables](https://craftinginterpreters.com/statements-and-state.html#global-variables).

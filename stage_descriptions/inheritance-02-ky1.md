@@ -1,12 +1,23 @@
-In this stage, you'll add support for method inheritance in your Lox interpreter. This allows subclasses to inherit and use methods defined in their superclass.
+In this stage, you'll let an instance use methods from its class's superclasses.
 
-### Book reference
+### Inherited method lookup
 
-The code for this stage is implemented in [Section 13.2: Inheriting Methods](https://craftinginterpreters.com/inheritance.html#inheriting-methods).
+If its class does not define the requested method, continue looking in its
+superclass, then further up the chain. A missing method still produces the
+existing undefined-property runtime error.
+
+An inherited method is bound to the actual instance being accessed. Its `this`
+therefore refers to the subclass instance and can read or update that instance's
+fields. Each instance keeps its own field values.
+
+Initializers are inherited too. If a subclass has no `init`, calling the
+subclass uses the inherited initializer and returns the new subclass instance.
+Keep instance fields ahead of method lookup as before.
 
 ### Tests
 
-The tester will run a series of tests with `test.lox` files that contain method inheritance.
+The tester will run a series of tests with `test.lox` files that contain method
+inheritance.
 
 For example, if `test.lox` contains the following:
 
@@ -32,11 +43,13 @@ $ ./your_program.sh run test.lox
 Fry until golden brown.
 ```
 
-The tester will run multiple such tests with method inheritance in different contexts, for example:
+The tester varies values and contexts. These examples show the required
+behavior:
 
-Test Case 1:
+Methods inherited through several levels:
 
 Input:
+
 ```
 class Root {
   getName() {
@@ -73,7 +86,8 @@ child.parentMethod();
 child.childMethod();
 ```
 
-Expected Output:
+Stdout:
+
 ```
 Root class
 Root class
@@ -83,13 +97,12 @@ Method defined in Parent
 Method defined in Child
 ```
 
-The tester will assert that your program correctly handles method inheritance, including:
-- Methods being inherited through multiple levels of inheritance
-- Constructors being inherited from parent classes
+The tester checks stdout and exit code 0 for inherited methods, including
+initializers inherited through multiple levels.
 
 ### Notes
 
-- This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/class/inherited_method.lox)
-- Methods should be inherited through the entire inheritance chain
-- Inherited methods should have access to instance properties
-- Constructors (init methods) should also be inherited
+- This output format matches the spec in the
+  [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/class/inherited_method.lox)
+- For the book's explanation, see
+  [Section 13.2: Inheriting Methods](https://craftinginterpreters.com/inheritance.html#inheriting-methods).

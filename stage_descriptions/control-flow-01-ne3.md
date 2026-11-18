@@ -1,12 +1,22 @@
-In this stage, you'll add support for the `if` statement in your interpreter. The `if` statement is used to conditionally execute statements based on a boolean condition.
+Your interpreter can execute statements in order and retain values in variables.
+Building on Statements & State, this extension adds **control flow**, rules that
+choose which statements run or repeat. In this stage, you'll add `if` without
+`else`.
 
-### Book reference
+### Conditional execution
 
-The code for this stage is implemented in [Section 9.2: Conditional execution](https://craftinginterpreters.com/control-flow.html#conditional-execution).
+The syntax is `if (<condition>) <statement>`. Evaluate the condition once and
+apply the Lox truthiness rule from unary `!`: only `false` and `nil` are falsy.
+Run the body only when the condition is truthy. A skipped body produces no
+output or other effects.
+
+The body can be one statement or a block containing several statements.
+Execution then continues after the `if`.
 
 ### Tests
 
-The tester will run a series of tests with `test.lox` files that contain programs with `if` statements.
+The tester will run a series of tests with `test.lox` files that contain
+programs with `if` statements.
 
 For example, if `test.lox` contains the following
 
@@ -21,39 +31,10 @@ $ ./your_program.sh run test.lox
 good
 ```
 
-The tester will run multiple such tests with randomized expressions, for example:
+The tester varies the values and expressions. These examples show the required
+behavior:
 
-Test Case 1:
-
-Input:
-
-```
-if (true) print "bar";
-```
-
-Expected Output:
-
-```
-bar
-```
-
-Test Case 2:
-
-Input:
-
-```
-if (true) {
-  print "block body";
-}
-```
-
-Expected Output:
-
-```
-block body
-```
-
-Test Case 3:
+An assignment can supply the condition:
 
 Input:
 
@@ -64,13 +45,13 @@ if (a = true) {
 }
 ```
 
-Expected Output:
+Stdout:
 
 ```
 true
 ```
 
-Test Case 4:
+Choosing behavior from a variable:
 
 Input:
 
@@ -86,15 +67,19 @@ if (isAdult) { print "eligible for voting: true"; }
 if (!isAdult) { print "eligible for voting: false"; }
 ```
 
-Expected Output:
+Stdout:
 
 ```
 adult
 eligible for voting: true
 ```
 
-The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+The tester will assert that the stdout of your program matches the format above,
+and that the exit code is 0.
 
 ### Notes
 
-- This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/if/if.lox)
+- This output format matches the spec in the
+  [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/if/if.lox)
+- For the book's explanation, see
+  [Section 9.2: Conditional execution](https://craftinginterpreters.com/control-flow.html#conditional-execution).

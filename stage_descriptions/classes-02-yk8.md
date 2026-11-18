@@ -1,12 +1,21 @@
-In this stage, you'll add support for class instances in your Lox interpreter. This will allow users to instantiate classes using the class name followed by parentheses, e.g., `ClassName()`.
+In this stage, you'll make class values callable.
 
-### Book reference
+### Creating instances
 
-The code for this stage is implemented in [Section 12.3: Creating Instances](https://craftinginterpreters.com/classes.html#creating-instances).
+Calling `ClassName()` creates a new **instance**, an object associated with that
+class. Each call creates a separate instance.
+
+Instances are runtime values, so they can be stored, passed to functions, and
+returned. They are truthy under Lox's existing rule. Print an instance as its
+class name followed by ` instance`, such as `Spaceship instance`.
+
+The classes in this stage have empty bodies and take no constructor arguments.
+Fields and initialization behavior come later.
 
 ### Tests
 
-The tester will run a series of tests with `test.lox` files that contain class instantiation in various contexts.
+The tester will run a series of tests with `test.lox` files that contain class
+instantiation in various contexts.
 
 For example, if `test.lox` contains the following:
 
@@ -23,9 +32,10 @@ $ ./your_program.sh run test.lox
 Spaceship instance
 ```
 
-The tester will run multiple such tests with class instantiation in different contexts, for example:
+The tester varies values and contexts. These examples show the required
+behavior:
 
-Test Case 1:
+Multiple instances of one class:
 
 Input:
 
@@ -40,7 +50,7 @@ print r1;
 print r2;
 ```
 
-Expected Output:
+Stdout:
 
 ```
 Created multiple robots:
@@ -48,7 +58,7 @@ Robot instance
 Robot instance
 ```
 
-Test Case 2:
+Returning an instance from a function:
 
 Input:
 
@@ -76,7 +86,7 @@ if (mainCharacter) {
 }
 ```
 
-Expected Output:
+Stdout:
 
 ```
 Characters created in fantasy world:
@@ -86,40 +96,13 @@ The main character is:
 Wizard instance
 ```
 
-Test Case 3:
-
-Input:
-
-```
-class Superhero {}
-
-var count = 0;
-while (count < 3) {
-  var hero = Superhero();
-  print "Hero created:";
-  print hero;
-  count = count + 1;
-}
-
-print "All heroes created!";
-```
-
-Expected Output:
-
-```
-Hero created:
-Superhero instance
-Hero created:
-Superhero instance
-Hero created:
-Superhero instance
-All heroes created!
-```
-
-The tester will assert that your program correctly handles class instantiation and that instances are printed with the format "ClassName instance".
+The tester will assert that your program correctly handles class instantiation
+and that instances are printed with the format "ClassName instance".
 
 ### Notes
 
-- This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/call/object.lox)
-- Class instances should be truthy when used in conditional expressions
-- When an instance is printed, it should display its class name followed by the word "instance"
+- This output format matches the spec in the
+  [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/call/object.lox)
+- Successful programs exit with code 0.
+- For the book's explanation, see
+  [Section 12.3: Creating Instances](https://craftinginterpreters.com/classes.html#creating-instances).

@@ -1,17 +1,26 @@
-In this stage you'll implement support for the `evaluate` command and handle evaluating the `true`, `false`, and `nil` literals.
+Your parser can describe an expression's structure. This extension makes the
+interpreter evaluate that expression to obtain its value. In this stage, you'll
+add `evaluate` for the literals `true`, `false`, and `nil`.
 
-### Book reference
+### Evaluating literal nodes
 
-The code for this stage is implemented in [Section 7.2.1: Evaluating Literals](https://craftinginterpreters.com/evaluating-expressions.html#evaluating-literals).
+Build on your scanner and the parser from the Parsing Expressions extension. A
+**tree-walk interpreter** evaluates an AST by following its nodes and carrying
+out the operation each node represents. A literal node is the simplest case: its
+result is the value it holds.
+
+These are **runtime values**, the values the Lox program operates on as it runs.
+Keep booleans and `nil` distinct from strings that happen to contain the same
+text.
 
 ### The `evaluate` command
 
-In the previous stages, the tester used the `parse` command to test your parser implementation. In this extension, the tester will need to test
-your evaluator implementation, so it'll use a different command instead: `evaluate`.
+The `evaluate` command reads a file containing an expression and prints its
+resulting value to stdout. Keep `parse` and `tokenize` available, but do not
+print their AST or token output when running `evaluate`.
 
-The `evaluate` command accepts a path to a file (`test.lox` for example) and prints out the result of evaluating the file to stdout.
-
-For example, if `test.lox` contains the following:
+For context, arithmetic evaluation will eventually turn this source into a
+number. Arithmetic is not required in this stage:
 
 ```
 2 + 3
@@ -24,7 +33,8 @@ $ ./your_program.sh evaluate test.lox
 5
 ```
 
-This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/evaluate.lox).
+This output format matches the spec in the
+[book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/evaluate.lox).
 
 For the same file, here's what the output from `parse` would've been:
 
@@ -35,7 +45,8 @@ $ ./your_program.sh parse test.lox
 
 ### Tests
 
-The tester will run a series of tests with `test.lox` files that contain the boolean values `true` & `false`, and the `nil` literal.
+The tester will use files containing one of the literals `true`, `false`, or
+`nil`.
 
 For example, if `test.lox` contains the following:
 
@@ -50,17 +61,21 @@ $ ./your_program.sh evaluate test.lox
 true
 ```
 
-The tester will run multiple such tests with randomized expressions, for example:
+The required outputs are:
 
-| Input | Expected output |
-| :---: | :-------------: |
-| `true` | `true` |
-| `false` | `false` |
-| `nil` | `nil` |
+|  Input  | Expected output |
+| :-----: | :-------------: |
+| `true`  |     `true`      |
+| `false` |     `false`     |
+|  `nil`  |      `nil`      |
 
-The tester will assert that the stdout of your program matches the format above.
+Print the value as `true`, `false`, or `nil`, followed by a newline, and exit
+with code 0. These spellings are required even if your implementation language
+displays its corresponding values differently.
 
 ### Notes
 
-- This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/evaluate.lox)
-- For the `nil` literal, the tester will check that the program prints `nil`.
+- This output format matches the spec in the
+  [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/evaluate.lox)
+- For the book's explanation, see
+  [Section 7.2.1: Evaluating Literals](https://craftinginterpreters.com/evaluating-expressions.html#evaluating-literals).

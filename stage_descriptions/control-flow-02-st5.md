@@ -1,12 +1,18 @@
-In this stage, you'll add support for the `else` statement in your interpreter. The `else` statement is used to conditionally execute statements when the `if` condition is false.
+In this stage, you'll add an optional `else` branch to `if`.
 
-### Book reference
+### Choosing an else-branch
 
-The code for this stage is implemented in [Section 9.2: Conditional execution](https://craftinginterpreters.com/control-flow.html#conditional-execution).
+The syntax is `if (<condition>) <then-statement> else <else-statement>`.
+
+Evaluate the condition once. Run the then-branch for a truthy value or the
+else-branch for a falsy value. Exactly one branch runs, so an expression in the
+other branch has no effects. Each branch can be a single statement or a block.
+`else` belongs to an `if` and cannot stand alone.
 
 ### Tests
 
-The tester will run a series of tests with `test.lox` files that contain programs with `if` statements.
+The tester will run a series of tests with `test.lox` files that contain
+programs with `if` statements.
 
 For example, if `test.lox` contains the following
 
@@ -21,38 +27,10 @@ $ ./your_program.sh run test.lox
 if branch
 ```
 
-The tester will run multiple such tests with randomized expressions, for example:
+The tester varies the values and expressions. These examples show the required
+behavior:
 
-Test Case 1:
-
-Input:
-
-```
-if (true) print "if branch"; else print "else branch";
-```
-
-Expected Output:
-
-```
-if branch
-```
-
-Test Case 2:
-
-Input:
-
-```
-var age = 21;
-if (age > 18) print "adult"; else print "child";
-```
-
-Expected Output:
-
-```
-adult
-```
-
-Test Case 3:
+Mixing statements and block bodies:
 
 Input:
 
@@ -66,14 +44,14 @@ if (false) print "if statement"; else {
 }
 ```
 
-Expected Output:
+Stdout:
 
 ```
 else statement
 else block
 ```
 
-Test Case 4:
+Updating state in the selected branch:
 
 Input:
 
@@ -97,7 +75,7 @@ var isHot = false;
 }
 ```
 
-Expected Output:
+Stdout:
 
 ```
 67
@@ -106,8 +84,12 @@ It's a hot day. Stay hydrated!
 Remember to use sunscreen!
 ```
 
-The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+The tester will assert that the stdout of your program matches the format above,
+and that the exit code is 0.
 
 ### Notes
 
-- This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/if/else.lox)
+- This output format matches the spec in the
+  [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/if/else.lox)
+- For the book's explanation, see
+  [Section 9.2: Conditional execution](https://craftinginterpreters.com/control-flow.html#conditional-execution).

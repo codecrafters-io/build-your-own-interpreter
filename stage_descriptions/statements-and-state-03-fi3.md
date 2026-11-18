@@ -1,12 +1,24 @@
-In this stage, you'll add support for handling expression statements. An expression statement lets you place an expression where a statement is expected. They exist to evaluate expressions that have side effects.
+In this stage, you'll support **expression statements**: an expression followed
+by a semicolon.
 
-### Book reference
+### Values and side effects
 
-The code for this stage is implemented in [Section 8.1: Statements](https://craftinginterpreters.com/statements-and-state.html#statements).
+Evaluate the expression and discard its resulting value, producing no automatic
+output.
+
+Such statements will be useful for **side effects**, changes such as updating a
+variable or calling a function that prints. The expressions used here do not
+need side effects to be valid.
+
+Discarding a result must not skip evaluation. A runtime error still stops the
+program with exit code 70. Output from earlier successful `print` statements
+remains on stdout, and the error diagnostic goes to stderr. Later statements
+must not run.
 
 ### Tests
 
-The tester will run a series of tests with `test.lox` files that contain expressions that have side effects, combined with the `print` statement.
+The tester will run a series of tests with `test.lox` files that contain
+expression statements combined with `print` statements.
 
 For example, if `test.lox` contains the following
 
@@ -22,44 +34,10 @@ $ ./your_program.sh run test.lox
 baz
 ```
 
-The tester will run multiple such tests with randomized expressions, for example:
+The tester varies the values and expressions. These examples show the required
+behavior:
 
-Test Case 1:
-
-Input:
-
-```
-(37 + 42 - 21) > (76 - 37) * 2;
-print !false;
-"baz" + "hello" + "quz" + "bar" == "bazhelloquzbar";
-print !false;
-```
-
-Expected Output:
-
-```
-true
-true
-```
-
-Test Case 2:
-
-Input:
-
-```
-27 - 60 >= -99 * 2 / 99 + 76;
-true == true;
-("world" == "bar") == ("baz" != "hello");
-print true;
-```
-
-Expected Output:
-
-```
-true
-```
-
-Test Case 3:
+Evaluation still detects errors:
 
 Input:
 
@@ -69,33 +47,26 @@ print "the expression below is invalid";
 print "this should not be printed";
 ```
 
-Expected Output:
+Stdout:
 
 ```
 the expression below is invalid
+```
+
+Example stderr:
+
+```
 Operands must be two numbers or two strings.
 [line 2]
 ```
 
-Test Case 4:
-
-Input:
-
-```
-print "79" + "baz";
-print false * (18 + 84);
-```
-
-Expected Output:
-
-```
-79baz
-Operands must be numbers.
-[line 2]
-```
-
-The tester will assert that the stdout of your program matches the format above, and that the exit code is 70.
+Successful programs exit with code 0. Programs with a runtime error exit with
+code 70. The tester checks stdout and the exit code. Diagnostic wording is not
+checked.
 
 ### Notes
 
-- This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/string/literals.lox)
+- This output format matches the spec in the
+  [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/string/literals.lox)
+- For the book's explanation, see
+  [Section 8.1: Statements](https://craftinginterpreters.com/statements-and-state.html#statements).

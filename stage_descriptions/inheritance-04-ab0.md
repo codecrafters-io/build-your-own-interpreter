@@ -1,12 +1,23 @@
-In this stage, you'll add validation for class inheritance to ensure valid class hierarchies. This involves detecting and reporting errors for invalid inheritance patterns.
+In this stage, you'll reject two invalid inheritance cases at the phase where
+they can be detected.
 
-### Book reference
+### Inheritance error phases
 
-The code for this stage is implemented in [Section 13.1: Superclasses and Subclasses](https://craftinginterpreters.com/inheritance.html#superclasses-and-subclasses), specifically the error handling parts.
+A class cannot name itself as its superclass, as in `class Foo < Foo {}`. Detect
+this during resolution, execute no statements, report a diagnostic on stderr,
+and exit with code 65.
+
+When a class declaration executes, its superclass name must evaluate to a class
+value. A function, string, or other non-class value causes a runtime error with
+exit code 70. This happens at the declaration, even if the program never creates
+an instance. A previously declared class name may have been reassigned, so check
+the value it currently holds. Preserve earlier stdout and stop execution on
+failure.
 
 ### Tests
 
-The tester will run a series of tests with `test.lox` files that contain invalid inheritance patterns.
+The tester will run a series of tests with `test.lox` files that contain invalid
+inheritance patterns.
 
 For example, if `test.lox` contains the following:
 
@@ -15,18 +26,20 @@ For example, if `test.lox` contains the following:
 class Foo < Foo {} // expect compile error
 ```
 
-The tester will run your program like this:
+The tester will run your program like this. The shown diagnostic is on stderr:
 
 ```
 $ ./your_program.sh run test.lox
 [line 2] Error at 'Foo': A class can't inherit from itself.
 ```
 
-The tester will run multiple tests with invalid inheritance patterns, for example:
+The tester varies values and contexts. These examples show the required
+behavior:
 
-Test Case 1:
+A function cannot be a superclass:
 
 Input:
+
 ```
 fun A() {}
 
@@ -37,15 +50,17 @@ print A();
 print B();
 ```
 
-Expected Output:
+Example stderr:
+
 ```
 Superclass must be a class.
 [line 4]
 ```
 
-Test Case 2:
+A string cannot be a superclass:
 
 Input:
+
 ```
 var A = "class";
 
@@ -55,15 +70,23 @@ class B < A {} // expect runtime error
 print B();
 ```
 
-Expected Output:
+Example stderr:
+
 ```
 Superclass must be a class.
 [line 4]
 ```
 
-The tester will assert that for valid class hierarchies, the exit code is 0. For invalid class hierarchies which can be detected at compile time, the program should exit with code 65 (compile error), for invalid class instantiation which can only be detected at runtime, the program should exit with code 70 (runtime error) and print an appropriate error message.
+Self-inheritance exits with code 65. A non-class superclass exits with code 70.
+The shown invalid programs have empty stdout. Valid hierarchies continue to exit
+with code 0.
 
 ### Notes
 
-- This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/class/local_inherit_self.lox)
-- Error messages should be written to stderr, but the exact error messages are not checked.
+- This output format matches the spec in the
+  [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/class/local_inherit_self.lox)
+- The tester checks stdout and exit status. The exact diagnostic wording is not
+  checked.
+- For the book's explanation, see
+  [Section 13.1: Superclasses and Subclasses](https://craftinginterpreters.com/inheritance.html#superclasses-and-subclasses),
+  specifically the error handling parts.

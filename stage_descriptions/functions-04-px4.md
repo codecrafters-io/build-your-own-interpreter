@@ -1,12 +1,20 @@
-In this stage, you'll add support for detecting and handling syntax errors in user defined functions in your lox interpreter.
+In this stage, you'll reject malformed function declarations and calls.
 
-### Book reference
+### Declaration and call syntax
 
-The code for this stage is implemented in [Section 10.3: Function Declarations](https://craftinginterpreters.com/functions.html#function-declarations).
+Parameter lists contain comma-separated names, while argument lists contain
+comma-separated expressions. Both lists need matching parentheses.
+
+A function declaration's body must be a block in braces, even when it contains
+only one statement. For example, `fun f() 74;` is invalid.
+
+Report syntax errors on stderr and exit with code 65. The invalid programs in
+this stage produce no stdout. Diagnostic wording is not checked.
 
 ### Tests
 
-The tester will run a series of tests with `test.lox` files that contain programs with user defined functions with arguments.
+The tester will run a series of tests with `test.lox` files that contain
+malformed function declarations and calls.
 
 For example, if `test.lox` contains the following
 
@@ -14,30 +22,17 @@ For example, if `test.lox` contains the following
 clock(;
 ```
 
-The tester will run your program like this:
+The tester will run your program like this. The shown diagnostic is on stderr:
 
 ```
 $ ./your_program.sh run test.lox
-[line 2] Error at ';': Expect expression.
-```
-
-The tester will run multiple such tests with randomized expressions, for example:
-
-Test Case 1:
-
-Input:
-
-```
-print clock(;
-```
-
-Expected Output:
-
-```
 [line 1] Error at ';': Expect expression.
 ```
 
-Test Case 2:
+The tester varies the values and expressions. These examples show the required
+behavior:
+
+An invalid call boundary:
 
 Input:
 
@@ -45,13 +40,13 @@ Input:
 print clock)));
 ```
 
-Expected Output:
+Example stderr:
 
 ```
 [line 1] Error at ')': Expect ';' after value.
 ```
 
-Test Case 3:
+A function body must be a block:
 
 Input:
 
@@ -60,13 +55,13 @@ fun f() 74;
 print f();
 ```
 
-Expected Output:
+Example stderr:
 
 ```
-[line 2] Error at '74': Expect '{' before function body.
+[line 1] Error at '74': Expect '{' before function body.
 ```
 
-Test Case 4:
+Parameters need comma separators:
 
 Input:
 
@@ -75,16 +70,18 @@ fun foo(a, b c, d, e, f) {}
 foo();
 ```
 
-Expected Output:
+Example stderr:
 
 ```
-[line 2] Error at 'c': Expect ')' after parameters.
+[line 1] Error at 'c': Expect ')' after parameters.
 ```
 
-The tester will assert that the exit code of your program is 65, when there is a compilation error.
+The tester checks for exit code 65 and empty stdout.
 
 ### Notes
 
-- This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/function/body_must_be_block.lox)
-- Error messages should be printed to `stderr`, not `stdout`.
-- The tester won't check the exact error message in this stage, it will only check that the program exits with code 65.
+- This output format matches the spec in the
+  [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/function/body_must_be_block.lox)
+- The examples show possible diagnostics. The exact wording is not checked.
+- For the book's explanation, see
+  [Section 10.3: Function Declarations](https://craftinginterpreters.com/functions.html#function-declarations).

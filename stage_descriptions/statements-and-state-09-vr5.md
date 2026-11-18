@@ -1,12 +1,20 @@
-In this stage, you'll add support for block syntax in your interpreter. Blocks are enclosed in curly braces `{}` and are used to group statements together. They are also used to create local scopes. We will test scopes in the next stage, in this stage you just need to handle the block syntax.
+In this stage, you'll execute **blocks**, groups of declarations and statements
+enclosed in `{` and `}`.
 
-### Book reference
+### Block syntax
 
-The code for this stage is implemented in [Section 8.5.2: Block syntax and semantics](https://craftinginterpreters.com/statements-and-state.html#block-syntax-and-semantics).
+Execute their contents in order, including nested blocks. An empty block is also
+valid.
+
+A block ends with `}` and needs no following semicolon. Statements inside it
+still follow their own syntax. A missing closing brace is a syntax error with
+exit code 65. Blocks also delimit local scopes, whose visibility rules are
+tested in later stages.
 
 ### Tests
 
-The tester will run a series of tests with `test.lox` files that contain the assignment operation.
+The tester will run a series of tests with `test.lox` files that contain blocks
+and variable references.
 
 For example, if `test.lox` contains the following
 
@@ -29,48 +37,10 @@ before
 after
 ```
 
-The tester will run multiple such tests with randomized expressions, for example:
+The tester varies the values and expressions. These examples show the required
+behavior:
 
-Test Case 1:
-
-Input:
-
-```
-{
-    var hello = "baz";
-    print hello;
-}
-```
-
-Expected Output:
-
-```
-baz
-```
-
-Test Case 2:
-
-Input:
-
-```
-{
-    var world = "before";
-    print world;
-}
-{
-    var world = "after";
-    print world;
-}
-```
-
-Expected Output:
-
-```
-before
-after
-```
-
-Test Case 3:
+Nested blocks:
 
 Input:
 
@@ -85,14 +55,14 @@ Input:
 }
 ```
 
-Expected Output:
+Stdout:
 
 ```
 88
 88
 ```
 
-Test Case 4:
+An unclosed block:
 
 Input:
 
@@ -105,14 +75,21 @@ Input:
 }
 ```
 
-Expected Output:
+Stdout is empty.
+
+Example stderr:
 
 ```
 [line 6] Error at end: Expect '}' .
 ```
 
-The tester will assert that the stdout of your program matches the format above, and that the exit code is 0. If there is any blocks that are opened but not closed, it should throw a syntax error, the exit code in that case should be 65.
+Valid programs produce the shown stdout and exit with code 0. An unclosed block
+produces a diagnostic on stderr and exit code 65. The exact diagnostic wording
+is not checked.
 
 ### Notes
 
-- This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/string/literals.lox)
+- This output format matches the spec in the
+  [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/string/literals.lox)
+- For the book's explanation, see
+  [Section 8.5.2: Block syntax and semantics](https://craftinginterpreters.com/statements-and-state.html#block-syntax-and-semantics).

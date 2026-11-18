@@ -1,12 +1,23 @@
-In this stage, you'll add support for declaring variables using the `var` statement. For this, you'll need to add support for the `var` declaration in your AST generator, parser & interpreter.
+In this stage, you'll let a program store a value under a variable name and read
+it in later expressions.
 
-### Book reference
+### Variable declarations and bindings
 
-The code for this stage is implemented in [Section 8.2: Global Variables](https://craftinginterpreters.com/statements-and-state.html#global-variables).
+Support declarations of the form `var <name> = <expression>;`.
+
+The expression after `=` is the **initializer**. Its evaluated value becomes the
+variable's initial value. A **binding** associates the name with that value. The
+current collection of bindings is often called an **environment**.
+
+A variable expression, such as `a` in `print a;`, reads the bound value.
+Declarations themselves print nothing. At this point the variables are global,
+meaning they belong to the program's outermost level. Declarations without
+initializers come later.
 
 ### Tests
 
-The tester will run a series of tests with `test.lox` files that contain the `var` statement.
+The tester will run a series of tests with `test.lox` files that contain the
+`var` statement.
 
 For example, if `test.lox` contains the following
 
@@ -22,58 +33,10 @@ $ ./your_program.sh run test.lox
 foo
 ```
 
-The tester will run multiple such tests with randomized expressions, for example:
+The tester varies the values and expressions. These examples show the required
+behavior:
 
-Test Case 1:
-
-Input:
-
-```
-var world = 10;
-print world;
-```
-
-Expected Output:
-
-```
-10
-```
-
-Test Case 2:
-
-Input:
-
-```
-var bar = 99;
-var foo = 99;
-print bar + foo;
-var quz = 99;
-print bar + foo + quz;
-```
-
-Expected Output:
-
-```
-198
-297
-```
-
-Test Case 3:
-
-Input:
-
-```
-var foo = (8 * (62 + 62)) / 4 + 62;
-print foo;
-```
-
-Expected Output:
-
-```
-310
-```
-
-Test Case 4:
+An initializer can read an earlier variable:
 
 Input:
 
@@ -83,14 +46,18 @@ var baz = quz;
 print baz + quz;
 ```
 
-Expected Output:
+Stdout:
 
 ```
 152
 ```
 
-The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+The tester will assert that the stdout of your program matches the format above,
+and that the exit code is 0.
 
 ### Notes
 
-- This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/variable/in_nested_block.lox)
+- This output format matches the spec in the
+  [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/variable/in_nested_block.lox)
+- For the book's explanation, see
+  [Section 8.2: Global Variables](https://craftinginterpreters.com/statements-and-state.html#global-variables).

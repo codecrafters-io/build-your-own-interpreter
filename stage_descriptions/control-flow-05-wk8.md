@@ -1,12 +1,23 @@
-In this stage, you'll add support for the logical OR operator in your interpreter. The logical OR operator combines two conditions and returns the first value that is truthy.
+In this stage, you'll evaluate the logical operator `or`.
 
-### Book reference
+### Short-circuit evaluation with `or`
 
-The code for this stage is implemented in [Section 9.3: Logical Operators](https://craftinginterpreters.com/control-flow.html#logical-operators).
+It can select between any Lox values using the truthiness rule you already
+implemented.
+
+Evaluate the left operand first. If it is truthy, return that value and skip the
+right operand. Otherwise, evaluate and return the right operand, even if it is
+falsy. The result is an operand's value and can be a string or number.
+
+Skipping an operand is called **short-circuit evaluation**. Skipped assignments
+have no effect, and skipped expressions cannot raise runtime errors. `or` has
+lower precedence than equality and higher precedence than assignment. Chains
+associate to the left.
 
 ### Tests
 
-The tester will run a series of tests with `test.lox` files that contain programs with the logical OR operator.
+The tester will run a series of tests with `test.lox` files that contain
+programs with the logical OR operator.
 
 For example, if `test.lox` contains the following
 
@@ -21,34 +32,10 @@ $ ./your_program.sh run test.lox
 ok
 ```
 
-The tester will run multiple such tests with randomized expressions, for example:
+The tester varies the values and expressions. These examples show the required
+behavior:
 
-Test Case 1:
-
-Input:
-
-```
-if (false or "ok") print "baz";
-if (nil or "ok") print "baz";
-
-if (false or false) print "world";
-if (true or "world") print "world";
-
-if (24 or "bar") print "bar";
-if ("bar" or "bar") print "bar";
-```
-
-Expected Output:
-
-```
-baz
-baz
-world
-bar
-bar
-```
-
-Test Case 2:
+The result preserves an operand's value:
 
 Input:
 
@@ -62,7 +49,7 @@ print false or false or false;
 print true or true or true or true;
 ```
 
-Expected Output:
+Stdout:
 
 ```
 41
@@ -73,7 +60,7 @@ false
 true
 ```
 
-Test Case 3:
+Short-circuiting skips later assignments:
 
 Input:
 
@@ -85,38 +72,19 @@ print a;
 print b;
 ```
 
-Expected Output:
+Stdout:
 
 ```
 false
 true
 ```
 
-Test Case 4:
-
-Input:
-
-```
-var stage = "unknown";
-var age = 23;
-if (age < 18) { stage = "child"; }
-if (age >= 18) { stage = "adult"; }
-print stage;
-
-var isAdult = age >= 18;
-if (isAdult) { print "eligible for voting: true"; }
-if (!isAdult) { print "eligible for voting: false"; }
-```
-
-Expected Output:
-
-```
-adult
-eligible for voting: true
-```
-
-The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+The tester will assert that the stdout of your program matches the format above,
+and that the exit code is 0.
 
 ### Notes
 
-- This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/logical_operator/or.lox)
+- This output format matches the spec in the
+  [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/logical_operator/or.lox)
+- For the book's explanation, see
+  [Section 9.3: Logical Operators](https://craftinginterpreters.com/control-flow.html#logical-operators).

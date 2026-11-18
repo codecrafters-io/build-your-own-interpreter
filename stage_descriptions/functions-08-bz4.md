@@ -1,12 +1,23 @@
-In this stage, you'll add support for global and local scope in your lox interpreter.
+In this stage, you'll apply the scope rules to function calls.
 
-### Book reference
+### Lexical scope for functions
 
-The code for this stage is implemented in [Section 10.6: Local functions & Closures](https://craftinginterpreters.com/functions.html#local-functions-and-closures).
+Lox uses **lexical scope**: a function's surrounding scopes are determined by
+where it was declared. Calling it from another block does not make that block's
+local variables visible to the function.
+
+Each call has fresh parameter and local bindings. Reads of outer variables use
+their current values, and assignments to those bindings remain visible after the
+call. A local declaration shadows an outer name from that declaration onward. An
+earlier reference in the function can still use the outer name.
+
+In the first example, `printAndModify` reads the current global `a` before
+declaring its separate local `a`.
 
 ### Tests
 
-The tester will run a series of tests with `test.lox` files that contain programs with global and local scope.
+The tester will run a series of tests with `test.lox` files that contain
+programs with global and local scope.
 
 For example, if `test.lox` contains the following
 
@@ -33,64 +44,10 @@ $ ./your_program.sh run test.lox
 95
 ```
 
-The tester will run multiple such tests with randomized expressions, for example:
+The tester varies the values and expressions. These examples show the required
+behavior:
 
-Test Case 1:
-
-Input:
-
-```
-var a = 38;
-
-fun printAndModify() {
-  print a;
-  var a = 95;
-  print a;
-}
-
-print a;
-a = 68;
-printAndModify();
-```
-
-Expected Output:
-
-```
-38
-68
-95
-```
-
-Test Case 2:
-
-Input:
-
-```
-var count = 3;
-
-fun tick() {
-  if (count > 0) {
-    print count;
-    count = count - 1;
-    return false;
-  }
-  print "Blast off!";
-  return true;
-}
-
-while (!tick()) {}
-```
-
-Expected Output:
-
-```
-3
-2
-1
-Blast off!
-```
-
-Test Case 3:
+A function can update an outer binding:
 
 Input:
 
@@ -110,7 +67,7 @@ fun incrementCounter(amount) {
 print counter;
 ```
 
-Expected Output:
+Stdout:
 
 ```
 89
@@ -118,7 +75,7 @@ Expected Output:
 89
 ```
 
-Test Case 4:
+Caller-local variables do not replace globals:
 
 Input:
 
@@ -147,9 +104,9 @@ fun printBoth() {
     while (i < 3) {
       x = x + 1;
       y = y - 1;
-      print "Local x: ";
+      print "Local x:";
       print x;
-      print "Local y: ";
+      print "Local y:";
       print y;
       i = i + 1;
     }
@@ -163,7 +120,7 @@ fun printBoth() {
 }
 ```
 
-Expected Output:
+Stdout:
 
 ```
 Local x:
@@ -183,8 +140,12 @@ x is less than y:
 2
 ```
 
-The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+The tester will assert that the stdout of your program matches the format above,
+and that the exit code is 0.
 
 ### Notes
 
-- This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/closure/open_closure_in_function.lox)
+- This output format matches the spec in the
+  [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/closure/open_closure_in_function.lox)
+- For the book's explanation, see
+  [Section 10.6: Local functions & Closures](https://craftinginterpreters.com/functions.html#local-functions-and-closures).

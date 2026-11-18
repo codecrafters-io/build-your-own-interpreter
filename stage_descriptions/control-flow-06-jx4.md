@@ -1,12 +1,20 @@
-In this stage, you'll add support for the logical AND operator in your interpreter. The logical AND operator combines two conditions and returns the first falsy value. If all values are truthy, it returns the last value.
+In this stage, you'll add the logical operator `and`, using the same
+short-circuit model as `or`.
 
-### Book reference
+### Short-circuit evaluation with `and`
 
-The code for this stage is implemented in [Section 9.3: Logical Operators](https://craftinginterpreters.com/control-flow.html#logical-operators).
+Evaluate the left operand first. If it is falsy, return that value and skip the
+right operand. Otherwise, evaluate and return the right operand. A chain returns
+its first falsy value, or its last value when all operands are truthy.
+
+`and` binds more tightly than `or` and less tightly than equality. Thus
+`a or b and c` groups as `a or (b and c)`. Equal-precedence `and` operations
+associate to the left. Keep the result's original type.
 
 ### Tests
 
-The tester will run a series of tests with `test.lox` files that contain programs with the logical AND operator.
+The tester will run a series of tests with `test.lox` files that contain
+programs with the logical AND operator.
 
 For example, if `test.lox` contains the following
 
@@ -21,9 +29,10 @@ $ ./your_program.sh run test.lox
 false
 ```
 
-The tester will run multiple such tests with randomized expressions, for example:
+The tester varies the values and expressions. These examples show the required
+behavior:
 
-Test Case 1:
+Truthiness applies to all operand types:
 
 Input:
 
@@ -37,7 +46,7 @@ if ("baz" and "baz") print "baz";
 if ("" and "bar") print "bar";
 ```
 
-Expected Output:
+Stdout:
 
 ```
 hello
@@ -46,30 +55,7 @@ baz
 bar
 ```
 
-Test Case 2:
-
-Input:
-
-```
-print false and 1;
-print true and 1;
-print 23 and "hello" and false;
-
-print 23 and true;
-print 23 and "hello" and 23;
-```
-
-Expected Output:
-
-```
-false
-1
-false
-true
-23
-```
-
-Test Case 3:
+Short-circuiting skips later assignments:
 
 Input:
 
@@ -81,38 +67,19 @@ print a;
 print b;
 ```
 
-Expected Output:
+Stdout:
 
 ```
 true
 false
 ```
 
-Test Case 4:
-
-Input:
-
-```
-var stage = "unknown";
-var age = 14;
-if (age < 18) { stage = "child"; }
-if (age >= 18) { stage = "adult"; }
-print stage;
-
-var isAdult = age >= 18;
-if (isAdult) { print "eligible for voting: true"; }
-if (!isAdult) { print "eligible for voting: false"; }
-```
-
-Expected Output:
-
-```
-child
-eligible for voting: false
-```
-
-The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+The tester will assert that the stdout of your program matches the format above,
+and that the exit code is 0.
 
 ### Notes
 
-- This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/logical_operator/and.lox)
+- This output format matches the spec in the
+  [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/logical_operator/and.lox)
+- For the book's explanation, see
+  [Section 9.3: Logical Operators](https://craftinginterpreters.com/control-flow.html#logical-operators).

@@ -1,17 +1,39 @@
-An interpreter’s first job is to turn raw source code text into tokens (the smallest meaningful units of code). In this stage, you’ll handle the simplest possible input: an empty .lox file.
+Before your interpreter can run Lox code, it needs to recognize the pieces of
+text that form the program. In this stage, you'll add the `tokenize` command and
+make it handle an empty `.lox` source file.
 
 ### The `tokenize` command
 
-The `tokenize` command tokenizes a Lox program and prints the tokens to stdout. We'll use this for testing
-all stages in the [Scanning](https://craftinginterpreters.com/scanning.html) chapter.
+**Scanning**, also called **tokenization**, divides source text into meaningful
+units called tokens. A token can represent a name, a number, or a punctuation
+mark. The `tokenize` command prints those tokens to stdout, the program's normal
+output stream. We'll use it throughout the
+[Scanning](https://craftinginterpreters.com/scanning.html) chapter.
 
-If there's a file named `test.lox` with the following contents:
+Each token has this output format:
+
+```
+<token_type> <lexeme> <literal>
+```
+
+- The **token type** names its category, such as `STRING` or `NUMBER`.
+- The **lexeme** is the exact text that formed the token. For the string
+  `"lox"`, it includes the quotes.
+- The **literal** field holds a string or number token's value, such as `lox`
+  without quotes. Other token types use `null` in this field.
+
+Every token sequence ends with `EOF`, an end-of-file marker. It has an empty
+lexeme and a `null` literal, so its output is `EOF  null` with two spaces. Even
+an empty source file produces this marker.
+
+For context, a completed scanner will recognize this program:
 
 ```
 var language = "lox";
 ```
 
-The `tokenize` command will return the following:
+It will produce the following tokens. You only need the empty-file case in this
+stage:
 
 ```
 $ ./your_program.sh tokenize test.lox
@@ -23,42 +45,30 @@ SEMICOLON ; null
 EOF  null
 ```
 
-This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning).
+This output format matches the spec in the
+[book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning).
 
-Each line corresponds to a token in the file (Image from [Section 4.2: Lexemes & Tokens](https://craftinginterpreters.com/scanning.html#lexemes-and-tokens)):
+The book illustrates how source text becomes tokens in
+[Section 4.2: Lexemes & Tokens](https://craftinginterpreters.com/scanning.html#lexemes-and-tokens):
 
-![img](https://craftinginterpreters.com/image/scanning/lexemes.png)
-
-This is the format for each line:
-
-```
-<token_type> <lexeme> <literal>
-```
-
-- `<token_type>`: The type of the token.
-  - Examples: `VAR`, `IDENTIFIER`, `STRING`, `EOF` etc.
-- `<lexeme>`: The actual sequence of characters that formed the token.
-  - Examples: `var`, `breakfast`, `"bagels"` etc.
-  - For an `EOF` token, the lexeme is an empty string.
-- `<literal>`: The literal value of the token.
-  - For most tokens this is `null`.
-  - For `STRING`/`NUMBER` tokens, it holds the value of the string/number.
-
-The `EOF` token is a special token that represents the end of the file. All calls to `tokenize` will include an `EOF` token at the end.
+![Source text grouped into lexemes](https://craftinginterpreters.com/image/scanning/lexemes.png)
 
 ### Tests
 
-The tester will write an empty file to `test.lox`. It'll then run your program like this:
+The tester will write an empty file to `test.lox`. It'll then run your program
+like this:
 
 ```
 $ ./your_program.sh tokenize test.lox
 EOF  null
 ```
 
-Since the file is empty, only one token is expected in the output: `EOF`. The tester will verify that `EOF<space><space>null` is printed to stdout.
+Print exactly `EOF  null` followed by a newline to stdout and exit with code 0.
+The `$` line above shows the command being run, and is not part of your
+program's output.
 
 ### Notes
 
-- This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning)
-- There are two spaces between `EOF` and `null`. This is because the `<lexeme>` part is an empty string for the `EOF` token.
-- In this stage, your scanner only needs to handle empty files. You’ll gradually expand its functionality in the upcoming stages.
+- Keep debugging output off stdout so it does not become part of the token
+  output. Use stderr for diagnostics.
+- Handling nonempty source files comes in later stages.

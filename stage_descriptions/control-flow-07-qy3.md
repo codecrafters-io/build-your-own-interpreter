@@ -1,12 +1,18 @@
-In this stage, you'll add support for `while` statements in your interpreter. `while` statements are used to execute a block of code repeatedly while a condition is true.
+In this stage, you'll add `while (<condition>) <statement>`.
 
-### Book reference
+### Repeating a statement
 
-The code for this stage is implemented in [Section 9.4: While loops](https://craftinginterpreters.com/control-flow.html#while-loops).
+A loop repeatedly executes its body while its condition is truthy.
+
+Evaluate the condition before every iteration, including the first. A falsy
+initial condition skips the body entirely. After the body finishes, evaluate the
+condition again using the current variable values. The body can be a single
+statement or a block, with the usual scope rules.
 
 ### Tests
 
-The tester will run a series of tests with `test.lox` files that contain programs with `while` statements.
+The tester will run a series of tests with `test.lox` files that contain
+programs with `while` statements.
 
 For example, if `test.lox` contains the following
 
@@ -24,26 +30,10 @@ $ ./your_program.sh run test.lox
 3
 ```
 
-The tester will run multiple such tests with randomized expressions, for example:
+The tester varies the values and expressions. These examples show the required
+behavior:
 
-Test Case 1:
-
-Input:
-
-```
-var foo = 0;
-while (foo < 3) print foo = foo + 1;
-```
-
-Expected Output:
-
-```
-1
-2
-3
-```
-
-Test Case 2:
+A block can print and update state:
 
 Input:
 
@@ -55,7 +45,7 @@ while (quz < 3) {
 }
 ```
 
-Expected Output:
+Stdout:
 
 ```
 0
@@ -63,34 +53,7 @@ Expected Output:
 2
 ```
 
-Test Case 3:
-
-Input:
-
-```
-while (false) {
-  print "should not print";
-}
-
-var product = 1;
-var i = 1;
-
-while (i <= 5) {
-  product = product * i;
-  i = i + 1;
-}
-
-print "Product of numbers 1 to 5: "; print product;
-```
-
-Expected Output:
-
-```
-Product of numbers 1 to 5:
-120
-```
-
-Test Case 4:
+Repeated updates generate a sequence:
 
 Input:
 
@@ -109,7 +72,7 @@ while (index < n) {
 }
 ```
 
-Expected Output:
+Stdout:
 
 ```
 0
@@ -124,8 +87,12 @@ Expected Output:
 34
 ```
 
-The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+The tester will assert that the stdout of your program matches the format above,
+and that the exit code is 0.
 
 ### Notes
 
-- This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/while/syntax.lox)
+- This output format matches the spec in the
+  [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/while/syntax.lox)
+- For the book's explanation, see
+  [Section 9.4: While loops](https://craftinginterpreters.com/control-flow.html#while-loops).

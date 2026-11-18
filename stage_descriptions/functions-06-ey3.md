@@ -1,12 +1,23 @@
-In this stage, you'll add support for higher order functions in your lox interpreter.
+In this stage, you'll treat functions as values that can be stored in variables,
+passed as arguments, and returned from other functions.
 
-### Book reference
+### First-class functions
 
-The code for this stage is implemented in [Section 10.6: Local functions and Closures](https://craftinginterpreters.com/functions.html#local-functions-and-closures).
+This is called **first-class function** support. A **higher-order function**
+takes a function as an argument or returns one.
+
+The callee can now be any expression that produces a function, including another
+call: `makeGreeter()` returns a function, and `makeGreeter()("Bob")` immediately
+calls that returned function.
+
+Returning `greet` returns the function itself. Writing `greet(...)` calls it and
+returns the call's result. Capturing variables from an enclosing call is covered
+in the closures stage.
 
 ### Tests
 
-The tester will run a series of tests with `test.lox` files that contain programs with higher order functions.
+The tester will run a series of tests with `test.lox` files that contain
+programs with higher-order functions.
 
 For example, if `test.lox` contains the following
 
@@ -29,31 +40,10 @@ $ ./your_program.sh run test.lox
 Hello Bob
 ```
 
-The tester will run multiple such tests with randomized expressions, for example:
+The tester varies the values and expressions. These examples show the required
+behavior:
 
-Test Case 1:
-
-Input:
-
-```
-fun makeGreeter() {
-  fun greet(name) {
-    print "Hello " + name;
-  }
-  return greet;
-}
-
-var sayHello = makeGreeter();
-sayHello("Bob");
-```
-
-Expected Output:
-
-```
-Hello Bob
-```
-
-Test Case 2:
+Calling a function returned by another call:
 
 Input:
 
@@ -73,13 +63,13 @@ fun printArg(arg) {
 returnFunCallWithArg(printArg, "foo");
 ```
 
-Expected Output:
+Stdout:
 
 ```
 foo
 ```
 
-Test Case 3:
+Passing a function as an argument:
 
 Input:
 
@@ -107,7 +97,7 @@ print applyTimesN(2, square, 6);
 print applyTimesN(3, square, 6);
 ```
 
-Expected Output:
+Stdout:
 
 ```
 36
@@ -115,51 +105,12 @@ Expected Output:
 1679616
 ```
 
-Test Case 4:
-
-Input:
-
-```
-fun makeFilter() {
-  fun filter(n) {
-    if (n < 42) {
-      return false;
-    }
-    return true;
-  }
-  return filter;
-}
-
-// This function applies a function to a list of numbers
-fun applyToNumbers(f, count) {
-  var n = 0;
-  while (n < count) {
-    if (f(n)) {
-      print n;
-    }
-    n = n + 1;
-  }
-}
-
-var greaterThanX = makeFilter();
-
-print "Numbers >= 42:";
-applyToNumbers(greaterThanX, 42 + 5);
-```
-
-Expected Output:
-
-```
-Numbers >= 42:
-42
-43
-44
-45
-46
-```
-
-The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+The tester will assert that the stdout of your program matches the format above,
+and that the exit code is 0.
 
 ### Notes
 
-- This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/function/local_recursion.lox)
+- This output format matches the spec in the
+  [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/function/local_recursion.lox)
+- For the book's explanation, see
+  [Section 10.6: Local functions and Closures](https://craftinginterpreters.com/functions.html#local-functions-and-closures).

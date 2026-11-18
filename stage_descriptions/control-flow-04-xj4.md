@@ -1,12 +1,19 @@
-In this stage, you'll add support for nested `if` statements in your interpreter. Nested `if` statements are `if` statements that are inside the body of another `if` statement.
+In this stage, you'll support an `if` statement inside another conditional's
+body.
 
-### Book reference
+### Nested conditionals
 
-The code for this stage is implemented in [Section 9.2: Conditional execution](https://craftinginterpreters.com/control-flow.html#conditional-execution).
+Blocks can group nested statements, but a single nested `if` needs no braces.
+
+Without braces, an `else` belongs to the nearest preceding `if` that does not
+already have an `else`. This is often called the **dangling-else rule**. In
+`if (true) if (false) print "world"; else print "baz";`, the `else` belongs to
+the inner `if`, so the program prints `baz`.
 
 ### Tests
 
-The tester will run a series of tests with `test.lox` files that contain programs with `if` statements.
+The tester will run a series of tests with `test.lox` files that contain
+programs with `if` statements.
 
 For example, if `test.lox` contains the following
 
@@ -21,39 +28,10 @@ $ ./your_program.sh run test.lox
 nested true
 ```
 
-The tester will run multiple such tests with randomized expressions, for example:
+The tester varies the values and expressions. These examples show the required
+behavior:
 
-Test Case 1:
-
-Input:
-
-```
-if (true) if (true) print "nested true";
-```
-
-Expected Output:
-
-```
-nested true
-```
-
-Test Case 2:
-
-Input:
-
-```
-if (true) {
-  if (false) print "quz"; else print "quz";
-}
-```
-
-Expected Output:
-
-```
-quz
-```
-
-Test Case 3:
+Combining nested conditions:
 
 Input:
 
@@ -98,7 +76,7 @@ else {
 }
 ```
 
-Expected Output:
+Stdout:
 
 ```
 young adult
@@ -108,7 +86,7 @@ eligible for driving: full license
 eligible for drinking (US): true
 ```
 
-Test Case 4:
+An else binds to the inner if:
 
 Input:
 
@@ -116,14 +94,18 @@ Input:
 if (true) if (false) print "world"; else print "baz";
 ```
 
-Expected Output:
+Stdout:
 
 ```
 baz
 ```
 
-The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+The tester will assert that the stdout of your program matches the format above,
+and that the exit code is 0.
 
 ### Notes
 
-- This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/if/dangling_else.lox)
+- This output format matches the spec in the
+  [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/if/dangling_else.lox)
+- For the book's explanation, see
+  [Section 9.2: Conditional execution](https://craftinginterpreters.com/control-flow.html#conditional-execution).

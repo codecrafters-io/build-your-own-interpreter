@@ -1,12 +1,24 @@
-In this stage, you'll add support for class inheritance in your Lox interpreter. This will allow users to define class hierarchies using the `<` operator to specify a superclass.
+This extension lets classes reuse and specialize behavior from another class.
+Build on the Classes extension, including instances, methods, initializers, and
+resolution. In this stage, you'll support inheritance declarations with empty
+class bodies.
 
-### Book reference
+### Superclasses and subclasses
 
-The code for this stage is implemented in [Section 13.1: Superclasses and Subclasses](https://craftinginterpreters.com/inheritance.html#superclasses-and-subclasses).
+In `class BostonCream < Doughnut {}`, `Doughnut` is the **superclass**, and
+`BostonCream` is its **subclass**. The `<` token here declares that
+relationship. It is not a numeric comparison. Lox allows one direct superclass,
+whose name is resolved in the declaration's surrounding scope.
+
+Several classes can inherit from one superclass, and a subclass can itself have
+subclasses. Together these relationships form a class hierarchy. Keep the
+existing instance output format: `print BostonCream();` prints
+`BostonCream instance`. Looking up inherited methods comes next.
 
 ### Tests
 
-The tester will run a series of tests with `test.lox` files that contain class inheritance declarations.
+The tester will run a series of tests with `test.lox` files that contain class
+inheritance declarations.
 
 For example, if `test.lox` contains the following:
 
@@ -27,11 +39,13 @@ Doughnut instance
 BostonCream instance
 ```
 
-The tester will run multiple such tests with inheritance in different contexts, for example:
+The tester varies values and contexts. These examples show the required
+behavior:
 
-Test Case 1:
+Sibling subclasses in a local scope:
 
 Input:
+
 ```
 {
   class A {}
@@ -48,16 +62,18 @@ Input:
 }
 ```
 
-Expected Output:
+Stdout:
+
 ```
 A instance
 B instance
 C instance
 ```
 
-Test Case 2:
+A hierarchy with several levels:
 
 Input:
+
 ```
 class Vehicle {}
 
@@ -78,7 +94,8 @@ print Sedan();
 }
 ```
 
-Expected Output:
+Stdout:
+
 ```
 Vehicle instance
 Car instance
@@ -86,10 +103,12 @@ Sedan instance
 Truck instance
 ```
 
-The tester will assert that your program correctly handles class inheritance declarations and follows the same instance printing rules as regular classes.
+The tester checks the shown instance output and exit code 0, including
+declarations in local scopes.
 
 ### Notes
 
-- This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/class/local_inherit_other.lox)
-- Subclasses should print their instances in the same format as regular classes
-- Inheritance declarations should work in any scope where class declarations are valid
+- This output format matches the spec in the
+  [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/class/local_inherit_other.lox)
+- For the book's explanation, see
+  [Section 13.1: Superclasses and Subclasses](https://craftinginterpreters.com/inheritance.html#superclasses-and-subclasses).
