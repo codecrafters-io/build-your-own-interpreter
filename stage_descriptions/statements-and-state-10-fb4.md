@@ -1,12 +1,24 @@
-In this stage, you'll add support for scopes in your interpreter. Scopes are created by blocks, and they are used to group variables together. We will test variables in local scopes, nested scopes, shadowing of variables, and accessing variables outside of the scope where they are defined.
+In this stage, you'll give each block a **local scope**, the region where its
+declared variables are visible.
 
-### Book reference
+### Scope and shadowing
 
-The code for this stage is implemented in [Section 8.5: Scope](https://craftinginterpreters.com/statements-and-state.html#scope).
+Variables declared outside all blocks are global. A nested block can read
+variables from enclosing scopes.
+
+A read or assignment uses the nearest enclosing binding with that name. A local
+declaration with an existing outer name **shadows** it: the new local binding is
+separate, and the outer value remains unchanged. Assigning to an outer binding
+from an inner block does update that outer value.
+
+After a block ends, its local names are no longer visible. Looking up a name
+that exists in no enclosing scope is a runtime error. Keep output produced
+before that error and stop with exit code 70.
 
 ### Tests
 
-The tester will run a series of tests with `test.lox` files that contain the assignment operation.
+The tester will run a series of tests with `test.lox` files that contain blocks
+and variable references.
 
 For example, if `test.lox` contains the following
 
@@ -29,51 +41,10 @@ after
 before
 ```
 
-The tester will run multiple such tests with randomized expressions, for example:
+The tester varies the values and expressions. These examples show the required
+behavior:
 
-Test Case 1:
-
-Input:
-
-```
-var baz = (91 * 16) - 61;
-{
-    var world = "quz" + "89";
-    print world;
-}
-print baz;
-```
-
-Expected Output:
-
-```
-quz89
-1395
-```
-
-Test Case 2:
-
-Input:
-
-```
-{
-    var quz = "before";
-    {
-        var quz = "after";
-        print quz;
-    }
-    print quz;
-}
-```
-
-Expected Output:
-
-```
-after
-before
-```
-
-Test Case 3:
+Lookup across nested scopes:
 
 Input:
 
@@ -99,7 +70,7 @@ print world;
 print hello;
 ```
 
-Expected Output:
+Stdout:
 
 ```
 inner bar
@@ -113,7 +84,7 @@ global world
 global hello
 ```
 
-Test Case 4:
+A local name is unavailable after its block:
 
 Input:
 
@@ -129,17 +100,27 @@ Input:
 print hello;
 ```
 
-Expected Output:
+Stdout:
 
 ```
 inner hello
 outer hello
+```
+
+Example stderr:
+
+```
 Undefined variable 'hello'.
 [line 9]
 ```
 
-The tester will assert that the stdout of your program matches the format above, and that the exit code is 0. Accessing a variable outside of its scope should throw a runtime error, the exit code in that case should be 70.
+Successful programs exit with code 0. An undefined-variable runtime error exits
+with code 70. The tester checks stdout and exit status, without requiring the
+exact diagnostic wording.
 
 ### Notes
 
-- This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/string/literals.lox)
+- This output format matches the spec in the
+  [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/string/literals.lox)
+- For the book's explanation, see
+  [Section 8.5: Scope](https://craftinginterpreters.com/statements-and-state.html#scope).

@@ -1,12 +1,25 @@
-In this stage, you'll add support for detecting invalid self-initialization of variables. This means catching cases where a variable tries to use itself in its own initializer before it has been fully defined.
+In this stage, you'll reject a read of a local variable inside its own
+initializer.
 
-### Book reference
+### Local variable initialization
 
-The code for this stage is implemented in [Section 11.5: Resolution Errors](https://craftinginterpreters.com/resolving-and-binding.html#resolution-errors).
+The local name has been declared, but its initial value is not yet available. An
+outer variable with the same name does not supply that value.
+
+For example, `{ var a = a; }` is invalid even if a global `a` exists. The rule
+also applies when the read is nested inside another expression, such as a
+function argument.
+
+Global redeclaration keeps its earlier behavior: `var a = a;` can read an
+existing global `a`. If no such global exists, that read remains a runtime
+error. A local self-initialization error must be found by the resolver before
+any statements run. Report it on stderr, leave stdout empty, and exit with
+code 65.
 
 ### Tests
 
-The tester will run a series of tests with `test.lox` files that contain programs with variable self-initialization.
+The tester will run a series of tests with `test.lox` files that contain
+programs with variable self-initialization.
 
 For example, if `test.lox` contains the following:
 
@@ -23,9 +36,10 @@ $ ./your_program.sh run test.lox
 value
 ```
 
-The tester will run multiple such tests with randomized expressions, for example:
+The tester varies the values and expressions. These examples show the required
+behavior:
 
-Test Case 1:
+An outer binding does not make local self-initialization valid:
 
 Input:
 
@@ -36,13 +50,13 @@ var a = "outer";
 }
 ```
 
-Expected Output:
+Example stderr:
 
 ```
 [line 3] Error at 'a': Can't read local variable in its own initializer.
 ```
 
-Test Case 2:
+A read inside an argument is still part of the initializer:
 
 Input:
 
@@ -62,42 +76,20 @@ var b = b + " updated";
 print b;
 ```
 
-Expected Output:
+Example stderr:
 
 ```
 [line 8] Error at 'b': Can't read local variable in its own initializer.
 ```
 
-Test Case 3:
-
-Input:
-
-```
-fun outer() {
-  var a = "outer";
-
-  fun inner() {
-    var a = a;    // Error: Can't read local variable in its own initializer
-    print a;
-  }
-
-  inner();
-}
-
-outer();
-```
-
-Expected Output:
-
-```
-[line 5] Error at 'a': Can't read local variable in its own initializer.
-```
-
-The tester will assert that for valid global self-initialization, the exit code should be 0. For invalid local self-initialization, the program should exit with code 65 and print an appropriate error message.
+The global redeclaration example prints `value` and exits with code 0. The
+invalid local examples produce no stdout and exit with code 65.
 
 ### Notes
 
-- This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/variable/use_local_in_initializer.lox)
-- Self-initialization is allowed in global scope but not in local scopes
-- The error should be detected at compile time, not runtime
-- Error messages should be written to stderr, but the exact error message is not checked.
+- This output format matches the spec in the
+  [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/variable/use_local_in_initializer.lox)
+- The exact diagnostic wording is not checked. The tester checks stdout and the
+  exit code.
+- For the book's explanation, see
+  [Section 11.5: Resolution Errors](https://craftinginterpreters.com/resolving-and-binding.html#resolution-errors).

@@ -1,13 +1,19 @@
-In this stage, you'll add support for assigning values to variables using the `=` operator. You need to only support variables that have already been declared on the left side of the assignment.
-Note that assignment is right associative, so `a = b = 1` is equivalent to `a = (b = 1)`.
+In this stage, you'll add assignment expressions with `=`.
 
-### Book reference
+### Assignment values and associativity
 
-The code for this stage is implemented in [Section 8.4: Assignment](https://craftinginterpreters.com/statements-and-state.html#assignment).
+Assignment updates an existing variable's value and also produces the assigned
+value. That result lets assignment appear inside `print` or another assignment.
+
+Assignment has lower precedence than the operators already supported and is
+right-associative. Thus `a = b = 1` means `a = (b = 1)`, and both variables
+receive `1`. Unlike a `var` declaration, assignment does not introduce a new
+name. This stage uses previously declared variables on the left side.
 
 ### Tests
 
-The tester will run a series of tests with `test.lox` files that contain the assignment operation.
+The tester will run a series of tests with `test.lox` files that contain the
+assignment operation.
 
 For example, if `test.lox` contains the following
 
@@ -25,9 +31,10 @@ $ ./your_program.sh run test.lox
 1
 ```
 
-The tester will run multiple such tests with randomized expressions, for example:
+The tester varies the values and expressions. These examples show the required
+behavior:
 
-Test Case 1:
+Assignment has a value:
 
 Input:
 
@@ -39,7 +46,7 @@ print quz = 2;
 print quz;
 ```
 
-Expected Output:
+Stdout:
 
 ```
 1
@@ -47,25 +54,7 @@ Expected Output:
 2
 ```
 
-Test Case 2:
-
-Input:
-
-```
-var hello = 93;
-var bar = 93;
-bar = hello;
-hello = bar;
-print hello + bar;
-```
-
-Expected Output:
-
-```
-186
-```
-
-Test Case 3:
+Chained assignment:
 
 Input:
 
@@ -78,38 +67,19 @@ print quz;
 print hello;
 ```
 
-Expected Output:
+Stdout:
 
 ```
 3144
 3144
 ```
 
-Test Case 4:
-
-Input:
-
-```
-var hello = 65;
-var baz;
-var quz;
-
-hello = baz = quz = hello * 2;
-print hello;
-print baz;
-print baz;
-```
-
-Expected Output:
-
-```
-130
-130
-130
-```
-
-The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+The tester will assert that the stdout of your program matches the format above,
+and that the exit code is 0.
 
 ### Notes
 
-- This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/string/literals.lox)
+- This output format matches the spec in the
+  [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/string/literals.lox)
+- For the book's explanation, see
+  [Section 8.4: Assignment](https://craftinginterpreters.com/statements-and-state.html#assignment).

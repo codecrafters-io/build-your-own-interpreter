@@ -1,12 +1,25 @@
-In this stage, you'll add support for closures in your lox interpreter.
+In this stage, you'll keep an enclosing function's local bindings available to a
+returned nested function.
 
-### Book reference
+### Closures and retained bindings
 
-The code for this stage is implemented in [Section 10.6: Local functions & Closures](https://craftinginterpreters.com/functions.html#local-functions-and-closures).
+A **closure** is a function together with access to the environment where it was
+declared.
+
+In `makeCounter`, the returned `count` function can still read and update `i`
+after `makeCounter` has returned. It retains access to the same binding on every
+call, so the outputs are `1`, then `2`. Capturing a frozen copy of the value
+would lose those updates.
+
+Each call to the outer function creates separate local bindings. Functions
+created during the same call can share those bindings, while functions from
+separate calls keep independent state. The accumulator example checks this
+distinction.
 
 ### Tests
 
-The tester will run a series of tests with `test.lox` files that contain programs with closures.
+The tester will run a series of tests with `test.lox` files that contain
+programs with closures.
 
 For example, if `test.lox` contains the following
 
@@ -34,110 +47,10 @@ $ ./your_program.sh run test.lox
 2
 ```
 
-The tester will run multiple such tests with randomized expressions, for example:
+The tester varies the values and expressions. These examples show the required
+behavior:
 
-Test Case 1:
-
-Input:
-
-```
-fun makeCounter() {
-  var i = 0;
-  fun count() {
-    i = i + 1;
-    print i;
-  }
-
-  return count;
-}
-
-var counter = makeCounter();
-counter();
-counter();
-```
-
-Expected Output:
-
-```
-1
-2
-```
-
-Test Case 2:
-
-Input:
-
-```
-{
-  var threshold = 50;
-
-  fun isEven(n) {
-    if (n == 0) return true;
-    if (n > threshold) return false;
-    return isOdd(n - 1);
-  }
-
-  fun isOdd(n) {
-    if (n == 0) return false;
-    if (n > threshold) return false;
-    return isEven(n - 1);
-  }
-
-  print isEven(61);
-}
-```
-
-Expected Output:
-
-```
-false
-```
-
-Test Case 3:
-
-Input:
-
-```
-fun makeLogger(prefix) {
-  var logCount = 0;
-
-  fun log(message) {
-    logCount = logCount + 1;
-    print prefix + ": " + message;
-
-    if (logCount > 6) {
-      print prefix + ": Too many log lines!";
-      logCount = 0;
-    }
-  }
-
-  return log;
-}
-
-var debugLog = makeLogger("debug");
-var errorLog = makeLogger("error");
-
-debugLog("Starting");
-debugLog("Processing");
-debugLog("Finishing");
-debugLog("Extra line");
-
-errorLog("Failed!");
-errorLog("Retrying...");
-```
-
-Expected Output:
-
-```
-debug: Starting
-debug: Processing
-debug: Finishing
-debug: Extra line
-error: Failed!
-error: Retrying...
-```
-
-Test Case 4:
+Separate calls retain separate state:
 
 Input:
 
@@ -179,7 +92,7 @@ acc2(6);
 acc2(4);
 ```
 
-Expected Output:
+Stdout:
 
 ```
 First:
@@ -209,8 +122,12 @@ Second:
 10
 ```
 
-The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+The tester will assert that the stdout of your program matches the format above,
+and that the exit code is 0.
 
 ### Notes
 
-- This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/closure/open_closure_in_function.lox)
+- This output format matches the spec in the
+  [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/closure/open_closure_in_function.lox)
+- For the book's explanation, see
+  [Section 10.6: Local functions & Closures](https://craftinginterpreters.com/functions.html#local-functions-and-closures).

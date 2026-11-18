@@ -1,12 +1,22 @@
-In this stage, you'll add support for the `this` keyword in your Lox interpreter. The `this` keyword allows methods to access the instance they were called on, enabling full object-oriented programming.
+In this stage, you'll let a method refer to its bound instance through `this`.
 
-### Book reference
+### The method receiver
 
-The code for this stage is implemented in [Section 12.6: This](https://craftinginterpreters.com/classes.html#this).
+That instance is the method's **receiver**. Use `this.memory` to read a field
+and `this.memory = value` to update it.
+
+The receiver is fixed when the method is obtained from an instance. If
+`dog.makeSound` is stored in a field on `cat`, the stored method still has `dog`
+as its receiver. Calling it through `cat` must not replace that binding.
+
+A function declared inside the method can capture `this` through the same
+closure mechanism as other outer bindings. The captured receiver remains
+available after the method returns.
 
 ### Tests
 
-The tester will run a series of tests with `test.lox` files that use the `this` keyword in various contexts.
+The tester will run a series of tests with `test.lox` files that use the `this`
+keyword in various contexts.
 
 For example, if `test.lox` contains the following:
 
@@ -27,11 +37,13 @@ $ ./your_program.sh run test.lox
 Spaceship instance
 ```
 
-The tester will run multiple such tests with `this` in different contexts, for example:
+The tester varies values and contexts. These examples show the required
+behavior:
 
-Test Case 1:
+Reading a receiver's field:
 
 Input:
+
 ```
 class Calculator {
   add(a, b) {
@@ -44,14 +56,16 @@ calc.memory = 82;
 print calc.add(92, 1);
 ```
 
-Expected Output:
+Stdout:
+
 ```
 175
 ```
 
-Test Case 2:
+Moving a bound method preserves its receiver:
 
 Input:
+
 ```
 class Animal {
   makeSound() {
@@ -78,15 +92,17 @@ cat.makeSound();
 dog.identify();
 ```
 
-Expected Output:
+Stdout:
+
 ```
 Woof
 Cat
 ```
 
-Test Case 3:
+A nested function captures this:
 
 Input:
+
 ```
 class Wizard {
   getSpellCaster() {
@@ -104,19 +120,19 @@ wizard.name = "Merlin";
 wizard.getSpellCaster()();
 ```
 
-Expected Output:
+Stdout:
+
 ```
 Wizard instance
 Casting spell as Merlin
 ```
 
-The tester will assert that your program correctly handles the `this` keyword, including:
-- Referring to the instance in methods
-- Accessing instance properties through `this`
-- Maintaining correct `this` binding when methods are passed around
+The tester checks stdout and exit code 0, including the retained receiver after
+a method is moved or captured.
 
 ### Notes
 
-- When methods are called, `this` should be bound to the instance the method was called on
-- The `this` binding should persist even when methods are passed around as first-class values
-- The output formats in this stage match those in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/benchmark/binary_trees.lox)
+- The output formats in this stage match those in the
+  [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/benchmark/binary_trees.lox)
+- For the book's explanation, see
+  [Section 12.6: This](https://craftinginterpreters.com/classes.html#this).

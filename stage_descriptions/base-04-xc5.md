@@ -1,13 +1,19 @@
-In this stage, you'll add support for scanning other single-character tokens, namely `,`, `.`, `-`, `+`, `;` and `*`.
-`/` is not covered here, it's covered in later stages.
+In this stage, you'll recognize the single-character tokens `,`, `.`, `-`, `+`,
+`;`, and `*` alongside parentheses and braces.
 
-### Book reference
+### Single-character tokens
 
-The code for this stage is implemented in [Section 4.5: Recognizing Lexemes](https://craftinginterpreters.com/scanning.html#recognizing-lexemes).
+These punctuation marks will later separate or combine parts of a Lox program.
+For now, classify each character without executing it.
+
+Use the token types in the table below, with the original character as the
+lexeme and `null` as the literal. The `/` token is shown for reference and comes
+in later stages.
 
 ### Tests
 
-The tester will run a series of tests with `test.lox` files that contain parentheses, braces combined with all the new single-character tokens.
+The tester will run a series of tests with `test.lox` files that contain
+parentheses, braces combined with all the new single-character tokens.
 
 For example, if `test.lox` contains the following:
 
@@ -33,23 +39,27 @@ EOF  null
 
 The tester will assert that the stdout of your program matches the format above.
 
-Here's a list of all the single-character tokens along with their types:
+Here's a list of the single-character tokens and their types:
 
-| Token | Token Type |
-| :---: | :-----------: |
-| `,` | `COMMA` |
-| `.` | `DOT` |
-| `-` | `MINUS` |
-| `+` | `PLUS` |
-| `;` | `SEMICOLON` |
-| `/` | `SLASH` |
-| `*` | `STAR` |
-| `(` | `LEFT_PAREN` |
-| `)` | `RIGHT_PAREN` |
-| `{` | `LEFT_BRACE` |
-| `}` | `RIGHT_BRACE` |
+|       Token        |  Token type   |
+| :----------------: | :-----------: |
+|        `,`         |    `COMMA`    |
+|        `.`         |     `DOT`     |
+|        `-`         |    `MINUS`    |
+|        `+`         |    `PLUS`     |
+|        `;`         |  `SEMICOLON`  |
+| `/` (later stages) |    `SLASH`    |
+|        `*`         |    `STAR`     |
+|        `(`         | `LEFT_PAREN`  |
+|        `)`         | `RIGHT_PAREN` |
+|        `{`         | `LEFT_BRACE`  |
+|        `}`         | `RIGHT_BRACE` |
 
 ### Notes
 
-- This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning)
-- When scanning for tokens, it's valid to have "unbalanced" parentheses or braces. When we get to parsing expressions in later stages, these cases will be highlighted as errors.
+- This output format matches the spec in the
+  [book's repository](https://github.com/munificent/craftinginterpreters/tree/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/scanning)
+- Scanning does not check whether parentheses or braces are balanced. That
+  requires parsing the program's structure.
+- For the book's explanation, see
+  [Section 4.5: Recognizing Lexemes](https://craftinginterpreters.com/scanning.html#recognizing-lexemes).

@@ -1,16 +1,30 @@
-In this stage, you'll add support for identifier resolution and binding at compile time.
+The closures you added in the Functions extension retain access to outer
+variables. This extension makes the choice of binding stable and catches invalid
+uses before a program runs. In this stage, you'll resolve identifiers before
+execution.
 
-You will have to implement a resolver that will traverse the AST and resolve identifiers to their corresponding bindings, and execute the resolver in a separate pass over the AST.
+### Resolving names before execution
 
-We say identifier resolution because in this stage you'll resolve variable declarations, variable assignments, function declarations and all other AST nodes.
+**Resolution** determines which declaration a name refers to. A local reference
+uses the nearest enclosing declaration visible at that reference's source
+position. A later local declaration must not change that choice, even when a
+closure is called afterward. The binding's value can still change through
+assignment.
 
-### Book reference
+Run a separate **resolver** pass over the AST between parsing and execution.
+This is static analysis: it examines the program without executing its
+statements. The book calls this work compile time even though your interpreter
+need not generate machine code.
 
-The code for this stage is implemented in [Section 11.3: A Resolver Class](https://craftinginterpreters.com/resolving-and-binding.html#a-resolver-class).
+Apply resolution to reads and assignments, including function names, and examine
+every supported expression and statement form. Names with no matching local
+declaration use the global environment at runtime. In the example below, both
+calls must use the global binding.
 
 ### Tests
 
-The tester will run a series of tests with `test.lox` files that contain programs with identifier resolution and binding.
+The tester will run a series of tests with `test.lox` files that contain
+programs with identifier resolution and binding.
 
 For example, if `test.lox` contains the following:
 
@@ -38,9 +52,10 @@ global
 global
 ```
 
-The tester will run multiple such tests with randomized expressions, for example:
+The tester varies the values and expressions. These examples show the required
+behavior:
 
-Test Case 1:
+Function names follow the same binding rule:
 
 Input:
 
@@ -64,49 +79,14 @@ fun global() {
 }
 ```
 
-Expected Output:
+Stdout:
 
 ```
 global
 global
 ```
 
-Test Case 2:
-
-Input:
-
-```
-var x = "global";
-
-fun outer() {
-  var x = "outer";
-
-  fun middle() {
-    fun inner() {
-      print x;
-    }
-
-    inner();
-
-    var x = "middle";
-
-    inner();
-  }
-
-  middle();
-}
-
-outer();
-```
-
-Expected Output:
-
-```
-outer
-outer
-```
-
-Test Case 3:
+Assignment keeps its original target:
 
 Input:
 
@@ -132,7 +112,7 @@ var count = 0;
 }
 ```
 
-Expected Output:
+Stdout:
 
 ```
 1
@@ -140,9 +120,12 @@ Expected Output:
 3
 ```
 
-The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+The tester will assert that the stdout of your program matches the format above,
+and that the exit code is 0.
 
 ### Notes
 
-- This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/closure/open_closure_in_function.lox)
-- The resolver should ensure that variables are resolved to their correct scopes at compile time
+- This output format matches the spec in the
+  [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/closure/open_closure_in_function.lox)
+- For the book's explanation, see
+  [Section 11.3: A Resolver Class](https://craftinginterpreters.com/resolving-and-binding.html#a-resolver-class).

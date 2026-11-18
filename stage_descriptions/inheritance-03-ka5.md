@@ -1,12 +1,24 @@
-In this stage, you'll add support for method overriding in your Lox interpreter. This allows subclasses to provide their own implementation of methods defined in their superclass.
+In this stage, you'll support **overriding**: a subclass declares a method with
+the same name as an inherited method.
 
-### Book reference
+### Overriding methods
 
-The code for this stage is implemented in [Section 13.2: Inheriting Methods](https://craftinginterpreters.com/inheritance.html#inheriting-methods).
+Ordinary lookup selects the first definition found, starting at the instance's
+own class and following its superclass chain.
+
+The superclass's method remains available to superclass instances. An override
+does not automatically call it. Even inside an inherited method, a call through
+`this` starts lookup at the actual receiver's class. That is why the inherited
+`communicate` method below uses `Puppy.speak` and `Dog.makeSound` for a puppy.
+
+A subclass can also override `init` with a different parameter list. Its
+initializer determines the constructor's arity and runs instead of the
+superclass initializer. Explicit superclass calls come in later stages.
 
 ### Tests
 
-The tester will run a series of tests with `test.lox` files that contain method overriding.
+The tester will run a series of tests with `test.lox` files that contain method
+overriding.
 
 For example, if `test.lox` contains the following:
 
@@ -36,11 +48,13 @@ $ ./your_program.sh run test.lox
 B method
 ```
 
-The tester will run multiple such tests with method overriding in different contexts, for example:
+The tester varies values and contexts. These examples show the required
+behavior:
 
-Test Case 1:
+An initializer can have a different signature:
 
 Input:
+
 ```
 class Base {
   init(a) {
@@ -61,15 +75,17 @@ print derived.a;
 print derived.b;
 ```
 
-Expected Output:
+Stdout:
+
 ```
 89
 32
 ```
 
-Test Case 2:
+An inherited method calls the receiver's overrides:
 
 Input:
+
 ```
 class Animal {
   speak() {
@@ -110,20 +126,20 @@ print dog.communicate();
 print puppy.communicate();
 ```
 
-Expected Output:
+Stdout:
+
 ```
 Animal speaks : Generic sound
 Dog speaks : Woof
 Puppy speaks : Woof
 ```
 
-The tester will assert that your program correctly handles method overriding, including:
-- Methods being correctly overridden in subclasses
-- Constructors being overridden with new signatures
-- Multiple levels of method overriding working correctly
+The tester checks stdout and exit code 0 for overrides, including constructor
+signatures and calls from inherited methods.
 
 ### Notes
 
-- This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/inheritance/inherit_methods.lox)
-- Overridden methods should completely replace the superclass implementation
-- Method overriding should work through multiple levels of inheritance
+- This output format matches the spec in the
+  [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/inheritance/inherit_methods.lox)
+- For the book's explanation, see
+  [Section 13.2: Inheriting Methods](https://craftinginterpreters.com/inheritance.html#inheriting-methods).

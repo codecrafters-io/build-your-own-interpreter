@@ -1,15 +1,20 @@
-In this stage, you'll add support for handling runtime errors while evaluating the unary operator `-`.
+In this stage, you'll reject a non-number operand for unary `-`.
 
-### Book reference
+### Runtime errors
 
-The code for this stage is implemented in [Section 7.3: Runtime Errors](https://craftinginterpreters.com/evaluating-expressions.html#runtime-errors).
+A **runtime error** occurs while evaluating an expression whose syntax is valid.
+For example, `-"hello"` has a valid unary-expression shape, but a string cannot
+be numerically negated.
+
+Check the operand's evaluated value, including results of nested expressions.
+Booleans and `nil` are also invalid for `-`. Stop evaluation, report a
+diagnostic on stderr, leave stdout empty, and exit with code 70. Syntax errors
+continue to use code 65.
 
 ### Tests
 
-The tester will test your program using a `test.lox` file that contains an expression with the unary operator `-`. This expression
-will contain a usage of the `-` operator that should throw a runtime error.
-
-The unary operator `-` will throw a runtime error if the operand is not a number.
+The tester will use expressions with invalid operand types, including values
+produced by nested expressions.
 
 For example, if `test.lox` contains the following:
 
@@ -17,7 +22,8 @@ For example, if `test.lox` contains the following:
 -"hello world!"
 ```
 
-The tester will run your program like this:
+The tester will run your program like this. The lines after the command
+illustrate a diagnostic on stderr:
 
 ```
 $ ./your_program.sh evaluate test.lox
@@ -25,19 +31,23 @@ Operand must be a number.
 [line 1]
 ```
 
-The tester will run multiple such tests with randomized expressions, for example:
+The tester will run multiple such tests with randomized expressions, for
+example:
 
-| Input | Expected output |
-| :---: | :-------------: |
-| `-"foo"` | `Operand must be a number.` |
-| `-true` | `Operand must be a number.` |
+|       Input        |     Example diagnostic      |
+| :----------------: | :-------------------------: |
+|      `-"foo"`      | `Operand must be a number.` |
+|      `-true`       | `Operand must be a number.` |
 | `-("foo" + "bar")` | `Operand must be a number.` |
-| `-false` | `Operand must be a number. `|
+|      `-false`      | `Operand must be a number.` |
 
-The tester will assert that the exit code is 70, signifying a runtime error. Note that this is different from the expected exit code for a syntax error, which is 65.
+The tester checks for exit code 70 and empty stdout.
 
 ### Notes
 
-- This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/evaluate.lox)
-- Error messages should be printed to `stderr`, not `stdout`.
-- The tester won't check the exact error message in this stage, it will only check that the program exits with code 70.
+- This output format matches the spec in the
+  [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/expressions/evaluate.lox)
+- The exact diagnostic wording is not checked in this stage. The examples use
+  the book's messages.
+- For the book's explanation, see
+  [Section 7.3: Runtime Errors](https://craftinginterpreters.com/evaluating-expressions.html#runtime-errors).

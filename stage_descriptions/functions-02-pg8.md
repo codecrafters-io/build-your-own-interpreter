@@ -1,12 +1,23 @@
-In this stage, you'll add support for declaring, defining and interpreting user defined functions with no arguments in your lox interpreter.
+In this stage, you'll add functions defined in Lox source with
+`fun <name>() { <body> }`.
 
-### Book reference
+### Function declarations and calls
 
-The code for this stage is implemented in [Section 10.3: Function declarations](https://craftinginterpreters.com/functions.html#function-declarations).
+This first form takes no arguments.
+
+Executing the declaration binds the name to a function value without running the
+body. Calling that value with `()` executes the body. Each call has its own
+local variables, so repeated calls start with fresh local state. Reaching the
+end of the body returns `nil`.
+
+A function name by itself evaluates to the function value. Printing it uses
+`<fn name>`, with the declared name in place of `name`. An empty body is valid,
+and calling it as an expression statement prints nothing.
 
 ### Tests
 
-The tester will run a series of tests with `test.lox` files that contain programs with user defined functions with no arguments.
+The tester will run a series of tests with `test.lox` files that contain
+programs with user-defined functions with no arguments.
 
 For example, if `test.lox` contains the following
 
@@ -22,26 +33,10 @@ $ ./your_program.sh run test.lox
 10
 ```
 
-The tester will run multiple such tests with randomized expressions, for example:
+The tester varies the values and expressions. These examples show the required
+behavior:
 
-Test Case 1:
-
-Input:
-
-```
-fun foo() {
-  print 7;
-}
-foo();
-```
-
-Expected Output:
-
-```
-7
-```
-
-Test Case 2:
+An empty function body:
 
 Input:
 
@@ -50,13 +45,9 @@ fun f() {}
 f();
 ```
 
-Expected Output:
+Stdout is empty.
 
-```
-
-```
-
-Test Case 3:
+Printing the function value:
 
 Input:
 
@@ -65,41 +56,18 @@ fun foo() {}
 print foo;
 ```
 
-Expected Output:
+Stdout:
 
 ```
 <fn foo>
 ```
 
-Test Case 4:
-
-Input:
-
-```
-fun cumulative_sum() {
-    var n = 10;  // Fixed value
-    var total = 0;
-    var i = 1;
-    while (i <= n) {
-        total = total + i;
-        i = i + 1;
-    }
-    print "The cumulative sum from 1 to 10 is: ";
-    print total;
-}
-
-cumulative_sum();
-```
-
-Expected Output:
-
-```
-The cumulative sum from 1 to 10 is:
-55
-```
-
-The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+The tester will assert that the stdout of your program matches the format above,
+and that the exit code is 0.
 
 ### Notes
 
-- This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/function/print.lox)
+- This output format matches the spec in the
+  [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/function/print.lox)
+- For the book's explanation, see
+  [Section 10.3: Function declarations](https://craftinginterpreters.com/functions.html#function-declarations).

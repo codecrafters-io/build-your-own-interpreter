@@ -1,12 +1,23 @@
-In this stage, you'll add support for instance methods in your Lox interpreter. Methods are functions defined within a class that can be called on instances of that class.
+In this stage, you'll add methods, functions declared inside a class body.
 
-### Book reference
+### Methods and bound instances
 
-The code for this stage is implemented in [Section 12.5: Methods on Classes](https://craftinginterpreters.com/classes.html#methods-on-classes).
+Write a method as `name(parameters) { body }`, without the `fun` keyword. Its
+parameters, local scope, and return behavior follow the function rules.
+
+Reading `instance.method` produces a **bound method**, a function value that
+remembers the instance it was read from. Adding `()` invokes it. A bound method
+can also be stored in a variable and called later, as the `action` example
+shows.
+
+An instance field takes precedence over a method with the same name. If no field
+exists, look for a method on the class. Referring to the bound instance inside a
+method with `this` comes next.
 
 ### Tests
 
-The tester will run a series of tests with `test.lox` files that contain method definitions and calls.
+The tester will run a series of tests with `test.lox` files that contain method
+definitions and calls.
 
 For example, if `test.lox` contains the following:
 
@@ -31,11 +42,13 @@ Beep boop!
 Beep boop!
 ```
 
-The tester will run multiple such tests with methods in different contexts, for example:
+The tester varies values and contexts. These examples show the required
+behavior:
 
-Test Case 1:
+A method can refer to its class:
 
 Input:
+
 ```
 {
   class Foo {
@@ -48,14 +61,16 @@ Input:
 }
 ```
 
-Expected Output:
+Stdout:
+
 ```
 Foo
 ```
 
-Test Case 2:
+A method can be stored and called later:
 
 Input:
+
 ```
 class Wizard {
   castSpell(spell) {
@@ -84,14 +99,16 @@ if (true) {
 }
 ```
 
-Expected Output:
+Stdout:
+
 ```
 Casting a magical spell: Fireball
 ```
 
-Test Case 3:
+Methods can pass and update instances:
 
 Input:
+
 ```
 class Superhero {
   useSpecialPower(hero) {
@@ -128,18 +145,17 @@ if (true) {
 performHeroics(superman, heroClass);
 ```
 
-Expected Output:
+Stdout:
+
 ```
 Using power: Flight
 ```
 
-The tester will assert that your program correctly handles methods, including:
-- Defining methods within classes
-- Calling methods on instances
+The tester checks stdout and exit code 0 for successful method calls.
 
 ### Notes
 
-- This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/benchmark/method_call.lox)
-- Methods are defined within the class body
-- Methods can take parameters and return values
-- Methods can be used to manipulate instance properties
+- This output format matches the spec in the
+  [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/benchmark/method_call.lox)
+- For the book's explanation, see
+  [Section 12.5: Methods on Classes](https://craftinginterpreters.com/classes.html#methods-on-classes).

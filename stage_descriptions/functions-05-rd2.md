@@ -1,12 +1,23 @@
-In this stage, you'll add support for return statements in functions in your lox interpreter.
+In this stage, you'll support `return <expression>;` inside a function.
 
-### Book reference
+### Returning a value
 
-The code for this stage is implemented in [Section 10.5: Return Statements](https://craftinginterpreters.com/functions.html#return-statements).
+It evaluates the expression, ends the current function call, and makes that
+value the result of the call.
+
+A return exits the function even when it occurs inside a nested block,
+conditional, or loop. No later statement in that call runs. A bare `return;`
+produces `nil`, as does reaching the end of a function without returning a
+value.
+
+Functions can call themselves, a behavior called **recursion**. Each call has
+its own parameters and locals, and a return ends only that call. The Fibonacci
+example below relies on those independent calls.
 
 ### Tests
 
-The tester will run a series of tests with `test.lox` files that contain programs with return statements in functions.
+The tester will run a series of tests with `test.lox` files that contain
+programs with return statements in functions.
 
 For example, if `test.lox` contains the following
 
@@ -22,9 +33,10 @@ $ ./your_program.sh run test.lox
 10
 ```
 
-The tester will run multiple such tests with randomized expressions, for example:
+The tester varies the values and expressions. These examples show the required
+behavior:
 
-Test Case 1:
+Recursive calls return independent results:
 
 Input:
 
@@ -39,32 +51,14 @@ print fib(10) == 55;
 print (clock() - start) < 5; // 5 seconds
 ```
 
-Expected Output:
+Stdout:
 
 ```
 true
 true
 ```
 
-Test Case 2:
-
-Input:
-
-```
-fun f() {
-  if (false) return "no"; else return "ok";
-}
-
-print f();
-```
-
-Expected Output:
-
-```
-ok
-```
-
-Test Case 3:
+Falling through returns nil:
 
 Input:
 
@@ -76,13 +70,13 @@ fun f() {
 print f();
 ```
 
-Expected Output:
+Stdout:
 
 ```
 nil
 ```
 
-Test Case 4:
+A bare return skips the remaining body:
 
 Input:
 
@@ -95,14 +89,18 @@ fun f() {
 print f();
 ```
 
-Expected Output:
+Stdout:
 
 ```
 nil
 ```
 
-The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+The tester will assert that the stdout of your program matches the format above,
+and that the exit code is 0.
 
 ### Notes
 
-- This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/function/local_recursion.lox)
+- This output format matches the spec in the
+  [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/function/local_recursion.lox)
+- For the book's explanation, see
+  [Section 10.5: Return Statements](https://craftinginterpreters.com/functions.html#return-statements).

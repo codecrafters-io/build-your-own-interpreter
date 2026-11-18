@@ -1,12 +1,18 @@
-In this stage, you'll add support for redeclaring variables using the `var` statement.
+In this stage, you'll allow a global variable to be declared again with `var`.
 
-### Book reference
+### Redeclaring global variables
 
-The code for this stage is implemented in [Section 8.2: Global Variables](https://craftinginterpreters.com/statements-and-state.html#global-variables).
+The new declaration replaces its value, even when the value's type changes.
+
+Evaluate the initializer before replacing the existing value. This lets
+`var a = a;` reuse the old global `a`. If that old name does not exist, the
+initializer produces an undefined-variable runtime error. Local redeclaration
+rules are introduced in the Resolving & Binding extension.
 
 ### Tests
 
-The tester will run a series of tests with `test.lox` files that contain the `var` statement.
+The tester will run a series of tests with `test.lox` files that contain the
+`var` statement.
 
 For example, if `test.lox` contains the following
 
@@ -23,27 +29,10 @@ $ ./your_program.sh run test.lox
 2
 ```
 
-The tester will run multiple such tests with randomized expressions, for example:
+The tester varies the values and expressions. These examples show the required
+behavior:
 
-Test Case 1:
-
-Input:
-
-```
-var baz = "before";
-print baz;
-var baz = "after";
-print baz;
-```
-
-Expected Output:
-
-```
-before
-after
-```
-
-Test Case 2:
+A redeclaration can read the previous value:
 
 Input:
 
@@ -54,37 +43,13 @@ var hello = hello;
 print hello;
 ```
 
-Expected Output:
+Stdout:
 
 ```
 before
 ```
 
-Test Case 3:
-
-Input:
-
-```
-var world = 2;
-print world;
-var world = 3;
-print world;
-var hello = 5;
-print hello;
-var world = hello;
-print world;
-```
-
-Expected Output:
-
-```
-2
-3
-5
-5
-```
-
-Test Case 4:
+An initializer still needs a declared name:
 
 Input:
 
@@ -92,15 +57,22 @@ Input:
 var baz = bar;
 ```
 
-Expected Output:
+Stdout is empty.
+
+Example stderr:
 
 ```
 Undefined variable 'bar'.
 [line 1]
 ```
 
-The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+Successful programs exit with code 0. An undefined name in an initializer
+produces a runtime error and exit code 70. The tester checks stdout and exit
+status, without requiring the exact diagnostic wording.
 
 ### Notes
 
-- This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/variable/in_nested_block.lox)
+- This output format matches the spec in the
+  [book's repository](https://github.com/munificent/craftinginterpreters/blob/01e6f5b8f3e5dfa65674c2f9cf4700d73ab41cf8/test/variable/in_nested_block.lox)
+- For the book's explanation, see
+  [Section 8.2: Global Variables](https://craftinginterpreters.com/statements-and-state.html#global-variables).

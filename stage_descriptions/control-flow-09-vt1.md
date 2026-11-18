@@ -1,12 +1,25 @@
-In this stage, you'll add support for syntactic errors in your interpreter. Syntactic errors are errors that occur when the code is not written in the correct syntax.
+In this stage, you'll reject invalid control-flow syntax.
 
-### Book reference
+### Declarations and statement bodies
 
-The code for this stage is implemented in [Section 9.5: For Loops](https://craftinginterpreters.com/control-flow.html#for-loops).
+Your parser already reports malformed expressions. It must now also enforce
+where declarations and statements are allowed.
+
+The body of `if`, `else`, `while`, or `for` must be a statement. A bare `var`
+declaration cannot occupy that position. A block is a statement and can contain
+declarations, so `if (true) { var foo; }` is valid.
+
+In a `for` header, the initializer can be a variable declaration, an expression,
+or empty. The condition and increment can be expressions or empty. A block such
+as `{}` cannot replace any clause.
+
+Report a diagnostic on stderr and exit with code 65. These invalid programs
+produce no stdout. The tester does not require a particular diagnostic message.
 
 ### Tests
 
-The tester will run a series of tests with `test.lox` files that contain programs with syntactic errors.
+The tester will run a series of tests with `test.lox` files that contain
+programs with syntactic errors.
 
 For example, if `test.lox` contains the following
 
@@ -14,16 +27,17 @@ For example, if `test.lox` contains the following
 for (;;) var foo;
 ```
 
-The tester will run your program like this:
+The tester will run your program like this. The shown diagnostic is on stderr:
 
 ```
 $ ./your_program.sh run test.lox
 [line 1] Error at 'var': Expect expression.
 ```
 
-The tester will run multiple such tests with randomized expressions, for example:
+The tester varies the values and expressions. These examples show the required
+behavior:
 
-Test Case 1:
+A bare declaration cannot be an else-branch:
 
 Input:
 
@@ -31,13 +45,13 @@ Input:
 if (true) "ok"; else var foo;
 ```
 
-Expected Output:
+Example stderr:
 
 ```
 [line 1] Error at 'var': Expect expression.
 ```
 
-Test Case 2:
+A block cannot be the loop condition:
 
 Input:
 
@@ -45,14 +59,14 @@ Input:
 for (var a = 1; {}; a = a + 1) {}
 ```
 
-Expected Output:
+Example stderr:
 
 ```
-[line 2] Error at '{': Expect expression.
-[line 2] Error at ')': Expect ';' after expression.
+[line 1] Error at '{': Expect expression.
+[line 1] Error at ')': Expect ';' after expression.
 ```
 
-Test Case 3:
+A block cannot be the increment:
 
 Input:
 
@@ -60,13 +74,13 @@ Input:
 for (var a = 1; a < 2; {}) {}
 ```
 
-Expected Output:
+Example stderr:
 
 ```
-[line 2] Error at '{': Expect expression.
+[line 1] Error at '{': Expect expression.
 ```
 
-Test Case 4:
+A block cannot be the initializer:
 
 Input:
 
@@ -74,17 +88,20 @@ Input:
 for ({}; a < 2; a = a + 1) {}
 ```
 
-Expected Output:
+Example stderr:
 
 ```
-[line 2] Error at '{': Expect expression.
-[line 2] Error at ')': Expect ';' after expression.
+[line 1] Error at '{': Expect expression.
+[line 1] Error at ')': Expect ';' after expression.
 ```
 
-The tester will only assert that the exit code is 65, when there is a compilation error.
+The tester checks for exit code 65 and empty stdout.
 
 ### Notes
 
-- This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/if/dangling_else.lox)
-- Error messages should be printed to `stderr`, not `stdout`.
-- The tester won't check the exact error message in this stage, it will only check that the program exits with code 65.
+- This output format matches the spec in the
+  [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/if/dangling_else.lox)
+- The diagnostics above illustrate possible messages. Reporting additional
+  syntax errors during recovery is optional.
+- For the book's explanation, see
+  [Section 9.5: For Loops](https://craftinginterpreters.com/control-flow.html#for-loops).

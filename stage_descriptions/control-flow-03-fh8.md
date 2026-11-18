@@ -1,12 +1,19 @@
-In this stage, you'll add support for the `else-if` statement in your interpreter. The `else-if` statement is used to conditionally execute statements when the `if` condition is false.
+In this stage, you'll support chains written as `else if`.
 
-### Book reference
+### Chained conditions
 
-The code for this stage is implemented in [Section 9.2: Conditional execution](https://craftinginterpreters.com/control-flow.html#conditional-execution).
+This is an `if` statement used as the previous `if`'s else-branch. The source
+contains the two keywords `else` and `if`.
+
+Check conditions in order until one is truthy, then execute that branch and skip
+the rest. If none is truthy, execute the final `else` when present. If no
+condition matches and there is no final `else`, skip the chain. In the age
+example below, `age >= 18` wins even though `age >= 65` is also true.
 
 ### Tests
 
-The tester will run a series of tests with `test.lox` files that contain programs with `if` statements.
+The tester will run a series of tests with `test.lox` files that contain
+programs with `if` statements.
 
 For example, if `test.lox` contains the following
 
@@ -20,44 +27,10 @@ The tester will run your program like this:
 $ ./your_program.sh run test.lox
 ```
 
-The tester will run multiple such tests with randomized expressions, for example:
+The tester varies the values and expressions. These examples show the required
+behavior:
 
-Test Case 1:
-
-Input:
-
-```
-if (true) print "if branch"; else if (false) print "else-if branch";
-```
-
-Expected Output:
-
-```
-if branch
-```
-
-Test Case 2:
-
-Input:
-
-```
-if (true) {
-  print "hello";
-} else if (true) print "hello";
-
-if (true) print "hello"; else if (true) {
-  print "hello";
-}
-```
-
-Expected Output:
-
-```
-hello
-hello
-```
-
-Test Case 3:
+The first matching branch wins:
 
 Input:
 
@@ -71,13 +44,13 @@ else if (age >= 100) { stage = "centenarian"; }
 print stage;
 ```
 
-Expected Output:
+Stdout:
 
 ```
 adult
 ```
 
-Test Case 4:
+A final else handles the remaining case:
 
 Input:
 
@@ -96,7 +69,7 @@ if (age < 21) { print "eligible for drinking (US): false"; }
 else { print "eligible for drinking (US): true"; }
 ```
 
-Expected Output:
+Stdout:
 
 ```
 eligible for voting: true
@@ -104,8 +77,12 @@ eligible for driving: full license
 eligible for drinking (US): true
 ```
 
-The tester will assert that the stdout of your program matches the format above, and that the exit code is 0.
+The tester will assert that the stdout of your program matches the format above,
+and that the exit code is 0.
 
 ### Notes
 
-- This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/if/else.lox)
+- This output format matches the spec in the
+  [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/if/else.lox)
+- For the book's explanation, see
+  [Section 9.2: Conditional execution](https://craftinginterpreters.com/control-flow.html#conditional-execution).

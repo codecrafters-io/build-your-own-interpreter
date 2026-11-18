@@ -1,12 +1,23 @@
-In this stage, you'll add support for constructors in your Lox interpreter. In Lox, a constructor is a method named `init()` that is automatically called when a class instance is created.
+In this stage, you'll initialize new instances with a method named `init`.
 
-### Book reference
+### Constructors and initializers
 
-The code for this stage is implemented in [Section 12.7: Constructors and Initializers](https://craftinginterpreters.com/classes.html#constructors-and-initializers).
+Calling a class creates an instance, binds `this` to it, and invokes `init` when
+that method exists. The class call then returns the instance.
+
+The initializer's parameters determine the class call's arity, and the call's
+arguments become those parameter values. A class with no initializer still takes
+zero arguments.
+
+An initializer can also be called explicitly, such as `instance.init(52)`. This
+operates on the existing instance and returns that same instance, even when its
+body reaches the end without a return. Explicit return statements inside
+initializers come in later stages.
 
 ### Tests
 
-The tester will run a series of tests with `test.lox` files that contain constructor definitions and calls.
+The tester will run a series of tests with `test.lox` files that contain
+constructor definitions and calls.
 
 For example, if `test.lox` contains the following:
 
@@ -29,11 +40,13 @@ bar
 91
 ```
 
-The tester will run multiple such tests with constructors in different contexts, for example:
+The tester varies values and contexts. These examples show the required
+behavior:
 
-Test Case 1:
+Constructor arguments become initializer parameters:
 
 Input:
+
 ```
 class Robot {
   init(model, function) {
@@ -44,14 +57,16 @@ class Robot {
 print Robot("R2-D2", "Astromech").model;
 ```
 
-Expected Output:
+Stdout:
+
 ```
 R2-D2
 ```
 
-Test Case 2:
+Calling init explicitly returns the existing instance:
 
 Input:
+
 ```
 class Counter {
   init(startValue) {
@@ -69,16 +84,18 @@ print instance.count;
 print instance.init(52).count;
 ```
 
-Expected Output:
+Stdout:
+
 ```
 startValue can't be negative
 0
 52
 ```
 
-Test Case 3:
+Initialized fields are available to other methods:
 
 Input:
+
 ```
 class Vehicle {
   init(type) {
@@ -106,18 +123,19 @@ var myCar = Car("Toyota", "Corolla");
 myCar.describe();
 ```
 
-Expected Output:
+Stdout:
+
 ```
 Generic Generic
 Toyota Corolla with four wheels
 ```
 
-The tester will assert that your program correctly handles constructors, including:
-- Calling the `init()` method automatically when a class is instantiated
-- Passing constructor arguments correctly
-- Setting instance properties in the constructor
+The tester checks stdout and exit code 0, including automatic initialization,
+argument binding, and explicit calls to `init`.
 
 ### Notes
 
-- The `init()` method can be called explicitly like any other method
-- This output format matches the spec in the [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/constructor/call_init_early_return.lox)
+- This output format matches the spec in the
+  [book's repository](https://github.com/munificent/craftinginterpreters/blob/4a840f70f69c6ddd17cfef4f6964f8e1bcd8c3d4/test/constructor/call_init_early_return.lox)
+- For the book's explanation, see
+  [Section 12.7: Constructors and Initializers](https://craftinginterpreters.com/classes.html#constructors-and-initializers).
